@@ -32,5 +32,8 @@
     <Setting Name="RomFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="UserThreads" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

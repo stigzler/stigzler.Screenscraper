@@ -14,7 +14,7 @@ using System.Reflection.Emit;
 
 namespace stigzler.Screenscraper.Helpers
 {
-    internal class ApiUrlBuilder 
+    internal class ApiUrlBuilder
     {
         public MetadataOutput MetadataOutputType { get; set; } = MetadataOutput.xml;
         public Credentials Credentials { get; set; }
@@ -26,14 +26,14 @@ namespace stigzler.Screenscraper.Helpers
             ServerParameters = serverParameters;
         }
 
-        internal string Build( ApiQueryType queryType, List<QueryParameter> additionalParameters = null)
+        internal string Build(ApiQueryType queryType, List<QueryParameter> additionalParameters = null)
         {
             var build = new UriBuilder(ServerParameters.HostAddress);
-        
+
             // Add Credentials and Server details
             build.Port = (int)ServerParameters.HostPort;
             build.Path = Path.Combine(ServerParameters.ApiPath, Constants.ApiQueryPaths[queryType]);
-            var query = HttpUtility.ParseQueryString(build.Query,Encoding.UTF8);
+            var query = HttpUtility.ParseQueryString(build.Query);
             query["devid"] = Credentials.DeveloperID;
             query["devpassword"] = Credentials.DeveloperPassword;
             query["softname"] = Credentials.DeveloperSoftware;
@@ -42,15 +42,18 @@ namespace stigzler.Screenscraper.Helpers
             query["output"] = MetadataOutputType.ToString();
 
             // Now process any extra parameters
-            foreach (QueryParameter parameter in additionalParameters)
+            if (additionalParameters != null)
             {
-                query[Constants.ApiQueryParameters[parameter.Parameter]] = parameter.Value;
+                foreach (QueryParameter parameter in additionalParameters)
+                {
+                    query[Constants.ApiQueryParameters[parameter.Parameter]] = Uri.EscapeDataString(parameter.Value);
+                }
             }
 
             build.Query = query.ToString();
 
             // -----------------
-            return Uri.EscapeUriString( build.Uri.AbsoluteUri);
+            return build.Uri.AbsoluteUri;
 
         }
     }

@@ -2,30 +2,27 @@
 using stigzler.Screenscraper.Data.Models;
 using stigzler.Screenscraper.Enums;
 using stigzler.ScreenScraper.Test.Properties;
+using stigzler.Winforms.Base.Forms.BaseForm;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
-using System.Net;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Compilation;
 using System.Windows.Forms;
 
 namespace stigzler.ScreenScraper.Test
 {
-
-
-    public partial class Form1 : Form
+    public partial class Form1 : BaseForm
     {
-        string romsDir = @"\\HPSERVER\ServerFolders\Arcade\ROMS\Sega Genesis\Hyperspin Ready";
+        string romsDir = @"\\HPSERVER\ServerFolders\Arcade\ROMS\Atari 7800\Hyperspin Ready";
 
-        HttpClient httpClient = new HttpClient();
         Credentials credentials = new Credentials();
         ApiServerParameters serverParameters = new ApiServerParameters();
-
         GetData getData;
 
         public Form1()
@@ -40,11 +37,13 @@ namespace stigzler.ScreenScraper.Test
         {
 
             QueryTypeCB.DataSource = Enum.GetValues(typeof(ApiQueryType));
+            QueryTypeCB.SelectedText = "GameInfo";
+
             outputFormatCB.DataSource = Enum.GetValues(typeof(MetadataOutput));
 
             outputFormatCB.SelectedIndex = 0;
 
-            getData = new GetData(credentials, serverParameters, httpClient);
+            getData = new GetData(credentials, serverParameters, Int32.Parse(Settings.Default.UserThreads));
         }
 
         private void UpdateCredentialsAndApiParams()
@@ -62,26 +61,6 @@ namespace stigzler.ScreenScraper.Test
             getData.ApiParameters = serverParameters;
             getData.Credentials = credentials;
 
-        }
-
-        private void TestRomfolderDownload()
-        {
-            int userThreads = 7;
-
-            // Set number of concurrent downloads
-            //    SetMaxConcurrency(baseUrl, userThreads);
-            ProcessRomsFolder();
-        }
-
-
-        /// <summary>
-        /// Sets maximum number of concurrent connections to a server
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="maxConcurrentRequests"></param>
-        private void SetMaxConcurrency(string url, int maxConcurrentRequests)
-        {
-            ServicePointManager.FindServicePoint(new Uri(url)).ConnectionLimit = maxConcurrentRequests;
         }
 
         private void ProcessRomsFolder()
@@ -102,7 +81,7 @@ namespace stigzler.ScreenScraper.Test
             });
 
             HttpClient httpClient = new HttpClient();
-            // httpClient.BaseAddress = new Uri(baseUrl);
+            httpClient.BaseAddress = new Uri(Settings.Default.ApiHostAddress);
             httpClient.Timeout = new TimeSpan(0, 0, 2);
 
             //HttpGetter httpGet = new HttpGetter(httpClient);
@@ -155,17 +134,6 @@ namespace stigzler.ScreenScraper.Test
 
             return url;
         }
-
-
-        private void ResearchKeeps()
-        {
-            // below gets object with current number of connections 
-            ServicePoint sp1 = ServicePointManager.FindServicePoint(new Uri("https://www.screenscraper.fr"));
-
-        }
-
-
-
         private void SaveSettings()
         {
             Settings.Default.DevID = DevIdTB.Text;
@@ -175,7 +143,6 @@ namespace stigzler.ScreenScraper.Test
             Settings.Default.Password = PasswordTB.Text;
             Settings.Default.SystemID = SystemIdTB.Text;
             Settings.Default.RomFolder = RomFolderTB.Text;
-
             Settings.Default.Save();
         }
 
@@ -204,40 +171,72 @@ namespace stigzler.ScreenScraper.Test
         private async void GoBT_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            // ApiGetOutcome outcome = new ApiGetOutcome();
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            ApiGetOutcome outcome = new ApiGetOutcome();
+            List<ApiGetOutcome> outcomes = new List<ApiGetOutcome>();
+
+            bool batchOperation = false;
+            bool queryDone = true;
 
 
+            log("Query Type: " + QueryTypeCB.SelectedItem.ToString());
             switch (QueryTypeCB.SelectedItem)
             {
                 case ApiQueryType.ServerInfo:
-                    ApiGetOutcome outcome = await Task.Run(() => getData.GetApiServerInfo().Result);
-                    string text = await ((HttpContent)outcome.Data).ReadAsStringAsync();
-                    log(outcome.Url);
-                    log(text.Trim());
+                    outcome = await Task.Run(() => getData.GetApiServerInfo().Result);
                     break;
 
                 case ApiQueryType.UserInfo:
                     outcome = await Task.Run(() => getData.GetUserInfo().Result);
-                    text = await ((HttpContent)outcome.Data).ReadAsStringAsync();
-                    log(outcome.Url);
-                    log(text.Trim());
+                    break;
+
+                case ApiQueryType.SystemList:
+                    outcome = await Task.Run(() => getData.GetSystemList().Result);
                     break;
 
                 case ApiQueryType.GameInfo:
-
+                    List<string> romFilepaths = Directory.GetFiles(Settings.Default.RomFolder, "*.*", SearchOption.AllDirectories).ToList();
                     List<string> romFilenames = new List<string>();
-                    foreach (var romFilename in Directory.GetFiles(Settings.Default.RomFolder,"*.*",SearchOption.AllDirectories))
+                    getData.UserThreads = Int32.Parse(UserThreadsTB.Text);
+                    log(">> Batch Game Info, using " + getData.UserThreads + " threads for " + romFilepaths.Count);
+
+                    foreach (var romFilename in romFilepaths)
                     {
                         romFilenames.Add(Path.GetFileName(romFilename));
                     }
-
-                    List<ApiGetOutcome> outcomes = await Task.Run(() => getData.GetGameInfo(Int32.Parse(Settings.Default.SystemID),romFilenames).Result);
-
+                    outcomes = await Task.Run(() => getData.GetGamesInfo(Int32.Parse(Settings.Default.SystemID), romFilenames));
+                    batchOperation = true;
                     break;
 
-
+                default:
+                    queryDone = false;
+                    break;
             }
+
+            if (queryDone && !batchOperation)
+            {
+                log("Uri: " + outcome.Uri);
+                if (outcome.Successfull == true)
+                { log("Success: " + Environment.NewLine + outcome.Data.ToString()); }
+                else
+                {
+                    log("Unsuccessful: " + Environment.NewLine
+                        + "Status Code: " + outcome.StatusCode + Environment.NewLine
+                        + "Server Message: " + outcome.Data + Environment.NewLine
+                        + "Full Exception: " + Environment.NewLine
+                    + outcome.Exception.ToString());
+                }
+            }
+            else if (queryDone && batchOperation)
+            {
+            }
+
             Cursor = Cursors.Default;
+
+            sw.Stop();
+            log("Process took: " + sw.Elapsed.TotalSeconds);
         }
 
         private void outputFormatCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -245,5 +244,32 @@ namespace stigzler.ScreenScraper.Test
             if (getData == null) return;
             getData.MetadataOutputFormat = (MetadataOutput)outputFormatCB.SelectedItem;
         }
+
+        public static void FindText(RichTextBox rtb, String word, Color color)
+        {
+            if (word == "")
+            {
+                return;
+            }
+            int s_start = rtb.SelectionStart, startIndex = 0, index;
+            while ((index = rtb.Text.IndexOf(word, startIndex)) != -1)
+            {
+                rtb.Select(index, word.Length);
+                rtb.ScrollToCaret();
+                rtb.SelectionBackColor = color;
+                startIndex = index + word.Length;
+            }
+            //rtb.SelectionStart = 0;
+            //rtb.SelectionLength = rtb.TextLength;
+            //rtb.SelectionColor = Color.Black;
+        }
+
+        private void SearchTextBT_Click(object sender, EventArgs e)
+        {
+            FindText(MainRTB, SerchTextTB.Text, Color.Yellow);
+        }
+
     }
+
+
 }

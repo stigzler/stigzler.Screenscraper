@@ -54,7 +54,16 @@ namespace stigzler.Screenscraper.Enums
         Username,
         Password,
         SystemID,
-        RomFilename
+        RomFilename,
+
+        //Debug
+        DevDebugPassword,
+        ForceIP,
+        ForceLevel,
+        ForceRequestOk,
+        ForceRequestKo,
+        ForceRequestMin,
+        ForceUpdate
 
 
     }

@@ -142,5 +142,17 @@ namespace stigzler.ScreenScraper.Test.Properties {
                 this["RomFolder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public string UserThreads {
+            get {
+                return ((string)(this["UserThreads"]));
+            }
+            set {
+                this["UserThreads"] = value;
+            }
+        }
     }
 }

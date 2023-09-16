@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="stigzler.Winforms.Base">
+      <HintPath>..\..\stigzler.Winforms.Base\stigzler.Winforms.Base\bin\Debug\stigzler.Winforms.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -92,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\folder-horizontal-open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\magnifier.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
