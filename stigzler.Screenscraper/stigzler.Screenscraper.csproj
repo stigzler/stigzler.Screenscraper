@@ -48,6 +48,7 @@
     <Compile Include="Data\Models\ApiGetOutcome.cs" />
     <Compile Include="Data\Models\QueryParameter.cs" />
     <Compile Include="Enums\Enums.cs" />
+    <Compile Include="EventArgs\ProgressChangedEventArgs.cs" />
     <Compile Include="GetData.cs" />
     <Compile Include="Helpers\ApiUrlBuilder.cs" />
     <Compile Include="ModifiedNet\WebClient.cs">

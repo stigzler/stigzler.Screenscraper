@@ -1,14 +1,12 @@
 ﻿using stigzler.Screenscraper.Data.Models;
 using stigzler.Screenscraper.Enums;
+using stigzler.Screenscraper.EventArgs;
 using stigzler.Screenscraper.Helpers;
 using stigzler.Screenscraper.Services;
 using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Net.Http;
+using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -52,6 +50,8 @@ namespace stigzler.Screenscraper
         // Class level private vars
         private ApiUrlBuilder urlBuilder;
         private ApiDataService apiDataService;
+        private IProgress<ProgressChangedEventArgs> progress;
+        CancellationToken cancellationToken;
 
         /// <summary>
         /// 
@@ -70,6 +70,16 @@ namespace stigzler.Screenscraper
             apiDataService = new ApiDataService(apiServerParameters, userThreads, apiServerParameters.HttpTimeout);
             urlBuilder = new ApiUrlBuilder(Credentials, ApiParameters);
 
+            apiDataService.OperationUpdate += ApiDataService_OperationUpdate;
+
+        }
+
+        private void ApiDataService_OperationUpdate(object sender, ProgressChangedEventArgs e)
+        {
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                progress.Report(e);
+            }
         }
 
         public async Task<ApiGetOutcome> GetApiServerInfo()
@@ -93,10 +103,15 @@ namespace stigzler.Screenscraper
             return result;
         }
 
-        public async Task<List<ApiGetOutcome>> GetGamesInfo(int systemID, List<string> romNames)
+        public async Task<List<ApiGetOutcome>> GetGamesInfo(int systemID, List<string> romNames,
+            CancellationToken cancellationToken,
+            IProgress<ProgressChangedEventArgs> progress = null)
         {
             List<QueryParameter> parameters = new List<QueryParameter>();
-            List<Uri> uriList = new List<Uri>();
+            Dictionary<string,Uri> romUrisList = new Dictionary<string, Uri>();
+
+            this.progress = (Progress<ProgressChangedEventArgs>)progress;
+            this.cancellationToken = cancellationToken;
 
             // Set number of concurrent threads on server
             ServicePointManager.FindServicePoint(new Uri(ApiParameters.HostAddress)).ConnectionLimit = userThreads;
@@ -107,12 +122,12 @@ namespace stigzler.Screenscraper
                 parameters.Clear();
                 parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.RomFilename, Value = romname });
                 parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.SystemID, Value = systemID.ToString() });
-                uriList.Add(new Uri(urlBuilder.Build(ApiQueryType.GameInfo, parameters)));
+                romUrisList.Add(romname, new Uri(urlBuilder.Build(ApiQueryType.GameInfo, parameters)));
             }
 
             // Get outcomes:
             List<ApiGetOutcome> apiGetOutcomes = new List<ApiGetOutcome>();
-            apiGetOutcomes = await Task.Run(() => apiDataService.GetStrings(uriList));
+            apiGetOutcomes = await Task.Run(() => apiDataService.GetStrings(romUrisList, cancellationToken));
 
             return apiGetOutcomes;
         }

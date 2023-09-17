@@ -32,12 +32,14 @@ namespace stigzler.ScreenScraper.Test
         {
             this.MainRTB = new System.Windows.Forms.RichTextBox();
             this.VerticalSC = new System.Windows.Forms.SplitContainer();
+            this.MainOpTitleLB = new stigzler.Winforms.Base.UIElements.Label();
+            this.UpdateLB = new stigzler.Winforms.Base.UIElements.Label();
+            this.UpdatePB = new System.Windows.Forms.ProgressBar();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.UserThreadsTB = new System.Windows.Forms.TextBox();
             this.SystemIdTB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.UpdatePB = new System.Windows.Forms.ProgressBar();
             this.outputFormatCB = new System.Windows.Forms.ComboBox();
             this.GoBT = new System.Windows.Forms.Button();
             this.QueryTypeCB = new System.Windows.Forms.ComboBox();
@@ -61,9 +63,9 @@ namespace stigzler.ScreenScraper.Test
             this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SaveSettingsBT = new System.Windows.Forms.Button();
+            this.UpdateRateLB = new stigzler.Winforms.Base.UIElements.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.UpdateLB = new stigzler.Winforms.Base.UIElements.Label();
-            this.MainOpTitleLB = new stigzler.Winforms.Base.UIElements.Label();
+            this.CancelBT = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).BeginInit();
             this.VerticalSC.Panel1.SuspendLayout();
             this.VerticalSC.Panel2.SuspendLayout();
@@ -85,7 +87,7 @@ namespace stigzler.ScreenScraper.Test
             this.MainRTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.MainRTB.Location = new System.Drawing.Point(0, 25);
             this.MainRTB.Name = "MainRTB";
-            this.MainRTB.Size = new System.Drawing.Size(536, 363);
+            this.MainRTB.Size = new System.Drawing.Size(575, 315);
             this.MainRTB.TabIndex = 1;
             this.MainRTB.Text = "";
             // 
@@ -99,6 +101,7 @@ namespace stigzler.ScreenScraper.Test
             // VerticalSC.Panel1
             // 
             this.VerticalSC.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.VerticalSC.Panel1.Controls.Add(this.CancelBT);
             this.VerticalSC.Panel1.Controls.Add(this.panel1);
             this.VerticalSC.Panel1.Controls.Add(this.label10);
             this.VerticalSC.Panel1.Controls.Add(this.label9);
@@ -109,6 +112,7 @@ namespace stigzler.ScreenScraper.Test
             this.VerticalSC.Panel1.Controls.Add(this.GoBT);
             this.VerticalSC.Panel1.Controls.Add(this.QueryTypeCB);
             this.VerticalSC.Panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.VerticalSC.Panel1.Padding = new System.Windows.Forms.Padding(4);
             // 
             // VerticalSC.Panel2
             // 
@@ -116,14 +120,66 @@ namespace stigzler.ScreenScraper.Test
             this.VerticalSC.Panel2.Controls.Add(this.MainRTB);
             this.VerticalSC.Panel2.Controls.Add(this.toolStrip1);
             this.VerticalSC.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.VerticalSC.Size = new System.Drawing.Size(812, 390);
-            this.VerticalSC.SplitterDistance = 270;
+            this.VerticalSC.Size = new System.Drawing.Size(870, 342);
+            this.VerticalSC.SplitterDistance = 289;
             this.VerticalSC.TabIndex = 3;
+            // 
+            // MainOpTitleLB
+            // 
+            this.MainOpTitleLB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainOpTitleLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainOpTitleLB.FontStyle = System.Drawing.FontStyle.Bold;
+            this.MainOpTitleLB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.MainOpTitleLB.Location = new System.Drawing.Point(7, 6);
+            this.MainOpTitleLB.Name = "MainOpTitleLB";
+            this.MainOpTitleLB.Padding = new System.Windows.Forms.Padding(4);
+            this.MainOpTitleLB.ScaleFont = 100;
+            this.MainOpTitleLB.Size = new System.Drawing.Size(257, 21);
+            this.MainOpTitleLB.TabIndex = 2;
+            this.MainOpTitleLB.Text = "Operation";
+            this.MainOpTitleLB.ToolTip = null;
+            this.MainOpTitleLB.ToolTipHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Right;
+            this.MainOpTitleLB.ToolTipImage = null;
+            this.MainOpTitleLB.ToolTipText = null;
+            this.MainOpTitleLB.ToolTipTitle = null;
+            // 
+            // UpdateLB
+            // 
+            this.UpdateLB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateLB.AutoEllipsis = true;
+            this.UpdateLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateLB.FontStyle = System.Drawing.FontStyle.Regular;
+            this.UpdateLB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.UpdateLB.Location = new System.Drawing.Point(13, 49);
+            this.UpdateLB.Name = "UpdateLB";
+            this.UpdateLB.Padding = new System.Windows.Forms.Padding(4);
+            this.UpdateLB.ScaleFont = 100;
+            this.UpdateLB.Size = new System.Drawing.Size(251, 23);
+            this.UpdateLB.TabIndex = 0;
+            this.UpdateLB.Text = "Progress";
+            this.UpdateLB.ToolTip = null;
+            this.UpdateLB.ToolTipHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Right;
+            this.UpdateLB.ToolTipImage = null;
+            this.UpdateLB.ToolTipText = null;
+            this.UpdateLB.ToolTipTitle = null;
+            // 
+            // UpdatePB
+            // 
+            this.UpdatePB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdatePB.Location = new System.Drawing.Point(10, 34);
+            this.UpdatePB.MarqueeAnimationSpeed = 10;
+            this.UpdatePB.Name = "UpdatePB";
+            this.UpdatePB.Size = new System.Drawing.Size(254, 10);
+            this.UpdatePB.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.UpdatePB.TabIndex = 1;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(26, 106);
+            this.label10.Location = new System.Drawing.Point(30, 103);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(58, 13);
             this.label10.TabIndex = 9;
@@ -132,7 +188,7 @@ namespace stigzler.ScreenScraper.Test
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(10, 81);
+            this.label9.Location = new System.Drawing.Point(14, 77);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(74, 13);
             this.label9.TabIndex = 8;
@@ -145,9 +201,9 @@ namespace stigzler.ScreenScraper.Test
             this.UserThreadsTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.UserThreadsTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.UserThreadsTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.UserThreadsTB.Location = new System.Drawing.Point(90, 77);
+            this.UserThreadsTB.Location = new System.Drawing.Point(94, 75);
             this.UserThreadsTB.Name = "UserThreadsTB";
-            this.UserThreadsTB.Size = new System.Drawing.Size(161, 20);
+            this.UserThreadsTB.Size = new System.Drawing.Size(186, 20);
             this.UserThreadsTB.TabIndex = 7;
             this.UserThreadsTB.Text = "7";
             // 
@@ -158,30 +214,19 @@ namespace stigzler.ScreenScraper.Test
             this.SystemIdTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.SystemIdTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.SystemIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.SystemIdTB.Location = new System.Drawing.Point(90, 103);
+            this.SystemIdTB.Location = new System.Drawing.Point(94, 101);
             this.SystemIdTB.Name = "SystemIdTB";
-            this.SystemIdTB.Size = new System.Drawing.Size(161, 20);
+            this.SystemIdTB.Size = new System.Drawing.Size(186, 20);
             this.SystemIdTB.TabIndex = 11;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 51);
+            this.label6.Location = new System.Drawing.Point(46, 51);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(42, 13);
             this.label6.TabIndex = 6;
             this.label6.Text = "Output:";
-            // 
-            // UpdatePB
-            // 
-            this.UpdatePB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdatePB.Location = new System.Drawing.Point(7, 26);
-            this.UpdatePB.MarqueeAnimationSpeed = 10;
-            this.UpdatePB.Name = "UpdatePB";
-            this.UpdatePB.Size = new System.Drawing.Size(241, 11);
-            this.UpdatePB.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.UpdatePB.TabIndex = 1;
             // 
             // outputFormatCB
             // 
@@ -194,21 +239,21 @@ namespace stigzler.ScreenScraper.Test
             this.outputFormatCB.FormattingEnabled = true;
             this.outputFormatCB.Items.AddRange(new object[] {
             "Server Details"});
-            this.outputFormatCB.Location = new System.Drawing.Point(55, 47);
+            this.outputFormatCB.Location = new System.Drawing.Point(94, 48);
             this.outputFormatCB.Name = "outputFormatCB";
-            this.outputFormatCB.Size = new System.Drawing.Size(128, 21);
+            this.outputFormatCB.Size = new System.Drawing.Size(186, 21);
             this.outputFormatCB.TabIndex = 5;
             this.outputFormatCB.SelectedIndexChanged += new System.EventHandler(this.outputFormatCB_SelectedIndexChanged);
             // 
             // GoBT
             // 
-            this.GoBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.GoBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.GoBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
             this.GoBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             this.GoBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.GoBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GoBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.GoBT.Location = new System.Drawing.Point(189, 46);
+            this.GoBT.Location = new System.Drawing.Point(205, 202);
             this.GoBT.Name = "GoBT";
             this.GoBT.Size = new System.Drawing.Size(75, 23);
             this.GoBT.TabIndex = 4;
@@ -228,9 +273,9 @@ namespace stigzler.ScreenScraper.Test
             this.QueryTypeCB.FormattingEnabled = true;
             this.QueryTypeCB.Items.AddRange(new object[] {
             "Server Details"});
-            this.QueryTypeCB.Location = new System.Drawing.Point(3, 4);
+            this.QueryTypeCB.Location = new System.Drawing.Point(7, 8);
             this.QueryTypeCB.Name = "QueryTypeCB";
-            this.QueryTypeCB.Size = new System.Drawing.Size(262, 24);
+            this.QueryTypeCB.Size = new System.Drawing.Size(273, 24);
             this.QueryTypeCB.TabIndex = 3;
             // 
             // toolStrip1
@@ -244,7 +289,7 @@ namespace stigzler.ScreenScraper.Test
             this.SearchTextBT});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(536, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(575, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -309,8 +354,8 @@ namespace stigzler.ScreenScraper.Test
             this.HorizontalSC.Panel2.Controls.Add(this.DevIdTB);
             this.HorizontalSC.Panel2.Controls.Add(this.label1);
             this.HorizontalSC.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.HorizontalSC.Size = new System.Drawing.Size(812, 732);
-            this.HorizontalSC.SplitterDistance = 390;
+            this.HorizontalSC.Size = new System.Drawing.Size(870, 642);
+            this.HorizontalSC.SplitterDistance = 342;
             this.HorizontalSC.TabIndex = 4;
             // 
             // RomFolderBT
@@ -322,7 +367,7 @@ namespace stigzler.ScreenScraper.Test
             this.RomFolderBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.RomFolderBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.RomFolderBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.folder_horizontal_open;
-            this.RomFolderBT.Location = new System.Drawing.Point(732, 141);
+            this.RomFolderBT.Location = new System.Drawing.Point(790, 141);
             this.RomFolderBT.Name = "RomFolderBT";
             this.RomFolderBT.Size = new System.Drawing.Size(36, 23);
             this.RomFolderBT.TabIndex = 14;
@@ -337,7 +382,7 @@ namespace stigzler.ScreenScraper.Test
             this.RomFolderTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.RomFolderTB.Location = new System.Drawing.Point(118, 143);
             this.RomFolderTB.Name = "RomFolderTB";
-            this.RomFolderTB.Size = new System.Drawing.Size(608, 20);
+            this.RomFolderTB.Size = new System.Drawing.Size(666, 20);
             this.RomFolderTB.TabIndex = 13;
             // 
             // label8
@@ -358,7 +403,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevPwTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevPwTB.Location = new System.Drawing.Point(118, 39);
             this.DevPwTB.Name = "DevPwTB";
-            this.DevPwTB.Size = new System.Drawing.Size(650, 20);
+            this.DevPwTB.Size = new System.Drawing.Size(708, 20);
             this.DevPwTB.TabIndex = 9;
             // 
             // label5
@@ -379,7 +424,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevSoftwareTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevSoftwareTB.Location = new System.Drawing.Point(118, 65);
             this.DevSoftwareTB.Name = "DevSoftwareTB";
-            this.DevSoftwareTB.Size = new System.Drawing.Size(650, 20);
+            this.DevSoftwareTB.Size = new System.Drawing.Size(708, 20);
             this.DevSoftwareTB.TabIndex = 7;
             // 
             // label4
@@ -400,7 +445,7 @@ namespace stigzler.ScreenScraper.Test
             this.UsernameTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.UsernameTB.Location = new System.Drawing.Point(118, 91);
             this.UsernameTB.Name = "UsernameTB";
-            this.UsernameTB.Size = new System.Drawing.Size(650, 20);
+            this.UsernameTB.Size = new System.Drawing.Size(708, 20);
             this.UsernameTB.TabIndex = 5;
             // 
             // label3
@@ -421,7 +466,7 @@ namespace stigzler.ScreenScraper.Test
             this.PasswordTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.PasswordTB.Location = new System.Drawing.Point(117, 117);
             this.PasswordTB.Name = "PasswordTB";
-            this.PasswordTB.Size = new System.Drawing.Size(650, 20);
+            this.PasswordTB.Size = new System.Drawing.Size(708, 20);
             this.PasswordTB.TabIndex = 3;
             // 
             // label2
@@ -442,7 +487,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevIdTB.Location = new System.Drawing.Point(117, 13);
             this.DevIdTB.Name = "DevIdTB";
-            this.DevIdTB.Size = new System.Drawing.Size(650, 20);
+            this.DevIdTB.Size = new System.Drawing.Size(708, 20);
             this.DevIdTB.TabIndex = 1;
             // 
             // label1
@@ -462,9 +507,9 @@ namespace stigzler.ScreenScraper.Test
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 732);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 642);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(812, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(870, 29);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // SaveSettingsBT
@@ -474,7 +519,7 @@ namespace stigzler.ScreenScraper.Test
             this.SaveSettingsBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.SaveSettingsBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveSettingsBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.SaveSettingsBT.Location = new System.Drawing.Point(714, 3);
+            this.SaveSettingsBT.Location = new System.Drawing.Point(772, 3);
             this.SaveSettingsBT.Name = "SaveSettingsBT";
             this.SaveSettingsBT.Size = new System.Drawing.Size(95, 23);
             this.SaveSettingsBT.TabIndex = 0;
@@ -482,62 +527,62 @@ namespace stigzler.ScreenScraper.Test
             this.SaveSettingsBT.UseVisualStyleBackColor = true;
             this.SaveSettingsBT.Click += new System.EventHandler(this.SaveSettingsBT_Click);
             // 
+            // UpdateRateLB
+            // 
+            this.UpdateRateLB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UpdateRateLB.AutoEllipsis = true;
+            this.UpdateRateLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateRateLB.FontStyle = System.Drawing.FontStyle.Regular;
+            this.UpdateRateLB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.UpdateRateLB.Location = new System.Drawing.Point(13, 72);
+            this.UpdateRateLB.Name = "UpdateRateLB";
+            this.UpdateRateLB.Padding = new System.Windows.Forms.Padding(4);
+            this.UpdateRateLB.ScaleFont = 100;
+            this.UpdateRateLB.Size = new System.Drawing.Size(245, 21);
+            this.UpdateRateLB.TabIndex = 3;
+            this.UpdateRateLB.Text = "Rate";
+            this.UpdateRateLB.ToolTip = null;
+            this.UpdateRateLB.ToolTipHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Right;
+            this.UpdateRateLB.ToolTipImage = null;
+            this.UpdateRateLB.ToolTipText = null;
+            this.UpdateRateLB.ToolTipTitle = null;
+            this.UpdateRateLB.Click += new System.EventHandler(this.UpdateRateLB_Click);
+            // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.MainOpTitleLB);
+            this.panel1.Controls.Add(this.UpdateRateLB);
             this.panel1.Controls.Add(this.UpdateLB);
             this.panel1.Controls.Add(this.UpdatePB);
-            this.panel1.Location = new System.Drawing.Point(7, 315);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4);
+            this.panel1.Controls.Add(this.MainOpTitleLB);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(4, 231);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(4);
-            this.panel1.Size = new System.Drawing.Size(257, 65);
-            this.panel1.TabIndex = 12;
+            this.panel1.Size = new System.Drawing.Size(279, 105);
+            this.panel1.TabIndex = 13;
             // 
-            // UpdateLB
+            // CancelBT
             // 
-            this.UpdateLB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UpdateLB.AutoEllipsis = true;
-            this.UpdateLB.FontStyle = System.Drawing.FontStyle.Regular;
-            this.UpdateLB.Location = new System.Drawing.Point(7, 40);
-            this.UpdateLB.Name = "UpdateLB";
-            this.UpdateLB.ScaleFont = 100;
-            this.UpdateLB.Size = new System.Drawing.Size(241, 23);
-            this.UpdateLB.TabIndex = 0;
-            this.UpdateLB.Text = "label7";
-            this.UpdateLB.ToolTip = null;
-            this.UpdateLB.ToolTipHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Right;
-            this.UpdateLB.ToolTipImage = null;
-            this.UpdateLB.ToolTipText = null;
-            this.UpdateLB.ToolTipTitle = null;
-            // 
-            // MainOpTitleLB
-            // 
-            this.MainOpTitleLB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainOpTitleLB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainOpTitleLB.FontStyle = System.Drawing.FontStyle.Bold;
-            this.MainOpTitleLB.Location = new System.Drawing.Point(4, 4);
-            this.MainOpTitleLB.Name = "MainOpTitleLB";
-            this.MainOpTitleLB.ScaleFont = 100;
-            this.MainOpTitleLB.Size = new System.Drawing.Size(244, 19);
-            this.MainOpTitleLB.TabIndex = 2;
-            this.MainOpTitleLB.Text = "label7";
-            this.MainOpTitleLB.ToolTip = null;
-            this.MainOpTitleLB.ToolTipHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Right;
-            this.MainOpTitleLB.ToolTipImage = null;
-            this.MainOpTitleLB.ToolTipText = null;
-            this.MainOpTitleLB.ToolTipTitle = null;
+            this.CancelBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.CancelBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.CancelBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.CancelBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.CancelBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.CancelBT.Location = new System.Drawing.Point(124, 202);
+            this.CancelBT.Name = "CancelBT";
+            this.CancelBT.Size = new System.Drawing.Size(75, 23);
+            this.CancelBT.TabIndex = 14;
+            this.CancelBT.Text = "Cancel";
+            this.CancelBT.UseVisualStyleBackColor = true;
+            this.CancelBT.Click += new System.EventHandler(this.CancelBT_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 761);
+            this.ClientSize = new System.Drawing.Size(870, 671);
             this.Controls.Add(this.HorizontalSC);
             this.Controls.Add(this.flowLayoutPanel1);
             this.DarkMode = true;
@@ -598,9 +643,11 @@ namespace stigzler.ScreenScraper.Test
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ToolStripTextBox SerchTextTB;
         private System.Windows.Forms.ToolStripButton SearchTextBT;
-        private System.Windows.Forms.Panel panel1;
         private Winforms.Base.UIElements.Label MainOpTitleLB;
         private Winforms.Base.UIElements.Label UpdateLB;
+        private Winforms.Base.UIElements.Label UpdateRateLB;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button CancelBT;
     }
 }
 

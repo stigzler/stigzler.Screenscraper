@@ -4,7 +4,9 @@ using stigzler.Screenscraper.Enums;
 using stigzler.ScreenScraper.Test.Properties;
 using stigzler.Winforms.Base.Forms.BaseForm;
 using System;
+using myEventArgs = stigzler.Screenscraper.EventArgs;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -14,6 +16,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -25,12 +28,18 @@ namespace stigzler.ScreenScraper.Test
         ApiServerParameters serverParameters = new ApiServerParameters();
         GetData getData;
 
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        CancellationToken cancellationToken = new CancellationToken();
+
         public Form1()
         {
             InitializeComponent();
             LoadSettings();
             PopulatePrivateMembers();
             UpdateCredentialsAndApiParams();
+
+            cancellationToken = cancellationTokenSource.Token;
+
         }
 
         private void PopulatePrivateMembers()
@@ -170,7 +179,8 @@ namespace stigzler.ScreenScraper.Test
 
         private async void GoBT_Click(object sender, EventArgs e)
         {
-            Cursor = Cursors.WaitCursor;
+            //Cursor = Cursors.WaitCursor;
+            GoBT.Enabled = false;
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
@@ -180,6 +190,9 @@ namespace stigzler.ScreenScraper.Test
             bool batchOperation = false;
             bool queryDone = true;
 
+
+            Progress<myEventArgs.ProgressChangedEventArgs> progress = new Progress<myEventArgs.ProgressChangedEventArgs>();
+            progress.ProgressChanged += Progress_ProgressChanged;
 
             log("Query Type: " + QueryTypeCB.SelectedItem.ToString());
             switch (QueryTypeCB.SelectedItem)
@@ -199,6 +212,8 @@ namespace stigzler.ScreenScraper.Test
                 case ApiQueryType.GameInfo:
                     List<string> romFilepaths = Directory.GetFiles(Settings.Default.RomFolder, "*.*", SearchOption.AllDirectories).ToList();
                     List<string> romFilenames = new List<string>();
+                    MainOpTitleLB.Text = "Processing Roms";
+
                     getData.UserThreads = Int32.Parse(UserThreadsTB.Text);
                     log(">> Batch Game Info, using " + getData.UserThreads + " threads for " + romFilepaths.Count);
 
@@ -206,7 +221,8 @@ namespace stigzler.ScreenScraper.Test
                     {
                         romFilenames.Add(Path.GetFileName(romFilename));
                     }
-                    outcomes = await Task.Run(() => getData.GetGamesInfo(Int32.Parse(Settings.Default.SystemID), romFilenames));
+                    outcomes = await Task.Run(() => getData.GetGamesInfo(Int32.Parse(Settings.Default.SystemID), romFilenames,
+                        cancellationToken, progress));
                     batchOperation = true;
                     break;
 
@@ -236,7 +252,18 @@ namespace stigzler.ScreenScraper.Test
             Cursor = Cursors.Default;
 
             sw.Stop();
-            log("Process took: " + sw.Elapsed.TotalSeconds);
+            log("Process took: " + sw.Elapsed.TotalSeconds.ToString("#.#") + "s");
+            GoBT.Enabled = true;
+        }
+
+        private void Progress_ProgressChanged(object sender, myEventArgs.ProgressChangedEventArgs e)
+        {
+            if (!cancellationToken.IsCancellationRequested)
+            {
+                UpdateLB.Text = e.DataObject;
+                UpdatePB.Value = e.ProgressPercentage;
+                UpdateRateLB.Text = "Rate: " + e.Rate.ToString("#.#") + "/s";
+            }
         }
 
         private void outputFormatCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -269,6 +296,15 @@ namespace stigzler.ScreenScraper.Test
             FindText(MainRTB, SerchTextTB.Text, Color.Yellow);
         }
 
+        private void UpdateRateLB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelBT_Click(object sender, EventArgs e)
+        {
+            cancellationTokenSource.Cancel();
+        }
     }
 
 

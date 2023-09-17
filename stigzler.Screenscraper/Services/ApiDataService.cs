@@ -1,16 +1,11 @@
 ﻿using stigzler.Screenscraper.Data.Models;
-using stigzler.Screenscraper.ModifiedNet;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Security.Policy;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,6 +17,7 @@ namespace stigzler.Screenscraper.Services
         private ApiServerParameters apiServerParameters;
         private int maxThreads;
         private int requestTimeout;
+        internal event EventHandler<EventArgs.ProgressChangedEventArgs> OperationUpdate;
 
         internal ApiDataService(ApiServerParameters apiServerParameters, int maxThreads, int requestTimeout)
         {
@@ -29,42 +25,44 @@ namespace stigzler.Screenscraper.Services
             this.maxThreads = maxThreads;
             this.requestTimeout = requestTimeout;
         }
-
-        //internal async Task<List<ApiGetOutcome>> GetUrlListData(List<string> UrlList)
-        //{
-        //    ConcurrentBag<ApiGetOutcome> results = new ConcurrentBag<ApiGetOutcome>();
-        //    //foreach (string url in UrlList)
-        //    Parallel.ForEach(UrlList, new ParallelOptions() { MaxDegreeOfParallelism = 7 }, async url =>
-        //    {
-        //      //  var result = await Task.Run(() => GetUrlData(url).Result);
-        //        results.Add(result);
-        //        Debug.WriteLine(results.Count);
-        //    });
-        //    return results.ToList();
-        //}
-
-        internal List<ApiGetOutcome> GetStrings(List<Uri> uris)
+        internal List<ApiGetOutcome> GetStrings(Dictionary<string, Uri> objectUris, CancellationToken cancellationToken)
         {
 
             Stopwatch sw = Stopwatch.StartNew();
             ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
 
-            //Parallel.ForEach(uris, new ParallelOptions() { MaxDegreeOfParallelism = maxThreads }, uri =>
-            //{
-            //    using (ModifiedNet.WebClient webClient = new ModifiedNet.WebClient(requestTimeout))
-            //    {
-            //        var result = webClient.DownloadString(uri);
-            //        outcomes.Add(new ApiGetOutcome() { Data = result, Uri = uri });
-            //        Debug.WriteLine(outcomes.Count + ". Rate: " + outcomes.Count / sw.Elapsed.TotalSeconds);
-            //    }
-            //});
-
-
-
-            Parallel.ForEach(uris, new ParallelOptions() { MaxDegreeOfParallelism = maxThreads }, uri =>
+            ParallelOptions parallelOptions = new ParallelOptions()
             {
-                outcomes.Add(GetString(uri));
-                Debug.WriteLine(outcomes.Count + ". Rate: " + outcomes.Count / sw.Elapsed.TotalSeconds);
+                MaxDegreeOfParallelism = maxThreads,
+                CancellationToken = cancellationToken
+            };
+
+            Parallel.ForEach(objectUris, parallelOptions, objectUri =>
+            {
+                try
+                {
+                    if (!parallelOptions.CancellationToken.IsCancellationRequested)
+                    {
+                        int total = objectUris.Count;
+                        outcomes.Add(GetString(objectUri.Value));
+
+                        if (!parallelOptions.CancellationToken.IsCancellationRequested)
+                        {
+                            OperationUpdate.Invoke(this, new EventArgs.ProgressChangedEventArgs
+                            {
+                                DataObject = "Processed object: " + objectUri.Key,
+                                Uri = objectUri.Value,
+                                ProgressPercentage = (int)((double)outcomes.Count / total * 100),
+                                Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
+                            });
+                        }
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    Debug.WriteLine("Canceled");
+                }
+
             });
 
             return outcomes.ToList();
@@ -95,10 +93,15 @@ namespace stigzler.Screenscraper.Services
                     outcome.Data = ParseExceptionRespose(ex).Trim();
                 }
             }
+            catch (OperationCanceledException)
+            {
+                Debug.WriteLine("Cancelled");
+            }
             catch (Exception ex)
             {
                 outcome.Exception = ex;
             }
+
             return outcome;
         }
 
