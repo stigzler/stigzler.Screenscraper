@@ -1,4 +1,5 @@
 ﻿using stigzler.Screenscraper.Data.Models;
+using stigzler.Screenscraper.EventArgs;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -17,55 +18,13 @@ namespace stigzler.Screenscraper.Services
         private ApiServerParameters apiServerParameters;
         private int maxThreads;
         private int requestTimeout;
-        internal event EventHandler<EventArgs.ProgressChangedEventArgs> OperationUpdate;
+        // internal event EventHandler<EventArgs.ProgressChangedEventArgs> OperationUpdate;
 
         internal ApiDataService(ApiServerParameters apiServerParameters, int maxThreads, int requestTimeout)
         {
             this.apiServerParameters = apiServerParameters;
             this.maxThreads = maxThreads;
             this.requestTimeout = requestTimeout;
-        }
-        internal List<ApiGetOutcome> GetStrings(Dictionary<string, Uri> objectUris, CancellationToken cancellationToken)
-        {
-
-            Stopwatch sw = Stopwatch.StartNew();
-            ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
-
-            ParallelOptions parallelOptions = new ParallelOptions()
-            {
-                MaxDegreeOfParallelism = maxThreads,
-                CancellationToken = cancellationToken
-            };
-
-            Parallel.ForEach(objectUris, parallelOptions, objectUri =>
-            {
-                try
-                {
-                    if (!parallelOptions.CancellationToken.IsCancellationRequested)
-                    {
-                        int total = objectUris.Count;
-                        outcomes.Add(GetString(objectUri.Value));
-
-                        if (!parallelOptions.CancellationToken.IsCancellationRequested)
-                        {
-                            OperationUpdate.Invoke(this, new EventArgs.ProgressChangedEventArgs
-                            {
-                                DataObject = "Processed object: " + objectUri.Key,
-                                Uri = objectUri.Value,
-                                ProgressPercentage = (int)((double)outcomes.Count / total * 100),
-                                Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
-                            });
-                        }
-                    }
-                }
-                catch (OperationCanceledException)
-                {
-                    Debug.WriteLine("Canceled");
-                }
-
-            });
-
-            return outcomes.ToList();
         }
 
 
@@ -104,6 +63,55 @@ namespace stigzler.Screenscraper.Services
 
             return outcome;
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objectUris">Dictionary of string,Uri where the string value is used in the progress report. E.g. "Wipeout.7z" for roms or "Wipeout" for Gamename </param>
+        /// <param name="objectName">Used in the constructing the progress report. E.g. "rom" will result in "Processing rom"</param>
+        /// <param name="cancellationToken"></param>
+        /// <param name="progress"></param>
+        /// <returns></returns>
+        internal List<ApiGetOutcome> GetStrings(Dictionary<string, Uri> objectUris,
+                                                    string objectName,
+                                                    CancellationToken cancellationToken,
+                                                    IProgress<ProgressChangedEventArgs> progress)
+        {
+
+            Stopwatch sw = Stopwatch.StartNew();
+            ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
+
+            ParallelOptions parallelOptions = new ParallelOptions()
+            {
+                MaxDegreeOfParallelism = maxThreads,
+            };
+
+            int total = objectUris.Count;
+
+            Parallel.ForEach(objectUris, parallelOptions, (KeyValuePair<string, Uri> objectUri, ParallelLoopState state) =>
+            {
+                if (cancellationToken.IsCancellationRequested)
+                {
+                    state.Break();
+                }
+
+                outcomes.Add(GetString(objectUri.Value));
+
+                progress.Report(new EventArgs.ProgressChangedEventArgs
+                {
+                    DataObject = "Processed " + objectName + " (" + outcomes.Count + "/" + total + "): " + objectUri.Key,
+                    Uri = objectUri.Value,
+                    ProgressPercentage = (int)((double)outcomes.Count / total * 100),
+                    Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
+                });
+
+            });
+
+            return outcomes.ToList();
+        }
+
+
 
 
         public static string ParseExceptionRespose(WebException exception)

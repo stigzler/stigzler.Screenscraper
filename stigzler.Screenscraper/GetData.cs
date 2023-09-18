@@ -5,6 +5,7 @@ using stigzler.Screenscraper.Helpers;
 using stigzler.Screenscraper.Services;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
@@ -33,12 +34,14 @@ namespace stigzler.Screenscraper
             get { return userThreads; }
             set
             {
-                if (value > Data.Constants.MaxApiThreads)
-                { throw new ArgumentException("UserThreads cannot exceed the maximum for the Screenscraper API server: " + Data.Constants.MaxApiThreads); }
-                else
-                {
-                    userThreads = value;
-                }
+                userThreads = value;
+
+                //if (value > Data.Constants.MaxApiThreads)
+                //{ throw new ArgumentException("UserThreads cannot exceed the maximum for the Screenscraper API server: " + Data.Constants.MaxApiThreads); }
+                //else
+                //{
+                //    userThreads = value;
+                //}
             }
         }
 
@@ -50,8 +53,6 @@ namespace stigzler.Screenscraper
         // Class level private vars
         private ApiUrlBuilder urlBuilder;
         private ApiDataService apiDataService;
-        private IProgress<ProgressChangedEventArgs> progress;
-        CancellationToken cancellationToken;
 
         /// <summary>
         /// 
@@ -69,17 +70,6 @@ namespace stigzler.Screenscraper
             // Setup getDataService
             apiDataService = new ApiDataService(apiServerParameters, userThreads, apiServerParameters.HttpTimeout);
             urlBuilder = new ApiUrlBuilder(Credentials, ApiParameters);
-
-            apiDataService.OperationUpdate += ApiDataService_OperationUpdate;
-
-        }
-
-        private void ApiDataService_OperationUpdate(object sender, ProgressChangedEventArgs e)
-        {
-            if (!cancellationToken.IsCancellationRequested)
-            {
-                progress.Report(e);
-            }
         }
 
         public async Task<ApiGetOutcome> GetApiServerInfo()
@@ -103,15 +93,12 @@ namespace stigzler.Screenscraper
             return result;
         }
 
-        public async Task<List<ApiGetOutcome>> GetGamesInfo(int systemID, List<string> romNames,
-            CancellationToken cancellationToken,
-            IProgress<ProgressChangedEventArgs> progress = null)
+        public List<ApiGetOutcome> GetGamesInfo(int systemID, List<string> romNames,
+                                                            CancellationToken cancellationToken,
+                                                            IProgress<ProgressChangedEventArgs> progress = null)
         {
             List<QueryParameter> parameters = new List<QueryParameter>();
             Dictionary<string,Uri> romUrisList = new Dictionary<string, Uri>();
-
-            this.progress = (Progress<ProgressChangedEventArgs>)progress;
-            this.cancellationToken = cancellationToken;
 
             // Set number of concurrent threads on server
             ServicePointManager.FindServicePoint(new Uri(ApiParameters.HostAddress)).ConnectionLimit = userThreads;
@@ -125,16 +112,11 @@ namespace stigzler.Screenscraper
                 romUrisList.Add(romname, new Uri(urlBuilder.Build(ApiQueryType.GameInfo, parameters)));
             }
 
-            // Get outcomes:
+            // Get API Data:
             List<ApiGetOutcome> apiGetOutcomes = new List<ApiGetOutcome>();
-            apiGetOutcomes = await Task.Run(() => apiDataService.GetStrings(romUrisList, cancellationToken));
+            apiGetOutcomes =  apiDataService.GetStrings(romUrisList, "rom", cancellationToken, progress);
 
             return apiGetOutcomes;
         }
-
-   
-
-
-
     }
 }

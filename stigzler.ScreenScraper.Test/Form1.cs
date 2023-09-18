@@ -29,7 +29,6 @@ namespace stigzler.ScreenScraper.Test
         GetData getData;
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-        CancellationToken cancellationToken = new CancellationToken();
 
         public Form1()
         {
@@ -37,16 +36,13 @@ namespace stigzler.ScreenScraper.Test
             LoadSettings();
             PopulatePrivateMembers();
             UpdateCredentialsAndApiParams();
-
-            cancellationToken = cancellationTokenSource.Token;
-
         }
 
         private void PopulatePrivateMembers()
         {
 
             QueryTypeCB.DataSource = Enum.GetValues(typeof(ApiQueryType));
-            QueryTypeCB.SelectedText = "GameInfo";
+            QueryTypeCB.Text = "GameInfo";
 
             outputFormatCB.DataSource = Enum.GetValues(typeof(MetadataOutput));
 
@@ -221,11 +217,16 @@ namespace stigzler.ScreenScraper.Test
                     {
                         romFilenames.Add(Path.GetFileName(romFilename));
                     }
-                    outcomes = await Task.Run(() => getData.GetGamesInfo(Int32.Parse(Settings.Default.SystemID), romFilenames,
-                        cancellationToken, progress));
-                    batchOperation = true;
-                    break;
 
+                    int systemID = Int32.Parse(Settings.Default.SystemID);
+
+                    outcomes = await Task.Run(() =>
+                        getData.GetGamesInfo(systemID, romFilenames, cancellationTokenSource.Token, progress));
+
+                    batchOperation = true;
+
+                    break;
+                     
                 default:
                     queryDone = false;
                     break;
@@ -247,6 +248,7 @@ namespace stigzler.ScreenScraper.Test
             }
             else if (queryDone && batchOperation)
             {
+                log("Batch operation complete. Results returned: " + outcomes.Count);
             }
 
             Cursor = Cursors.Default;
@@ -258,12 +260,9 @@ namespace stigzler.ScreenScraper.Test
 
         private void Progress_ProgressChanged(object sender, myEventArgs.ProgressChangedEventArgs e)
         {
-            if (!cancellationToken.IsCancellationRequested)
-            {
                 UpdateLB.Text = e.DataObject;
                 UpdatePB.Value = e.ProgressPercentage;
                 UpdateRateLB.Text = "Rate: " + e.Rate.ToString("#.#") + "/s";
-            }
         }
 
         private void outputFormatCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -284,6 +283,7 @@ namespace stigzler.ScreenScraper.Test
                 rtb.Select(index, word.Length);
                 rtb.ScrollToCaret();
                 rtb.SelectionBackColor = color;
+                rtb.SelectionColor = Color.Black;
                 startIndex = index + word.Length;
             }
             //rtb.SelectionStart = 0;
@@ -304,6 +304,7 @@ namespace stigzler.ScreenScraper.Test
         private void CancelBT_Click(object sender, EventArgs e)
         {
             cancellationTokenSource.Cancel();
+            cancellationTokenSource = new CancellationTokenSource();
         }
     }
 
