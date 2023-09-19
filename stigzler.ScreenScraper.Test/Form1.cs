@@ -17,6 +17,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
+using System.Web.Caching;
+using stigzler.Screenscraper.Entities;
+using System.Xml.Serialization;
+using System.Xml;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -30,12 +35,44 @@ namespace stigzler.ScreenScraper.Test
 
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
+        Database database = new Database();
+
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        }
+
+
         public Form1()
         {
             InitializeComponent();
+            LoadDatabase();
             LoadSettings();
             PopulatePrivateMembers();
             UpdateCredentialsAndApiParams();
+
+        }
+
+        private void LoadDatabase()
+        {
+            if (Settings.Default.databaseXml.Count() == 0) return;
+
+            var xmls = new XmlSerializer(database.GetType());
+            StringReader stringReader = new StringReader(Settings.Default.databaseXml);
+            //   xmls.Serialize(stringWriter, database);
+            //Debug.WriteLine(stringWriter.ToString());
+            using (StringReader sr = new StringReader(Settings.Default.databaseXml))
+            {
+                database = (Database)xmls.Deserialize(stringReader);
+            }
+            Debug.WriteLine(database.Systems.Count);
+
         }
 
         private void PopulatePrivateMembers()
@@ -46,9 +83,18 @@ namespace stigzler.ScreenScraper.Test
 
             outputFormatCB.DataSource = Enum.GetValues(typeof(MetadataOutput));
 
+            if (database.Systems.Count > 0)
+            {
+                SystemsCB.DisplayMember = "Name";
+                SystemsCB.ValueMember = "id";
+                SystemsCB.DataSource = database.Systems;
+
+                SystemsCB.SelectedValue= Settings.Default.SystemID;
+            }
+
             outputFormatCB.SelectedIndex = 0;
 
-            getData = new GetData(credentials, serverParameters, Int32.Parse(Settings.Default.UserThreads));
+            getData = new GetData(credentials, serverParameters, (int)Settings.Default.UserThreads);
         }
 
         private void UpdateCredentialsAndApiParams()
@@ -65,47 +111,8 @@ namespace stigzler.ScreenScraper.Test
 
             getData.ApiParameters = serverParameters;
             getData.Credentials = credentials;
-
         }
 
-        private void ProcessRomsFolder()
-        {
-            CancellationTokenSource cts = new CancellationTokenSource();
-            ParallelOptions po = new ParallelOptions();
-            po.CancellationToken = cts.Token;
-            //po.MaxDegreeOfParallelism = 7;
-
-            IProgress<string> progress = new Progress<string>();
-            ((Progress<string>)progress).ProgressChanged += Progress_ProgressChanged;
-
-            List<string> urls = new List<string>();
-
-            Parallel.ForEach(Directory.GetFiles(romsDir), file =>
-            {
-                urls.Add(BuildUrl(file));
-            });
-
-            HttpClient httpClient = new HttpClient();
-            httpClient.BaseAddress = new Uri(Settings.Default.ApiHostAddress);
-            httpClient.Timeout = new TimeSpan(0, 0, 2);
-
-            //HttpGetter httpGet = new HttpGetter(httpClient);
-
-            //HttpDownloadManager downloadManager = new HttpDownloadManager(httpGet, urls);
-
-            //  downloadManager.Download();
-
-
-
-            log(Environment.NewLine + "  ** FINISHED **");
-            //foreach (string file in Directory.GetFiles(romsDir))
-            //{
-            //    var response = await httpClient.GetAsync(BuildUrl(file));
-            //    ServicePoint sp1 = ServicePointManager.FindServicePoint(new Uri("https://www.screenscraper.fr"));
-            //    Debug.WriteLine(Environment.NewLine + "Current Connections: " + sp1.CurrentConnections.ToString());
-            //    Debug.WriteLine(response.ToString());
-            //}
-        }
 
         private void Progress_ProgressChanged(object sender, string e)
         {
@@ -118,27 +125,6 @@ namespace stigzler.ScreenScraper.Test
             MainRTB.ScrollToCaret();
         }
 
-        private string BuildUrl(string romfile)
-        {
-            var builder = new UriBuilder("");
-            builder.Port = -1;
-            builder.Path = @"api2/jeuInfos.php";
-            var query = HttpUtility.ParseQueryString(builder.Query);
-            query["devid"] = "stigzler";
-            query["devpassword"] = "85c4bFxP43TWCdvQ";
-            query["softname"] = "OmniGameZ";
-            query["ssid"] = "stigzler";
-            query["sspassword"] = "astraastra";
-            query["output"] = "xml";
-            query["systemeid"] = "1";
-            query["romnom"] = Path.GetFileName(romfile);
-
-            builder.Query = query.ToString();
-            string url = builder.Uri.AbsoluteUri;
-            Debug.WriteLine(url);
-
-            return url;
-        }
         private void SaveSettings()
         {
             Settings.Default.DevID = DevIdTB.Text;
@@ -146,8 +132,9 @@ namespace stigzler.ScreenScraper.Test
             Settings.Default.DevSoftware = DevSoftwareTB.Text;
             Settings.Default.Username = UsernameTB.Text;
             Settings.Default.Password = PasswordTB.Text;
-            Settings.Default.SystemID = SystemIdTB.Text;
+            Settings.Default.SystemID = SystemsCB.ValueMember;
             Settings.Default.RomFolder = RomFolderTB.Text;
+            Settings.Default.UserThreads = (int)UserThreadsNUM.Value;
             Settings.Default.Save();
         }
 
@@ -158,7 +145,7 @@ namespace stigzler.ScreenScraper.Test
             DevSoftwareTB.Text = Settings.Default.DevSoftware;
             UsernameTB.Text = Settings.Default.Username;
             PasswordTB.Text = Settings.Default.Password;
-            SystemIdTB.Text = Settings.Default.SystemID;
+            SystemsCB.SelectedValue = Settings.Default.SystemID;
             RomFolderTB.Text = Settings.Default.RomFolder;
         }
 
@@ -175,6 +162,11 @@ namespace stigzler.ScreenScraper.Test
 
         private async void GoBT_Click(object sender, EventArgs e)
         {
+            await GetApiOutcomes((ApiQueryType)QueryTypeCB.SelectedItem);
+        }
+
+        private async Task<List<ApiGetOutcome>> GetApiOutcomes(ApiQueryType queryType)
+        {
             //Cursor = Cursors.WaitCursor;
             GoBT.Enabled = false;
             Stopwatch sw = new Stopwatch();
@@ -190,8 +182,8 @@ namespace stigzler.ScreenScraper.Test
             Progress<myEventArgs.ProgressChangedEventArgs> progress = new Progress<myEventArgs.ProgressChangedEventArgs>();
             progress.ProgressChanged += Progress_ProgressChanged;
 
-            log("Query Type: " + QueryTypeCB.SelectedItem.ToString());
-            switch (QueryTypeCB.SelectedItem)
+            log("Query Type: " + queryType.ToString());
+            switch (queryType)
             {
                 case ApiQueryType.ServerInfo:
                     outcome = await Task.Run(() => getData.GetApiServerInfo().Result);
@@ -210,7 +202,7 @@ namespace stigzler.ScreenScraper.Test
                     List<string> romFilenames = new List<string>();
                     MainOpTitleLB.Text = "Processing Roms";
 
-                    getData.UserThreads = Int32.Parse(UserThreadsTB.Text);
+                    getData.UserThreads = (int)UserThreadsNUM.Value;
                     log(">> Batch Game Info, using " + getData.UserThreads + " threads for " + romFilepaths.Count);
 
                     foreach (var romFilename in romFilepaths)
@@ -226,7 +218,7 @@ namespace stigzler.ScreenScraper.Test
                     batchOperation = true;
 
                     break;
-                     
+
                 default:
                     queryDone = false;
                     break;
@@ -245,6 +237,7 @@ namespace stigzler.ScreenScraper.Test
                         + "Full Exception: " + Environment.NewLine
                     + outcome.Exception.ToString());
                 }
+                outcomes.Add(outcome);
             }
             else if (queryDone && batchOperation)
             {
@@ -256,13 +249,57 @@ namespace stigzler.ScreenScraper.Test
             sw.Stop();
             log("Process took: " + sw.Elapsed.TotalSeconds.ToString("#.#") + "s");
             GoBT.Enabled = true;
+
+            return outcomes;
+        }
+
+        // ==================================================================================
+        private async void RefreshSystemsBT_Click(object sender, EventArgs e)
+        {
+            log(" ** PLEASE WAIT ** ");
+            log("Importing systems from Screenscraper");
+
+            List<ApiGetOutcome> outcomes = await GetApiOutcomes(ApiQueryType.SystemList);
+            ApiGetOutcome outcome = outcomes[0];
+
+            //Approach 1
+
+            XDocument xdoc = XDocument.Parse(outcome.Data.ToString());
+
+            Database database = new Database();
+
+
+            var systems = xdoc.Descendants("systeme");
+            foreach (var system in systems)
+            {
+                Debug.WriteLine(system.ToString());
+                Screenscraper.Entities.System newSystem = new Screenscraper.Entities.System();
+
+                newSystem.ID = Int32.Parse(system.Element("id").Value);
+                newSystem.Name = system.Descendants("nom_eu").ToList()[0].Value;
+                database.Systems.Add(newSystem);
+            }
+
+            database.Systems = database.Systems.OrderBy(x => x.Name).ToList();
+
+            var xmls = new XmlSerializer(database.GetType());
+            StringWriter stringWriter = new StringWriter();
+            xmls.Serialize(stringWriter, database);
+            Debug.WriteLine(stringWriter.ToString());
+            Settings.Default.databaseXml = stringWriter.ToString();
+            Settings.Default.Save();
+
+            log("Import done");
+
+            return;
+
         }
 
         private void Progress_ProgressChanged(object sender, myEventArgs.ProgressChangedEventArgs e)
         {
-                UpdateLB.Text = e.DataObject;
-                UpdatePB.Value = e.ProgressPercentage;
-                UpdateRateLB.Text = "Rate: " + e.Rate.ToString("#.#") + "/s";
+            UpdateLB.Text = e.DataObject;
+            UpdatePB.Value = e.ProgressPercentage;
+            UpdateRateLB.Text = "Rate: " + e.Rate.ToString("#.#") + "/s";
         }
 
         private void outputFormatCB_SelectedIndexChanged(object sender, EventArgs e)
@@ -306,6 +343,7 @@ namespace stigzler.ScreenScraper.Test
             cancellationTokenSource.Cancel();
             cancellationTokenSource = new CancellationTokenSource();
         }
+
     }
 
 

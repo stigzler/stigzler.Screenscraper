@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\System.cs" />
+    <Compile Include="Entities\Systems.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -146,12 +146,24 @@ namespace stigzler.ScreenScraper.Test.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("7")]
-        public string UserThreads {
+        public int UserThreads {
             get {
-                return ((string)(this["UserThreads"]));
+                return ((int)(this["UserThreads"]));
             }
             set {
                 this["UserThreads"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string databaseXml {
+            get {
+                return ((string)(this["databaseXml"]));
+            }
+            set {
+                this["databaseXml"] = value;
             }
         }
     }
