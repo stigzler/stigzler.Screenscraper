@@ -26,8 +26,8 @@
     <Setting Name="ApiPathRoot" Type="System.String" Scope="User">
       <Value Profile="(Default)">api2</Value>
     </Setting>
-    <Setting Name="SystemID" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="SystemID" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="RomFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

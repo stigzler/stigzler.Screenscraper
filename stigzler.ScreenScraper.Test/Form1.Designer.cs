@@ -172,9 +172,19 @@ namespace stigzler.ScreenScraper.Test
             this.UserThreadsNUM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UserThreadsNUM.Location = new System.Drawing.Point(94, 75);
+            this.UserThreadsNUM.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.UserThreadsNUM.Name = "UserThreadsNUM";
             this.UserThreadsNUM.Size = new System.Drawing.Size(181, 20);
             this.UserThreadsNUM.TabIndex = 15;
+            this.UserThreadsNUM.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // CancelBT
             // 
@@ -672,6 +682,7 @@ namespace stigzler.ScreenScraper.Test
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.VerticalSC.Panel1.ResumeLayout(false);
             this.VerticalSC.Panel1.PerformLayout();
             this.VerticalSC.Panel2.ResumeLayout(false);

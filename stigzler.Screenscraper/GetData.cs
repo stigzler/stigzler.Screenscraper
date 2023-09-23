@@ -86,6 +86,13 @@ namespace stigzler.Screenscraper
             return result;
         }
 
+        public async Task<ApiGetOutcome> GetSingleResponse(ApiQueryType queryType)
+        {
+            List<string> urlList = new List<string> { urlBuilder.Build(queryType) };
+            var result = await Task.Run(() => apiDataService.GetString(new Uri(urlBuilder.Build(queryType))));
+            return result;
+        }
+
         public async Task<ApiGetOutcome> GetSystemList()
         {
             List<string> urlList = new List<string> { urlBuilder.Build(ApiQueryType.SystemList) };

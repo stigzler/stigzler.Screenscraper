@@ -121,10 +121,10 @@ namespace stigzler.ScreenScraper.Test.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string SystemID {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int SystemID {
             get {
-                return ((string)(this["SystemID"]));
+                return ((int)(this["SystemID"]));
             }
             set {
                 this["SystemID"] = value;

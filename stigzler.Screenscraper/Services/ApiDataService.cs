@@ -95,12 +95,12 @@ namespace stigzler.Screenscraper.Services
                 {
                     state.Break();
                 }
-
-                outcomes.Add(GetString(objectUri.Value));
+                var outcome = GetString(objectUri.Value);
+                outcomes.Add(outcome);
 
                 progress.Report(new EventArgs.ProgressChangedEventArgs
                 {
-                    DataObject = "Processed " + objectName + " (" + outcomes.Count + "/" + total + "): " + objectUri.Key,
+                    DataObject = "Processed " + objectName + " (" + outcomes.Count + "/" + total + "). Successful: " + outcome.Successfull + " (status: " + outcome.StatusCode+ "): " + objectUri.Key,
                     Uri = objectUri.Value,
                     ProgressPercentage = (int)((double)outcomes.Count / total * 100),
                     Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)

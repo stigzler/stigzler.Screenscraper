@@ -37,6 +37,7 @@
       <HintPath>..\..\stigzler.Winforms.Base\stigzler.Winforms.Base\bin\Debug\stigzler.Winforms.Base.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />

@@ -22,6 +22,7 @@ using System.Web.Caching;
 using stigzler.Screenscraper.Entities;
 using System.Xml.Serialization;
 using System.Xml;
+using System.Configuration;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -36,7 +37,7 @@ namespace stigzler.ScreenScraper.Test
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         Database database = new Database();
-
+        BindingSource resultsBS = new BindingSource();
 
         protected override CreateParams CreateParams
         {
@@ -52,11 +53,20 @@ namespace stigzler.ScreenScraper.Test
         public Form1()
         {
             InitializeComponent();
+
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Settings Location: " + ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
+
             LoadDatabase();
             LoadSettings();
             PopulatePrivateMembers();
             UpdateCredentialsAndApiParams();
 
+            ResultsDGV.DataSource = resultsBS;
         }
 
         private void LoadDatabase()
@@ -89,7 +99,7 @@ namespace stigzler.ScreenScraper.Test
                 SystemsCB.ValueMember = "id";
                 SystemsCB.DataSource = database.Systems;
 
-                SystemsCB.SelectedValue= Settings.Default.SystemID;
+                SystemsCB.SelectedValue = Settings.Default.SystemID;
             }
 
             outputFormatCB.SelectedIndex = 0;
@@ -132,7 +142,7 @@ namespace stigzler.ScreenScraper.Test
             Settings.Default.DevSoftware = DevSoftwareTB.Text;
             Settings.Default.Username = UsernameTB.Text;
             Settings.Default.Password = PasswordTB.Text;
-            Settings.Default.SystemID = SystemsCB.ValueMember;
+            Settings.Default.SystemID = (int)SystemsCB.SelectedValue;
             Settings.Default.RomFolder = RomFolderTB.Text;
             Settings.Default.UserThreads = (int)UserThreadsNUM.Value;
             Settings.Default.Save();
@@ -146,6 +156,7 @@ namespace stigzler.ScreenScraper.Test
             UsernameTB.Text = Settings.Default.Username;
             PasswordTB.Text = Settings.Default.Password;
             SystemsCB.SelectedValue = Settings.Default.SystemID;
+            UserThreadsNUM.Value = Settings.Default.UserThreads;
             RomFolderTB.Text = Settings.Default.RomFolder;
         }
 
@@ -203,19 +214,22 @@ namespace stigzler.ScreenScraper.Test
                     MainOpTitleLB.Text = "Processing Roms";
 
                     getData.UserThreads = (int)UserThreadsNUM.Value;
-                    log(">> Batch Game Info, using " + getData.UserThreads + " threads for " + romFilepaths.Count);
+
+                    log("** Batch Game Info, using " + getData.UserThreads + " threads for " + romFilepaths.Count + " roms.");
 
                     foreach (var romFilename in romFilepaths)
                     {
                         romFilenames.Add(Path.GetFileName(romFilename));
                     }
 
-                    int systemID = Int32.Parse(Settings.Default.SystemID);
+                    int systemID = (int)SystemsCB.SelectedValue;
 
                     outcomes = await Task.Run(() =>
                         getData.GetGamesInfo(systemID, romFilenames, cancellationTokenSource.Token, progress));
 
                     batchOperation = true;
+
+
 
                     break;
 
@@ -242,6 +256,11 @@ namespace stigzler.ScreenScraper.Test
             else if (queryDone && batchOperation)
             {
                 log("Batch operation complete. Results returned: " + outcomes.Count);
+                resultsBS.DataSource = outcomes;
+                resultsBS.ResetBindings(false);
+
+                //(ResultsDGV.DataSource as BindingSource).List.CopyTo(outcomes.ToArray(), 0);
+
             }
 
             Cursor = Cursors.Default;
@@ -343,6 +362,7 @@ namespace stigzler.ScreenScraper.Test
             cancellationTokenSource.Cancel();
             cancellationTokenSource = new CancellationTokenSource();
         }
+
 
     }
 
