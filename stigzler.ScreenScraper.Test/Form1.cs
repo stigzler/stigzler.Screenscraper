@@ -23,12 +23,12 @@ using stigzler.Screenscraper.Entities;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Configuration;
+using stigzler.Screenscraper.Data;
 
 namespace stigzler.ScreenScraper.Test
 {
     public partial class Form1 : BaseForm
     {
-        string romsDir = @"\\HPSERVER\ServerFolders\Arcade\ROMS\Atari 7800\Hyperspin Ready";
 
         Credentials credentials = new Credentials();
         ApiServerParameters serverParameters = new ApiServerParameters();
@@ -87,8 +87,11 @@ namespace stigzler.ScreenScraper.Test
 
         private void PopulatePrivateMembers()
         {
+            QueryTypeCB.DataSource = Enum.GetValues(typeof(ApiQueryType))
+                                    .Cast<ApiQueryType>()
+                                    .OrderBy(x => x.ToString())
+                                    .ToList();
 
-            QueryTypeCB.DataSource = Enum.GetValues(typeof(ApiQueryType));
             QueryTypeCB.Text = "GameInfo";
 
             outputFormatCB.DataSource = Enum.GetValues(typeof(MetadataOutput));
@@ -194,44 +197,48 @@ namespace stigzler.ScreenScraper.Test
             progress.ProgressChanged += Progress_ProgressChanged;
 
             log("Query Type: " + queryType.ToString());
-            switch (queryType)
+
+            ApiQueryGroup queryGroup = Constants.ApiQueryGroups.Where(x => x.Value.Contains(queryType)).FirstOrDefault().Key;
+
+
+            switch (queryGroup)
             {
-                case ApiQueryType.ServerInfo:
-                    outcome = await Task.Run(() => getData.GetApiServerInfo().Result);
+                case ApiQueryGroup.InfoAndLists:
+                    outcome = await Task.Run(() => getData.GetListOrInfo(queryType));
                     break;
 
-                case ApiQueryType.UserInfo:
-                    outcome = await Task.Run(() => getData.GetUserInfo().Result);
-                    break;
+                //case ApiQueryType.UserInfo:
+                //    outcome = await Task.Run(() => getData.GetUserInfo().Result);
+                //    break;
 
-                case ApiQueryType.SystemList:
-                    outcome = await Task.Run(() => getData.GetSystemList().Result);
-                    break;
+                //case ApiQueryType.SystemList:
+                //    outcome = await Task.Run(() => getData.GetSystemList().Result);
+                //    break;
 
-                case ApiQueryType.GameInfo:
-                    List<string> romFilepaths = Directory.GetFiles(Settings.Default.RomFolder, "*.*", SearchOption.AllDirectories).ToList();
-                    List<string> romFilenames = new List<string>();
-                    MainOpTitleLB.Text = "Processing Roms";
+                //case ApiQueryType.GameInfo:
+                //    List<string> romFilepaths = Directory.GetFiles(Settings.Default.RomFolder, "*.*", SearchOption.AllDirectories).ToList();
+                //    List<string> romFilenames = new List<string>();
+                //    MainOpTitleLB.Text = "Processing Roms";
 
-                    getData.UserThreads = (int)UserThreadsNUM.Value;
+                //    getData.UserThreads = (int)UserThreadsNUM.Value;
 
-                    log("** Batch Game Info, using " + getData.UserThreads + " threads for " + romFilepaths.Count + " roms.");
+                //    log("** Batch Game Info, using " + getData.UserThreads + " threads for " + romFilepaths.Count + " roms.");
 
-                    foreach (var romFilename in romFilepaths)
-                    {
-                        romFilenames.Add(Path.GetFileName(romFilename));
-                    }
+                //    foreach (var romFilename in romFilepaths)
+                //    {
+                //        romFilenames.Add(Path.GetFileName(romFilename));
+                //    }
 
-                    int systemID = (int)SystemsCB.SelectedValue;
+                //    int systemID = (int)SystemsCB.SelectedValue;
 
-                    outcomes = await Task.Run(() =>
-                        getData.GetGamesInfo(systemID, romFilenames, cancellationTokenSource.Token, progress));
+                //    outcomes = await Task.Run(() =>
+                //        getData.GetGamesInfo(systemID, romFilenames, cancellationTokenSource.Token, progress));
 
-                    batchOperation = true;
+                //    batchOperation = true;
 
 
 
-                    break;
+                //    break;
 
                 default:
                     queryDone = false;
@@ -250,7 +257,7 @@ namespace stigzler.ScreenScraper.Test
                         + "Server Message: " + outcome.Data + Environment.NewLine
                         + "Full Exception: " + Environment.NewLine
                     + outcome.Exception.ToString());
-                }
+                }    
                 outcomes.Add(outcome);
             }
             else if (queryDone && batchOperation)
@@ -273,7 +280,9 @@ namespace stigzler.ScreenScraper.Test
         }
 
         // ==================================================================================
-        private async void RefreshSystemsBT_Click(object sender, EventArgs e)
+ 
+
+        private async void PopulateSystems()
         {
             log(" ** PLEASE WAIT ** ");
             log("Importing systems from Screenscraper");
@@ -363,7 +372,12 @@ namespace stigzler.ScreenScraper.Test
             cancellationTokenSource = new CancellationTokenSource();
         }
 
+        private void PopulateSystemsBT_Click(object sender, EventArgs e)
+        {
+            PopulateSystems();
+        }
 
+     
     }
 
 

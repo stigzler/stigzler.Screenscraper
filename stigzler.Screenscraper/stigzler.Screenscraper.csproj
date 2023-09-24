@@ -46,6 +46,7 @@
     <Compile Include="Data\Constants.cs" />
     <Compile Include="Data\Models\Credentials.cs" />
     <Compile Include="Data\Models\ApiGetOutcome.cs" />
+    <Compile Include="Data\Models\APIDownloadParameters.cs" />
     <Compile Include="Data\Models\QueryParameter.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="EventArgs\ProgressChangedEventArgs.cs" />

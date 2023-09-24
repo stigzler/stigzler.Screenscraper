@@ -30,76 +30,86 @@ namespace stigzler.ScreenScraper.Test
         /// </summary>
         private void InitializeComponent()
         {
-            this.MainRTB = new System.Windows.Forms.RichTextBox();
             this.VerticalSC = new System.Windows.Forms.SplitContainer();
+            this.VarsPN = new System.Windows.Forms.Panel();
+            this.groupBox3 = new stigzler.Winforms.Base.UIElements.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.RomFolderBT = new System.Windows.Forms.Button();
+            this.RomFolderTB = new stigzler.Winforms.Base.UIElements.TextBoxEllipsis();
+            this.label8 = new System.Windows.Forms.Label();
             this.SystemsCB = new stigzler.Winforms.Base.UIElements.ComboBox();
-            this.RefreshSystemsBT = new System.Windows.Forms.Button();
+            this.groupBox1 = new stigzler.Winforms.Base.UIElements.GroupBox();
+            this.DevIdTB = new System.Windows.Forms.TextBox();
+            this.DevPwTB = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.DevSoftwareTB = new System.Windows.Forms.TextBox();
+            this.PasswordTB = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.UsernameTB = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new stigzler.Winforms.Base.UIElements.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.ObjectIdTB = new System.Windows.Forms.TextBox();
+            this.CrcTB = new System.Windows.Forms.TextBox();
+            this.Md5TB = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.Sha1TB = new System.Windows.Forms.TextBox();
+            this.MediaFormatTB = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.MediaTypeNameTB = new System.Windows.Forms.TextBox();
+            this.OpsPN = new System.Windows.Forms.Panel();
+            this.QueryTypeCB = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.outputFormatCB = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.UserThreadsNUM = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.ButtonsPN = new System.Windows.Forms.FlowLayoutPanel();
+            this.GoBT = new System.Windows.Forms.Button();
             this.CancelBT = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PopulateSystemsBT = new stigzler.Winforms.Base.UIElements.Button();
+            this.UpdatePN = new System.Windows.Forms.Panel();
             this.UpdateRateLB = new stigzler.Winforms.Base.UIElements.Label();
             this.UpdateLB = new stigzler.Winforms.Base.UIElements.Label();
             this.UpdatePB = new System.Windows.Forms.ProgressBar();
             this.MainOpTitleLB = new stigzler.Winforms.Base.UIElements.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.outputFormatCB = new System.Windows.Forms.ComboBox();
-            this.GoBT = new System.Windows.Forms.Button();
-            this.QueryTypeCB = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new stigzler.Winforms.Base.UIElements.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.RtbPN = new System.Windows.Forms.Panel();
+            this.MainRTB = new stigzler.Winforms.Base.UIElements.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.ClearConsoleBT = new System.Windows.Forms.ToolStripButton();
             this.SerchTextTB = new System.Windows.Forms.ToolStripTextBox();
             this.SearchTextBT = new System.Windows.Forms.ToolStripButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ResultsDGV = new System.Windows.Forms.DataGridView();
-            this.HorizontalSC = new System.Windows.Forms.SplitContainer();
-            this.RomFolderBT = new System.Windows.Forms.Button();
-            this.RomFolderTB = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.DevPwTB = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.DevSoftwareTB = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.UsernameTB = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.PasswordTB = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.DevIdTB = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SaveSettingsBT = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).BeginInit();
             this.VerticalSC.Panel1.SuspendLayout();
             this.VerticalSC.Panel2.SuspendLayout();
             this.VerticalSC.SuspendLayout();
+            this.VarsPN.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.OpsPN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserThreadsNUM)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.ButtonsPN.SuspendLayout();
+            this.UpdatePN.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.RtbPN.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResultsDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSC)).BeginInit();
-            this.HorizontalSC.Panel1.SuspendLayout();
-            this.HorizontalSC.Panel2.SuspendLayout();
-            this.HorizontalSC.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // MainRTB
-            // 
-            this.MainRTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.MainRTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.MainRTB.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainRTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.MainRTB.Location = new System.Drawing.Point(3, 28);
-            this.MainRTB.Name = "MainRTB";
-            this.MainRTB.Size = new System.Drawing.Size(552, 281);
-            this.MainRTB.TabIndex = 1;
-            this.MainRTB.Text = "";
             // 
             // VerticalSC
             // 
@@ -111,17 +121,10 @@ namespace stigzler.ScreenScraper.Test
             // VerticalSC.Panel1
             // 
             this.VerticalSC.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.VerticalSC.Panel1.Controls.Add(this.SystemsCB);
-            this.VerticalSC.Panel1.Controls.Add(this.RefreshSystemsBT);
-            this.VerticalSC.Panel1.Controls.Add(this.UserThreadsNUM);
-            this.VerticalSC.Panel1.Controls.Add(this.CancelBT);
-            this.VerticalSC.Panel1.Controls.Add(this.panel1);
-            this.VerticalSC.Panel1.Controls.Add(this.label10);
-            this.VerticalSC.Panel1.Controls.Add(this.label9);
-            this.VerticalSC.Panel1.Controls.Add(this.label6);
-            this.VerticalSC.Panel1.Controls.Add(this.outputFormatCB);
-            this.VerticalSC.Panel1.Controls.Add(this.GoBT);
-            this.VerticalSC.Panel1.Controls.Add(this.QueryTypeCB);
+            this.VerticalSC.Panel1.Controls.Add(this.UpdatePN);
+            this.VerticalSC.Panel1.Controls.Add(this.VarsPN);
+            this.VerticalSC.Panel1.Controls.Add(this.ButtonsPN);
+            this.VerticalSC.Panel1.Controls.Add(this.OpsPN);
             this.VerticalSC.Panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.VerticalSC.Panel1.Padding = new System.Windows.Forms.Padding(4);
             // 
@@ -130,9 +133,96 @@ namespace stigzler.ScreenScraper.Test
             this.VerticalSC.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.VerticalSC.Panel2.Controls.Add(this.tabControl1);
             this.VerticalSC.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.VerticalSC.Size = new System.Drawing.Size(856, 340);
-            this.VerticalSC.SplitterDistance = 284;
+            this.VerticalSC.Size = new System.Drawing.Size(1227, 759);
+            this.VerticalSC.SplitterDistance = 588;
             this.VerticalSC.TabIndex = 3;
+            // 
+            // VarsPN
+            // 
+            this.VarsPN.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.VarsPN.AutoScroll = true;
+            this.VarsPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.VarsPN.Controls.Add(this.groupBox3);
+            this.VarsPN.Controls.Add(this.groupBox1);
+            this.VarsPN.Controls.Add(this.groupBox2);
+            this.VarsPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.VarsPN.Location = new System.Drawing.Point(4, 130);
+            this.VarsPN.Name = "VarsPN";
+            this.VarsPN.Size = new System.Drawing.Size(578, 518);
+            this.VarsPN.TabIndex = 13;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.groupBox3.BorderStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.groupBox3.BorderThickness = 1;
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.RomFolderBT);
+            this.groupBox3.Controls.Add(this.RomFolderTB);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.SystemsCB);
+            this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.groupBox3.Location = new System.Drawing.Point(6, 196);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(565, 100);
+            this.groupBox3.TabIndex = 12;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "General";
+            this.groupBox3.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(14, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(44, 13);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "System:";
+            // 
+            // RomFolderBT
+            // 
+            this.RomFolderBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.RomFolderBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.RomFolderBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.RomFolderBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.RomFolderBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RomFolderBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.RomFolderBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.folder_horizontal_open;
+            this.RomFolderBT.Location = new System.Drawing.Point(515, 52);
+            this.RomFolderBT.Name = "RomFolderBT";
+            this.RomFolderBT.Size = new System.Drawing.Size(36, 20);
+            this.RomFolderBT.TabIndex = 14;
+            this.RomFolderBT.UseVisualStyleBackColor = true;
+            // 
+            // RomFolderTB
+            // 
+            this.RomFolderTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RomFolderTB.AutoEllipsis = stigzler.Winforms.Base.Enums.EllipsisFormat.End;
+            this.RomFolderTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.RomFolderTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RomFolderTB.Cue = null;
+            this.RomFolderTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.RomFolderTB.FontStyle = System.Drawing.FontStyle.Regular;
+            this.RomFolderTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.RomFolderTB.Location = new System.Drawing.Point(78, 52);
+            this.RomFolderTB.Name = "RomFolderTB";
+            this.RomFolderTB.ScaleFont = 100;
+            this.RomFolderTB.Size = new System.Drawing.Size(431, 20);
+            this.RomFolderTB.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(10, 56);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(58, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "RomFolder";
             // 
             // SystemsCB
             // 
@@ -145,46 +235,423 @@ namespace stigzler.ScreenScraper.Test
             this.SystemsCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SystemsCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.SystemsCB.FormattingEnabled = true;
-            this.SystemsCB.Location = new System.Drawing.Point(94, 101);
+            this.SystemsCB.Location = new System.Drawing.Point(78, 25);
             this.SystemsCB.Name = "SystemsCB";
             this.SystemsCB.RedrawOnResize = true;
-            this.SystemsCB.Size = new System.Drawing.Size(181, 21);
+            this.SystemsCB.Size = new System.Drawing.Size(473, 21);
             this.SystemsCB.TabIndex = 17;
             // 
-            // RefreshSystemsBT
+            // groupBox1
             // 
-            this.RefreshSystemsBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.RefreshSystemsBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.RefreshSystemsBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
-            this.RefreshSystemsBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.RefreshSystemsBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RefreshSystemsBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.RefreshSystemsBT.Location = new System.Drawing.Point(7, 200);
-            this.RefreshSystemsBT.Name = "RefreshSystemsBT";
-            this.RefreshSystemsBT.Size = new System.Drawing.Size(106, 23);
-            this.RefreshSystemsBT.TabIndex = 16;
-            this.RefreshSystemsBT.Text = "Refresh Systems";
-            this.RefreshSystemsBT.UseVisualStyleBackColor = true;
-            this.RefreshSystemsBT.Click += new System.EventHandler(this.RefreshSystemsBT_Click);
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.groupBox1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.groupBox1.BorderThickness = 1;
+            this.groupBox1.Controls.Add(this.DevIdTB);
+            this.groupBox1.Controls.Add(this.DevPwTB);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.DevSoftwareTB);
+            this.groupBox1.Controls.Add(this.PasswordTB);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.UsernameTB);
+            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.groupBox1.Location = new System.Drawing.Point(6, 7);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(565, 183);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "API Parameters";
+            this.groupBox1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            // 
+            // DevIdTB
+            // 
+            this.DevIdTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DevIdTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.DevIdTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DevIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.DevIdTB.Location = new System.Drawing.Point(91, 19);
+            this.DevIdTB.Name = "DevIdTB";
+            this.DevIdTB.Size = new System.Drawing.Size(455, 20);
+            this.DevIdTB.TabIndex = 1;
+            // 
+            // DevPwTB
+            // 
+            this.DevPwTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DevPwTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.DevPwTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DevPwTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.DevPwTB.Location = new System.Drawing.Point(92, 45);
+            this.DevPwTB.Name = "DevPwTB";
+            this.DevPwTB.Size = new System.Drawing.Size(455, 20);
+            this.DevPwTB.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(48, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "DevID";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Dev Password";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(31, 126);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Password";
+            // 
+            // DevSoftwareTB
+            // 
+            this.DevSoftwareTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DevSoftwareTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.DevSoftwareTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DevSoftwareTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.DevSoftwareTB.Location = new System.Drawing.Point(92, 71);
+            this.DevSoftwareTB.Name = "DevSoftwareTB";
+            this.DevSoftwareTB.Size = new System.Drawing.Size(455, 20);
+            this.DevSoftwareTB.TabIndex = 7;
+            // 
+            // PasswordTB
+            // 
+            this.PasswordTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PasswordTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.PasswordTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PasswordTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.PasswordTB.Location = new System.Drawing.Point(91, 123);
+            this.PasswordTB.Name = "PasswordTB";
+            this.PasswordTB.Size = new System.Drawing.Size(455, 20);
+            this.PasswordTB.TabIndex = 3;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(14, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Dev Software";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(31, 100);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Username";
+            // 
+            // UsernameTB
+            // 
+            this.UsernameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.UsernameTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.UsernameTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UsernameTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.UsernameTB.Location = new System.Drawing.Point(92, 97);
+            this.UsernameTB.Name = "UsernameTB";
+            this.UsernameTB.Size = new System.Drawing.Size(455, 20);
+            this.UsernameTB.TabIndex = 5;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.groupBox2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.groupBox2.BorderThickness = 1;
+            this.groupBox2.Controls.Add(this.label15);
+            this.groupBox2.Controls.Add(this.ObjectIdTB);
+            this.groupBox2.Controls.Add(this.CrcTB);
+            this.groupBox2.Controls.Add(this.Md5TB);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.Sha1TB);
+            this.groupBox2.Controls.Add(this.MediaFormatTB);
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label14);
+            this.groupBox2.Controls.Add(this.MediaTypeNameTB);
+            this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.groupBox2.Location = new System.Drawing.Point(6, 302);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(565, 183);
+            this.groupBox2.TabIndex = 11;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "API Download Parameters";
+            this.groupBox2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(49, 152);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 13);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "Object ID";
+            // 
+            // ObjectIdTB
+            // 
+            this.ObjectIdTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ObjectIdTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ObjectIdTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ObjectIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.ObjectIdTB.Location = new System.Drawing.Point(109, 149);
+            this.ObjectIdTB.Name = "ObjectIdTB";
+            this.ObjectIdTB.Size = new System.Drawing.Size(447, 20);
+            this.ObjectIdTB.TabIndex = 21;
+            // 
+            // CrcTB
+            // 
+            this.CrcTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CrcTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.CrcTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CrcTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.CrcTB.Location = new System.Drawing.Point(109, 19);
+            this.CrcTB.Name = "CrcTB";
+            this.CrcTB.Size = new System.Drawing.Size(447, 20);
+            this.CrcTB.TabIndex = 11;
+            // 
+            // Md5TB
+            // 
+            this.Md5TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Md5TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.Md5TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Md5TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.Md5TB.Location = new System.Drawing.Point(110, 45);
+            this.Md5TB.Name = "Md5TB";
+            this.Md5TB.Size = new System.Drawing.Size(447, 20);
+            this.Md5TB.TabIndex = 19;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(72, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "CRC";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(71, 48);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(30, 13);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "MD5";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(30, 126);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 13);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "Media Format";
+            // 
+            // Sha1TB
+            // 
+            this.Sha1TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Sha1TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.Sha1TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Sha1TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.Sha1TB.Location = new System.Drawing.Point(110, 71);
+            this.Sha1TB.Name = "Sha1TB";
+            this.Sha1TB.Size = new System.Drawing.Size(447, 20);
+            this.Sha1TB.TabIndex = 17;
+            // 
+            // MediaFormatTB
+            // 
+            this.MediaFormatTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MediaFormatTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.MediaFormatTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MediaFormatTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.MediaFormatTB.Location = new System.Drawing.Point(109, 123);
+            this.MediaFormatTB.Name = "MediaFormatTB";
+            this.MediaFormatTB.Size = new System.Drawing.Size(447, 20);
+            this.MediaFormatTB.TabIndex = 13;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(66, 74);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "SHA1";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 100);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(94, 13);
+            this.label14.TabIndex = 14;
+            this.label14.Text = "Media Type Name";
+            // 
+            // MediaTypeNameTB
+            // 
+            this.MediaTypeNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MediaTypeNameTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.MediaTypeNameTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MediaTypeNameTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.MediaTypeNameTB.Location = new System.Drawing.Point(110, 97);
+            this.MediaTypeNameTB.Name = "MediaTypeNameTB";
+            this.MediaTypeNameTB.Size = new System.Drawing.Size(447, 20);
+            this.MediaTypeNameTB.TabIndex = 15;
+            // 
+            // OpsPN
+            // 
+            this.OpsPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.OpsPN.Controls.Add(this.QueryTypeCB);
+            this.OpsPN.Controls.Add(this.label16);
+            this.OpsPN.Controls.Add(this.outputFormatCB);
+            this.OpsPN.Controls.Add(this.label6);
+            this.OpsPN.Controls.Add(this.UserThreadsNUM);
+            this.OpsPN.Controls.Add(this.label9);
+            this.OpsPN.Dock = System.Windows.Forms.DockStyle.Top;
+            this.OpsPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.OpsPN.Location = new System.Drawing.Point(4, 4);
+            this.OpsPN.Name = "OpsPN";
+            this.OpsPN.Size = new System.Drawing.Size(578, 97);
+            this.OpsPN.TabIndex = 21;
+            // 
+            // QueryTypeCB
+            // 
+            this.QueryTypeCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.QueryTypeCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.QueryTypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.QueryTypeCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.QueryTypeCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QueryTypeCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.QueryTypeCB.FormattingEnabled = true;
+            this.QueryTypeCB.Items.AddRange(new object[] {
+            "Server Details"});
+            this.QueryTypeCB.Location = new System.Drawing.Point(85, 3);
+            this.QueryTypeCB.Name = "QueryTypeCB";
+            this.QueryTypeCB.Size = new System.Drawing.Size(490, 24);
+            this.QueryTypeCB.TabIndex = 3;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(37, 8);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(38, 13);
+            this.label16.TabIndex = 20;
+            this.label16.Text = "Query:";
+            // 
+            // outputFormatCB
+            // 
+            this.outputFormatCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.outputFormatCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.outputFormatCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.outputFormatCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.outputFormatCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.outputFormatCB.FormattingEnabled = true;
+            this.outputFormatCB.Items.AddRange(new object[] {
+            "Server Details"});
+            this.outputFormatCB.Location = new System.Drawing.Point(85, 43);
+            this.outputFormatCB.Name = "outputFormatCB";
+            this.outputFormatCB.Size = new System.Drawing.Size(490, 21);
+            this.outputFormatCB.TabIndex = 5;
+            this.outputFormatCB.SelectedIndexChanged += new System.EventHandler(this.outputFormatCB_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(37, 46);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Output:";
             // 
             // UserThreadsNUM
             // 
             this.UserThreadsNUM.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.UserThreadsNUM.Location = new System.Drawing.Point(94, 75);
+            this.UserThreadsNUM.Location = new System.Drawing.Point(85, 70);
             this.UserThreadsNUM.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.UserThreadsNUM.Name = "UserThreadsNUM";
-            this.UserThreadsNUM.Size = new System.Drawing.Size(181, 20);
+            this.UserThreadsNUM.Size = new System.Drawing.Size(490, 20);
             this.UserThreadsNUM.TabIndex = 15;
             this.UserThreadsNUM.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, 72);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(74, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "User Threads:";
+            // 
+            // ButtonsPN
+            // 
+            this.ButtonsPN.AutoSize = true;
+            this.ButtonsPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.ButtonsPN.Controls.Add(this.GoBT);
+            this.ButtonsPN.Controls.Add(this.CancelBT);
+            this.ButtonsPN.Controls.Add(this.PopulateSystemsBT);
+            this.ButtonsPN.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonsPN.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.ButtonsPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.ButtonsPN.Location = new System.Drawing.Point(4, 101);
+            this.ButtonsPN.Name = "ButtonsPN";
+            this.ButtonsPN.Size = new System.Drawing.Size(578, 29);
+            this.ButtonsPN.TabIndex = 19;
+            // 
+            // GoBT
+            // 
+            this.GoBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.GoBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.GoBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.GoBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.GoBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GoBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.GoBT.Location = new System.Drawing.Point(500, 3);
+            this.GoBT.Name = "GoBT";
+            this.GoBT.Size = new System.Drawing.Size(75, 23);
+            this.GoBT.TabIndex = 4;
+            this.GoBT.Text = "Go";
+            this.GoBT.UseVisualStyleBackColor = true;
+            this.GoBT.Click += new System.EventHandler(this.GoBT_Click);
             // 
             // CancelBT
             // 
@@ -194,7 +661,7 @@ namespace stigzler.ScreenScraper.Test
             this.CancelBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.CancelBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.CancelBT.Location = new System.Drawing.Point(119, 200);
+            this.CancelBT.Location = new System.Drawing.Point(419, 3);
             this.CancelBT.Name = "CancelBT";
             this.CancelBT.Size = new System.Drawing.Size(75, 23);
             this.CancelBT.TabIndex = 14;
@@ -202,20 +669,35 @@ namespace stigzler.ScreenScraper.Test
             this.CancelBT.UseVisualStyleBackColor = true;
             this.CancelBT.Click += new System.EventHandler(this.CancelBT_Click);
             // 
-            // panel1
+            // PopulateSystemsBT
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.UpdateRateLB);
-            this.panel1.Controls.Add(this.UpdateLB);
-            this.panel1.Controls.Add(this.UpdatePB);
-            this.panel1.Controls.Add(this.MainOpTitleLB);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.panel1.Location = new System.Drawing.Point(4, 229);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(274, 105);
-            this.panel1.TabIndex = 13;
+            this.PopulateSystemsBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.PopulateSystemsBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.PopulateSystemsBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.PopulateSystemsBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PopulateSystemsBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.PopulateSystemsBT.Location = new System.Drawing.Point(306, 3);
+            this.PopulateSystemsBT.Name = "PopulateSystemsBT";
+            this.PopulateSystemsBT.Size = new System.Drawing.Size(107, 23);
+            this.PopulateSystemsBT.TabIndex = 17;
+            this.PopulateSystemsBT.Text = "Populate Systems";
+            this.PopulateSystemsBT.UseVisualStyleBackColor = true;
+            this.PopulateSystemsBT.Click += new System.EventHandler(this.PopulateSystemsBT_Click);
+            // 
+            // UpdatePN
+            // 
+            this.UpdatePN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.UpdatePN.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.UpdatePN.Controls.Add(this.UpdateRateLB);
+            this.UpdatePN.Controls.Add(this.UpdateLB);
+            this.UpdatePN.Controls.Add(this.UpdatePB);
+            this.UpdatePN.Controls.Add(this.MainOpTitleLB);
+            this.UpdatePN.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.UpdatePN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.UpdatePN.Location = new System.Drawing.Point(4, 648);
+            this.UpdatePN.Name = "UpdatePN";
+            this.UpdatePN.Size = new System.Drawing.Size(578, 105);
+            this.UpdatePN.TabIndex = 13;
             // 
             // UpdateRateLB
             // 
@@ -229,7 +711,7 @@ namespace stigzler.ScreenScraper.Test
             this.UpdateRateLB.Name = "UpdateRateLB";
             this.UpdateRateLB.Padding = new System.Windows.Forms.Padding(4);
             this.UpdateRateLB.ScaleFont = 100;
-            this.UpdateRateLB.Size = new System.Drawing.Size(240, 21);
+            this.UpdateRateLB.Size = new System.Drawing.Size(544, 21);
             this.UpdateRateLB.TabIndex = 3;
             this.UpdateRateLB.Text = "Rate";
             this.UpdateRateLB.ToolTip = null;
@@ -251,7 +733,7 @@ namespace stigzler.ScreenScraper.Test
             this.UpdateLB.Name = "UpdateLB";
             this.UpdateLB.Padding = new System.Windows.Forms.Padding(4);
             this.UpdateLB.ScaleFont = 100;
-            this.UpdateLB.Size = new System.Drawing.Size(246, 23);
+            this.UpdateLB.Size = new System.Drawing.Size(550, 23);
             this.UpdateLB.TabIndex = 0;
             this.UpdateLB.Text = "Progress";
             this.UpdateLB.ToolTip = null;
@@ -267,7 +749,7 @@ namespace stigzler.ScreenScraper.Test
             this.UpdatePB.Location = new System.Drawing.Point(10, 34);
             this.UpdatePB.MarqueeAnimationSpeed = 10;
             this.UpdatePB.Name = "UpdatePB";
-            this.UpdatePB.Size = new System.Drawing.Size(249, 10);
+            this.UpdatePB.Size = new System.Drawing.Size(553, 10);
             this.UpdatePB.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.UpdatePB.TabIndex = 1;
             // 
@@ -282,7 +764,7 @@ namespace stigzler.ScreenScraper.Test
             this.MainOpTitleLB.Name = "MainOpTitleLB";
             this.MainOpTitleLB.Padding = new System.Windows.Forms.Padding(4);
             this.MainOpTitleLB.ScaleFont = 100;
-            this.MainOpTitleLB.Size = new System.Drawing.Size(252, 21);
+            this.MainOpTitleLB.Size = new System.Drawing.Size(556, 21);
             this.MainOpTitleLB.TabIndex = 2;
             this.MainOpTitleLB.Text = "Operation";
             this.MainOpTitleLB.ToolTip = null;
@@ -290,83 +772,6 @@ namespace stigzler.ScreenScraper.Test
             this.MainOpTitleLB.ToolTipImage = null;
             this.MainOpTitleLB.ToolTipText = null;
             this.MainOpTitleLB.ToolTipTitle = null;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(30, 103);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(58, 13);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "System ID:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(14, 77);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(74, 13);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "User Threads:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 51);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Output:";
-            // 
-            // outputFormatCB
-            // 
-            this.outputFormatCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.outputFormatCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.outputFormatCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.outputFormatCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.outputFormatCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.outputFormatCB.FormattingEnabled = true;
-            this.outputFormatCB.Items.AddRange(new object[] {
-            "Server Details"});
-            this.outputFormatCB.Location = new System.Drawing.Point(94, 48);
-            this.outputFormatCB.Name = "outputFormatCB";
-            this.outputFormatCB.Size = new System.Drawing.Size(181, 21);
-            this.outputFormatCB.TabIndex = 5;
-            this.outputFormatCB.SelectedIndexChanged += new System.EventHandler(this.outputFormatCB_SelectedIndexChanged);
-            // 
-            // GoBT
-            // 
-            this.GoBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.GoBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.GoBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
-            this.GoBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.GoBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.GoBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.GoBT.Location = new System.Drawing.Point(200, 200);
-            this.GoBT.Name = "GoBT";
-            this.GoBT.Size = new System.Drawing.Size(75, 23);
-            this.GoBT.TabIndex = 4;
-            this.GoBT.Text = "Go";
-            this.GoBT.UseVisualStyleBackColor = true;
-            this.GoBT.Click += new System.EventHandler(this.GoBT_Click);
-            // 
-            // QueryTypeCB
-            // 
-            this.QueryTypeCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.QueryTypeCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.QueryTypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.QueryTypeCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.QueryTypeCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QueryTypeCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.QueryTypeCB.FormattingEnabled = true;
-            this.QueryTypeCB.Items.AddRange(new object[] {
-            "Server Details"});
-            this.QueryTypeCB.Location = new System.Drawing.Point(7, 8);
-            this.QueryTypeCB.Name = "QueryTypeCB";
-            this.QueryTypeCB.Size = new System.Drawing.Size(268, 24);
-            this.QueryTypeCB.TabIndex = 3;
             // 
             // tabControl1
             // 
@@ -381,7 +786,7 @@ namespace stigzler.ScreenScraper.Test
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.SelectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(120)))), ((int)(((byte)(187)))));
-            this.tabControl1.Size = new System.Drawing.Size(566, 338);
+            this.tabControl1.Size = new System.Drawing.Size(633, 757);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.TabOutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             this.tabControl1.UnselectedTabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
@@ -389,15 +794,39 @@ namespace stigzler.ScreenScraper.Test
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.tabPage1.Controls.Add(this.MainRTB);
+            this.tabPage1.Controls.Add(this.RtbPN);
             this.tabPage1.Controls.Add(this.toolStrip1);
             this.tabPage1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(558, 312);
+            this.tabPage1.Size = new System.Drawing.Size(625, 731);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Console";
+            // 
+            // RtbPN
+            // 
+            this.RtbPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.RtbPN.Controls.Add(this.MainRTB);
+            this.RtbPN.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RtbPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.RtbPN.Location = new System.Drawing.Point(3, 28);
+            this.RtbPN.Name = "RtbPN";
+            this.RtbPN.Padding = new System.Windows.Forms.Padding(4);
+            this.RtbPN.Size = new System.Drawing.Size(619, 700);
+            this.RtbPN.TabIndex = 3;
+            // 
+            // MainRTB
+            // 
+            this.MainRTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.MainRTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.MainRTB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainRTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.MainRTB.Location = new System.Drawing.Point(4, 4);
+            this.MainRTB.Name = "MainRTB";
+            this.MainRTB.Size = new System.Drawing.Size(611, 692);
+            this.MainRTB.TabIndex = 0;
+            this.MainRTB.Text = "";
             // 
             // toolStrip1
             // 
@@ -410,7 +839,7 @@ namespace stigzler.ScreenScraper.Test
             this.SearchTextBT});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(552, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(619, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -451,7 +880,7 @@ namespace stigzler.ScreenScraper.Test
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(558, 312);
+            this.tabPage2.Size = new System.Drawing.Size(529, 593);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Results";
             // 
@@ -461,185 +890,8 @@ namespace stigzler.ScreenScraper.Test
             this.ResultsDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ResultsDGV.Location = new System.Drawing.Point(3, 3);
             this.ResultsDGV.Name = "ResultsDGV";
-            this.ResultsDGV.Size = new System.Drawing.Size(552, 306);
+            this.ResultsDGV.Size = new System.Drawing.Size(523, 587);
             this.ResultsDGV.TabIndex = 0;
-            // 
-            // HorizontalSC
-            // 
-            this.HorizontalSC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.HorizontalSC.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.HorizontalSC.Location = new System.Drawing.Point(0, 0);
-            this.HorizontalSC.Name = "HorizontalSC";
-            this.HorizontalSC.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // HorizontalSC.Panel1
-            // 
-            this.HorizontalSC.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.HorizontalSC.Panel1.Controls.Add(this.VerticalSC);
-            this.HorizontalSC.Panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            // 
-            // HorizontalSC.Panel2
-            // 
-            this.HorizontalSC.Panel2.AutoScroll = true;
-            this.HorizontalSC.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.HorizontalSC.Panel2.Controls.Add(this.RomFolderBT);
-            this.HorizontalSC.Panel2.Controls.Add(this.RomFolderTB);
-            this.HorizontalSC.Panel2.Controls.Add(this.label8);
-            this.HorizontalSC.Panel2.Controls.Add(this.DevPwTB);
-            this.HorizontalSC.Panel2.Controls.Add(this.label5);
-            this.HorizontalSC.Panel2.Controls.Add(this.DevSoftwareTB);
-            this.HorizontalSC.Panel2.Controls.Add(this.label4);
-            this.HorizontalSC.Panel2.Controls.Add(this.UsernameTB);
-            this.HorizontalSC.Panel2.Controls.Add(this.label3);
-            this.HorizontalSC.Panel2.Controls.Add(this.PasswordTB);
-            this.HorizontalSC.Panel2.Controls.Add(this.label2);
-            this.HorizontalSC.Panel2.Controls.Add(this.DevIdTB);
-            this.HorizontalSC.Panel2.Controls.Add(this.label1);
-            this.HorizontalSC.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.HorizontalSC.Size = new System.Drawing.Size(856, 639);
-            this.HorizontalSC.SplitterDistance = 340;
-            this.HorizontalSC.TabIndex = 4;
-            // 
-            // RomFolderBT
-            // 
-            this.RomFolderBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RomFolderBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.RomFolderBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
-            this.RomFolderBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.RomFolderBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RomFolderBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.RomFolderBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.folder_horizontal_open;
-            this.RomFolderBT.Location = new System.Drawing.Point(776, 141);
-            this.RomFolderBT.Name = "RomFolderBT";
-            this.RomFolderBT.Size = new System.Drawing.Size(36, 23);
-            this.RomFolderBT.TabIndex = 14;
-            this.RomFolderBT.UseVisualStyleBackColor = true;
-            // 
-            // RomFolderTB
-            // 
-            this.RomFolderTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RomFolderTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.RomFolderTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RomFolderTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.RomFolderTB.Location = new System.Drawing.Point(118, 143);
-            this.RomFolderTB.Name = "RomFolderTB";
-            this.RomFolderTB.Size = new System.Drawing.Size(652, 20);
-            this.RomFolderTB.TabIndex = 13;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(53, 146);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(58, 13);
-            this.label8.TabIndex = 12;
-            this.label8.Text = "RomFolder";
-            // 
-            // DevPwTB
-            // 
-            this.DevPwTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DevPwTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.DevPwTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DevPwTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.DevPwTB.Location = new System.Drawing.Point(118, 39);
-            this.DevPwTB.Name = "DevPwTB";
-            this.DevPwTB.Size = new System.Drawing.Size(694, 20);
-            this.DevPwTB.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(36, 42);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Dev Password";
-            // 
-            // DevSoftwareTB
-            // 
-            this.DevSoftwareTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DevSoftwareTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.DevSoftwareTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DevSoftwareTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.DevSoftwareTB.Location = new System.Drawing.Point(118, 65);
-            this.DevSoftwareTB.Name = "DevSoftwareTB";
-            this.DevSoftwareTB.Size = new System.Drawing.Size(694, 20);
-            this.DevSoftwareTB.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 68);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Dev Software";
-            // 
-            // UsernameTB
-            // 
-            this.UsernameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.UsernameTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.UsernameTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.UsernameTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.UsernameTB.Location = new System.Drawing.Point(118, 91);
-            this.UsernameTB.Name = "UsernameTB";
-            this.UsernameTB.Size = new System.Drawing.Size(694, 20);
-            this.UsernameTB.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(57, 94);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Username";
-            // 
-            // PasswordTB
-            // 
-            this.PasswordTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PasswordTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.PasswordTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PasswordTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.PasswordTB.Location = new System.Drawing.Point(117, 117);
-            this.PasswordTB.Name = "PasswordTB";
-            this.PasswordTB.Size = new System.Drawing.Size(694, 20);
-            this.PasswordTB.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(57, 120);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Password";
-            // 
-            // DevIdTB
-            // 
-            this.DevIdTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.DevIdTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.DevIdTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DevIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.DevIdTB.Location = new System.Drawing.Point(117, 13);
-            this.DevIdTB.Name = "DevIdTB";
-            this.DevIdTB.Size = new System.Drawing.Size(694, 20);
-            this.DevIdTB.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(74, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "DevID";
             // 
             // flowLayoutPanel1
             // 
@@ -649,9 +901,9 @@ namespace stigzler.ScreenScraper.Test
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 639);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 759);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(856, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1227, 29);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // SaveSettingsBT
@@ -661,7 +913,7 @@ namespace stigzler.ScreenScraper.Test
             this.SaveSettingsBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.SaveSettingsBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveSettingsBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.SaveSettingsBT.Location = new System.Drawing.Point(758, 3);
+            this.SaveSettingsBT.Location = new System.Drawing.Point(1129, 3);
             this.SaveSettingsBT.Name = "SaveSettingsBT";
             this.SaveSettingsBT.Size = new System.Drawing.Size(95, 23);
             this.SaveSettingsBT.TabIndex = 0;
@@ -673,8 +925,8 @@ namespace stigzler.ScreenScraper.Test
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 668);
-            this.Controls.Add(this.HorizontalSC);
+            this.ClientSize = new System.Drawing.Size(1227, 788);
+            this.Controls.Add(this.VerticalSC);
             this.Controls.Add(this.flowLayoutPanel1);
             this.DarkMode = true;
             this.DoubleBuffered = true;
@@ -688,20 +940,26 @@ namespace stigzler.ScreenScraper.Test
             this.VerticalSC.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).EndInit();
             this.VerticalSC.ResumeLayout(false);
+            this.VarsPN.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.OpsPN.ResumeLayout(false);
+            this.OpsPN.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserThreadsNUM)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.ButtonsPN.ResumeLayout(false);
+            this.UpdatePN.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.RtbPN.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ResultsDGV)).EndInit();
-            this.HorizontalSC.Panel1.ResumeLayout(false);
-            this.HorizontalSC.Panel2.ResumeLayout(false);
-            this.HorizontalSC.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSC)).EndInit();
-            this.HorizontalSC.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -709,9 +967,7 @@ namespace stigzler.ScreenScraper.Test
         }
 
         #endregion
-        private System.Windows.Forms.RichTextBox MainRTB;
         private System.Windows.Forms.SplitContainer VerticalSC;
-        private System.Windows.Forms.SplitContainer HorizontalSC;
         private System.Windows.Forms.TextBox DevPwTB;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox DevSoftwareTB;
@@ -732,7 +988,6 @@ namespace stigzler.ScreenScraper.Test
         private System.Windows.Forms.ComboBox outputFormatCB;
         private System.Windows.Forms.ProgressBar UpdatePB;
         private System.Windows.Forms.Button RomFolderBT;
-        private System.Windows.Forms.TextBox RomFolderTB;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -741,15 +996,37 @@ namespace stigzler.ScreenScraper.Test
         private Winforms.Base.UIElements.Label MainOpTitleLB;
         private Winforms.Base.UIElements.Label UpdateLB;
         private Winforms.Base.UIElements.Label UpdateRateLB;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel UpdatePN;
         private System.Windows.Forms.Button CancelBT;
         private System.Windows.Forms.NumericUpDown UserThreadsNUM;
-        private System.Windows.Forms.Button RefreshSystemsBT;
         private Winforms.Base.UIElements.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView ResultsDGV;
         private Winforms.Base.UIElements.ComboBox SystemsCB;
+        private System.Windows.Forms.Panel RtbPN;
+        private Winforms.Base.UIElements.RichTextBox MainRTB;
+        private Winforms.Base.UIElements.TextBoxEllipsis RomFolderTB;
+        private Winforms.Base.UIElements.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox CrcTB;
+        private System.Windows.Forms.TextBox Md5TB;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox Sha1TB;
+        private System.Windows.Forms.TextBox MediaFormatTB;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox MediaTypeNameTB;
+        private Winforms.Base.UIElements.GroupBox groupBox1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox ObjectIdTB;
+        private System.Windows.Forms.FlowLayoutPanel ButtonsPN;
+        private Winforms.Base.UIElements.Button PopulateSystemsBT;
+        private Winforms.Base.UIElements.GroupBox groupBox3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Panel VarsPN;
+        private System.Windows.Forms.Panel OpsPN;
     }
 }
 

@@ -72,32 +72,46 @@ namespace stigzler.Screenscraper
             urlBuilder = new ApiUrlBuilder(Credentials, ApiParameters);
         }
 
-        public async Task<ApiGetOutcome> GetApiServerInfo()
+        public ApiGetOutcome GetListOrInfo(ApiQueryType queryType)
         {
-            List<string> urlList = new List<string> { urlBuilder.Build(ApiQueryType.ServerInfo) };
-            var result = await Task.Run(() => apiDataService.GetString(new Uri(urlBuilder.Build(ApiQueryType.ServerInfo))));
-            return result;
+            string uriStr = urlBuilder.Build(queryType);
+            ApiGetOutcome apiGetOutcome = apiDataService.GetString(new Uri(uriStr));
+            return apiGetOutcome;
         }
 
-        public async Task<ApiGetOutcome> GetUserInfo()
+        public ApiGetOutcome GetFile(ApiQueryType queryType, APIDownloadParameters downloadParameters, string destinationFilename)
         {
-            List<string> urlList = new List<string> { urlBuilder.Build(ApiQueryType.UserInfo) };
-            var result = await Task.Run(() => apiDataService.GetString(new Uri(urlBuilder.Build(ApiQueryType.UserInfo))));
-            return result;
-        }
+            List<QueryParameter> parameters = new List<QueryParameter>()
+            {
+            new QueryParameter() { Parameter = ApiQueryParameter.CRC, Value = downloadParameters.CRC },
+            new QueryParameter() { Parameter = ApiQueryParameter.MD5, Value = downloadParameters.MD5 },
+            new QueryParameter() { Parameter = ApiQueryParameter.SHA1, Value = downloadParameters.SHA1 },
+            new QueryParameter() { Parameter = ApiQueryParameter.MediaTypeName, Value = downloadParameters.MediaTypeName },
+            new QueryParameter() { Parameter = ApiQueryParameter.MediaFormat, Value = downloadParameters.MediaFormat },
+            new QueryParameter() { Parameter = ApiQueryParameter.SystemID, Value = downloadParameters.SystemID.ToString() }
+            };
 
-        public async Task<ApiGetOutcome> GetSingleResponse(ApiQueryType queryType)
-        {
-            List<string> urlList = new List<string> { urlBuilder.Build(queryType) };
-            var result = await Task.Run(() => apiDataService.GetString(new Uri(urlBuilder.Build(queryType))));
-            return result;
-        }
+            switch (queryType)
+            {
+                case ApiQueryType.GameImages:
+                case ApiQueryType.GameVideos:
+                case ApiQueryType.GameManuals:
+                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GameID, Value = downloadParameters.ObjectID.ToString() });
+                    break;
+                case ApiQueryType.GameGenreImages:
+                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GenreID, Value = downloadParameters.ObjectID.ToString() });
+                    break;
+                case ApiQueryType.GameOrganisationImages:
+                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.OrganisationID, Value = downloadParameters.ObjectID.ToString() });
+                    break;
+                default:
+                    break;
+            }
 
-        public async Task<ApiGetOutcome> GetSystemList()
-        {
-            List<string> urlList = new List<string> { urlBuilder.Build(ApiQueryType.SystemList) };
-            var result = await Task.Run(() => apiDataService.GetString(new Uri(urlBuilder.Build(ApiQueryType.SystemList))));
-            return result;
+            string uriStr = urlBuilder.Build(queryType, parameters);
+            ApiGetOutcome apiGetOutcome = apiDataService.GetFile(new Uri(uriStr), destinationFilename);
+
+            return apiGetOutcome;
         }
 
         public List<ApiGetOutcome> GetGamesInfo(int systemID, List<string> romNames,
@@ -105,7 +119,7 @@ namespace stigzler.Screenscraper
                                                             IProgress<ProgressChangedEventArgs> progress = null)
         {
             List<QueryParameter> parameters = new List<QueryParameter>();
-            Dictionary<string,Uri> romUrisList = new Dictionary<string, Uri>();
+            Dictionary<string, Uri> romUrisList = new Dictionary<string, Uri>();
 
             // Set number of concurrent threads on server
             ServicePointManager.FindServicePoint(new Uri(ApiParameters.HostAddress)).ConnectionLimit = userThreads;
@@ -116,12 +130,12 @@ namespace stigzler.Screenscraper
                 parameters.Clear();
                 parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.RomFilename, Value = romname });
                 parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.SystemID, Value = systemID.ToString() });
-                romUrisList.Add(romname, new Uri(urlBuilder.Build(ApiQueryType.GameInfo, parameters)));
+                romUrisList.Add(romname, new Uri(urlBuilder.Build(ApiQueryType.GameRomSearch, parameters)));
             }
 
             // Get API Data:
             List<ApiGetOutcome> apiGetOutcomes = new List<ApiGetOutcome>();
-            apiGetOutcomes =  apiDataService.GetStrings(romUrisList, "rom", cancellationToken, progress);
+            apiGetOutcomes = apiDataService.GetStrings(romUrisList, "rom", cancellationToken, progress);
 
             return apiGetOutcomes;
         }

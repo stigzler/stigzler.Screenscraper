@@ -27,6 +27,40 @@ namespace stigzler.Screenscraper.Services
             this.requestTimeout = requestTimeout;
         }
 
+        internal ApiGetOutcome GetFile(Uri uri, string filename)
+        {
+            ModifiedNet.WebClient webClient = new ModifiedNet.WebClient(requestTimeout);
+            ApiGetOutcome outcome = new ApiGetOutcome();
+            outcome.Uri = uri;
+            object result = null;
+
+            try
+            {
+                webClient.DownloadFile(uri,filename);
+                outcome.Successfull = true;
+                outcome.StatusCode = 200;
+                outcome.Data = result;
+            }
+            catch (WebException ex)
+            {
+                outcome.Exception = ex;
+                if (ex.Response != null)
+                {
+                    outcome.StatusCode = (int)((HttpWebResponse)ex.Response).StatusCode;
+                    outcome.Data = ParseExceptionRespose(ex).Trim();
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                Debug.WriteLine("Cancelled");
+            }
+            catch (Exception ex)
+            {
+                outcome.Exception = ex;
+            }
+
+            return outcome;
+        }
 
 
         internal ApiGetOutcome GetString(Uri uri)
