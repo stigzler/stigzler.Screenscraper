@@ -7,19 +7,18 @@ using System.Threading.Tasks;
 namespace stigzler.ScreenScraper.Test.Entities
 {
     [Serializable]
-    public class System
+    public class Game
     {
-        public System()
-        {
-            
-        }
 
         // Screenscraper Info
-        public int ID { get; set; } 
+        public int ID { get; set; }
+        public int SystemID { get; set; }
         public string Name { get; set; } //EU Name
 
         // Info for Test App
-        public string RomFolder { get; set; } 
+        public string GameXml { get; set; }
+
+
 
     }
 }

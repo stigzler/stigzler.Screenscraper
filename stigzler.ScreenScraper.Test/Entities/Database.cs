@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace stigzler.Screenscraper.Entities
+namespace stigzler.ScreenScraper.Test.Entities
 {
     [Serializable]
     public class Database
     {
         public List<System> Systems { get; set; } = new List<System>();
+
+        public List<Game> Games { get; set; } = new List<Game>();
+
+
 
     }
 }
