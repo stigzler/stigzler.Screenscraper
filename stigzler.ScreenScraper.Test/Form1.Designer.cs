@@ -39,7 +39,10 @@ namespace stigzler.ScreenScraper.Test
             this.MainOpTitleLB = new stigzler.Winforms.Base.UIElements.Label();
             this.VarsPN = new System.Windows.Forms.Panel();
             this.groupBox3 = new stigzler.Winforms.Base.UIElements.GroupBox();
-            this.RomFolderTB = new stigzler.Winforms.Base.UserControls.FolderBrowserTextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.MediaTypeCB = new stigzler.Winforms.Base.UIElements.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.GamesCB = new stigzler.Winforms.Base.UIElements.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.SystemsCB = new stigzler.Winforms.Base.UIElements.ComboBox();
@@ -70,6 +73,8 @@ namespace stigzler.ScreenScraper.Test
             this.ButtonsPN = new System.Windows.Forms.FlowLayoutPanel();
             this.GoBT = new System.Windows.Forms.Button();
             this.CancelBT = new System.Windows.Forms.Button();
+            this.ScrapeAllSystemRomsBT = new System.Windows.Forms.Button();
+            this.ResetDatabaseBT = new System.Windows.Forms.Button();
             this.OpsPN = new System.Windows.Forms.Panel();
             this.QueryTypeCB = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -82,14 +87,15 @@ namespace stigzler.ScreenScraper.Test
             this.RtbPN = new System.Windows.Forms.Panel();
             this.MainRTB = new stigzler.Winforms.Base.UIElements.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.ClearConsoleBT = new System.Windows.Forms.ToolStripButton();
             this.SerchTextTB = new System.Windows.Forms.ToolStripTextBox();
-            this.SearchTextBT = new System.Windows.Forms.ToolStripButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ResultsDGV = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SaveSettingsBT = new System.Windows.Forms.Button();
-            this.ScrapeAllSystemRomsBT = new System.Windows.Forms.Button();
+            this.ViewXmlBT = new stigzler.Winforms.Base.UIElements.Button();
+            this.RomFolderTB = new stigzler.Winforms.Base.UserControls.FolderBrowserTextBox();
+            this.ClearConsoleBT = new System.Windows.Forms.ToolStripButton();
+            this.SearchTextBT = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).BeginInit();
             this.VerticalSC.Panel1.SuspendLayout();
             this.VerticalSC.Panel2.SuspendLayout();
@@ -133,8 +139,8 @@ namespace stigzler.ScreenScraper.Test
             this.VerticalSC.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
             this.VerticalSC.Panel2.Controls.Add(this.tabControl1);
             this.VerticalSC.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.VerticalSC.Size = new System.Drawing.Size(1227, 759);
-            this.VerticalSC.SplitterDistance = 588;
+            this.VerticalSC.Size = new System.Drawing.Size(1180, 758);
+            this.VerticalSC.SplitterDistance = 565;
             this.VerticalSC.TabIndex = 3;
             // 
             // UpdatePN
@@ -147,9 +153,9 @@ namespace stigzler.ScreenScraper.Test
             this.UpdatePN.Controls.Add(this.MainOpTitleLB);
             this.UpdatePN.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.UpdatePN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.UpdatePN.Location = new System.Drawing.Point(4, 648);
+            this.UpdatePN.Location = new System.Drawing.Point(4, 647);
             this.UpdatePN.Name = "UpdatePN";
-            this.UpdatePN.Size = new System.Drawing.Size(578, 105);
+            this.UpdatePN.Size = new System.Drawing.Size(555, 105);
             this.UpdatePN.TabIndex = 13;
             // 
             // UpdateRateLB
@@ -164,7 +170,7 @@ namespace stigzler.ScreenScraper.Test
             this.UpdateRateLB.Name = "UpdateRateLB";
             this.UpdateRateLB.Padding = new System.Windows.Forms.Padding(4);
             this.UpdateRateLB.ScaleFont = 100;
-            this.UpdateRateLB.Size = new System.Drawing.Size(544, 21);
+            this.UpdateRateLB.Size = new System.Drawing.Size(521, 21);
             this.UpdateRateLB.TabIndex = 3;
             this.UpdateRateLB.Text = "Rate";
             this.UpdateRateLB.ToolTip = null;
@@ -186,7 +192,7 @@ namespace stigzler.ScreenScraper.Test
             this.UpdateLB.Name = "UpdateLB";
             this.UpdateLB.Padding = new System.Windows.Forms.Padding(4);
             this.UpdateLB.ScaleFont = 100;
-            this.UpdateLB.Size = new System.Drawing.Size(550, 23);
+            this.UpdateLB.Size = new System.Drawing.Size(527, 23);
             this.UpdateLB.TabIndex = 0;
             this.UpdateLB.Text = "Progress";
             this.UpdateLB.ToolTip = null;
@@ -202,7 +208,7 @@ namespace stigzler.ScreenScraper.Test
             this.UpdatePB.Location = new System.Drawing.Point(10, 34);
             this.UpdatePB.MarqueeAnimationSpeed = 10;
             this.UpdatePB.Name = "UpdatePB";
-            this.UpdatePB.Size = new System.Drawing.Size(553, 10);
+            this.UpdatePB.Size = new System.Drawing.Size(530, 10);
             this.UpdatePB.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.UpdatePB.TabIndex = 1;
             // 
@@ -217,7 +223,7 @@ namespace stigzler.ScreenScraper.Test
             this.MainOpTitleLB.Name = "MainOpTitleLB";
             this.MainOpTitleLB.Padding = new System.Windows.Forms.Padding(4);
             this.MainOpTitleLB.ScaleFont = 100;
-            this.MainOpTitleLB.Size = new System.Drawing.Size(556, 21);
+            this.MainOpTitleLB.Size = new System.Drawing.Size(533, 21);
             this.MainOpTitleLB.TabIndex = 2;
             this.MainOpTitleLB.Text = "Operation";
             this.MainOpTitleLB.ToolTip = null;
@@ -239,7 +245,7 @@ namespace stigzler.ScreenScraper.Test
             this.VarsPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.VarsPN.Location = new System.Drawing.Point(4, 130);
             this.VarsPN.Name = "VarsPN";
-            this.VarsPN.Size = new System.Drawing.Size(578, 518);
+            this.VarsPN.Size = new System.Drawing.Size(555, 517);
             this.VarsPN.TabIndex = 13;
             // 
             // groupBox3
@@ -249,6 +255,11 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             this.groupBox3.BorderStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this.groupBox3.BorderThickness = 1;
+            this.groupBox3.Controls.Add(this.ViewXmlBT);
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.MediaTypeCB);
+            this.groupBox3.Controls.Add(this.label17);
+            this.groupBox3.Controls.Add(this.GamesCB);
             this.groupBox3.Controls.Add(this.RomFolderTB);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label8);
@@ -256,39 +267,68 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.groupBox3.Location = new System.Drawing.Point(6, 172);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(565, 100);
+            this.groupBox3.Size = new System.Drawing.Size(542, 154);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "General";
             this.groupBox3.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             // 
-            // RomFolderTB
+            // label18
             // 
-            this.RomFolderTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(8, 110);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(66, 13);
+            this.label18.TabIndex = 21;
+            this.label18.Text = "Media Type:";
+            // 
+            // MediaTypeCB
+            // 
+            this.MediaTypeCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RomFolderTB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.RomFolderTB.BackColor = System.Drawing.Color.Transparent;
-            this.RomFolderTB.DarkMode = false;
-            this.RomFolderTB.DirectoryPath = "C:\\Start\\AnExamplePath\\To\\Your\\Stuff\\Middle\\Ellipse\\Test\\Here\\Yeah\\Path\\End";
-            this.RomFolderTB.EllipsisPosition = stigzler.Winforms.Base.UserControls.FolderBrowserTextBox.EllipsisPositions.Middle;
-            this.RomFolderTB.FolderBrowserDesription = "Please select the rom folder for this system";
-            this.RomFolderTB.FontStyle = System.Drawing.FontStyle.Regular;
-            this.RomFolderTB.Image = ((System.Drawing.Image)(resources.GetObject("RomFolderTB.Image")));
-            this.RomFolderTB.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RomFolderTB.Location = new System.Drawing.Point(79, 56);
-            this.RomFolderTB.Margin = new System.Windows.Forms.Padding(0);
-            this.RomFolderTB.Name = "RomFolderTB";
-            this.RomFolderTB.ReadOnly = true;
-            this.RomFolderTB.ScaleFont = 100;
-            this.RomFolderTB.Size = new System.Drawing.Size(472, 20);
-            this.RomFolderTB.TabIndex = 18;
-            this.RomFolderTB.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RomFolderTB.DirectoryPathChanged += new stigzler.Winforms.Base.Events.DirectoryPathChanged(this.RomFolderTB_DirectoryPathChanged);
+            this.MediaTypeCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.MediaTypeCB.ComboBoxMode = stigzler.Winforms.Base.UIElements.ComboBoxMode.Normal;
+            this.MediaTypeCB.DropDownImages = null;
+            this.MediaTypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.MediaTypeCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MediaTypeCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.MediaTypeCB.FormattingEnabled = true;
+            this.MediaTypeCB.Location = new System.Drawing.Point(78, 107);
+            this.MediaTypeCB.Name = "MediaTypeCB";
+            this.MediaTypeCB.RedrawOnResize = true;
+            this.MediaTypeCB.Size = new System.Drawing.Size(450, 21);
+            this.MediaTypeCB.TabIndex = 22;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(36, 82);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(38, 13);
+            this.label17.TabIndex = 19;
+            this.label17.Text = "Game:";
+            // 
+            // GamesCB
+            // 
+            this.GamesCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GamesCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.GamesCB.ComboBoxMode = stigzler.Winforms.Base.UIElements.ComboBoxMode.Normal;
+            this.GamesCB.DropDownImages = null;
+            this.GamesCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.GamesCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.GamesCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.GamesCB.FormattingEnabled = true;
+            this.GamesCB.Location = new System.Drawing.Point(78, 80);
+            this.GamesCB.Name = "GamesCB";
+            this.GamesCB.RedrawOnResize = true;
+            this.GamesCB.Size = new System.Drawing.Size(410, 21);
+            this.GamesCB.TabIndex = 20;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(14, 27);
+            this.label10.Location = new System.Drawing.Point(30, 28);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 9;
@@ -297,7 +337,7 @@ namespace stigzler.ScreenScraper.Test
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(10, 56);
+            this.label8.Location = new System.Drawing.Point(16, 56);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 13);
             this.label8.TabIndex = 12;
@@ -317,7 +357,7 @@ namespace stigzler.ScreenScraper.Test
             this.SystemsCB.Location = new System.Drawing.Point(78, 25);
             this.SystemsCB.Name = "SystemsCB";
             this.SystemsCB.RedrawOnResize = true;
-            this.SystemsCB.Size = new System.Drawing.Size(473, 21);
+            this.SystemsCB.Size = new System.Drawing.Size(450, 21);
             this.SystemsCB.TabIndex = 17;
             this.SystemsCB.SelectedIndexChanged += new System.EventHandler(this.SystemsCB_SelectedIndexChanged);
             // 
@@ -341,7 +381,7 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.groupBox1.Location = new System.Drawing.Point(6, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(565, 159);
+            this.groupBox1.Size = new System.Drawing.Size(542, 159);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "API Parameters";
@@ -356,7 +396,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevIdTB.Location = new System.Drawing.Point(91, 19);
             this.DevIdTB.Name = "DevIdTB";
-            this.DevIdTB.Size = new System.Drawing.Size(455, 20);
+            this.DevIdTB.Size = new System.Drawing.Size(432, 20);
             this.DevIdTB.TabIndex = 1;
             // 
             // DevPwTB
@@ -368,7 +408,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevPwTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevPwTB.Location = new System.Drawing.Point(92, 45);
             this.DevPwTB.Name = "DevPwTB";
-            this.DevPwTB.Size = new System.Drawing.Size(455, 20);
+            this.DevPwTB.Size = new System.Drawing.Size(432, 20);
             this.DevPwTB.TabIndex = 9;
             // 
             // label1
@@ -407,7 +447,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevSoftwareTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevSoftwareTB.Location = new System.Drawing.Point(92, 71);
             this.DevSoftwareTB.Name = "DevSoftwareTB";
-            this.DevSoftwareTB.Size = new System.Drawing.Size(455, 20);
+            this.DevSoftwareTB.Size = new System.Drawing.Size(432, 20);
             this.DevSoftwareTB.TabIndex = 7;
             // 
             // PasswordTB
@@ -419,7 +459,7 @@ namespace stigzler.ScreenScraper.Test
             this.PasswordTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.PasswordTB.Location = new System.Drawing.Point(91, 123);
             this.PasswordTB.Name = "PasswordTB";
-            this.PasswordTB.Size = new System.Drawing.Size(455, 20);
+            this.PasswordTB.Size = new System.Drawing.Size(432, 20);
             this.PasswordTB.TabIndex = 3;
             // 
             // label4
@@ -449,7 +489,7 @@ namespace stigzler.ScreenScraper.Test
             this.UsernameTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.UsernameTB.Location = new System.Drawing.Point(92, 97);
             this.UsernameTB.Name = "UsernameTB";
-            this.UsernameTB.Size = new System.Drawing.Size(455, 20);
+            this.UsernameTB.Size = new System.Drawing.Size(432, 20);
             this.UsernameTB.TabIndex = 5;
             // 
             // groupBox2
@@ -472,9 +512,9 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.MediaTypeNameTB);
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.groupBox2.Location = new System.Drawing.Point(6, 278);
+            this.groupBox2.Location = new System.Drawing.Point(6, 332);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(565, 183);
+            this.groupBox2.Size = new System.Drawing.Size(542, 183);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "API Download Parameters";
@@ -498,7 +538,7 @@ namespace stigzler.ScreenScraper.Test
             this.ObjectIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ObjectIdTB.Location = new System.Drawing.Point(109, 149);
             this.ObjectIdTB.Name = "ObjectIdTB";
-            this.ObjectIdTB.Size = new System.Drawing.Size(447, 20);
+            this.ObjectIdTB.Size = new System.Drawing.Size(424, 20);
             this.ObjectIdTB.TabIndex = 21;
             // 
             // CrcTB
@@ -510,7 +550,7 @@ namespace stigzler.ScreenScraper.Test
             this.CrcTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.CrcTB.Location = new System.Drawing.Point(109, 19);
             this.CrcTB.Name = "CrcTB";
-            this.CrcTB.Size = new System.Drawing.Size(447, 20);
+            this.CrcTB.Size = new System.Drawing.Size(424, 20);
             this.CrcTB.TabIndex = 11;
             // 
             // Md5TB
@@ -522,7 +562,7 @@ namespace stigzler.ScreenScraper.Test
             this.Md5TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.Md5TB.Location = new System.Drawing.Point(110, 45);
             this.Md5TB.Name = "Md5TB";
-            this.Md5TB.Size = new System.Drawing.Size(447, 20);
+            this.Md5TB.Size = new System.Drawing.Size(424, 20);
             this.Md5TB.TabIndex = 19;
             // 
             // label7
@@ -561,7 +601,7 @@ namespace stigzler.ScreenScraper.Test
             this.Sha1TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.Sha1TB.Location = new System.Drawing.Point(110, 71);
             this.Sha1TB.Name = "Sha1TB";
-            this.Sha1TB.Size = new System.Drawing.Size(447, 20);
+            this.Sha1TB.Size = new System.Drawing.Size(424, 20);
             this.Sha1TB.TabIndex = 17;
             // 
             // MediaFormatTB
@@ -573,7 +613,7 @@ namespace stigzler.ScreenScraper.Test
             this.MediaFormatTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.MediaFormatTB.Location = new System.Drawing.Point(109, 123);
             this.MediaFormatTB.Name = "MediaFormatTB";
-            this.MediaFormatTB.Size = new System.Drawing.Size(447, 20);
+            this.MediaFormatTB.Size = new System.Drawing.Size(424, 20);
             this.MediaFormatTB.TabIndex = 13;
             // 
             // label13
@@ -603,7 +643,7 @@ namespace stigzler.ScreenScraper.Test
             this.MediaTypeNameTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.MediaTypeNameTB.Location = new System.Drawing.Point(110, 97);
             this.MediaTypeNameTB.Name = "MediaTypeNameTB";
-            this.MediaTypeNameTB.Size = new System.Drawing.Size(447, 20);
+            this.MediaTypeNameTB.Size = new System.Drawing.Size(424, 20);
             this.MediaTypeNameTB.TabIndex = 15;
             // 
             // ButtonsPN
@@ -613,12 +653,13 @@ namespace stigzler.ScreenScraper.Test
             this.ButtonsPN.Controls.Add(this.GoBT);
             this.ButtonsPN.Controls.Add(this.CancelBT);
             this.ButtonsPN.Controls.Add(this.ScrapeAllSystemRomsBT);
+            this.ButtonsPN.Controls.Add(this.ResetDatabaseBT);
             this.ButtonsPN.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonsPN.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.ButtonsPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ButtonsPN.Location = new System.Drawing.Point(4, 101);
             this.ButtonsPN.Name = "ButtonsPN";
-            this.ButtonsPN.Size = new System.Drawing.Size(578, 29);
+            this.ButtonsPN.Size = new System.Drawing.Size(555, 29);
             this.ButtonsPN.TabIndex = 19;
             // 
             // GoBT
@@ -629,7 +670,7 @@ namespace stigzler.ScreenScraper.Test
             this.GoBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.GoBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GoBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.GoBT.Location = new System.Drawing.Point(500, 3);
+            this.GoBT.Location = new System.Drawing.Point(477, 3);
             this.GoBT.Name = "GoBT";
             this.GoBT.Size = new System.Drawing.Size(75, 23);
             this.GoBT.TabIndex = 4;
@@ -645,13 +686,45 @@ namespace stigzler.ScreenScraper.Test
             this.CancelBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.CancelBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CancelBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.CancelBT.Location = new System.Drawing.Point(419, 3);
+            this.CancelBT.Location = new System.Drawing.Point(396, 3);
             this.CancelBT.Name = "CancelBT";
             this.CancelBT.Size = new System.Drawing.Size(75, 23);
             this.CancelBT.TabIndex = 14;
             this.CancelBT.Text = "Cancel";
             this.CancelBT.UseVisualStyleBackColor = true;
             this.CancelBT.Click += new System.EventHandler(this.CancelBT_Click);
+            // 
+            // ScrapeAllSystemRomsBT
+            // 
+            this.ScrapeAllSystemRomsBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ScrapeAllSystemRomsBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.ScrapeAllSystemRomsBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.ScrapeAllSystemRomsBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.ScrapeAllSystemRomsBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ScrapeAllSystemRomsBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.ScrapeAllSystemRomsBT.Location = new System.Drawing.Point(247, 3);
+            this.ScrapeAllSystemRomsBT.Name = "ScrapeAllSystemRomsBT";
+            this.ScrapeAllSystemRomsBT.Size = new System.Drawing.Size(143, 23);
+            this.ScrapeAllSystemRomsBT.TabIndex = 18;
+            this.ScrapeAllSystemRomsBT.Text = "Scrape all System Roms";
+            this.ScrapeAllSystemRomsBT.UseVisualStyleBackColor = true;
+            this.ScrapeAllSystemRomsBT.Click += new System.EventHandler(this.ScrapeAllSystemRomsBT_Click);
+            // 
+            // ResetDatabaseBT
+            // 
+            this.ResetDatabaseBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ResetDatabaseBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.ResetDatabaseBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.ResetDatabaseBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.ResetDatabaseBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ResetDatabaseBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.ResetDatabaseBT.Location = new System.Drawing.Point(132, 3);
+            this.ResetDatabaseBT.Name = "ResetDatabaseBT";
+            this.ResetDatabaseBT.Size = new System.Drawing.Size(109, 23);
+            this.ResetDatabaseBT.TabIndex = 19;
+            this.ResetDatabaseBT.Text = "Reset Database";
+            this.ResetDatabaseBT.UseVisualStyleBackColor = true;
+            this.ResetDatabaseBT.Click += new System.EventHandler(this.ResetDatabaseBT_Click);
             // 
             // OpsPN
             // 
@@ -666,7 +739,7 @@ namespace stigzler.ScreenScraper.Test
             this.OpsPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.OpsPN.Location = new System.Drawing.Point(4, 4);
             this.OpsPN.Name = "OpsPN";
-            this.OpsPN.Size = new System.Drawing.Size(578, 97);
+            this.OpsPN.Size = new System.Drawing.Size(555, 97);
             this.OpsPN.TabIndex = 21;
             // 
             // QueryTypeCB
@@ -683,7 +756,7 @@ namespace stigzler.ScreenScraper.Test
             "Server Details"});
             this.QueryTypeCB.Location = new System.Drawing.Point(85, 3);
             this.QueryTypeCB.Name = "QueryTypeCB";
-            this.QueryTypeCB.Size = new System.Drawing.Size(490, 24);
+            this.QueryTypeCB.Size = new System.Drawing.Size(467, 24);
             this.QueryTypeCB.TabIndex = 3;
             // 
             // label16
@@ -708,7 +781,7 @@ namespace stigzler.ScreenScraper.Test
             "Server Details"});
             this.outputFormatCB.Location = new System.Drawing.Point(85, 43);
             this.outputFormatCB.Name = "outputFormatCB";
-            this.outputFormatCB.Size = new System.Drawing.Size(490, 21);
+            this.outputFormatCB.Size = new System.Drawing.Size(467, 21);
             this.outputFormatCB.TabIndex = 5;
             this.outputFormatCB.SelectedIndexChanged += new System.EventHandler(this.outputFormatCB_SelectedIndexChanged);
             // 
@@ -732,7 +805,7 @@ namespace stigzler.ScreenScraper.Test
             0,
             0});
             this.UserThreadsNUM.Name = "UserThreadsNUM";
-            this.UserThreadsNUM.Size = new System.Drawing.Size(490, 20);
+            this.UserThreadsNUM.Size = new System.Drawing.Size(467, 20);
             this.UserThreadsNUM.TabIndex = 15;
             this.UserThreadsNUM.Value = new decimal(new int[] {
             1,
@@ -762,7 +835,7 @@ namespace stigzler.ScreenScraper.Test
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.SelectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(120)))), ((int)(((byte)(187)))));
-            this.tabControl1.Size = new System.Drawing.Size(633, 757);
+            this.tabControl1.Size = new System.Drawing.Size(609, 756);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.TabOutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             this.tabControl1.UnselectedTabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
@@ -776,7 +849,7 @@ namespace stigzler.ScreenScraper.Test
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(625, 731);
+            this.tabPage1.Size = new System.Drawing.Size(601, 730);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Console";
             // 
@@ -789,7 +862,7 @@ namespace stigzler.ScreenScraper.Test
             this.RtbPN.Location = new System.Drawing.Point(3, 28);
             this.RtbPN.Name = "RtbPN";
             this.RtbPN.Padding = new System.Windows.Forms.Padding(4);
-            this.RtbPN.Size = new System.Drawing.Size(619, 700);
+            this.RtbPN.Size = new System.Drawing.Size(595, 699);
             this.RtbPN.TabIndex = 3;
             // 
             // MainRTB
@@ -801,7 +874,7 @@ namespace stigzler.ScreenScraper.Test
             this.MainRTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.MainRTB.Location = new System.Drawing.Point(4, 4);
             this.MainRTB.Name = "MainRTB";
-            this.MainRTB.Size = new System.Drawing.Size(611, 692);
+            this.MainRTB.Size = new System.Drawing.Size(587, 691);
             this.MainRTB.TabIndex = 0;
             this.MainRTB.Text = "";
             // 
@@ -816,19 +889,9 @@ namespace stigzler.ScreenScraper.Test
             this.SearchTextBT});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(619, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(595, 25);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // ClearConsoleBT
-            // 
-            this.ClearConsoleBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ClearConsoleBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.eraser;
-            this.ClearConsoleBT.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ClearConsoleBT.Name = "ClearConsoleBT";
-            this.ClearConsoleBT.Size = new System.Drawing.Size(23, 22);
-            this.ClearConsoleBT.Text = "toolStripButton1";
-            this.ClearConsoleBT.Click += new System.EventHandler(this.ClearConsoleBT_Click);
             // 
             // SerchTextTB
             // 
@@ -838,16 +901,6 @@ namespace stigzler.ScreenScraper.Test
             this.SerchTextTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.SerchTextTB.Name = "SerchTextTB";
             this.SerchTextTB.Size = new System.Drawing.Size(100, 25);
-            // 
-            // SearchTextBT
-            // 
-            this.SearchTextBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SearchTextBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.magnifier;
-            this.SearchTextBT.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SearchTextBT.Name = "SearchTextBT";
-            this.SearchTextBT.Size = new System.Drawing.Size(23, 22);
-            this.SearchTextBT.Text = "toolStripButton1";
-            this.SearchTextBT.Click += new System.EventHandler(this.SearchTextBT_Click);
             // 
             // tabPage2
             // 
@@ -878,9 +931,9 @@ namespace stigzler.ScreenScraper.Test
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 759);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 758);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1227, 29);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1180, 29);
             this.flowLayoutPanel1.TabIndex = 5;
             // 
             // SaveSettingsBT
@@ -890,7 +943,7 @@ namespace stigzler.ScreenScraper.Test
             this.SaveSettingsBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
             this.SaveSettingsBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SaveSettingsBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.SaveSettingsBT.Location = new System.Drawing.Point(1129, 3);
+            this.SaveSettingsBT.Location = new System.Drawing.Point(1082, 3);
             this.SaveSettingsBT.Name = "SaveSettingsBT";
             this.SaveSettingsBT.Size = new System.Drawing.Size(95, 23);
             this.SaveSettingsBT.TabIndex = 0;
@@ -898,27 +951,70 @@ namespace stigzler.ScreenScraper.Test
             this.SaveSettingsBT.UseVisualStyleBackColor = true;
             this.SaveSettingsBT.Click += new System.EventHandler(this.SaveSettingsBT_Click);
             // 
-            // ScrapeAllSystemRomsBT
+            // ViewXmlBT
             // 
-            this.ScrapeAllSystemRomsBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.ScrapeAllSystemRomsBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.ScrapeAllSystemRomsBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
-            this.ScrapeAllSystemRomsBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.ScrapeAllSystemRomsBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ScrapeAllSystemRomsBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.ScrapeAllSystemRomsBT.Location = new System.Drawing.Point(270, 3);
-            this.ScrapeAllSystemRomsBT.Name = "ScrapeAllSystemRomsBT";
-            this.ScrapeAllSystemRomsBT.Size = new System.Drawing.Size(143, 23);
-            this.ScrapeAllSystemRomsBT.TabIndex = 18;
-            this.ScrapeAllSystemRomsBT.Text = "Scrape all System Roms";
-            this.ScrapeAllSystemRomsBT.UseVisualStyleBackColor = true;
-            this.ScrapeAllSystemRomsBT.Click += new System.EventHandler(this.ScrapeAllSystemRomsBT_Click);
+            this.ViewXmlBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ViewXmlBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.ViewXmlBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.ViewXmlBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.ViewXmlBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ViewXmlBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.ViewXmlBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.document_export;
+            this.ViewXmlBT.Location = new System.Drawing.Point(494, 79);
+            this.ViewXmlBT.Name = "ViewXmlBT";
+            this.ViewXmlBT.Size = new System.Drawing.Size(33, 23);
+            this.ViewXmlBT.TabIndex = 23;
+            this.ViewXmlBT.UseVisualStyleBackColor = true;
+            this.ViewXmlBT.Click += new System.EventHandler(this.ViewXmlBT_Click);
+            // 
+            // RomFolderTB
+            // 
+            this.RomFolderTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RomFolderTB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RomFolderTB.BackColor = System.Drawing.Color.Transparent;
+            this.RomFolderTB.DarkMode = false;
+            this.RomFolderTB.DirectoryPath = "C:\\Start\\AnExamplePath\\To\\Your\\Stuff\\Middle\\Ellipse\\Test\\Here\\Yeah\\Path\\End";
+            this.RomFolderTB.EllipsisPosition = stigzler.Winforms.Base.UserControls.FolderBrowserTextBox.EllipsisPositions.Middle;
+            this.RomFolderTB.FolderBrowserDesription = "Please select the rom folder for this system";
+            this.RomFolderTB.FontStyle = System.Drawing.FontStyle.Regular;
+            this.RomFolderTB.Image = ((System.Drawing.Image)(resources.GetObject("RomFolderTB.Image")));
+            this.RomFolderTB.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.RomFolderTB.Location = new System.Drawing.Point(78, 53);
+            this.RomFolderTB.Margin = new System.Windows.Forms.Padding(0);
+            this.RomFolderTB.Name = "RomFolderTB";
+            this.RomFolderTB.ReadOnly = true;
+            this.RomFolderTB.ScaleFont = 100;
+            this.RomFolderTB.Size = new System.Drawing.Size(450, 20);
+            this.RomFolderTB.TabIndex = 18;
+            this.RomFolderTB.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RomFolderTB.DirectoryPathChanged += new stigzler.Winforms.Base.Events.DirectoryPathChanged(this.RomFolderTB_DirectoryPathChanged);
+            // 
+            // ClearConsoleBT
+            // 
+            this.ClearConsoleBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ClearConsoleBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.eraser;
+            this.ClearConsoleBT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ClearConsoleBT.Name = "ClearConsoleBT";
+            this.ClearConsoleBT.Size = new System.Drawing.Size(23, 22);
+            this.ClearConsoleBT.Text = "toolStripButton1";
+            this.ClearConsoleBT.Click += new System.EventHandler(this.ClearConsoleBT_Click);
+            // 
+            // SearchTextBT
+            // 
+            this.SearchTextBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SearchTextBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.magnifier;
+            this.SearchTextBT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SearchTextBT.Name = "SearchTextBT";
+            this.SearchTextBT.Size = new System.Drawing.Size(23, 22);
+            this.SearchTextBT.Text = "toolStripButton1";
+            this.SearchTextBT.Click += new System.EventHandler(this.SearchTextBT_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1227, 788);
+            this.ClientSize = new System.Drawing.Size(1180, 787);
             this.Controls.Add(this.VerticalSC);
             this.Controls.Add(this.flowLayoutPanel1);
             this.DarkMode = true;
@@ -1019,6 +1115,12 @@ namespace stigzler.ScreenScraper.Test
         private System.Windows.Forms.Panel OpsPN;
         private Winforms.Base.UserControls.FolderBrowserTextBox RomFolderTB;
         private System.Windows.Forms.Button ScrapeAllSystemRomsBT;
+        private System.Windows.Forms.Label label17;
+        private Winforms.Base.UIElements.ComboBox GamesCB;
+        private System.Windows.Forms.Label label18;
+        private Winforms.Base.UIElements.ComboBox MediaTypeCB;
+        private System.Windows.Forms.Button ResetDatabaseBT;
+        private Winforms.Base.UIElements.Button ViewXmlBT;
     }
 }
 

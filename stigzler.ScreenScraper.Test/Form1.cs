@@ -18,6 +18,7 @@ using Entities = stigzler.ScreenScraper.Test.Entities;
 using System.Xml.Serialization;
 using System.Configuration;
 using stigzler.Screenscraper.Data;
+using stigzler.ScreenScraper.Test.Entities;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -58,7 +59,6 @@ namespace stigzler.ScreenScraper.Test
             log("================ ======= ====");
             log("Settings Location: " + ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
 
-
             UpdateCredentialsAndApiParams();
 
             getData = new GetData(credentials, serverParameters, 1);
@@ -85,6 +85,7 @@ namespace stigzler.ScreenScraper.Test
 
             database.Systems.Clear();
 
+            // Get Systems
             List<ApiGetOutcome> outcomes = await GetApiOutcomes(ApiQueryType.SystemList);
             ApiGetOutcome outcome = outcomes[0];
 
@@ -98,8 +99,23 @@ namespace stigzler.ScreenScraper.Test
                 newSystem.Name = system.Descendants("nom_eu").ToList()[0].Value;
                 database.Systems.Add(newSystem);
             }
-
             database.Systems = database.Systems.OrderBy(x => x.Name).ToList();
+
+            // Get GameMedia            
+            outcomes = await GetApiOutcomes(ApiQueryType.GameMediaList);
+            outcome = outcomes[0];
+            xdoc = XDocument.Parse(outcome.Data.ToString());
+            var medias = xdoc.Descendants("media");
+            database.GameMediaTypes.Clear();
+            foreach (var media in medias)
+            {
+                GameMediaType newGameMediaType = new GameMediaType();
+                newGameMediaType.ID = Int32.Parse(media.Descendants("id").First().Value);
+                newGameMediaType.ShortName = media.Descendants("nomcourt").First().Value;
+                newGameMediaType.LongName = media.Descendants("nom").First().Value;
+                database.GameMediaTypes.Add(newGameMediaType);
+            }
+            database.GameMediaTypes = database.GameMediaTypes.OrderBy(x => x.LongName).ToList();
 
             log("Import done");
 
@@ -135,23 +151,31 @@ namespace stigzler.ScreenScraper.Test
                                     .Cast<ApiQueryType>()
                                     .OrderBy(x => x.ToString())
                                     .ToList();
-
             QueryTypeCB.Text = "GameInfo";
+
 
             outputFormatCB.DataSource = Enum.GetValues(typeof(MetadataOutput));
 
-            if (database.Systems.Count > 0)
-            {
-                SystemsCB.DisplayMember = "Name";
-                SystemsCB.ValueMember = "id";
-                SystemsCB.DataSource = database.Systems;
-
-                SystemsCB.SelectedValue = Settings.Default.SystemID;
-            }
-
             outputFormatCB.SelectedIndex = 0;
 
+            BindDatabaseComboboxes();
+
             getData = new GetData(credentials, serverParameters, (int)Settings.Default.UserThreads);
+        }
+
+        private void BindDatabaseComboboxes()
+        {
+            MediaTypeCB.DisplayMember = "LongName";
+            MediaTypeCB.ValueMember = "ShortName";
+            MediaTypeCB.DataSource = database.GameMediaTypes;
+
+            SystemsCB.DisplayMember = "Name";
+            SystemsCB.ValueMember = "id";
+            SystemsCB.DataSource = database.Systems;
+
+            SystemsCB.SelectedValue = Settings.Default.SystemID;
+
+
         }
 
         private void UpdateCredentialsAndApiParams()
@@ -369,6 +393,26 @@ namespace stigzler.ScreenScraper.Test
         private void SystemsCB_SelectedIndexChanged(object sender, EventArgs e)
         {
             RomFolderTB.DirectoryPath = ((Entities.System)SystemsCB.SelectedItem).RomFolder;
+
+            LoadGames(((Entities.System)SystemsCB.SelectedItem).ID);
+
+        }
+
+        private void LoadGames(int SystemId)
+        {
+            List<Game> games = new List<Game>();
+            games = database.Games.Where(x => x.SystemID == SystemId).OrderBy(x => x.Name).ToList();
+            if (games.Count > 0)
+            {
+                GamesCB.DisplayMember = "Name";
+                GamesCB.ValueMember = "ID";
+                GamesCB.DataSource = games;
+            }
+            else
+            {
+                GamesCB.DataSource = null;
+            }
+
         }
 
         private void RomFolderTB_DirectoryPathChanged(Winforms.Base.Events.DirectoryPathChangedEventArgs e)
@@ -394,7 +438,12 @@ namespace stigzler.ScreenScraper.Test
             List<ApiGetOutcome> outcomes = new List<ApiGetOutcome>();
 
             Entities.System selectedSystem = (Entities.System)SystemsCB.SelectedItem;
-            if (selectedSystem.RomFolder == null) return;
+            if (selectedSystem.RomFolder == null)
+            {
+                log(" ** No Rom Folder Mapped against System **");
+                return;
+            }
+
 
             List<string> romFilepaths = Directory.GetFiles(selectedSystem.RomFolder, "*.*", SearchOption.AllDirectories).ToList();
             List<string> romFilenames = new List<string>();
@@ -417,17 +466,18 @@ namespace stigzler.ScreenScraper.Test
 
             log("System Rom scrape complete. Now populating Database..");
 
-            database.Games.RemoveAll(x=> x.SystemID == systemID);
+            database.Games.RemoveAll(x => x.SystemID == systemID);
 
             foreach (var outcome in outcomes)
             {
 
-            XDocument xdoc = XDocument.Parse(outcome.Data.ToString());
+                XDocument xdoc = XDocument.Parse(outcome.Data.ToString());
 
                 Entities.Game newGame = new Entities.Game();
 
                 newGame.SystemID = systemID;
-                newGame.ID = Convert.ToInt32( xdoc.Descendants("jeu").First().Attributes("id").First().Value);
+                newGame.ID = Convert.ToInt32(xdoc.Descendants("jeu").First().Attributes("id").First().Value);
+                newGame.MainRomFilename = xdoc.Descendants("romfilename").First().Value;
                 newGame.GameXml = outcome.Data.ToString();
                 try
                 {
@@ -447,6 +497,24 @@ namespace stigzler.ScreenScraper.Test
 
         }
 
+
+
+        private async void ResetDatabaseBT_Click(object sender, EventArgs e)
+        {
+            database.Games.Clear();
+            await SetupDatabase();
+            SaveDatabase();
+            BindDatabaseComboboxes();
+        }
+
+        private void ViewXmlBT_Click(object sender, EventArgs e)
+        {
+            Game selectedGame = GamesCB.SelectedItem as Game;
+            if (selectedGame != null)
+            {
+                log(selectedGame.GameXml);
+            }
+        }
     }
 
 
