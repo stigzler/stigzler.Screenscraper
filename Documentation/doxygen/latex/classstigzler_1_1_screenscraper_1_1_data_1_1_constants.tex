@@ -1,0 +1,99 @@
+\doxysection{stigzler.\+Screenscraper.\+Data.\+Constants Class Reference}
+\hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_constants}{}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_constants}\index{stigzler.Screenscraper.Data.Constants@{stigzler.Screenscraper.Data.Constants}}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static Dictionary$<$ Api\+Query\+Group, List$<$ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{Api\+Query\+Type}} $>$ $>$ \mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_constants_ab2e3f3d74614f01f91551a62ca72128c}{Api\+Query\+Groups}}
+\item 
+static Dictionary$<$ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{Api\+Query\+Type}}, string $>$ \mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_constants_a3fc533498adce29692044f0716451a6e}{Api\+Query\+Paths}}
+\item 
+\Hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_constants_ac6f475090b70604ec4dce6aeeeafef3e}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_constants_ac6f475090b70604ec4dce6aeeeafef3e} 
+static Dictionary$<$ Api\+Query\+Parameter, string $>$ {\bfseries Api\+Query\+Parameters}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_constants_ab2e3f3d74614f01f91551a62ca72128c}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_constants_ab2e3f3d74614f01f91551a62ca72128c} 
+\index{stigzler.Screenscraper.Data.Constants@{stigzler.Screenscraper.Data.Constants}!ApiQueryGroups@{ApiQueryGroups}}
+\index{ApiQueryGroups@{ApiQueryGroups}!stigzler.Screenscraper.Data.Constants@{stigzler.Screenscraper.Data.Constants}}
+\doxysubsubsection{\texorpdfstring{ApiQueryGroups}{ApiQueryGroups}}
+{\footnotesize\ttfamily Dictionary$<$Api\+Query\+Group, List$<$\mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{Api\+Query\+Type}}$>$ $>$ stigzler.\+Screenscraper.\+Data.\+Constants.\+Api\+Query\+Groups\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{new}\ Dictionary<ApiQueryGroup,\ List<ApiQueryType>>()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryGroup.InfoAndLists,\ \textcolor{keyword}{new}\ List<ApiQueryType>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.ServerInfo,\ ApiQueryType.UserInfo,\ ApiQueryType.UserLevelsList,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.RomMediaTypesList,\ ApiQueryType.RomFileTypesList,\ ApiQueryType.GenreList,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.RegionList,\ ApiQueryType.LanguageList,\ ApiQueryType.ClassificaitonList,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.SystemMediaList,\ ApiQueryType.GameMediaList,\ ApiQueryType.GameInfoList,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.RomInfoList,\ ApiQueryType.SystemList,\ ApiQueryType.NumberOfPlayersList}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryGroup.Downloads,\ \textcolor{keyword}{new}\ List<ApiQueryType>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.GameImageDownload,\ ApiQueryType.GameVideoDownload,\ ApiQueryType.GameManualDownload,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.GameGenreImageDownload,\ ApiQueryType.GameOrganisationImageDownload,\ ApiQueryType.SystemImageDownload,}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.SystemVideoDownload}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryGroup.Searches,\ \textcolor{keyword}{new}\ List<ApiQueryType>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ApiQueryType.GameRomSearch,\ ApiQueryType.GameNameSearch}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryGroup.Uploads,\ \textcolor{keyword}{new}\ List<ApiQueryType>}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.AddGameInfo,\ ApiQueryType.AddGameInfo}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_constants_a3fc533498adce29692044f0716451a6e}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_constants_a3fc533498adce29692044f0716451a6e} 
+\index{stigzler.Screenscraper.Data.Constants@{stigzler.Screenscraper.Data.Constants}!ApiQueryPaths@{ApiQueryPaths}}
+\index{ApiQueryPaths@{ApiQueryPaths}!stigzler.Screenscraper.Data.Constants@{stigzler.Screenscraper.Data.Constants}}
+\doxysubsubsection{\texorpdfstring{ApiQueryPaths}{ApiQueryPaths}}
+{\footnotesize\ttfamily Dictionary$<$\mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{Api\+Query\+Type}}, string$>$ stigzler.\+Screenscraper.\+Data.\+Constants.\+Api\+Query\+Paths\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \textcolor{keyword}{new}\ Dictionary<ApiQueryType,\ string>()}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryType.ClassificaitonList,\textcolor{stringliteral}{"{}classificationListe.php"{}}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.GameOrganisationImageDownload,\textcolor{stringliteral}{"{}mediaCompagnie.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryType.GameGenreImageDownload,\textcolor{stringliteral}{"{}mediaGroup.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryType.GameRomSearch,\textcolor{stringliteral}{"{}jeuInfos.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryType.GameNameSearch,\ \textcolor{stringliteral}{"{}jeuRecherche.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ ApiQueryType.GameInfoList,\textcolor{stringliteral}{"{}infosJeuListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.GameManualDownload,\textcolor{stringliteral}{"{}mediaManuelJeu.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.GameImageDownload,\textcolor{stringliteral}{"{}mediaJeu.php"{}}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.GameMediaList,\textcolor{stringliteral}{"{}mediasJeuListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.AddGameNote,\textcolor{stringliteral}{"{}botNote.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.GameVideoDownload,\textcolor{stringliteral}{"{}mediaVideoJeu.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.GenreList,\textcolor{stringliteral}{"{}genresListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.LanguageList,\textcolor{stringliteral}{"{}languesListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.NumberOfPlayersList,\textcolor{stringliteral}{"{}nbJoueursListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.AddGameInfo,\textcolor{stringliteral}{"{}botProposition.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.RegionList,\textcolor{stringliteral}{"{}regionsListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.RomInfoList,\textcolor{stringliteral}{"{}infosRomListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.RomFileTypesList,\textcolor{stringliteral}{"{}romTypesListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.RomMediaTypesList,\textcolor{stringliteral}{"{}supportTypesListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.ServerInfo,\ \textcolor{stringliteral}{"{}ssinfraInfos.php"{}}\},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.SystemList,\textcolor{stringliteral}{"{}systemesListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.SystemImageDownload,\textcolor{stringliteral}{"{}mediaSysteme.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.SystemMediaList,\textcolor{stringliteral}{"{}mediasSystemeListe.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.SystemVideoDownload,\textcolor{stringliteral}{"{}mediaVideoSysteme.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.UserInfo,\textcolor{stringliteral}{"{}ssuserInfos.php"{}}\ \},}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{ApiQueryType}}.UserLevelsList,\textcolor{stringliteral}{"{}userlevelsListe.php"{}}\ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+stigzler.\+Screenscraper/\+Data/Constants.\+cs\end{DoxyCompactItemize}
