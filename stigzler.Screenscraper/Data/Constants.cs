@@ -16,7 +16,7 @@ namespace stigzler.Screenscraper.Data
             {
                 { ApiQueryGroup.InfoAndLists, new List<ApiQueryType>
                     {
-                     ApiQueryType.ServerInfo, ApiQueryType.UserInfo, ApiQueryType.UserLevelsList,                         
+                     ApiQueryType.ServerInfo, ApiQueryType.UserInfo, ApiQueryType.UserLevelsList,
                      ApiQueryType.RomMediaTypesList, ApiQueryType.RomFileTypesList, ApiQueryType.GenreList,
                      ApiQueryType.RegionList, ApiQueryType.LanguageList, ApiQueryType.ClassificaitonList,
                      ApiQueryType.SystemMediaList, ApiQueryType.GameMediaList, ApiQueryType.GameInfoList,
@@ -25,9 +25,9 @@ namespace stigzler.Screenscraper.Data
                 },
                 { ApiQueryGroup.Downloads, new List<ApiQueryType>
                     {
-                    ApiQueryType.GameImages, ApiQueryType.GameVideos, ApiQueryType.GameManuals,
-                    ApiQueryType.GameGenreImages, ApiQueryType.GameOrganisationImages, ApiQueryType.SystemImages,
-                    ApiQueryType.SystemVideos
+                    ApiQueryType.GameImageDownload, ApiQueryType.GameVideoDownload, ApiQueryType.GameManualDownload,
+                    ApiQueryType.GameGenreImageDownload, ApiQueryType.GameOrganisationImageDownload, ApiQueryType.SystemImageDownload,
+                    ApiQueryType.SystemVideoDownload
                     }
                 },
                 { ApiQueryGroup.Searches, new List<ApiQueryType>
@@ -47,16 +47,16 @@ namespace stigzler.Screenscraper.Data
         public static Dictionary<ApiQueryType, string> ApiQueryPaths = new Dictionary<ApiQueryType, string>()
         {
             { ApiQueryType.ClassificaitonList,"classificationListe.php"},
-            { ApiQueryType.GameOrganisationImages,"mediaCompagnie.php" },
-            { ApiQueryType.GameGenreImages,"mediaGroup.php" },
+            { ApiQueryType.GameOrganisationImageDownload,"mediaCompagnie.php" },
+            { ApiQueryType.GameGenreImageDownload,"mediaGroup.php" },
             { ApiQueryType.GameRomSearch,"jeuInfos.php" },
             { ApiQueryType.GameNameSearch, "jeuRecherche.php" },
             { ApiQueryType.GameInfoList,"infosJeuListe.php" },
-            { ApiQueryType.GameManuals,"mediaManuelJeu.php" },
-            { ApiQueryType.GameImages,"mediaJeu.php"},
+            { ApiQueryType.GameManualDownload,"mediaManuelJeu.php" },
+            { ApiQueryType.GameImageDownload,"mediaJeu.php"},
             { ApiQueryType.GameMediaList,"mediasJeuListe.php" },
             { ApiQueryType.AddGameNote,"botNote.php" },
-            { ApiQueryType.GameVideos,"mediaVideoJeu .php" },
+            { ApiQueryType.GameVideoDownload,"mediaVideoJeu.php" },
             { ApiQueryType.GenreList,"genresListe.php" },
             { ApiQueryType.LanguageList,"languesListe.php" },
             { ApiQueryType.NumberOfPlayersList,"nbJoueursListe.php" },
@@ -67,16 +67,16 @@ namespace stigzler.Screenscraper.Data
             { ApiQueryType.RomMediaTypesList,"supportTypesListe.php" },
             { ApiQueryType.ServerInfo, "ssinfraInfos.php"},
             { ApiQueryType.SystemList,"systemesListe.php" },
-            { ApiQueryType.SystemImages,"mediaSysteme.php" },
+            { ApiQueryType.SystemImageDownload,"mediaSysteme.php" },
             { ApiQueryType.SystemMediaList,"mediasSystemeListe.php" },
-            { ApiQueryType.SystemVideos,"mediaVideoSysteme.php" },
+            { ApiQueryType.SystemVideoDownload,"mediaVideoSysteme.php" },
             { ApiQueryType.UserInfo,"ssuserInfos.php" },
             { ApiQueryType.UserLevelsList,"userlevelsListe.php" }
         };
 
 
 
-        internal static Dictionary<ApiQueryParameter, string> ApiQueryParameters = new Dictionary<ApiQueryParameter, string>()
+        public static Dictionary<ApiQueryParameter, string> ApiQueryParameters = new Dictionary<ApiQueryParameter, string>()
         {
             //{ApiQueryParameter.DeveloperID,"devid"},
             //{ApiQueryParameter.DeveloperPassword,"devpassword"},
@@ -90,11 +90,15 @@ namespace stigzler.Screenscraper.Data
             {ApiQueryParameter.GenreID, "groupid" },
             {ApiQueryParameter.OrganisationID, "companyid" },
 
-            // Other
+            // Downloads
             {ApiQueryParameter.RomFilename,"romnom" },
+            {ApiQueryParameter.MediaTypeName, "media" },
+            {ApiQueryParameter.MediaFormat, "mediaformat" },
+            {ApiQueryParameter.CRC, "crc" },
+            {ApiQueryParameter.MD5, "md5" },
+            {ApiQueryParameter.SHA1, "sha1" },
 
-
-
+            // Debug
             {ApiQueryParameter.DevDebugPassword, "devdebugpassword" },
             {ApiQueryParameter.ForceIP, "forceip" },
             {ApiQueryParameter.ForceLevel, "forcelevel" },

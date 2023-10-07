@@ -31,6 +31,9 @@ namespace stigzler.ScreenScraper.Test
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.VerticalSC = new System.Windows.Forms.SplitContainer();
             this.UpdatePN = new System.Windows.Forms.Panel();
             this.UpdateRateLB = new stigzler.Winforms.Base.UIElements.Label();
@@ -39,10 +42,16 @@ namespace stigzler.ScreenScraper.Test
             this.MainOpTitleLB = new stigzler.Winforms.Base.UIElements.Label();
             this.VarsPN = new System.Windows.Forms.Panel();
             this.groupBox3 = new stigzler.Winforms.Base.UIElements.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.DlFormatCB = new stigzler.Winforms.Base.UIElements.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.RegionsCB = new stigzler.Winforms.Base.UIElements.ComboBox();
+            this.ViewXmlBT = new stigzler.Winforms.Base.UIElements.Button();
             this.label18 = new System.Windows.Forms.Label();
             this.MediaTypeCB = new stigzler.Winforms.Base.UIElements.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.GamesCB = new stigzler.Winforms.Base.UIElements.ComboBox();
+            this.RomFolderTB = new stigzler.Winforms.Base.UserControls.FolderBrowserTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.SystemsCB = new stigzler.Winforms.Base.UIElements.ComboBox();
@@ -58,18 +67,12 @@ namespace stigzler.ScreenScraper.Test
             this.label3 = new System.Windows.Forms.Label();
             this.UsernameTB = new System.Windows.Forms.TextBox();
             this.groupBox2 = new stigzler.Winforms.Base.UIElements.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.ObjectIdTB = new System.Windows.Forms.TextBox();
             this.CrcTB = new System.Windows.Forms.TextBox();
             this.Md5TB = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.Sha1TB = new System.Windows.Forms.TextBox();
-            this.MediaFormatTB = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.MediaTypeNameTB = new System.Windows.Forms.TextBox();
             this.ButtonsPN = new System.Windows.Forms.FlowLayoutPanel();
             this.GoBT = new System.Windows.Forms.Button();
             this.CancelBT = new System.Windows.Forms.Button();
@@ -82,20 +85,26 @@ namespace stigzler.ScreenScraper.Test
             this.label6 = new System.Windows.Forms.Label();
             this.UserThreadsNUM = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
+            this.RhsSC = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new stigzler.Winforms.Base.UIElements.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.RtbPN = new System.Windows.Forms.Panel();
             this.MainRTB = new stigzler.Winforms.Base.UIElements.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.WordwrapBT = new System.Windows.Forms.ToolStripButton();
+            this.ClearConsoleBT = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.SerchTextTB = new System.Windows.Forms.ToolStripTextBox();
+            this.SearchTextBT = new System.Windows.Forms.ToolStripButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ResultsDGV = new System.Windows.Forms.DataGridView();
+            this.MediaBroswerPN = new stigzler.Winforms.Base.UIElements.Panel();
+            this.MediaPB = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.OpenVideoBT = new stigzler.Winforms.Base.UIElements.Button();
+            this.OpenManualBT = new stigzler.Winforms.Base.UIElements.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SaveSettingsBT = new System.Windows.Forms.Button();
-            this.ViewXmlBT = new stigzler.Winforms.Base.UIElements.Button();
-            this.RomFolderTB = new stigzler.Winforms.Base.UserControls.FolderBrowserTextBox();
-            this.ClearConsoleBT = new System.Windows.Forms.ToolStripButton();
-            this.SearchTextBT = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).BeginInit();
             this.VerticalSC.Panel1.SuspendLayout();
             this.VerticalSC.Panel2.SuspendLayout();
@@ -108,12 +117,19 @@ namespace stigzler.ScreenScraper.Test
             this.ButtonsPN.SuspendLayout();
             this.OpsPN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserThreadsNUM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RhsSC)).BeginInit();
+            this.RhsSC.Panel1.SuspendLayout();
+            this.RhsSC.Panel2.SuspendLayout();
+            this.RhsSC.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.RtbPN.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ResultsDGV)).BeginInit();
+            this.MediaBroswerPN.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPB)).BeginInit();
+            this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,7 +153,7 @@ namespace stigzler.ScreenScraper.Test
             // VerticalSC.Panel2
             // 
             this.VerticalSC.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.VerticalSC.Panel2.Controls.Add(this.tabControl1);
+            this.VerticalSC.Panel2.Controls.Add(this.RhsSC);
             this.VerticalSC.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.VerticalSC.Size = new System.Drawing.Size(1180, 758);
             this.VerticalSC.SplitterDistance = 565;
@@ -255,6 +271,10 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             this.groupBox3.BorderStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this.groupBox3.BorderThickness = 1;
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.DlFormatCB);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.RegionsCB);
             this.groupBox3.Controls.Add(this.ViewXmlBT);
             this.groupBox3.Controls.Add(this.label18);
             this.groupBox3.Controls.Add(this.MediaTypeCB);
@@ -267,20 +287,91 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.groupBox3.Location = new System.Drawing.Point(6, 172);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(542, 154);
+            this.groupBox3.Size = new System.Drawing.Size(525, 185);
             this.groupBox3.TabIndex = 12;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "General";
             this.groupBox3.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(22, 158);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(62, 13);
+            this.label20.TabIndex = 26;
+            this.label20.Text = "Img Format:";
+            // 
+            // DlFormatCB
+            // 
+            this.DlFormatCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DlFormatCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.DlFormatCB.ComboBoxMode = stigzler.Winforms.Base.UIElements.ComboBoxMode.Normal;
+            this.DlFormatCB.DropDownImages = null;
+            this.DlFormatCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.DlFormatCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DlFormatCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.DlFormatCB.FormattingEnabled = true;
+            this.DlFormatCB.Items.AddRange(new object[] {
+            "png",
+            "jpg"});
+            this.DlFormatCB.Location = new System.Drawing.Point(92, 155);
+            this.DlFormatCB.Name = "DlFormatCB";
+            this.DlFormatCB.RedrawOnResize = true;
+            this.DlFormatCB.Size = new System.Drawing.Size(420, 21);
+            this.DlFormatCB.TabIndex = 27;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(40, 131);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(44, 13);
+            this.label19.TabIndex = 24;
+            this.label19.Text = "Region:";
+            // 
+            // RegionsCB
+            // 
+            this.RegionsCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RegionsCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.RegionsCB.ComboBoxMode = stigzler.Winforms.Base.UIElements.ComboBoxMode.Normal;
+            this.RegionsCB.DropDownImages = null;
+            this.RegionsCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.RegionsCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RegionsCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.RegionsCB.FormattingEnabled = true;
+            this.RegionsCB.Location = new System.Drawing.Point(92, 128);
+            this.RegionsCB.Name = "RegionsCB";
+            this.RegionsCB.RedrawOnResize = true;
+            this.RegionsCB.Size = new System.Drawing.Size(420, 21);
+            this.RegionsCB.TabIndex = 25;
+            // 
+            // ViewXmlBT
+            // 
+            this.ViewXmlBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ViewXmlBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.ViewXmlBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.ViewXmlBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.ViewXmlBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ViewXmlBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.ViewXmlBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.document_export;
+            this.ViewXmlBT.Location = new System.Drawing.Point(478, 72);
+            this.ViewXmlBT.Name = "ViewXmlBT";
+            this.ViewXmlBT.Size = new System.Drawing.Size(33, 23);
+            this.ViewXmlBT.TabIndex = 23;
+            this.ViewXmlBT.UseVisualStyleBackColor = true;
+            this.ViewXmlBT.Click += new System.EventHandler(this.ViewXmlBT_Click);
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(8, 110);
+            this.label18.Location = new System.Drawing.Point(30, 104);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(66, 13);
+            this.label18.Size = new System.Drawing.Size(54, 13);
             this.label18.TabIndex = 21;
-            this.label18.Text = "Media Type:";
+            this.label18.Text = "Img Type:";
             // 
             // MediaTypeCB
             // 
@@ -293,16 +384,16 @@ namespace stigzler.ScreenScraper.Test
             this.MediaTypeCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.MediaTypeCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.MediaTypeCB.FormattingEnabled = true;
-            this.MediaTypeCB.Location = new System.Drawing.Point(78, 107);
+            this.MediaTypeCB.Location = new System.Drawing.Point(92, 101);
             this.MediaTypeCB.Name = "MediaTypeCB";
             this.MediaTypeCB.RedrawOnResize = true;
-            this.MediaTypeCB.Size = new System.Drawing.Size(450, 21);
+            this.MediaTypeCB.Size = new System.Drawing.Size(420, 21);
             this.MediaTypeCB.TabIndex = 22;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(36, 82);
+            this.label17.Location = new System.Drawing.Point(46, 76);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(38, 13);
             this.label17.TabIndex = 19;
@@ -319,16 +410,39 @@ namespace stigzler.ScreenScraper.Test
             this.GamesCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.GamesCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.GamesCB.FormattingEnabled = true;
-            this.GamesCB.Location = new System.Drawing.Point(78, 80);
+            this.GamesCB.Location = new System.Drawing.Point(92, 74);
             this.GamesCB.Name = "GamesCB";
             this.GamesCB.RedrawOnResize = true;
-            this.GamesCB.Size = new System.Drawing.Size(410, 21);
+            this.GamesCB.Size = new System.Drawing.Size(380, 21);
             this.GamesCB.TabIndex = 20;
+            // 
+            // RomFolderTB
+            // 
+            this.RomFolderTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RomFolderTB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.RomFolderTB.BackColor = System.Drawing.Color.Transparent;
+            this.RomFolderTB.DarkMode = false;
+            this.RomFolderTB.DirectoryPath = "C:\\Start\\AnExamplePath\\To\\Your\\Stuff\\Middle\\Ellipse\\Test\\Here\\Yeah\\Path\\End";
+            this.RomFolderTB.EllipsisPosition = stigzler.Winforms.Base.UserControls.FolderBrowserTextBox.EllipsisPositions.Middle;
+            this.RomFolderTB.FolderBrowserDesription = "Please select the rom folder for this system";
+            this.RomFolderTB.FontStyle = System.Drawing.FontStyle.Regular;
+            this.RomFolderTB.Image = ((System.Drawing.Image)(resources.GetObject("RomFolderTB.Image")));
+            this.RomFolderTB.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.RomFolderTB.Location = new System.Drawing.Point(92, 47);
+            this.RomFolderTB.Margin = new System.Windows.Forms.Padding(0);
+            this.RomFolderTB.Name = "RomFolderTB";
+            this.RomFolderTB.ReadOnly = true;
+            this.RomFolderTB.ScaleFont = 100;
+            this.RomFolderTB.Size = new System.Drawing.Size(420, 20);
+            this.RomFolderTB.TabIndex = 18;
+            this.RomFolderTB.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RomFolderTB.DirectoryPathChanged += new stigzler.Winforms.Base.Events.DirectoryPathChanged(this.RomFolderTB_DirectoryPathChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(30, 28);
+            this.label10.Location = new System.Drawing.Point(40, 22);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(44, 13);
             this.label10.TabIndex = 9;
@@ -337,7 +451,7 @@ namespace stigzler.ScreenScraper.Test
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 56);
+            this.label8.Location = new System.Drawing.Point(26, 50);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(58, 13);
             this.label8.TabIndex = 12;
@@ -354,10 +468,10 @@ namespace stigzler.ScreenScraper.Test
             this.SystemsCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SystemsCB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.SystemsCB.FormattingEnabled = true;
-            this.SystemsCB.Location = new System.Drawing.Point(78, 25);
+            this.SystemsCB.Location = new System.Drawing.Point(92, 19);
             this.SystemsCB.Name = "SystemsCB";
             this.SystemsCB.RedrawOnResize = true;
-            this.SystemsCB.Size = new System.Drawing.Size(450, 21);
+            this.SystemsCB.Size = new System.Drawing.Size(420, 21);
             this.SystemsCB.TabIndex = 17;
             this.SystemsCB.SelectedIndexChanged += new System.EventHandler(this.SystemsCB_SelectedIndexChanged);
             // 
@@ -381,7 +495,7 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.groupBox1.Location = new System.Drawing.Point(6, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(542, 159);
+            this.groupBox1.Size = new System.Drawing.Size(525, 159);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "API Parameters";
@@ -396,7 +510,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevIdTB.Location = new System.Drawing.Point(91, 19);
             this.DevIdTB.Name = "DevIdTB";
-            this.DevIdTB.Size = new System.Drawing.Size(432, 20);
+            this.DevIdTB.Size = new System.Drawing.Size(415, 20);
             this.DevIdTB.TabIndex = 1;
             // 
             // DevPwTB
@@ -408,7 +522,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevPwTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevPwTB.Location = new System.Drawing.Point(92, 45);
             this.DevPwTB.Name = "DevPwTB";
-            this.DevPwTB.Size = new System.Drawing.Size(432, 20);
+            this.DevPwTB.Size = new System.Drawing.Size(415, 20);
             this.DevPwTB.TabIndex = 9;
             // 
             // label1
@@ -447,7 +561,7 @@ namespace stigzler.ScreenScraper.Test
             this.DevSoftwareTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.DevSoftwareTB.Location = new System.Drawing.Point(92, 71);
             this.DevSoftwareTB.Name = "DevSoftwareTB";
-            this.DevSoftwareTB.Size = new System.Drawing.Size(432, 20);
+            this.DevSoftwareTB.Size = new System.Drawing.Size(415, 20);
             this.DevSoftwareTB.TabIndex = 7;
             // 
             // PasswordTB
@@ -459,7 +573,7 @@ namespace stigzler.ScreenScraper.Test
             this.PasswordTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.PasswordTB.Location = new System.Drawing.Point(91, 123);
             this.PasswordTB.Name = "PasswordTB";
-            this.PasswordTB.Size = new System.Drawing.Size(432, 20);
+            this.PasswordTB.Size = new System.Drawing.Size(415, 20);
             this.PasswordTB.TabIndex = 3;
             // 
             // label4
@@ -489,7 +603,7 @@ namespace stigzler.ScreenScraper.Test
             this.UsernameTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.UsernameTB.Location = new System.Drawing.Point(92, 97);
             this.UsernameTB.Name = "UsernameTB";
-            this.UsernameTB.Size = new System.Drawing.Size(432, 20);
+            this.UsernameTB.Size = new System.Drawing.Size(415, 20);
             this.UsernameTB.TabIndex = 5;
             // 
             // groupBox2
@@ -499,47 +613,20 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             this.groupBox2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Solid;
             this.groupBox2.BorderThickness = 1;
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.ObjectIdTB);
             this.groupBox2.Controls.Add(this.CrcTB);
             this.groupBox2.Controls.Add(this.Md5TB);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.Sha1TB);
-            this.groupBox2.Controls.Add(this.MediaFormatTB);
             this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.MediaTypeNameTB);
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.groupBox2.Location = new System.Drawing.Point(6, 332);
+            this.groupBox2.Location = new System.Drawing.Point(6, 363);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(542, 183);
+            this.groupBox2.Size = new System.Drawing.Size(525, 106);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "API Download Parameters";
             this.groupBox2.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(49, 152);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(52, 13);
-            this.label15.TabIndex = 20;
-            this.label15.Text = "Object ID";
-            // 
-            // ObjectIdTB
-            // 
-            this.ObjectIdTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ObjectIdTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ObjectIdTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ObjectIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.ObjectIdTB.Location = new System.Drawing.Point(109, 149);
-            this.ObjectIdTB.Name = "ObjectIdTB";
-            this.ObjectIdTB.Size = new System.Drawing.Size(424, 20);
-            this.ObjectIdTB.TabIndex = 21;
             // 
             // CrcTB
             // 
@@ -548,7 +635,7 @@ namespace stigzler.ScreenScraper.Test
             this.CrcTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.CrcTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CrcTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.CrcTB.Location = new System.Drawing.Point(109, 19);
+            this.CrcTB.Location = new System.Drawing.Point(92, 19);
             this.CrcTB.Name = "CrcTB";
             this.CrcTB.Size = new System.Drawing.Size(424, 20);
             this.CrcTB.TabIndex = 11;
@@ -560,7 +647,7 @@ namespace stigzler.ScreenScraper.Test
             this.Md5TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.Md5TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Md5TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.Md5TB.Location = new System.Drawing.Point(110, 45);
+            this.Md5TB.Location = new System.Drawing.Point(93, 45);
             this.Md5TB.Name = "Md5TB";
             this.Md5TB.Size = new System.Drawing.Size(424, 20);
             this.Md5TB.TabIndex = 19;
@@ -568,7 +655,7 @@ namespace stigzler.ScreenScraper.Test
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(72, 22);
+            this.label7.Location = new System.Drawing.Point(46, 21);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 13);
             this.label7.TabIndex = 10;
@@ -577,20 +664,11 @@ namespace stigzler.ScreenScraper.Test
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(71, 48);
+            this.label11.Location = new System.Drawing.Point(45, 47);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(30, 13);
             this.label11.TabIndex = 18;
             this.label11.Text = "MD5";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(30, 126);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 13);
-            this.label12.TabIndex = 12;
-            this.label12.Text = "Media Format";
             // 
             // Sha1TB
             // 
@@ -599,52 +677,19 @@ namespace stigzler.ScreenScraper.Test
             this.Sha1TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.Sha1TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Sha1TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.Sha1TB.Location = new System.Drawing.Point(110, 71);
+            this.Sha1TB.Location = new System.Drawing.Point(93, 71);
             this.Sha1TB.Name = "Sha1TB";
             this.Sha1TB.Size = new System.Drawing.Size(424, 20);
             this.Sha1TB.TabIndex = 17;
             // 
-            // MediaFormatTB
-            // 
-            this.MediaFormatTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MediaFormatTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.MediaFormatTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MediaFormatTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.MediaFormatTB.Location = new System.Drawing.Point(109, 123);
-            this.MediaFormatTB.Name = "MediaFormatTB";
-            this.MediaFormatTB.Size = new System.Drawing.Size(424, 20);
-            this.MediaFormatTB.TabIndex = 13;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(66, 74);
+            this.label13.Location = new System.Drawing.Point(40, 73);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(35, 13);
             this.label13.TabIndex = 16;
             this.label13.Text = "SHA1";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(7, 100);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(94, 13);
-            this.label14.TabIndex = 14;
-            this.label14.Text = "Media Type Name";
-            // 
-            // MediaTypeNameTB
-            // 
-            this.MediaTypeNameTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MediaTypeNameTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.MediaTypeNameTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MediaTypeNameTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.MediaTypeNameTB.Location = new System.Drawing.Point(110, 97);
-            this.MediaTypeNameTB.Name = "MediaTypeNameTB";
-            this.MediaTypeNameTB.Size = new System.Drawing.Size(424, 20);
-            this.MediaTypeNameTB.TabIndex = 15;
             // 
             // ButtonsPN
             // 
@@ -822,6 +867,28 @@ namespace stigzler.ScreenScraper.Test
             this.label9.TabIndex = 8;
             this.label9.Text = "User Threads:";
             // 
+            // RhsSC
+            // 
+            this.RhsSC.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RhsSC.Location = new System.Drawing.Point(0, 0);
+            this.RhsSC.Name = "RhsSC";
+            this.RhsSC.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // RhsSC.Panel1
+            // 
+            this.RhsSC.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.RhsSC.Panel1.Controls.Add(this.tabControl1);
+            this.RhsSC.Panel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            // 
+            // RhsSC.Panel2
+            // 
+            this.RhsSC.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.RhsSC.Panel2.Controls.Add(this.MediaBroswerPN);
+            this.RhsSC.Panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.RhsSC.Size = new System.Drawing.Size(609, 756);
+            this.RhsSC.SplitterDistance = 540;
+            this.RhsSC.TabIndex = 4;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -835,7 +902,7 @@ namespace stigzler.ScreenScraper.Test
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.SelectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(120)))), ((int)(((byte)(187)))));
-            this.tabControl1.Size = new System.Drawing.Size(609, 756);
+            this.tabControl1.Size = new System.Drawing.Size(609, 540);
             this.tabControl1.TabIndex = 3;
             this.tabControl1.TabOutlineColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
             this.tabControl1.UnselectedTabBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
@@ -849,7 +916,7 @@ namespace stigzler.ScreenScraper.Test
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(601, 730);
+            this.tabPage1.Size = new System.Drawing.Size(601, 514);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Console";
             // 
@@ -862,7 +929,7 @@ namespace stigzler.ScreenScraper.Test
             this.RtbPN.Location = new System.Drawing.Point(3, 28);
             this.RtbPN.Name = "RtbPN";
             this.RtbPN.Padding = new System.Windows.Forms.Padding(4);
-            this.RtbPN.Size = new System.Drawing.Size(595, 699);
+            this.RtbPN.Size = new System.Drawing.Size(595, 483);
             this.RtbPN.TabIndex = 3;
             // 
             // MainRTB
@@ -874,9 +941,10 @@ namespace stigzler.ScreenScraper.Test
             this.MainRTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.MainRTB.Location = new System.Drawing.Point(4, 4);
             this.MainRTB.Name = "MainRTB";
-            this.MainRTB.Size = new System.Drawing.Size(587, 691);
+            this.MainRTB.Size = new System.Drawing.Size(587, 475);
             this.MainRTB.TabIndex = 0;
             this.MainRTB.Text = "";
+            this.MainRTB.WordWrap = false;
             // 
             // toolStrip1
             // 
@@ -884,7 +952,9 @@ namespace stigzler.ScreenScraper.Test
             this.toolStrip1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.WordwrapBT,
             this.ClearConsoleBT,
+            this.toolStripSeparator1,
             this.SerchTextTB,
             this.SearchTextBT});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
@@ -893,6 +963,34 @@ namespace stigzler.ScreenScraper.Test
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // WordwrapBT
+            // 
+            this.WordwrapBT.CheckOnClick = true;
+            this.WordwrapBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.WordwrapBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.arrow_return_180;
+            this.WordwrapBT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.WordwrapBT.Name = "WordwrapBT";
+            this.WordwrapBT.Size = new System.Drawing.Size(23, 22);
+            this.WordwrapBT.Text = "toolStripButton1";
+            this.WordwrapBT.ToolTipText = "Toggle Wordwrap";
+            this.WordwrapBT.Click += new System.EventHandler(this.WordwrapBT_Click);
+            // 
+            // ClearConsoleBT
+            // 
+            this.ClearConsoleBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.ClearConsoleBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.eraser;
+            this.ClearConsoleBT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ClearConsoleBT.Name = "ClearConsoleBT";
+            this.ClearConsoleBT.Size = new System.Drawing.Size(23, 22);
+            this.ClearConsoleBT.Text = "toolStripButton1";
+            this.ClearConsoleBT.ToolTipText = "Clear Console";
+            this.ClearConsoleBT.Click += new System.EventHandler(this.ClearConsoleBT_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // SerchTextTB
             // 
             this.SerchTextTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -900,7 +998,17 @@ namespace stigzler.ScreenScraper.Test
             this.SerchTextTB.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.SerchTextTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.SerchTextTB.Name = "SerchTextTB";
-            this.SerchTextTB.Size = new System.Drawing.Size(100, 25);
+            this.SerchTextTB.Size = new System.Drawing.Size(200, 25);
+            // 
+            // SearchTextBT
+            // 
+            this.SearchTextBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.SearchTextBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.magnifier;
+            this.SearchTextBT.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.SearchTextBT.Name = "SearchTextBT";
+            this.SearchTextBT.Size = new System.Drawing.Size(23, 22);
+            this.SearchTextBT.Text = "toolStripButton1";
+            this.SearchTextBT.Click += new System.EventHandler(this.SearchTextBT_Click);
             // 
             // tabPage2
             // 
@@ -910,18 +1018,113 @@ namespace stigzler.ScreenScraper.Test
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(625, 731);
+            this.tabPage2.Size = new System.Drawing.Size(601, 514);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Results";
             // 
             // ResultsDGV
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ResultsDGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ResultsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ResultsDGV.DefaultCellStyle = dataGridViewCellStyle2;
             this.ResultsDGV.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ResultsDGV.Location = new System.Drawing.Point(3, 3);
             this.ResultsDGV.Name = "ResultsDGV";
-            this.ResultsDGV.Size = new System.Drawing.Size(619, 725);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ResultsDGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.ResultsDGV.Size = new System.Drawing.Size(595, 508);
             this.ResultsDGV.TabIndex = 0;
+            // 
+            // MediaBroswerPN
+            // 
+            this.MediaBroswerPN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.MediaBroswerPN.Controls.Add(this.MediaPB);
+            this.MediaBroswerPN.Controls.Add(this.flowLayoutPanel2);
+            this.MediaBroswerPN.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MediaBroswerPN.Emphasis = 0;
+            this.MediaBroswerPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.MediaBroswerPN.Location = new System.Drawing.Point(0, 0);
+            this.MediaBroswerPN.Name = "MediaBroswerPN";
+            this.MediaBroswerPN.Size = new System.Drawing.Size(609, 212);
+            this.MediaBroswerPN.TabIndex = 0;
+            // 
+            // MediaPB
+            // 
+            this.MediaPB.BackgroundImage = global::stigzler.ScreenScraper.Test.Properties.Resources.ImgBG;
+            this.MediaPB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.MediaPB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MediaPB.Location = new System.Drawing.Point(0, 0);
+            this.MediaPB.Name = "MediaPB";
+            this.MediaPB.Size = new System.Drawing.Size(476, 212);
+            this.MediaPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.MediaPB.TabIndex = 0;
+            this.MediaPB.TabStop = false;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.flowLayoutPanel2.Controls.Add(this.OpenVideoBT);
+            this.flowLayoutPanel2.Controls.Add(this.OpenManualBT);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(476, 0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(133, 212);
+            this.flowLayoutPanel2.TabIndex = 1;
+            // 
+            // OpenVideoBT
+            // 
+            this.OpenVideoBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.OpenVideoBT.Enabled = false;
+            this.OpenVideoBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.OpenVideoBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.OpenVideoBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenVideoBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.OpenVideoBT.Location = new System.Drawing.Point(3, 3);
+            this.OpenVideoBT.Name = "OpenVideoBT";
+            this.OpenVideoBT.Size = new System.Drawing.Size(127, 23);
+            this.OpenVideoBT.TabIndex = 0;
+            this.OpenVideoBT.Text = "Open Video";
+            this.OpenVideoBT.UseVisualStyleBackColor = true;
+            this.OpenVideoBT.Click += new System.EventHandler(this.OpenVideoBT_Click);
+            // 
+            // OpenManualBT
+            // 
+            this.OpenManualBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
+            this.OpenManualBT.Enabled = false;
+            this.OpenManualBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
+            this.OpenManualBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
+            this.OpenManualBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenManualBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.OpenManualBT.Location = new System.Drawing.Point(3, 32);
+            this.OpenManualBT.Name = "OpenManualBT";
+            this.OpenManualBT.Size = new System.Drawing.Size(127, 23);
+            this.OpenManualBT.TabIndex = 1;
+            this.OpenManualBT.Text = "Open Manual";
+            this.OpenManualBT.UseVisualStyleBackColor = true;
+            this.OpenManualBT.Click += new System.EventHandler(this.OpenManualBT_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -950,65 +1153,6 @@ namespace stigzler.ScreenScraper.Test
             this.SaveSettingsBT.Text = "Save Settings";
             this.SaveSettingsBT.UseVisualStyleBackColor = true;
             this.SaveSettingsBT.Click += new System.EventHandler(this.SaveSettingsBT_Click);
-            // 
-            // ViewXmlBT
-            // 
-            this.ViewXmlBT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ViewXmlBT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.ViewXmlBT.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(125)))), ((int)(((byte)(125)))));
-            this.ViewXmlBT.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(115)))), ((int)(((byte)(199)))));
-            this.ViewXmlBT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ViewXmlBT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.ViewXmlBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.document_export;
-            this.ViewXmlBT.Location = new System.Drawing.Point(494, 79);
-            this.ViewXmlBT.Name = "ViewXmlBT";
-            this.ViewXmlBT.Size = new System.Drawing.Size(33, 23);
-            this.ViewXmlBT.TabIndex = 23;
-            this.ViewXmlBT.UseVisualStyleBackColor = true;
-            this.ViewXmlBT.Click += new System.EventHandler(this.ViewXmlBT_Click);
-            // 
-            // RomFolderTB
-            // 
-            this.RomFolderTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RomFolderTB.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.RomFolderTB.BackColor = System.Drawing.Color.Transparent;
-            this.RomFolderTB.DarkMode = false;
-            this.RomFolderTB.DirectoryPath = "C:\\Start\\AnExamplePath\\To\\Your\\Stuff\\Middle\\Ellipse\\Test\\Here\\Yeah\\Path\\End";
-            this.RomFolderTB.EllipsisPosition = stigzler.Winforms.Base.UserControls.FolderBrowserTextBox.EllipsisPositions.Middle;
-            this.RomFolderTB.FolderBrowserDesription = "Please select the rom folder for this system";
-            this.RomFolderTB.FontStyle = System.Drawing.FontStyle.Regular;
-            this.RomFolderTB.Image = ((System.Drawing.Image)(resources.GetObject("RomFolderTB.Image")));
-            this.RomFolderTB.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.RomFolderTB.Location = new System.Drawing.Point(78, 53);
-            this.RomFolderTB.Margin = new System.Windows.Forms.Padding(0);
-            this.RomFolderTB.Name = "RomFolderTB";
-            this.RomFolderTB.ReadOnly = true;
-            this.RomFolderTB.ScaleFont = 100;
-            this.RomFolderTB.Size = new System.Drawing.Size(450, 20);
-            this.RomFolderTB.TabIndex = 18;
-            this.RomFolderTB.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RomFolderTB.DirectoryPathChanged += new stigzler.Winforms.Base.Events.DirectoryPathChanged(this.RomFolderTB_DirectoryPathChanged);
-            // 
-            // ClearConsoleBT
-            // 
-            this.ClearConsoleBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ClearConsoleBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.eraser;
-            this.ClearConsoleBT.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ClearConsoleBT.Name = "ClearConsoleBT";
-            this.ClearConsoleBT.Size = new System.Drawing.Size(23, 22);
-            this.ClearConsoleBT.Text = "toolStripButton1";
-            this.ClearConsoleBT.Click += new System.EventHandler(this.ClearConsoleBT_Click);
-            // 
-            // SearchTextBT
-            // 
-            this.SearchTextBT.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.SearchTextBT.Image = global::stigzler.ScreenScraper.Test.Properties.Resources.magnifier;
-            this.SearchTextBT.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.SearchTextBT.Name = "SearchTextBT";
-            this.SearchTextBT.Size = new System.Drawing.Size(23, 22);
-            this.SearchTextBT.Text = "toolStripButton1";
-            this.SearchTextBT.Click += new System.EventHandler(this.SearchTextBT_Click);
             // 
             // Form1
             // 
@@ -1041,6 +1185,10 @@ namespace stigzler.ScreenScraper.Test
             this.OpsPN.ResumeLayout(false);
             this.OpsPN.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserThreadsNUM)).EndInit();
+            this.RhsSC.Panel1.ResumeLayout(false);
+            this.RhsSC.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RhsSC)).EndInit();
+            this.RhsSC.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1049,6 +1197,10 @@ namespace stigzler.ScreenScraper.Test
             this.toolStrip1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ResultsDGV)).EndInit();
+            this.MediaBroswerPN.ResumeLayout(false);
+            this.MediaBroswerPN.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MediaPB)).EndInit();
+            this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1099,15 +1251,9 @@ namespace stigzler.ScreenScraper.Test
         private System.Windows.Forms.TextBox Md5TB;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox Sha1TB;
-        private System.Windows.Forms.TextBox MediaFormatTB;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox MediaTypeNameTB;
         private Winforms.Base.UIElements.GroupBox groupBox1;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox ObjectIdTB;
         private System.Windows.Forms.FlowLayoutPanel ButtonsPN;
         private Winforms.Base.UIElements.GroupBox groupBox3;
         private System.Windows.Forms.Label label16;
@@ -1121,6 +1267,18 @@ namespace stigzler.ScreenScraper.Test
         private Winforms.Base.UIElements.ComboBox MediaTypeCB;
         private System.Windows.Forms.Button ResetDatabaseBT;
         private Winforms.Base.UIElements.Button ViewXmlBT;
+        private System.Windows.Forms.PictureBox MediaPB;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private Winforms.Base.UIElements.Button OpenVideoBT;
+        private Winforms.Base.UIElements.Button OpenManualBT;
+        private System.Windows.Forms.SplitContainer RhsSC;
+        private Winforms.Base.UIElements.Panel MediaBroswerPN;
+        private System.Windows.Forms.Label label19;
+        private Winforms.Base.UIElements.ComboBox RegionsCB;
+        private System.Windows.Forms.Label label20;
+        private Winforms.Base.UIElements.ComboBox DlFormatCB;
+        private System.Windows.Forms.ToolStripButton WordwrapBT;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

@@ -14,11 +14,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-using Entities = stigzler.ScreenScraper.Test.Entities;
 using System.Xml.Serialization;
 using System.Configuration;
 using stigzler.Screenscraper.Data;
-using stigzler.ScreenScraper.Test.Entities;
+using stig = stigzler.ScreenScraper.Test.Entities;
+using stigzler.Screenscraper.Helpers;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -36,6 +36,8 @@ namespace stigzler.ScreenScraper.Test
 
         Entities.Database database = new Entities.Database();
         BindingSource resultsBS = new BindingSource();
+
+        List<Image> GameImages = new List<Image>();
 
         protected override CreateParams CreateParams
         {
@@ -101,7 +103,7 @@ namespace stigzler.ScreenScraper.Test
             }
             database.Systems = database.Systems.OrderBy(x => x.Name).ToList();
 
-            // Get GameMedia            
+            // Get GameMedia types           
             outcomes = await GetApiOutcomes(ApiQueryType.GameMediaList);
             outcome = outcomes[0];
             xdoc = XDocument.Parse(outcome.Data.ToString());
@@ -109,13 +111,29 @@ namespace stigzler.ScreenScraper.Test
             database.GameMediaTypes.Clear();
             foreach (var media in medias)
             {
-                GameMediaType newGameMediaType = new GameMediaType();
+                stig.GameMediaType newGameMediaType = new stig.GameMediaType();
                 newGameMediaType.ID = Int32.Parse(media.Descendants("id").First().Value);
                 newGameMediaType.ShortName = media.Descendants("nomcourt").First().Value;
                 newGameMediaType.LongName = media.Descendants("nom").First().Value;
                 database.GameMediaTypes.Add(newGameMediaType);
             }
             database.GameMediaTypes = database.GameMediaTypes.OrderBy(x => x.LongName).ToList();
+
+            // Get Regions           
+            outcomes = await GetApiOutcomes(ApiQueryType.RegionList);
+            outcome = outcomes[0];
+            xdoc = XDocument.Parse(outcome.Data.ToString());
+            var regions = xdoc.Descendants("region");
+            database.Regions.Clear();
+            foreach (var region in regions)
+            {
+                stig.Region newRegion = new stig.Region();
+                newRegion.ID = Int32.Parse(region.Descendants("id").First().Value);
+                newRegion.ShortName = region.Descendants("nomcourt").First().Value;
+                newRegion.Name = region.Descendants("nom_en").First().Value;
+                database.Regions.Add(newRegion);
+            }
+            database.Regions = database.Regions.OrderBy(x => x.Name).ToList();
 
             log("Import done");
 
@@ -151,7 +169,7 @@ namespace stigzler.ScreenScraper.Test
                                     .Cast<ApiQueryType>()
                                     .OrderBy(x => x.ToString())
                                     .ToList();
-            QueryTypeCB.Text = "GameInfo";
+            QueryTypeCB.Text = "GameImageDownload";
 
 
             outputFormatCB.DataSource = Enum.GetValues(typeof(MetadataOutput));
@@ -169,13 +187,16 @@ namespace stigzler.ScreenScraper.Test
             MediaTypeCB.ValueMember = "ShortName";
             MediaTypeCB.DataSource = database.GameMediaTypes;
 
+            RegionsCB.DisplayMember = "Name";
+            RegionsCB.ValueMember = "ShortName";
+            RegionsCB.DataSource = database.Regions;
+
             SystemsCB.DisplayMember = "Name";
             SystemsCB.ValueMember = "id";
             SystemsCB.DataSource = database.Systems;
-
             SystemsCB.SelectedValue = Settings.Default.SystemID;
 
-
+            DlFormatCB.SelectedIndex = 0;
         }
 
         private void UpdateCredentialsAndApiParams()
@@ -262,12 +283,17 @@ namespace stigzler.ScreenScraper.Test
             bool batchOperation = false;
             bool queryDone = true;
 
+            OpenVideoBT.Enabled = false;
+            OpenManualBT.Enabled = false;
+            MediaPB.Image = null;
 
 
+            log("-----------------------------------------------------------");
             log("Query Type: " + queryType.ToString());
 
             ApiQueryGroup queryGroup = Constants.ApiQueryGroups.Where(x => x.Value.Contains(queryType)).FirstOrDefault().Key;
-
+            APIDownloadParameters downloadParameters;
+            string downloadFilename;
 
             switch (queryGroup)
             {
@@ -275,18 +301,12 @@ namespace stigzler.ScreenScraper.Test
                     outcome = await Task.Run(() => getData.GetListOrInfo(queryType));
                     break;
 
-                //case ApiQueryType.UserInfo:
-                //    outcome = await Task.Run(() => getData.GetUserInfo().Result);
-                //    break;
-
-                //case ApiQueryType.SystemList:
-                //    outcome = await Task.Run(() => getData.GetSystemList().Result);
-                //    break;
-
                 case ApiQueryGroup.Searches:
                     switch (QueryTypeCB.SelectedItem)
                     {
                         case ApiQueryType.GameRomSearch:
+
+
 
                             batchOperation = true;
                             break;
@@ -296,22 +316,73 @@ namespace stigzler.ScreenScraper.Test
                     }
                     break;
 
+                case ApiQueryGroup.Downloads:
 
 
+                    switch (QueryTypeCB.SelectedItem)
+                    {
+                        case ApiQueryType.GameImageDownload:
+
+                            downloadParameters = new APIDownloadParameters
+                            {
+                                MediaTypeName = MediaTypeCB.SelectedValue.ToString() +
+                                                "(" + RegionsCB.SelectedValue + ")",
+                                MediaFormat = DlFormatCB.Text,
+                                ObjectID = (int)GamesCB.SelectedValue,
+                                SystemID = (int)SystemsCB.SelectedValue,
+                            };
+
+                            downloadFilename = Path.Combine(Path.GetTempPath(), "GameImage.img");
+                            outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+
+                            if (outcome.Successfull) MediaPB.Image = stigzler.Utilities.Base.Operations.ImageOperation.UnlockedImageFromFile(downloadFilename);
+                            break;
+
+                        case ApiQueryType.GameVideoDownload:
+
+                            downloadParameters = new APIDownloadParameters
+                            {
+                                MediaTypeName = "video",
+                                ObjectID = (int)GamesCB.SelectedValue,
+                                SystemID = (int)SystemsCB.SelectedValue,
+                            };
+                            downloadFilename = Path.Combine(Path.GetTempPath(), "GameVideo.mp4");
+                            outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+                            if (outcome.Successfull)  OpenVideoBT.Enabled = true;                        
+                            break;
+
+                        case ApiQueryType.GameManualDownload:
+                            downloadParameters = new APIDownloadParameters
+                            {
+                                MediaTypeName = "manuel" +
+                                                "(" + RegionsCB.SelectedValue + ")",
+                                ObjectID = (int)GamesCB.SelectedValue,
+                                SystemID = (int)SystemsCB.SelectedValue,
+                            };
+                            downloadFilename = Path.Combine(Path.GetTempPath(), "GameManual.pdf");
+                            outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+                            if (outcome.Successfull) OpenManualBT.Enabled = true;                    
+                            break;
+                            
+
+                    }
+                    break;
             }
 
             if (queryDone && !batchOperation)
             {
                 log("Uri: " + outcome.Uri);
                 if (outcome.Successfull == true)
-                { log("Success: " + Environment.NewLine + outcome.Data.ToString()); }
+                { log("Successful? " + outcome.Successfull + Environment.NewLine + outcome.Data.ToString()); }
                 else
                 {
-                    log("Unsuccessful: " + Environment.NewLine
+                    log("Successful? " + outcome.Successfull + Environment.NewLine
                         + "Status Code: " + outcome.StatusCode + Environment.NewLine
-                        + "Server Message: " + outcome.Data + Environment.NewLine
-                        + "Full Exception: " + Environment.NewLine
-                    + outcome.Exception.ToString());
+                        + "Server Message: " + outcome.Data);
+                    if (outcome.Exception != null)
+                    {
+                        log("Full Exception: " + Environment.NewLine + outcome.Exception.ToString());
+                    }
                 }
                 outcomes.Add(outcome);
             }
@@ -400,7 +471,7 @@ namespace stigzler.ScreenScraper.Test
 
         private void LoadGames(int SystemId)
         {
-            List<Game> games = new List<Game>();
+            List<stig.Game> games = new List<stig.Game>();
             games = database.Games.Where(x => x.SystemID == SystemId).OrderBy(x => x.Name).ToList();
             if (games.Count > 0)
             {
@@ -470,8 +541,8 @@ namespace stigzler.ScreenScraper.Test
 
             foreach (var outcome in outcomes)
             {
-
-                XDocument xdoc = XDocument.Parse(outcome.Data.ToString());
+                string xmlString = outcome.Data.ToString();
+                XDocument xdoc = XDocument.Parse(xmlString);
 
                 Entities.Game newGame = new Entities.Game();
 
@@ -497,8 +568,6 @@ namespace stigzler.ScreenScraper.Test
 
         }
 
-
-
         private async void ResetDatabaseBT_Click(object sender, EventArgs e)
         {
             database.Games.Clear();
@@ -509,11 +578,26 @@ namespace stigzler.ScreenScraper.Test
 
         private void ViewXmlBT_Click(object sender, EventArgs e)
         {
-            Game selectedGame = GamesCB.SelectedItem as Game;
+            stig.Game selectedGame = GamesCB.SelectedItem as stig.Game;
             if (selectedGame != null)
             {
                 log(selectedGame.GameXml);
             }
+        }
+
+        private void WordwrapBT_Click(object sender, EventArgs e)
+        {
+            MainRTB.WordWrap = WordwrapBT.Checked;
+        }
+
+        private void OpenVideoBT_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.Combine(Path.GetTempPath(), "GameVideo.mp4"));
+        }
+
+        private void OpenManualBT_Click(object sender, EventArgs e)
+        {
+            Process.Start(Path.Combine(Path.GetTempPath(), "GameManual.pdf"));
         }
     }
 

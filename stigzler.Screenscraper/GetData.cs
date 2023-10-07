@@ -5,11 +5,9 @@ using stigzler.Screenscraper.Helpers;
 using stigzler.Screenscraper.Services;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Net;
-using System.Runtime.CompilerServices;
 using System.Threading;
-using System.Threading.Tasks;
+using help = stigzler.Screenscraper.Helpers;
 
 namespace stigzler.Screenscraper
 {
@@ -93,15 +91,15 @@ namespace stigzler.Screenscraper
 
             switch (queryType)
             {
-                case ApiQueryType.GameImages:
-                case ApiQueryType.GameVideos:
-                case ApiQueryType.GameManuals:
+                case ApiQueryType.GameImageDownload:
+                case ApiQueryType.GameVideoDownload:
+                case ApiQueryType.GameManualDownload:
                     parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GameID, Value = downloadParameters.ObjectID.ToString() });
                     break;
-                case ApiQueryType.GameGenreImages:
+                case ApiQueryType.GameGenreImageDownload:
                     parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GenreID, Value = downloadParameters.ObjectID.ToString() });
                     break;
-                case ApiQueryType.GameOrganisationImages:
+                case ApiQueryType.GameOrganisationImageDownload:
                     parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.OrganisationID, Value = downloadParameters.ObjectID.ToString() });
                     break;
                 default:

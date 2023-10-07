@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,19 +28,43 @@ namespace stigzler.Screenscraper.Services
             this.requestTimeout = requestTimeout;
         }
 
-        internal ApiGetOutcome GetFile(Uri uri, string filename)
+        internal ApiGetOutcome GetFile(Uri uri, string destinationFilename)
         {
             ModifiedNet.WebClient webClient = new ModifiedNet.WebClient(requestTimeout);
             ApiGetOutcome outcome = new ApiGetOutcome();
             outcome.Uri = uri;
-            object result = null;
+            //object result = null;
 
             try
             {
-                webClient.DownloadFile(uri,filename);
-                outcome.Successfull = true;
-                outcome.StatusCode = 200;
-                outcome.Data = result;
+                webClient.DownloadFile(uri, destinationFilename);
+
+                using (var fileStream = File.OpenRead(destinationFilename))
+                {
+                    using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, 128))
+                    {
+                        String line = streamReader.ReadLine();
+
+                        if (line == "NOMEDIA")
+                        {
+                            outcome.Successfull = false;
+                            outcome.StatusCode = 200;
+                            outcome.Data = "NOMEDIA";
+                        }
+                        else
+                        {
+                            outcome.Successfull = true;
+                            outcome.StatusCode = 200;
+                            outcome.Data = destinationFilename;
+                        }
+                    }
+                }
+
+                if (outcome.Successfull == false)
+                {
+                    File.Delete(destinationFilename);
+                }
+
             }
             catch (WebException ex)
             {
@@ -47,7 +72,7 @@ namespace stigzler.Screenscraper.Services
                 if (ex.Response != null)
                 {
                     outcome.StatusCode = (int)((HttpWebResponse)ex.Response).StatusCode;
-                    outcome.Data = ParseExceptionRespose(ex).Trim();
+                    outcome.Data = ParseExceptionResponse(ex).Trim();
                 }
             }
             catch (OperationCanceledException)
@@ -83,7 +108,7 @@ namespace stigzler.Screenscraper.Services
                 if (ex.Response != null)
                 {
                     outcome.StatusCode = (int)((HttpWebResponse)ex.Response).StatusCode;
-                    outcome.Data = ParseExceptionRespose(ex).Trim();
+                    outcome.Data = ParseExceptionResponse(ex).Trim();
                 }
             }
             catch (OperationCanceledException)
@@ -134,7 +159,7 @@ namespace stigzler.Screenscraper.Services
 
                 progress.Report(new EventArgs.ProgressChangedEventArgs
                 {
-                    DataObject = "Processed " + objectName + " (" + outcomes.Count + "/" + total + "). Successful: " + outcome.Successfull + " (status: " + outcome.StatusCode+ "): " + objectUri.Key,
+                    DataObject = "Processed " + objectName + " (" + outcomes.Count + "/" + total + "). Successful: " + outcome.Successfull + " (status: " + outcome.StatusCode + "): " + objectUri.Key,
                     Uri = objectUri.Value,
                     ProgressPercentage = (int)((double)outcomes.Count / total * 100),
                     Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
@@ -148,7 +173,7 @@ namespace stigzler.Screenscraper.Services
 
 
 
-        public static string ParseExceptionRespose(WebException exception)
+        internal static string ParseExceptionResponse(WebException exception)
         {
             string responseContents;
             Stream descrption = ((HttpWebResponse)exception.Response).GetResponseStream();

@@ -11,12 +11,13 @@ namespace stigzler.ScreenScraper.Test.Entities
     public class Database
     {
         public List<System> Systems { get; set; } = new List<System>();
+        public List<GameMediaType> GameMediaTypes { get; set; } = new List<GameMediaType>();
+        public List<Region> Regions { get; set; } = new List<Region>();
 
 
-        [XmlIgnore]
+        //[XmlIgnore]
         public List<Game> Games { get; set; } = new List<Game>();
 
-        public List<GameMediaType> GameMediaTypes { get; set; } = new List<GameMediaType>();
 
     }
 }

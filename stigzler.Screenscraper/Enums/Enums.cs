@@ -41,13 +41,21 @@ namespace stigzler.Screenscraper.Enums
         GameRomSearch,
         AddGameNote,
         AddGameInfo,
-        GameImages,
-        GameVideos,
-        GameManuals,
-        GameGenreImages,
-        GameOrganisationImages,
-        SystemImages,
-        SystemVideos
+
+
+
+
+        GameImageDownload,
+        /// <summary>
+        /// Download 
+        /// Requires: SystemID, GameID, MediaTypeName (despite its redundancy)
+        /// </summary>
+        GameVideoDownload,
+        GameManualDownload,
+        GameGenreImageDownload,
+        GameOrganisationImageDownload,
+        SystemImageDownload,
+        SystemVideoDownload
     }
 
  

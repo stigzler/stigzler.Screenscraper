@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 
 namespace stigzler.Screenscraper.ModifiedNet
 {
+
+    [System.ComponentModel.DesignerCategory("Code")]
     internal class WebClient: System.Net.WebClient
     {
         /// <summary>
@@ -30,8 +32,7 @@ namespace stigzler.Screenscraper.ModifiedNet
             WebRequest = base.GetWebRequest(address);
             WebRequest.Timeout = Timeout;
             return WebRequest;
-        }
-
+        }   
 
     }
 }

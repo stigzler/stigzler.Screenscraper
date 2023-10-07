@@ -14,7 +14,7 @@ using System.Reflection.Emit;
 
 namespace stigzler.Screenscraper.Helpers
 {
-    internal class ApiUrlBuilder
+    public class ApiUrlBuilder
     {
         public MetadataOutput MetadataOutputType { get; set; } = MetadataOutput.xml;
         public Credentials Credentials { get; set; }
@@ -26,7 +26,7 @@ namespace stigzler.Screenscraper.Helpers
             ServerParameters = serverParameters;
         }
 
-        internal string Build(ApiQueryType queryType, List<QueryParameter> additionalParameters = null)
+        public string Build(ApiQueryType queryType, List<QueryParameter> additionalParameters = null)
         {
             var build = new UriBuilder(ServerParameters.HostAddress);
 
@@ -46,11 +46,15 @@ namespace stigzler.Screenscraper.Helpers
             {
                 foreach (QueryParameter parameter in additionalParameters)
                 {
-                    query[Constants.ApiQueryParameters[parameter.Parameter]] = Uri.EscapeDataString(parameter.Value);
+                    if (parameter.Value != null)
+                    {
+                        query[Constants.ApiQueryParameters[parameter.Parameter]] = Uri.EscapeDataString(parameter.Value);                                                                                    ;
+                    }
                 }
             }
 
-            build.Query = query.ToString();
+            // Uri.EscapeDataString encodes parentheses as %2528/9 - screenscraper doesn't like this encoding in its Get queries
+            build.Query = query.ToString().Replace("%2528", "(").Replace("%2529", ")");
 
             // -----------------
             return build.Uri.AbsoluteUri;
