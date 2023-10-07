@@ -43,8 +43,8 @@ namespace stigzler.Screenscraper.Enums
         AddGameInfo,
         GameImageDownload,
         /// <summary>
-        /// Download 
-        /// Requires: <c cref="ApiQueryParameter.SystemID">SystemID</c>, GameID, MediaTypeName (despite its redundancy)
+        /// Downloads video for specified Game
+        /// Required: <c cref="ApiQueryParameter">ApiQueryParameters:</c> SystemID, GameID, MediaTypeName
         /// </summary>
         GameVideoDownload,
         GameManualDownload,

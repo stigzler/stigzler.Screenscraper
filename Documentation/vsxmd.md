@@ -120,8 +120,8 @@ stigzler.Screenscraper.Enums
 
 ##### Summary
 
-Download 
-Requires: `SystemID`, GameID, MediaTypeName (despite its redundancy)
+Downloads video for specified Game
+Required: `ApiQueryParameters:` SystemID, GameID, MediaTypeName
 
 <a name='T-stigzler-Screenscraper-GetData'></a>
 ## GetData `type`
