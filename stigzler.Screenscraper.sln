@@ -10,6 +10,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stigzler.ScreenScraper.Test
 		{BABEFB49-5042-414D-B6E2-E55C54C44EE9} = {BABEFB49-5042-414D-B6E2-E55C54C44EE9}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6B4B8EFC-C3E7-4AEB-A147-522EE92FA3D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dev", "dev", "{B25453C2-1533-4F1F-88D3-18107B7F416D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Documentation", "Documentation\Documentation.shproj", "{29C06A01-EBD6-4CA1-81E4-89766CD1FCF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,7 +34,15 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BABEFB49-5042-414D-B6E2-E55C54C44EE9} = {6B4B8EFC-C3E7-4AEB-A147-522EE92FA3D3}
+		{F0520222-BB36-4ED1-982A-B1D6E863F81A} = {6B4B8EFC-C3E7-4AEB-A147-522EE92FA3D3}
+		{29C06A01-EBD6-4CA1-81E4-89766CD1FCF9} = {B25453C2-1533-4F1F-88D3-18107B7F416D}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32BE45AE-21AF-40B6-9104-3998A8141A9E}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Documentation\Documentation.projitems*{29c06a01-ebd6-4ca1-81e4-89766cd1fcf9}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

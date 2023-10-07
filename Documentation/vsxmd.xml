@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>stigzler.Screenscraper</name>
+    </assembly>
+    <members>
+        <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.CRC">
+            <summary>
+            CRC of the media file
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.MD5">
+            <summary>
+            MD5 of the media file
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.SHA1">
+            <summary>
+            SHA1 of the media file
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.MediaTypeName">
+            <summary>
+            The name of the Media Item to download (e.g. "Wheel(wor)").
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.MediaFormat">
+            <summary>
+            Media format (e.g. "png")
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.SystemID">
+            <summary>
+            SystemID of the related system
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.ObjectID">
+            <summary>
+            ID of the relevant object. E.g. for GameImages query this would be the GameID. For GameOrganisationImages, the OrganisationID
+            </summary>
+        </member>
+        <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameVideoDownload">
+            <summary>
+            Download 
+            Requires: SystemID, GameID, MediaTypeName (despite its redundancy)
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs.ProgressPercentage">
+            <summary>
+            Percentage progress of precessed to total objects
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs.Rate">
+            <summary>
+            The number of objects per second
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs.Uri">
+            <summary>
+            The linked URI
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs.DataObject">
+            <summary>
+            Detail of the data object being proceeded. E.g. RomFilename or GameName
+            </summary>
+        </member>
+        <member name="M:stigzler.Screenscraper.GetData.#ctor(stigzler.Screenscraper.Data.Models.Credentials,stigzler.Screenscraper.Data.Models.ApiServerParameters,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="credentials">Request Credentials</param>
+            <param name="apiServerParameters">Server Parameters</param>
+            <param name="userThreads">Specify number of API threads available to user</param>
+        </member>
+        <member name="P:stigzler.Screenscraper.ModifiedNet.WebClient.Timeout">
+            <summary>
+            Timeout to apply in milliseconds
+            </summary>
+        </member>
+        <member name="M:stigzler.Screenscraper.Services.ApiDataService.GetStrings(System.Collections.Generic.Dictionary{System.String,System.Uri},System.String,System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
+            <summary>
+            
+            </summary>
+            <param name="objectUris">Dictionary of string,Uri where the string value is used in the progress report. E.g. "Wipeout.7z" for roms or "Wipeout" for Gamename </param>
+            <param name="objectName">Used in the constructing the progress report. E.g. "rom" will result in "Processing rom"</param>
+            <param name="cancellationToken"></param>
+            <param name="progress"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
