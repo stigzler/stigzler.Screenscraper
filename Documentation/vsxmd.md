@@ -13,6 +13,12 @@
   - [SystemID](#P-stigzler-Screenscraper-Data-Models-APIDownloadParameters-SystemID 'stigzler.Screenscraper.Data.Models.APIDownloadParameters.SystemID')
 - [ApiDataService](#T-stigzler-Screenscraper-Services-ApiDataService 'stigzler.Screenscraper.Services.ApiDataService')
   - [GetStrings(objectUris,objectName,cancellationToken,progress)](#M-stigzler-Screenscraper-Services-ApiDataService-GetStrings-System-Collections-Generic-Dictionary{System-String,System-Uri},System-String,System-Threading-CancellationToken,System-IProgress{stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs}- 'stigzler.Screenscraper.Services.ApiDataService.GetStrings(System.Collections.Generic.Dictionary{System.String,System.Uri},System.String,System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})')
+- [ApiGetOutcome](#T-stigzler-Screenscraper-Data-Models-ApiGetOutcome 'stigzler.Screenscraper.Data.Models.ApiGetOutcome')
+  - [Data](#F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-Data 'stigzler.Screenscraper.Data.Models.ApiGetOutcome.Data')
+  - [Exception](#F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-Exception 'stigzler.Screenscraper.Data.Models.ApiGetOutcome.Exception')
+  - [StatusCode](#F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-StatusCode 'stigzler.Screenscraper.Data.Models.ApiGetOutcome.StatusCode')
+  - [Successfull](#F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-Successfull 'stigzler.Screenscraper.Data.Models.ApiGetOutcome.Successfull')
+  - [Uri](#F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-Uri 'stigzler.Screenscraper.Data.Models.ApiGetOutcome.Uri')
 - [ApiQueryType](#T-stigzler-Screenscraper-Enums-ApiQueryType 'stigzler.Screenscraper.Enums.ApiQueryType')
   - [GameInfoList](#F-stigzler-Screenscraper-Enums-ApiQueryType-GameInfoList 'stigzler.Screenscraper.Enums.ApiQueryType.GameInfoList')
   - [GameVideoDownload](#F-stigzler-Screenscraper-Enums-ApiQueryType-GameVideoDownload 'stigzler.Screenscraper.Enums.ApiQueryType.GameVideoDownload')
@@ -115,6 +121,57 @@ stigzler.Screenscraper.Services
 | cancellationToken | [System.Threading.CancellationToken](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Threading.CancellationToken 'System.Threading.CancellationToken') |  |
 | progress | [System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IProgress 'System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs}') |  |
 
+<a name='T-stigzler-Screenscraper-Data-Models-ApiGetOutcome'></a>
+## ApiGetOutcome `type`
+
+##### Namespace
+
+stigzler.Screenscraper.Data.Models
+
+##### Summary
+
+API query results. This provides a data object to the consumer which holds details
+of the outcome of any API Get calls.
+
+<a name='F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-Data'></a>
+### Data `constants`
+
+##### Summary
+
+This varies depending on the `ApiQueryGroup`:
+
+<a name='F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-Exception'></a>
+### Exception `constants`
+
+##### Summary
+
+If an exception is raised from the query, it is returned via this property
+
+<a name='F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-StatusCode'></a>
+### StatusCode `constants`
+
+##### Summary
+
+The http status code that results from the query. -1 means error wasn't from a HttpError
+
+<a name='F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-Successfull'></a>
+### Successfull `constants`
+
+##### Summary
+
+Returns whether the operation is successful. The definition of success varies by
+query type.
+
+E.g. a successful GameImageDownload if that the file was found and downloaded.
+A successful GameRomSearch is if a match was found.
+
+<a name='F-stigzler-Screenscraper-Data-Models-ApiGetOutcome-Uri'></a>
+### Uri `constants`
+
+##### Summary
+
+The Query Uri used
+
 <a name='T-stigzler-Screenscraper-Enums-ApiQueryType'></a>
 ## ApiQueryType `type`
 
@@ -136,8 +193,8 @@ Eg. Family, Mode, Number, Resolution, Themes
 
 ##### Summary
 
-Downloads video for specified Game
-Required: `ApiQueryParameters:` SystemID, GameID, MediaTypeName
+Downloads video for specified Game. 
+Requires `ApiQueryParameters:` SystemID, GameID, MediaTypeName
 
 <a name='T-stigzler-Screenscraper-Data-Models-Credentials'></a>
 ## Credentials `type`
@@ -196,6 +253,7 @@ stigzler.Screenscraper
 
 This is the main Class used to retrieve data from the 
 ScreenScraper.fr API.
+Commonly, all methods take [ApiQueryType](#T-stigzler-Screenscraper-Enums-ApiQueryType 'stigzler.Screenscraper.Enums.ApiQueryType').
 
 <a name='M-stigzler-Screenscraper-GetData-#ctor-stigzler-Screenscraper-Data-Models-Credentials,stigzler-Screenscraper-Data-Models-ApiServerParameters,System-Int32-'></a>
 ### #ctor(credentials,apiServerParameters,userThreads) `constructor`

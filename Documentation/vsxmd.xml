@@ -34,6 +34,57 @@
             The ScreenScraper User Password
             </summary>
         </member>
+        <member name="T:stigzler.Screenscraper.Data.Models.ApiGetOutcome">
+            <summary>
+            API query results. This provides a data object to the consumer which holds details
+            of the outcome of any API Get calls. 
+            </summary>
+        </member>
+        <member name="F:stigzler.Screenscraper.Data.Models.ApiGetOutcome.Uri">
+            <summary>
+            The Query Uri used
+            </summary>
+        </member>
+        <member name="F:stigzler.Screenscraper.Data.Models.ApiGetOutcome.Data">
+            <summary>
+            This varies depending on the <c cref="T:stigzler.Screenscraper.Enums.ApiQueryGroup">ApiQueryGroup</c>:
+            <list type = "table">
+               <listheader>
+                   <term>Type</term>
+                  <description> description </description>
+               </listheader>
+               <item>
+                   <term cref="F:stigzler.Screenscraper.Enums.ApiQueryGroup.InfoAndLists">Enums.ApiQueryGroup.InfoAndLists</term>
+                   <description>Data is the xml/json returned by the API</description>
+               </item>
+               <item>
+                   <term cref="F:stigzler.Screenscraper.Enums.ApiQueryGroup.Downloads">Enums.ApiQueryGroup.Downloads</term>
+                  <description>This returns the successful filename if the API Success = true.
+            Otherwise, it returns the html text that helps with understanding the problem. 
+                  </description>
+               </item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:stigzler.Screenscraper.Data.Models.ApiGetOutcome.Successfull">
+            <summary>
+            Returns whether the operation is successful. The definition of success varies by
+            query type. 
+            <example>E.g. a successful GameImageDownload if that the file was found and downloaded.
+            A successful GameRomSearch is if a match was found. 
+            </example>
+            </summary>
+        </member>
+        <member name="F:stigzler.Screenscraper.Data.Models.ApiGetOutcome.StatusCode">
+            <summary>
+            The http status code that results from the query. -1 means error wasn't from a HttpError
+            </summary>
+        </member>
+        <member name="F:stigzler.Screenscraper.Data.Models.ApiGetOutcome.Exception">
+            <summary>
+            If an exception is raised from the query, it is returned via this property
+            </summary>
+        </member>
         <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.CRC">
             <summary>
             CRC of the media file
@@ -79,8 +130,8 @@
         </member>
         <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameVideoDownload">
             <summary>
-            Downloads video for specified Game
-            Required: <c cref="T:stigzler.Screenscraper.Enums.ApiQueryParameter">ApiQueryParameters:</c> SystemID, GameID, MediaTypeName
+            Downloads video for specified Game. 
+            Requires <c cref="T:stigzler.Screenscraper.Enums.ApiQueryParameter">ApiQueryParameters:</c> SystemID, GameID, MediaTypeName
             </summary>
         </member>
         <member name="P:stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs.ProgressPercentage">
@@ -107,6 +158,7 @@
             <summary>
             This is the main Class used to retrieve data from the 
             ScreenScraper.fr API.
+            Commonly, all methods take <see cref="T:stigzler.Screenscraper.Enums.ApiQueryType">ApiQueryType</see>.
             </summary>
         </member>
         <member name="M:stigzler.Screenscraper.GetData.#ctor(stigzler.Screenscraper.Data.Models.Credentials,stigzler.Screenscraper.Data.Models.ApiServerParameters,System.Int32)">
