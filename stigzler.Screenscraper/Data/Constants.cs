@@ -37,14 +37,14 @@ namespace stigzler.Screenscraper.Data
                 },
                 { ApiQueryGroup.Uploads, new List<ApiQueryType>
                     {
-                    ApiQueryType.AddGameInfo, ApiQueryType.AddGameInfo
+                    ApiQueryType.AddGameNote, ApiQueryType.AddGameInfo
                     }
                 },
             };
 
 
 
-        public static Dictionary<ApiQueryType, string> ApiQueryPaths = new Dictionary<ApiQueryType, string>()
+        internal static Dictionary<ApiQueryType, string> ApiQueryPaths = new Dictionary<ApiQueryType, string>()
         {
             { ApiQueryType.ClassificaitonList,"classificationListe.php"},
             { ApiQueryType.GameOrganisationImageDownload,"mediaCompagnie.php" },

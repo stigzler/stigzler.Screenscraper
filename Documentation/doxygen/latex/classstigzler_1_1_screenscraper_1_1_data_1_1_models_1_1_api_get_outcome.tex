@@ -1,24 +1,47 @@
 \doxysection{stigzler.\+Screenscraper.\+Data.\+Models.\+Api\+Get\+Outcome Class Reference}
 \hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome}{}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome}\index{stigzler.Screenscraper.Data.Models.ApiGetOutcome@{stigzler.Screenscraper.Data.Models.ApiGetOutcome}}
+
+
+API query results. This provides a data object to the consumer which holds details of the outcome of any API Get calls.  
+
+
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 \Hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a41e402f7511f1368f91f24796f8510d3}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a41e402f7511f1368f91f24796f8510d3} 
 Uri {\bfseries Uri}
-\item 
+\begin{DoxyCompactList}\small\item\em The Query Uri used. \end{DoxyCompactList}\item 
 \Hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a8016a7eaa25fe72ac519752cbb64f4ea}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a8016a7eaa25fe72ac519752cbb64f4ea} 
 object {\bfseries Data}
-\item 
+\begin{DoxyCompactList}\small\item\em This varies depending on the {\ttfamily Api\+Query\+Group}\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Type }&\cellcolor{\tableheadbgcolor}\textbf{ description   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Type }&\cellcolor{\tableheadbgcolor}\textbf{ description   }\\\cline{1-2}
+\endhead
+Enums.\+Api\+Query\+Group.\+Info\+And\+Lists &Data is the xml/json returned by the API  \\\cline{1-2}
+Enums.\+Api\+Query\+Group.\+Downloads &This returns the successful filename if the API Success = true. Otherwise, it returns the html text that helps with understanding the problem.   \\\cline{1-2}
+\end{longtabu}
+\end{DoxyCompactList}\item 
 \Hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a62ccf661ab947f515a5ed96715a3884c}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a62ccf661ab947f515a5ed96715a3884c} 
 bool {\bfseries Successfull} = false
-\item 
+\begin{DoxyCompactList}\small\item\em Returns whether the operation is successful. The definition of success varies by query type. 
+
+E.\+g. a successful Game\+Image\+Download if that the file was found and downloaded. A successful Game\+Rom\+Search is if a match was found. \end{DoxyCompactList}\item 
 \Hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a6cb5490d44d903a8bbb1cd904cf68218}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a6cb5490d44d903a8bbb1cd904cf68218} 
 int {\bfseries Status\+Code} = -\/1
-\item 
+\begin{DoxyCompactList}\small\item\em The http status code that results from the query. -\/1 means error wasn\textquotesingle{}t from a Http\+Error. \end{DoxyCompactList}\item 
 \Hypertarget{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_ac2c64372a1883d7a05c1c9e270ccebae}\label{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_ac2c64372a1883d7a05c1c9e270ccebae} 
 Exception {\bfseries Exception} = null
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em If an exception is raised from the query, it is returned via this property. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\doxysubsection{Detailed Description}
+API query results. This provides a data object to the consumer which holds details of the outcome of any API Get calls. 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

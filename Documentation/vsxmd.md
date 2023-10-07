@@ -14,7 +14,14 @@
 - [ApiDataService](#T-stigzler-Screenscraper-Services-ApiDataService 'stigzler.Screenscraper.Services.ApiDataService')
   - [GetStrings(objectUris,objectName,cancellationToken,progress)](#M-stigzler-Screenscraper-Services-ApiDataService-GetStrings-System-Collections-Generic-Dictionary{System-String,System-Uri},System-String,System-Threading-CancellationToken,System-IProgress{stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs}- 'stigzler.Screenscraper.Services.ApiDataService.GetStrings(System.Collections.Generic.Dictionary{System.String,System.Uri},System.String,System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})')
 - [ApiQueryType](#T-stigzler-Screenscraper-Enums-ApiQueryType 'stigzler.Screenscraper.Enums.ApiQueryType')
+  - [GameInfoList](#F-stigzler-Screenscraper-Enums-ApiQueryType-GameInfoList 'stigzler.Screenscraper.Enums.ApiQueryType.GameInfoList')
   - [GameVideoDownload](#F-stigzler-Screenscraper-Enums-ApiQueryType-GameVideoDownload 'stigzler.Screenscraper.Enums.ApiQueryType.GameVideoDownload')
+- [Credentials](#T-stigzler-Screenscraper-Data-Models-Credentials 'stigzler.Screenscraper.Data.Models.Credentials')
+  - [DeveloperID](#P-stigzler-Screenscraper-Data-Models-Credentials-DeveloperID 'stigzler.Screenscraper.Data.Models.Credentials.DeveloperID')
+  - [DeveloperPassword](#P-stigzler-Screenscraper-Data-Models-Credentials-DeveloperPassword 'stigzler.Screenscraper.Data.Models.Credentials.DeveloperPassword')
+  - [DeveloperSoftware](#P-stigzler-Screenscraper-Data-Models-Credentials-DeveloperSoftware 'stigzler.Screenscraper.Data.Models.Credentials.DeveloperSoftware')
+  - [UserID](#P-stigzler-Screenscraper-Data-Models-Credentials-UserID 'stigzler.Screenscraper.Data.Models.Credentials.UserID')
+  - [UserPassword](#P-stigzler-Screenscraper-Data-Models-Credentials-UserPassword 'stigzler.Screenscraper.Data.Models.Credentials.UserPassword')
 - [GetData](#T-stigzler-Screenscraper-GetData 'stigzler.Screenscraper.GetData')
   - [#ctor(credentials,apiServerParameters,userThreads)](#M-stigzler-Screenscraper-GetData-#ctor-stigzler-Screenscraper-Data-Models-Credentials,stigzler-Screenscraper-Data-Models-ApiServerParameters,System-Int32- 'stigzler.Screenscraper.GetData.#ctor(stigzler.Screenscraper.Data.Models.Credentials,stigzler.Screenscraper.Data.Models.ApiServerParameters,System.Int32)')
 - [ProgressChangedEventArgs](#T-stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs 'stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs')
@@ -115,6 +122,15 @@ stigzler.Screenscraper.Services
 
 stigzler.Screenscraper.Enums
 
+<a name='F-stigzler-Screenscraper-Enums-ApiQueryType-GameInfoList'></a>
+### GameInfoList `constants`
+
+##### Summary
+
+This returns the different types of game information.
+
+Eg. Family, Mode, Number, Resolution, Themes
+
 <a name='F-stigzler-Screenscraper-Enums-ApiQueryType-GameVideoDownload'></a>
 ### GameVideoDownload `constants`
 
@@ -123,6 +139,52 @@ stigzler.Screenscraper.Enums
 Downloads video for specified Game
 Required: `ApiQueryParameters:` SystemID, GameID, MediaTypeName
 
+<a name='T-stigzler-Screenscraper-Data-Models-Credentials'></a>
+## Credentials `type`
+
+##### Namespace
+
+stigzler.Screenscraper.Data.Models
+
+##### Summary
+
+User credentials for use with the ScreenScraper API
+
+<a name='P-stigzler-Screenscraper-Data-Models-Credentials-DeveloperID'></a>
+### DeveloperID `property`
+
+##### Summary
+
+The Api Developer ID
+
+<a name='P-stigzler-Screenscraper-Data-Models-Credentials-DeveloperPassword'></a>
+### DeveloperPassword `property`
+
+##### Summary
+
+The Api Developer Password
+
+<a name='P-stigzler-Screenscraper-Data-Models-Credentials-DeveloperSoftware'></a>
+### DeveloperSoftware `property`
+
+##### Summary
+
+The ApiKey Developer Software Name
+
+<a name='P-stigzler-Screenscraper-Data-Models-Credentials-UserID'></a>
+### UserID `property`
+
+##### Summary
+
+The ScreenScraper User ID
+
+<a name='P-stigzler-Screenscraper-Data-Models-Credentials-UserPassword'></a>
+### UserPassword `property`
+
+##### Summary
+
+The ScreenScraper User Password
+
 <a name='T-stigzler-Screenscraper-GetData'></a>
 ## GetData `type`
 
@@ -130,20 +192,26 @@ Required: `ApiQueryParameters:` SystemID, GameID, MediaTypeName
 
 stigzler.Screenscraper
 
+##### Summary
+
+This is the main Class used to retrieve data from the 
+ScreenScraper.fr API.
+
 <a name='M-stigzler-Screenscraper-GetData-#ctor-stigzler-Screenscraper-Data-Models-Credentials,stigzler-Screenscraper-Data-Models-ApiServerParameters,System-Int32-'></a>
 ### #ctor(credentials,apiServerParameters,userThreads) `constructor`
 
 ##### Summary
 
-
+The main method used to retrieve data from the 
+ScreenScraper API.
 
 ##### Parameters
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| credentials | [stigzler.Screenscraper.Data.Models.Credentials](#T-stigzler-Screenscraper-Data-Models-Credentials 'stigzler.Screenscraper.Data.Models.Credentials') | Request Credentials |
-| apiServerParameters | [stigzler.Screenscraper.Data.Models.ApiServerParameters](#T-stigzler-Screenscraper-Data-Models-ApiServerParameters 'stigzler.Screenscraper.Data.Models.ApiServerParameters') | Server Parameters |
-| userThreads | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Specify number of API threads available to user |
+| credentials | [stigzler.Screenscraper.Data.Models.Credentials](#T-stigzler-Screenscraper-Data-Models-Credentials 'stigzler.Screenscraper.Data.Models.Credentials') | API and User credentials |
+| apiServerParameters | [stigzler.Screenscraper.Data.Models.ApiServerParameters](#T-stigzler-Screenscraper-Data-Models-ApiServerParameters 'stigzler.Screenscraper.Data.Models.ApiServerParameters') | API and Query Server Parameters |
+| userThreads | [System.Int32](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Int32 'System.Int32') | Specify number of API threads available to the user's account |
 
 <a name='T-stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs'></a>
 ## ProgressChangedEventArgs `type`

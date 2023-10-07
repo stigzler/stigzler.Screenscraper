@@ -11,6 +11,11 @@ using help = stigzler.Screenscraper.Helpers;
 
 namespace stigzler.Screenscraper
 {
+    /// <summary>
+    /// This is the main Class used to retrieve data from the 
+    /// ScreenScraper.fr API.
+    /// Commonly, all methods take <see cref="Enums.ApiQueryType">ApiQueryType</see>.
+    /// </summary>
     public class GetData
     {
         #region Properties
@@ -53,11 +58,13 @@ namespace stigzler.Screenscraper
         private ApiDataService apiDataService;
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="credentials">Request Credentials</param>
-        /// <param name="apiServerParameters">Server Parameters</param>
-        /// <param name="userThreads">Specify number of API threads available to user</param>
+        /// <para>The main method used to retrieve data from the 
+        /// ScreenScraper API.  
+        /// </para>    
+        /// </summary>        
+        /// <param name="credentials">API and User credentials</param>
+        /// <param name="apiServerParameters">API and Query Server Parameters</param>
+        /// <param name="userThreads">Specify number of API threads available to the user's account</param>
         public GetData(Credentials credentials, ApiServerParameters apiServerParameters, int userThreads)
         {
             // Set Public Properties
@@ -70,6 +77,31 @@ namespace stigzler.Screenscraper
             urlBuilder = new ApiUrlBuilder(Credentials, ApiParameters);
         }
 
+        /// <summary>
+        /// Simple query to return the relevant lists from the API
+        /// </summary>
+        /// <param name="queryType">The type of query to perform.</param>
+        /// <remarks>
+        /// Viable queryTypes:
+        /// <list type = "table">
+        ///    <listheader>
+        ///        <term>Type</term>
+        ///       <description> description </description>
+        ///    </listheader>
+        ///    <item>
+        ///        <term cref="ApiQueryType.ClassificaitonList">ApiQueryType.ClassificaitonList</term>
+        ///        <description>Returns all age Classifications</description>
+        ///    </item>
+        ///    <item>
+        ///        <term cref="ApiQueryType.GameInfoList">ApiQueryType.GameInfoList</term>
+        ///       <description>This returns the different game data properties. 
+        ///       <example>Family, Mode, Number, Resolution, Themes</example>
+        ///       </description>
+        ///    </item>
+        /// </list>
+        /// <returns><c>ApiGetOutcome</c>
+        /// <remarks>The ApiGetOutcome.Data in this case is the returned xml/json or any error message</remarks>
+        /// </returns>
         public ApiGetOutcome GetListOrInfo(ApiQueryType queryType)
         {
             string uriStr = urlBuilder.Build(queryType);

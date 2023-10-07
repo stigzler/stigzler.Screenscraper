@@ -1,13 +1,17 @@
 \doxysection{stigzler.\+Screenscraper.\+Get\+Data Class Reference}
 \hypertarget{classstigzler_1_1_screenscraper_1_1_get_data}{}\label{classstigzler_1_1_screenscraper_1_1_get_data}\index{stigzler.Screenscraper.GetData@{stigzler.Screenscraper.GetData}}
+
+
+This is the main Class used to retrieve data from the Screen\+Scraper.\+fr API. Commonly, all methods take \doxylink{}{Api\+Query\+Type}.  
+
+
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_get_data_a4201a0dde5026f2bc2a0d63cc119a9fc}{Get\+Data}} (\mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials}{Credentials}} credentials, \mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters}{Api\+Server\+Parameters}} api\+Server\+Parameters, int user\+Threads)
 \item 
-\Hypertarget{classstigzler_1_1_screenscraper_1_1_get_data_a0b2ed64856847152ac2cb6ba6a99c8e3}\label{classstigzler_1_1_screenscraper_1_1_get_data_a0b2ed64856847152ac2cb6ba6a99c8e3} 
-\mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome}{Api\+Get\+Outcome}} {\bfseries Get\+List\+Or\+Info} (\mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{Api\+Query\+Type}} query\+Type)
-\item 
+\mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome}{Api\+Get\+Outcome}} \mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_get_data_a0b2ed64856847152ac2cb6ba6a99c8e3}{Get\+List\+Or\+Info}} (\mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{Api\+Query\+Type}} query\+Type)
+\begin{DoxyCompactList}\small\item\em Simple query to return the relevant lists from the API. \end{DoxyCompactList}\item 
 \Hypertarget{classstigzler_1_1_screenscraper_1_1_get_data_ab428b5acb161ab6c3c8baf924b94c753}\label{classstigzler_1_1_screenscraper_1_1_get_data_ab428b5acb161ab6c3c8baf924b94c753} 
 \mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome}{Api\+Get\+Outcome}} {\bfseries Get\+File} (\mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{Api\+Query\+Type}} query\+Type, \mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters}{APIDownload\+Parameters}} download\+Parameters, string destination\+Filename)
 \item 
@@ -31,6 +35,9 @@ int {\bfseries User\+Threads}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+This is the main Class used to retrieve data from the Screen\+Scraper.\+fr API. Commonly, all methods take \doxylink{}{Api\+Query\+Type}. 
+
 \doxysubsection{Constructor \& Destructor Documentation}
 \Hypertarget{classstigzler_1_1_screenscraper_1_1_get_data_a4201a0dde5026f2bc2a0d63cc119a9fc}\label{classstigzler_1_1_screenscraper_1_1_get_data_a4201a0dde5026f2bc2a0d63cc119a9fc} 
 \index{stigzler.Screenscraper.GetData@{stigzler.Screenscraper.GetData}!GetData@{GetData}}
@@ -38,15 +45,62 @@ int {\bfseries User\+Threads}\hspace{0.3cm}{\ttfamily  \mbox{[}get, set\mbox{]}}
 \doxysubsubsection{\texorpdfstring{GetData()}{GetData()}}
 {\footnotesize\ttfamily stigzler.\+Screenscraper.\+Get\+Data.\+Get\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials}{Credentials}}}]{credentials,  }\item[{\mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters}{Api\+Server\+Parameters}}}]{api\+Server\+Parameters,  }\item[{int}]{user\+Threads }\end{DoxyParamCaption})}
 
+The main method used to retrieve data from the Screen\+Scraper API. ~\newline
+ 
 
+~\newline
+ ~\newline
+ 
 \begin{DoxyParams}{Parameters}
-{\em credentials} & Request Credentials\\
+{\em credentials} & API and User credentials\\
 \hline
-{\em api\+Server\+Parameters} & Server Parameters\\
+{\em api\+Server\+Parameters} & API and Query Server Parameters\\
 \hline
-{\em user\+Threads} & Specify number of API threads available to user\\
+{\em user\+Threads} & Specify number of API threads available to the user\textquotesingle{}s account\\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classstigzler_1_1_screenscraper_1_1_get_data_a0b2ed64856847152ac2cb6ba6a99c8e3}\label{classstigzler_1_1_screenscraper_1_1_get_data_a0b2ed64856847152ac2cb6ba6a99c8e3} 
+\index{stigzler.Screenscraper.GetData@{stigzler.Screenscraper.GetData}!GetListOrInfo@{GetListOrInfo}}
+\index{GetListOrInfo@{GetListOrInfo}!stigzler.Screenscraper.GetData@{stigzler.Screenscraper.GetData}}
+\doxysubsubsection{\texorpdfstring{GetListOrInfo()}{GetListOrInfo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome}{Api\+Get\+Outcome}} stigzler.\+Screenscraper.\+Get\+Data.\+Get\+List\+Or\+Info (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacestigzler_1_1_screenscraper_1_1_enums_a52a03856ee91af59d18b53db17154aa8}{Api\+Query\+Type}}}]{query\+Type }\end{DoxyParamCaption})}
+
+
+
+Simple query to return the relevant lists from the API. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query\+Type} & The type of query to perform.\\
+\hline
+\end{DoxyParams}
+
+
+Viable query\+Types\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Type }&\cellcolor{\tableheadbgcolor}\textbf{ description   }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\cellcolor{\tableheadbgcolor}\textbf{ Type }&\cellcolor{\tableheadbgcolor}\textbf{ description   }\\\cline{1-2}
+\endhead
+Api\+Query\+Type.\+Classificaiton\+List &Returns all age Classifications  \\\cline{1-2}
+Api\+Query\+Type.\+Game\+Info\+List &This returns the different game data properties. 
+
+Family, Mode, Number, Resolution, Themes\\\cline{1-2}
+\end{longtabu}
+
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily Api\+Get\+Outcome} 
+
+The \doxylink{classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome_a8016a7eaa25fe72ac519752cbb64f4ea}{Api\+Get\+Outcome.\+Data} in this case is the returned xml/json or any error message
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

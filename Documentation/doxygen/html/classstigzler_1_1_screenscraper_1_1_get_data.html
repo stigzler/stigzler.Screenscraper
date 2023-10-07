@@ -82,13 +82,16 @@ $(function() {
   <div class="headertitle"><div class="title">stigzler.Screenscraper.GetData Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is the main Class used to retrieve data from the ScreenScraper.fr API. Commonly, all methods take <a class="el" href="">ApiQueryType</a>.  
+ <a href="classstigzler_1_1_screenscraper_1_1_get_data.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4201a0dde5026f2bc2a0d63cc119a9fc" id="r_a4201a0dde5026f2bc2a0d63cc119a9fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a4201a0dde5026f2bc2a0d63cc119a9fc">GetData</a> (<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html">Credentials</a> credentials, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters.html">ApiServerParameters</a> apiServerParameters, int userThreads)</td></tr>
 <tr class="separator:a4201a0dde5026f2bc2a0d63cc119a9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b2ed64856847152ac2cb6ba6a99c8e3" id="r_a0b2ed64856847152ac2cb6ba6a99c8e3"><td class="memItemLeft" align="right" valign="top"><a id="a0b2ed64856847152ac2cb6ba6a99c8e3" name="a0b2ed64856847152ac2cb6ba6a99c8e3"></a>
-<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetListOrInfo</b> (<a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a> queryType)</td></tr>
+<tr class="memitem:a0b2ed64856847152ac2cb6ba6a99c8e3" id="r_a0b2ed64856847152ac2cb6ba6a99c8e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a0b2ed64856847152ac2cb6ba6a99c8e3">GetListOrInfo</a> (<a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a> queryType)</td></tr>
+<tr class="memdesc:a0b2ed64856847152ac2cb6ba6a99c8e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple query to return the relevant lists from the API.  <br /></td></tr>
 <tr class="separator:a0b2ed64856847152ac2cb6ba6a99c8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab428b5acb161ab6c3c8baf924b94c753" id="r_ab428b5acb161ab6c3c8baf924b94c753"><td class="memItemLeft" align="right" valign="top"><a id="ab428b5acb161ab6c3c8baf924b94c753" name="ab428b5acb161ab6c3c8baf924b94c753"></a>
 <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetFile</b> (<a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a> queryType, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html">APIDownloadParameters</a> downloadParameters, string destinationFilename)</td></tr>
@@ -112,7 +115,9 @@ MetadataOutput&#160;</td><td class="memItemRight" valign="bottom"><b>MetadataOut
 int&#160;</td><td class="memItemRight" valign="bottom"><b>UserThreads</b><code> [get, set]</code></td></tr>
 <tr class="separator:ac114272b331d4944eb4764d0e5bd56a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is the main Class used to retrieve data from the ScreenScraper.fr API. Commonly, all methods take <a class="el" href="">ApiQueryType</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4201a0dde5026f2bc2a0d63cc119a9fc" name="a4201a0dde5026f2bc2a0d63cc119a9fc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4201a0dde5026f2bc2a0d63cc119a9fc">&#9670;&#160;</a></span>GetData()</h2>
 
@@ -144,14 +149,58 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UserThreads</b><code> 
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
+<p>The main method used to retrieve data from the ScreenScraper API. <br  />
+ </p>
+<p><br  />
+ <br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">credentials</td><td>Request Credentials</td></tr>
-    <tr><td class="paramname">apiServerParameters</td><td>Server Parameters</td></tr>
-    <tr><td class="paramname">userThreads</td><td>Specify number of API threads available to user</td></tr>
+    <tr><td class="paramname">credentials</td><td>API and User credentials</td></tr>
+    <tr><td class="paramname">apiServerParameters</td><td>API and Query Server Parameters</td></tr>
+    <tr><td class="paramname">userThreads</td><td>Specify number of API threads available to the user's account</td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0b2ed64856847152ac2cb6ba6a99c8e3" name="a0b2ed64856847152ac2cb6ba6a99c8e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b2ed64856847152ac2cb6ba6a99c8e3">&#9670;&#160;</a></span>GetListOrInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a> stigzler.Screenscraper.GetData.GetListOrInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a>&#160;</td>
+          <td class="paramname"><em>queryType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Simple query to return the relevant lists from the API. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queryType</td><td>The type of query to perform.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Viable queryTypes: </p><table class="doxtable">
+<tr>
+<th>Type </th><th>description   </th></tr>
+<tr>
+<td cref="ApiQueryType.ClassificaitonList">ApiQueryType.ClassificaitonList </td><td>Returns all age Classifications  </td></tr>
+<tr>
+<td cref="ApiQueryType.GameInfoList">ApiQueryType.GameInfoList </td><td><p class="starttd">This returns the different game data properties. </p>
+<p class="endtd">Family, Mode, Number, Resolution, Themes</p>
+</td></tr>
+</table>
+<dl class="section return"><dt>Returns</dt><dd><p class="startdd"><code>ApiGetOutcome</code> </p>
+<p class="enddd">The <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html#a8016a7eaa25fe72ac519752cbb64f4ea" title="This varies depending on the ApiQueryGroup: Type description   Enums.ApiQueryGroup....">ApiGetOutcome.Data</a> in this case is the returned xml/json or any error message</p>
+</dd></dl>
 
 </div>
 </div>

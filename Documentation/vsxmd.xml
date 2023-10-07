@@ -4,6 +4,36 @@
         <name>stigzler.Screenscraper</name>
     </assembly>
     <members>
+        <member name="T:stigzler.Screenscraper.Data.Models.Credentials">
+            <summary>
+            User credentials for use with the ScreenScraper API
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.Credentials.DeveloperID">
+            <summary>
+            The Api Developer ID
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.Credentials.DeveloperPassword">
+            <summary>
+            The Api Developer Password
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.Credentials.DeveloperSoftware">
+            <summary>
+            The ApiKey Developer Software Name
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.Credentials.UserID">
+            <summary>
+            The ScreenScraper User ID
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.Credentials.UserPassword">
+            <summary>
+            The ScreenScraper User Password
+            </summary>
+        </member>
         <member name="P:stigzler.Screenscraper.Data.Models.APIDownloadParameters.CRC">
             <summary>
             CRC of the media file
@@ -39,6 +69,14 @@
             ID of the relevant object. E.g. for GameImages query this would be the GameID. For GameOrganisationImages, the OrganisationID
             </summary>
         </member>
+        <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameInfoList">
+            <summary>
+            This returns the different types of game information.
+            <example>
+            Eg. Family, Mode, Number, Resolution, Themes
+            </example>
+            </summary>
+        </member>
         <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameVideoDownload">
             <summary>
             Downloads video for specified Game
@@ -65,14 +103,23 @@
             Detail of the data object being proceeded. E.g. RomFilename or GameName
             </summary>
         </member>
+        <member name="T:stigzler.Screenscraper.GetData">
+            <summary>
+            This is the main Class used to retrieve data from the 
+            ScreenScraper.fr API.
+            </summary>
+        </member>
         <member name="M:stigzler.Screenscraper.GetData.#ctor(stigzler.Screenscraper.Data.Models.Credentials,stigzler.Screenscraper.Data.Models.ApiServerParameters,System.Int32)">
             <summary>
-            
-            </summary>
-            <param name="credentials">Request Credentials</param>
-            <param name="apiServerParameters">Server Parameters</param>
-            <param name="userThreads">Specify number of API threads available to user</param>
+            <para>The main method used to retrieve data from the 
+            ScreenScraper API.  
+            </para>    
+            </summary>        
+            <param name="credentials">API and User credentials</param>
+            <param name="apiServerParameters">API and Query Server Parameters</param>
+            <param name="userThreads">Specify number of API threads available to the user's account</param>
         </member>
+        <!-- Badly formed XML comment ignored for member "M:stigzler.Screenscraper.GetData.GetListOrInfo(stigzler.Screenscraper.Enums.ApiQueryType)" -->
         <member name="P:stigzler.Screenscraper.ModifiedNet.WebClient.Timeout">
             <summary>
             Timeout to apply in milliseconds

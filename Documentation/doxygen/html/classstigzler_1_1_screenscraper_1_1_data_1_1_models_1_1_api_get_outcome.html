@@ -81,26 +81,44 @@ $(function() {
   <div class="headertitle"><div class="title">stigzler.Screenscraper.Data.Models.ApiGetOutcome Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>API query results. This provides a data object to the consumer which holds details of the outcome of any API Get calls.  
+ <a href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a41e402f7511f1368f91f24796f8510d3" id="r_a41e402f7511f1368f91f24796f8510d3"><td class="memItemLeft" align="right" valign="top"><a id="a41e402f7511f1368f91f24796f8510d3" name="a41e402f7511f1368f91f24796f8510d3"></a>
 Uri&#160;</td><td class="memItemRight" valign="bottom"><b>Uri</b></td></tr>
+<tr class="memdesc:a41e402f7511f1368f91f24796f8510d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The Query Uri used. <br /></td></tr>
 <tr class="separator:a41e402f7511f1368f91f24796f8510d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8016a7eaa25fe72ac519752cbb64f4ea" id="r_a8016a7eaa25fe72ac519752cbb64f4ea"><td class="memItemLeft" align="right" valign="top"><a id="a8016a7eaa25fe72ac519752cbb64f4ea" name="a8016a7eaa25fe72ac519752cbb64f4ea"></a>
 object&#160;</td><td class="memItemRight" valign="bottom"><b>Data</b></td></tr>
+<tr class="memdesc:a8016a7eaa25fe72ac519752cbb64f4ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">This varies depending on the <code cref="Enums.ApiQueryGroup">ApiQueryGroup</code>: </p><table class="doxtable">
+<tr>
+<th>Type </th><th>description   </th></tr>
+<tr>
+<td cref="Enums.ApiQueryGroup.InfoAndLists">Enums.ApiQueryGroup.InfoAndLists </td><td>Data is the xml/json returned by the API  </td></tr>
+<tr>
+<td cref="Enums.ApiQueryGroup.Downloads">Enums.ApiQueryGroup.Downloads </td><td>This returns the successful filename if the API Success = true. Otherwise, it returns the html text that helps with understanding the problem.   </td></tr>
+</table>
+<br /></td></tr>
 <tr class="separator:a8016a7eaa25fe72ac519752cbb64f4ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62ccf661ab947f515a5ed96715a3884c" id="r_a62ccf661ab947f515a5ed96715a3884c"><td class="memItemLeft" align="right" valign="top"><a id="a62ccf661ab947f515a5ed96715a3884c" name="a62ccf661ab947f515a5ed96715a3884c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>Successfull</b> = false</td></tr>
+<tr class="memdesc:a62ccf661ab947f515a5ed96715a3884c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the operation is successful. The definition of success varies by query type. E.g. a successful GameImageDownload if that the file was found and downloaded. A successful GameRomSearch is if a match was found. <br /></td></tr>
 <tr class="separator:a62ccf661ab947f515a5ed96715a3884c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cb5490d44d903a8bbb1cd904cf68218" id="r_a6cb5490d44d903a8bbb1cd904cf68218"><td class="memItemLeft" align="right" valign="top"><a id="a6cb5490d44d903a8bbb1cd904cf68218" name="a6cb5490d44d903a8bbb1cd904cf68218"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>StatusCode</b> = -1</td></tr>
+<tr class="memdesc:a6cb5490d44d903a8bbb1cd904cf68218"><td class="mdescLeft">&#160;</td><td class="mdescRight">The http status code that results from the query. -1 means error wasn't from a HttpError. <br /></td></tr>
 <tr class="separator:a6cb5490d44d903a8bbb1cd904cf68218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2c64372a1883d7a05c1c9e270ccebae" id="r_ac2c64372a1883d7a05c1c9e270ccebae"><td class="memItemLeft" align="right" valign="top"><a id="ac2c64372a1883d7a05c1c9e270ccebae" name="ac2c64372a1883d7a05c1c9e270ccebae"></a>
 Exception&#160;</td><td class="memItemRight" valign="bottom"><b>Exception</b> = null</td></tr>
+<tr class="memdesc:ac2c64372a1883d7a05c1c9e270ccebae"><td class="mdescLeft">&#160;</td><td class="mdescRight">If an exception is raised from the query, it is returned via this property. <br /></td></tr>
 <tr class="separator:ac2c64372a1883d7a05c1c9e270ccebae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>API query results. This provides a data object to the consumer which holds details of the outcome of any API Get calls. </p>
+</div><hr/>The documentation for this class was generated from the following file:<ul>
 <li>stigzler.Screenscraper/Data/Models/<b>ApiGetOutcome.cs</b></li>
 </ul>
 </div><!-- contents -->

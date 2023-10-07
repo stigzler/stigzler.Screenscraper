@@ -34,7 +34,13 @@ namespace stigzler.Screenscraper.Enums
         ClassificaitonList,
         SystemMediaList,
         GameMediaList,
-        GameInfoList,       // This returns the different types of info. Eg. Family, Mode, Number, Resolution, Themes
+        /// <summary>
+        /// This returns the different types of game information.
+        /// <example>
+        /// Eg. Family, Mode, Number, Resolution, Themes
+        /// </example>
+        /// </summary>
+        GameInfoList,
         RomInfoList,
         SystemList,
         GameNameSearch,
@@ -43,8 +49,8 @@ namespace stigzler.Screenscraper.Enums
         AddGameInfo,
         GameImageDownload,
         /// <summary>
-        /// Downloads video for specified Game
-        /// Required: <c cref="ApiQueryParameter">ApiQueryParameters:</c> SystemID, GameID, MediaTypeName
+        /// Downloads video for specified Game. 
+        /// Requires <c cref="ApiQueryParameter">ApiQueryParameters:</c> SystemID, GameID, MediaTypeName
         /// </summary>
         GameVideoDownload,
         GameManualDownload,
@@ -54,7 +60,7 @@ namespace stigzler.Screenscraper.Enums
         SystemVideoDownload
     }
 
- 
+
 
     public enum ApiQueryParameter
     {
