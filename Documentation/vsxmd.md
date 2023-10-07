@@ -121,7 +121,7 @@ stigzler.Screenscraper.Enums
 ##### Summary
 
 Download 
-Requires: SystemID, GameID, MediaTypeName (despite its redundancy)
+Requires: ``, GameID, MediaTypeName (despite its redundancy)
 
 <a name='T-stigzler-Screenscraper-GetData'></a>
 ## GetData `type`
