@@ -42,7 +42,7 @@
         <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameVideoDownload">
             <summary>
             Download 
-            Requires: <c cref="F:stigzler.Screenscraper.Enums.ApiQueryParameter.SystemID"/>, GameID, MediaTypeName (despite its redundancy)
+            Requires: <c cref="F:stigzler.Screenscraper.Enums.ApiQueryParameter.SystemID">SystemID</c>, GameID, MediaTypeName (despite its redundancy)
             </summary>
         </member>
         <member name="P:stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs.ProgressPercentage">
