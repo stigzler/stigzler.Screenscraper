@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,11 +24,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="caveman-clipart-transparent-2.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo-128x128.png"/></td>
   <td id="projectalign">
    <div id="projectname">Screenscraper Wrapper
    </div>
-   <div id="projectbrief">Synopsis blah</div>
+   <div id="projectbrief">A wrapper exposing the ScreenScaper API</div>
   </td>
  </tr>
  </tbody>
@@ -48,6 +52,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classstigzler_1_1_screenscraper_1_1_get_data.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +90,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacestigzler.html">stigzler</a></li><li class="navelem"><a class="el" href="namespacestigzler_1_1_screenscraper.html">Screenscraper</a></li><li class="navelem"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">GetData</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -83,43 +99,50 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>This is the main Class used to retrieve data from the ScreenScraper.fr API. Commonly, all methods take <a class="el" href="">ApiQueryType</a>.  
+<p>This is the main Class used to retrieve data from the ScreenScraper.fr API. Commonly, all Get requests take <a class="el" href="">ApiQueryType</a>.  
  <a href="classstigzler_1_1_screenscraper_1_1_get_data.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4201a0dde5026f2bc2a0d63cc119a9fc" id="r_a4201a0dde5026f2bc2a0d63cc119a9fc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a4201a0dde5026f2bc2a0d63cc119a9fc">GetData</a> (<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html">Credentials</a> credentials, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters.html">ApiServerParameters</a> apiServerParameters, int userThreads)</td></tr>
-<tr class="separator:a4201a0dde5026f2bc2a0d63cc119a9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace5e556457cdf41772da7db991c169ff" id="r_ace5e556457cdf41772da7db991c169ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#ace5e556457cdf41772da7db991c169ff">GetData</a> (<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_credentials.html">ApiCredentials</a> credentials, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters.html">ApiServerParameters</a> apiServerParameters, int userThreads)</td></tr>
+<tr class="separator:ace5e556457cdf41772da7db991c169ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0b2ed64856847152ac2cb6ba6a99c8e3" id="r_a0b2ed64856847152ac2cb6ba6a99c8e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a0b2ed64856847152ac2cb6ba6a99c8e3">GetListOrInfo</a> (<a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a> queryType)</td></tr>
 <tr class="memdesc:a0b2ed64856847152ac2cb6ba6a99c8e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple query to return the relevant lists from the API.  <br /></td></tr>
 <tr class="separator:a0b2ed64856847152ac2cb6ba6a99c8e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab428b5acb161ab6c3c8baf924b94c753" id="r_ab428b5acb161ab6c3c8baf924b94c753"><td class="memItemLeft" align="right" valign="top"><a id="ab428b5acb161ab6c3c8baf924b94c753" name="ab428b5acb161ab6c3c8baf924b94c753"></a>
-<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a>&#160;</td><td class="memItemRight" valign="bottom"><b>GetFile</b> (<a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a> queryType, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html">APIDownloadParameters</a> downloadParameters, string destinationFilename)</td></tr>
+<tr class="memitem:ab428b5acb161ab6c3c8baf924b94c753" id="r_ab428b5acb161ab6c3c8baf924b94c753"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#ab428b5acb161ab6c3c8baf924b94c753">GetFile</a> (<a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a> queryType, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html">APIDownloadParameters</a> downloadParameters, string destinationFilename)</td></tr>
+<tr class="memdesc:ab428b5acb161ab6c3c8baf924b94c753"><td class="mdescLeft">&#160;</td><td class="mdescRight">Downloads a file if one available. Covers various download functions for Game and System Images/Videos/Manuals/Company/Genre etc.  <br /></td></tr>
 <tr class="separator:ab428b5acb161ab6c3c8baf924b94c753"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19066010864b23eb50caa12e498e56d5" id="r_a19066010864b23eb50caa12e498e56d5"><td class="memItemLeft" align="right" valign="top"><a id="a19066010864b23eb50caa12e498e56d5" name="a19066010864b23eb50caa12e498e56d5"></a>
-List&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetGamesInfo</b> (int systemID, List&lt; string &gt; romNames, CancellationToken cancellationToken, IProgress&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html">ProgressChangedEventArgs</a> &gt; progress=null)</td></tr>
-<tr class="separator:a19066010864b23eb50caa12e498e56d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cd01e44099fe2d85654740dbe4bf6bd" id="r_a8cd01e44099fe2d85654740dbe4bf6bd"><td class="memItemLeft" align="right" valign="top">List&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a8cd01e44099fe2d85654740dbe4bf6bd">GetGamesInfo</a> (List&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html">ApiSearchParameters</a> &gt; gameSearchParametersList, <a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a> queryType, CancellationToken? cancellationToken=null, IProgress&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html">EventArgs.ProgressChangedEventArgs</a> &gt; progress=null)</td></tr>
+<tr class="memdesc:a8cd01e44099fe2d85654740dbe4bf6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets game information via romname or gamename. Query types supported: GameNameSearch, GameRomSearch.  <br /></td></tr>
+<tr class="separator:a8cd01e44099fe2d85654740dbe4bf6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93caeea0f16943bad40fcd37b640091e" id="r_a93caeea0f16943bad40fcd37b640091e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a93caeea0f16943bad40fcd37b640091e">GetGameInfo</a> (<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html">ApiSearchParameters</a> gameSearchParameters, <a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a> queryType, CancellationToken? cancellationToken=null, IProgress&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html">EventArgs.ProgressChangedEventArgs</a> &gt; progress=null)</td></tr>
+<tr class="memdesc:a93caeea0f16943bad40fcd37b640091e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets game information via romname or gamename. Query types supported: GameNameSearch, GameRomSearch.  <br /></td></tr>
+<tr class="separator:a93caeea0f16943bad40fcd37b640091e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a151405ad38e842347cf46060a95b968d" id="r_a151405ad38e842347cf46060a95b968d"><td class="memItemLeft" align="right" valign="top"><a id="a151405ad38e842347cf46060a95b968d" name="a151405ad38e842347cf46060a95b968d"></a>
-<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html">Credentials</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Credentials</b><code> [get, set]</code></td></tr>
-<tr class="separator:a151405ad38e842347cf46060a95b968d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cdc49d56c69b301c1d0ca378ee43dd6" id="r_a6cdc49d56c69b301c1d0ca378ee43dd6"><td class="memItemLeft" align="right" valign="top"><a id="a6cdc49d56c69b301c1d0ca378ee43dd6" name="a6cdc49d56c69b301c1d0ca378ee43dd6"></a>
+<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_credentials.html">ApiCredentials</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Credentials</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6cdc49d56c69b301c1d0ca378ee43dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Api and User credentials for accessing the API. <br /></td></tr>
+<tr class="separator:a6cdc49d56c69b301c1d0ca378ee43dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2404d1fff5ffa1ea4ed20d2948ad8bc7" id="r_a2404d1fff5ffa1ea4ed20d2948ad8bc7"><td class="memItemLeft" align="right" valign="top"><a id="a2404d1fff5ffa1ea4ed20d2948ad8bc7" name="a2404d1fff5ffa1ea4ed20d2948ad8bc7"></a>
 <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters.html">ApiServerParameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ApiParameters</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a2404d1fff5ffa1ea4ed20d2948ad8bc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Api specific parameters. ApiServerParameters <br /></td></tr>
 <tr class="separator:a2404d1fff5ffa1ea4ed20d2948ad8bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13a633d939a74fb392b050e5e91a3b92" id="r_a13a633d939a74fb392b050e5e91a3b92"><td class="memItemLeft" align="right" valign="top"><a id="a13a633d939a74fb392b050e5e91a3b92" name="a13a633d939a74fb392b050e5e91a3b92"></a>
 MetadataOutput&#160;</td><td class="memItemRight" valign="bottom"><b>MetadataOutputFormat</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:a13a633d939a74fb392b050e5e91a3b92"><td class="mdescLeft">&#160;</td><td class="mdescRight">What format for any metadata output (xml or json) <br /></td></tr>
 <tr class="separator:a13a633d939a74fb392b050e5e91a3b92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac114272b331d4944eb4764d0e5bd56a2" id="r_ac114272b331d4944eb4764d0e5bd56a2"><td class="memItemLeft" align="right" valign="top"><a id="ac114272b331d4944eb4764d0e5bd56a2" name="ac114272b331d4944eb4764d0e5bd56a2"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>UserThreads</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:ac114272b331d4944eb4764d0e5bd56a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">How many threads the screenscraper User has available when using the API. <br /></td></tr>
 <tr class="separator:ac114272b331d4944eb4764d0e5bd56a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This is the main Class used to retrieve data from the ScreenScraper.fr API. Commonly, all methods take <a class="el" href="">ApiQueryType</a>. </p>
+<div class="textblock"><p>This is the main Class used to retrieve data from the ScreenScraper.fr API. Commonly, all Get requests take <a class="el" href="">ApiQueryType</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a4201a0dde5026f2bc2a0d63cc119a9fc" name="a4201a0dde5026f2bc2a0d63cc119a9fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4201a0dde5026f2bc2a0d63cc119a9fc">&#9670;&#160;</a></span>GetData()</h2>
+<a id="ace5e556457cdf41772da7db991c169ff" name="ace5e556457cdf41772da7db991c169ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace5e556457cdf41772da7db991c169ff">&#9670;&#160;</a></span>GetData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -127,7 +150,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UserThreads</b><code> 
         <tr>
           <td class="memname">stigzler.Screenscraper.GetData.GetData </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html">Credentials</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_credentials.html">ApiCredentials</a>&#160;</td>
           <td class="paramname"><em>credentials</em>, </td>
         </tr>
         <tr>
@@ -165,6 +188,161 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UserThreads</b><code> 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab428b5acb161ab6c3c8baf924b94c753" name="ab428b5acb161ab6c3c8baf924b94c753"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab428b5acb161ab6c3c8baf924b94c753">&#9670;&#160;</a></span>GetFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a> stigzler.Screenscraper.GetData.GetFile </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a>&#160;</td>
+          <td class="paramname"><em>queryType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html">APIDownloadParameters</a>&#160;</td>
+          <td class="paramname"><em>downloadParameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>destinationFilename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Downloads a file if one available. Covers various download functions for Game and System Images/Videos/Manuals/Company/Genre etc. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">queryType</td><td>The type of Download Query.</td></tr>
+    <tr><td class="paramname">downloadParameters</td><td>Parameters related to the download.</td></tr>
+    <tr><td class="paramname">destinationFilename</td><td>The full filename to save the file as (with path, filename and extension).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exceptions.QueryMismatchException</td><td>QueryMismatchException thrown if wrong form of query sent to this method. Only takes download queries. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>An ApiGetOutcome object containing pertinent results of the Get request. The <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html#a8016a7eaa25fe72ac519752cbb64f4ea" title="This varies depending on the ApiQueryGroup: Type description   Enums.ApiQueryGroup....">ApiGetOutcome.Data</a> in this case is the returned xml/json or any error message</dd></dl>
+
+</div>
+</div>
+<a id="a93caeea0f16943bad40fcd37b640091e" name="a93caeea0f16943bad40fcd37b640091e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93caeea0f16943bad40fcd37b640091e">&#9670;&#160;</a></span>GetGameInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a> stigzler.Screenscraper.GetData.GetGameInfo </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html">ApiSearchParameters</a>&#160;</td>
+          <td class="paramname"><em>gameSearchParameters</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a>&#160;</td>
+          <td class="paramname"><em>queryType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken?&#160;</td>
+          <td class="paramname"><em>cancellationToken</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IProgress&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html">EventArgs::ProgressChangedEventArgs</a> &gt;&#160;</td>
+          <td class="paramname"><em>progress</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets game information via romname or gamename. Query types supported: GameNameSearch, GameRomSearch. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameSearchParameters</td><td>Parameters for the game search</td></tr>
+    <tr><td class="paramname">queryType</td><td>Type of query to return. Query types supported: GameNameSearch, GameRomSearch</td></tr>
+    <tr><td class="paramname">cancellationToken</td><td>Any cancellation token</td></tr>
+    <tr><td class="paramname">progress</td><td>IProgress object for updates on progress.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a8cd01e44099fe2d85654740dbe4bf6bd" name="a8cd01e44099fe2d85654740dbe4bf6bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cd01e44099fe2d85654740dbe4bf6bd">&#9670;&#160;</a></span>GetGamesInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html">ApiGetOutcome</a> &gt; stigzler.Screenscraper.GetData.GetGamesInfo </td>
+          <td>(</td>
+          <td class="paramtype">List&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html">ApiSearchParameters</a> &gt;&#160;</td>
+          <td class="paramname"><em>gameSearchParametersList</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacestigzler_1_1_screenscraper_1_1_enums.html#a52a03856ee91af59d18b53db17154aa8">ApiQueryType</a>&#160;</td>
+          <td class="paramname"><em>queryType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken?&#160;</td>
+          <td class="paramname"><em>cancellationToken</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">IProgress&lt; <a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html">EventArgs::ProgressChangedEventArgs</a> &gt;&#160;</td>
+          <td class="paramname"><em>progress</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets game information via romname or gamename. Query types supported: GameNameSearch, GameRomSearch. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">gameSearchParametersList</td><td>Parameters for each game search</td></tr>
+    <tr><td class="paramname">queryType</td><td>Type of query to return. Query types supported: GameNameSearch, GameRomSearch</td></tr>
+    <tr><td class="paramname">cancellationToken</td><td>Any cancellation token</td></tr>
+    <tr><td class="paramname">progress</td><td>IProgress object for updates on progress</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
 <a id="a0b2ed64856847152ac2cb6ba6a99c8e3" name="a0b2ed64856847152ac2cb6ba6a99c8e3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0b2ed64856847152ac2cb6ba6a99c8e3">&#9670;&#160;</a></span>GetListOrInfo()</h2>
 
@@ -198,9 +376,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UserThreads</b><code> 
 <p class="endtd">Family, Mode, Number, Resolution, Themes</p>
 </td></tr>
 </table>
-<dl class="section return"><dt>Returns</dt><dd><p class="startdd"><code>ApiGetOutcome</code> </p>
-<p class="enddd">The <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html#a8016a7eaa25fe72ac519752cbb64f4ea" title="This varies depending on the ApiQueryGroup: Type description   Enums.ApiQueryGroup....">ApiGetOutcome.Data</a> in this case is the returned xml/json or any error message</p>
-</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Exceptions.QueryMismatchException</td><td>QueryMismatchException thrown if wrong form of query sent to this method. Only takes download queries. </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Exceptions.QueryMismatchException</p>
+<dl class="section return"><dt>Returns</dt><dd>An ApiGetOutcome object containing pertinent results of the Get request. The <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_get_outcome.html#a8016a7eaa25fe72ac519752cbb64f4ea" title="This varies depending on the ApiQueryGroup: Type description   Enums.ApiQueryGroup....">ApiGetOutcome.Data</a> in this case is the returned xml/json or any error message</dd></dl>
 
 </div>
 </div>
@@ -208,9 +391,13 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>UserThreads</b><code> 
 <li>stigzler.Screenscraper/<b>GetData.cs</b></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacestigzler.html">stigzler</a></li><li class="navelem"><a class="el" href="namespacestigzler_1_1_screenscraper.html">Screenscraper</a></li><li class="navelem"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">GetData</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

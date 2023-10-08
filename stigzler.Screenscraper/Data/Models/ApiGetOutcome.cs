@@ -53,5 +53,19 @@ namespace stigzler.Screenscraper.Data.Models
         /// If an exception is raised from the query, it is returned via this property
         /// </summary>
         public Exception Exception = null; // only populated on any errors making the WebRequest
+
+        public override string ToString()
+        {
+            if (Successfull)
+            {
+                return "Operation successful. Status Code: " + StatusCode;
+            }
+            else
+            {
+            return "Operation unsuccessful. Status Code: " + StatusCode;
+
+            }
+        }
+
     }
 }

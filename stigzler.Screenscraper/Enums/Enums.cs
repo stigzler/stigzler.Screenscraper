@@ -71,7 +71,13 @@ namespace stigzler.Screenscraper.Enums
         GameID,
         GenreID,
         OrganisationID,
-        RomFilename,
+
+        // Search
+        RomName,
+        GameName,
+        RomFileType,
+        RomSize,
+        SeriaNumber,
 
         // Download
         CRC,

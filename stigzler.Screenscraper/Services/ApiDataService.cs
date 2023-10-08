@@ -134,13 +134,17 @@ namespace stigzler.Screenscraper.Services
         /// <returns></returns>
         internal List<ApiGetOutcome> GetStrings(Dictionary<string, Uri> objectUris,
                                                     string objectName,
-                                                    CancellationToken cancellationToken,
+                                                    CancellationToken? cancellationToken,
                                                     IProgress<ProgressChangedEventArgs> progress)
         {
 
             Stopwatch sw = Stopwatch.StartNew();
             ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
 
+            CancellationToken resolvedCancellationToken;
+            if (cancellationToken != null) { resolvedCancellationToken = (CancellationToken) cancellationToken; }
+            else { resolvedCancellationToken = new CancellationToken(); }
+            
             ParallelOptions parallelOptions = new ParallelOptions()
             {
                 MaxDegreeOfParallelism = maxThreads,
@@ -150,20 +154,24 @@ namespace stigzler.Screenscraper.Services
 
             Parallel.ForEach(objectUris, parallelOptions, (KeyValuePair<string, Uri> objectUri, ParallelLoopState state) =>
             {
-                if (cancellationToken.IsCancellationRequested)
+                if (resolvedCancellationToken != null && resolvedCancellationToken.IsCancellationRequested)
                 {
                     state.Break();
                 }
                 var outcome = GetString(objectUri.Value);
                 outcomes.Add(outcome);
 
-                progress.Report(new EventArgs.ProgressChangedEventArgs
+
+                if (progress != null)
                 {
-                    DataObject = "Processed " + objectName + " (" + outcomes.Count + "/" + total + "). Successful: " + outcome.Successfull + " (status: " + outcome.StatusCode + "): " + objectUri.Key,
-                    Uri = objectUri.Value,
-                    ProgressPercentage = (int)((double)outcomes.Count / total * 100),
-                    Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
-                });
+                    progress.Report(new EventArgs.ProgressChangedEventArgs
+                    {
+                        DataObject = "Processed " + objectName + " (" + outcomes.Count + "/" + total + "). Successful: " + outcome.Successfull + " (status: " + outcome.StatusCode + "): " + objectUri.Key,
+                        Uri = objectUri.Value,
+                        ProgressPercentage = (int)((double)outcomes.Count / total * 100),
+                        Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
+                    });
+                }
 
             });
 

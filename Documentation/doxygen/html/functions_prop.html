@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,11 +24,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="caveman-clipart-transparent-2.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo-128x128.png"/></td>
   <td id="projectalign">
    <div id="projectname">Screenscraper Wrapper
    </div>
-   <div id="projectbrief">Synopsis blah</div>
+   <div id="projectbrief">A wrapper exposing the ScreenScaper API</div>
   </td>
  </tr>
  </tbody>
@@ -49,6 +53,22 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('functions_prop.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -71,28 +91,89 @@ $(function() {
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all documented properties with links to the class documentation for each member:</div><ul>
-<li>CRC&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#ae0bf444f2f6c761c8018774a0d41004b">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a></li>
+<div class="textblock">Here is a list of all documented properties with links to the class documentation for each member:</div>
+
+<h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
+<li>AcceptedQueryTypes&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_exceptions_1_1_query_mismatch_exception.html#a884565f84bf3c0d31c8c1e82d983cb85">stigzler.Screenscraper.Exceptions.QueryMismatchException</a></li>
+<li>ApiParameters&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a2404d1fff5ffa1ea4ed20d2948ad8bc7">stigzler.Screenscraper.GetData</a></li>
+<li>ApiPath&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters.html#a786e84572a5dac1aff16c8946529934f">stigzler.Screenscraper.Data.Models.ApiServerParameters</a></li>
+<li>AttemptedQueryType&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_exceptions_1_1_query_mismatch_exception.html#acacc66086ba8ac26b5e3f22c947af781">stigzler.Screenscraper.Exceptions.QueryMismatchException</a></li>
+</ul>
+
+
+<h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>CorrectGroup&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_exceptions_1_1_query_mismatch_exception.html#aa2cdb0b11c7578b02b0d45288e2a750f">stigzler.Screenscraper.Exceptions.QueryMismatchException</a></li>
+<li>CRC&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#ae0bf444f2f6c761c8018774a0d41004b">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a>, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#abc4b6d34783bb522487265bbbe0e1828">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+<li>Credentials&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a6cdc49d56c69b301c1d0ca378ee43dd6">stigzler.Screenscraper.GetData</a></li>
+</ul>
+
+
+<h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
 <li>DataObject&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html#abeb56a5f8ad7a6ce9c547287f20fc232">stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs</a></li>
-<li>DeveloperID&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html#a35690220e7c0336d2ef95622cd9d6556">stigzler.Screenscraper.Data.Models.Credentials</a></li>
-<li>DeveloperPassword&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html#a8667bb87694e2b9cf63b4596b0372fdb">stigzler.Screenscraper.Data.Models.Credentials</a></li>
-<li>DeveloperSoftware&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html#afaefaec704e1e9f239b9691c6b6c0a19">stigzler.Screenscraper.Data.Models.Credentials</a></li>
-<li>MD5&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a91d8024e7d202e4c954e45fac1a989ad">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a></li>
+<li>DeveloperID&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_credentials.html#a6b509369d66297381f94d12d8cc641e8">stigzler.Screenscraper.Data.Models.ApiCredentials</a></li>
+<li>DeveloperPassword&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_credentials.html#ad6f7f81f8198c48aac8e4d56169c7b5a">stigzler.Screenscraper.Data.Models.ApiCredentials</a></li>
+<li>DeveloperSoftware&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_credentials.html#a6e73b1bb30ba36b11bd629fbee237c65">stigzler.Screenscraper.Data.Models.ApiCredentials</a></li>
+</ul>
+
+
+<h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>GameID&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#a3a55bda27b677c892885f147185d31c3">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+<li>GameName&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#a5599418773a1918fb5dff91662c6cccb">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+</ul>
+
+
+<h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>HostAddress&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters.html#a04e6adef98c7455b7d0412b3c82535c8">stigzler.Screenscraper.Data.Models.ApiServerParameters</a></li>
+<li>HttpTimeout&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_server_parameters.html#a09d29309ccc71111762667b57a9ef10a">stigzler.Screenscraper.Data.Models.ApiServerParameters</a></li>
+</ul>
+
+
+<h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>MD5&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a91d8024e7d202e4c954e45fac1a989ad">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a>, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#af5348aed01041d09114faa4a9a5f82b3">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
 <li>MediaFormat&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a1e92ddd54d5dfb3478768a8d4b8d8a97">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a></li>
 <li>MediaTypeName&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a6d67e27a01251bb4926b45b1c1ca5606">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a></li>
+<li>MetadataOutputFormat&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a13a633d939a74fb392b050e5e91a3b92">stigzler.Screenscraper.GetData</a></li>
+</ul>
+
+
+<h3><a id="index_o" name="index_o"></a>- o -</h3><ul>
 <li>ObjectID&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a78a85033e9de5d9636659e8ac02965f0">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a></li>
+</ul>
+
+
+<h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>ProgressPercentage&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html#affca13980089da0d2f8b2aaa0118d51d">stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs</a></li>
+</ul>
+
+
+<h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
 <li>Rate&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html#ab83be9979108b566460b04f73322cd63">stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs</a></li>
-<li>SHA1&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a3ac202b3e8b4c4d77a5f2a862f277247">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a></li>
-<li>SystemID&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a8cc5d1abad693f90c0804800e456fc06">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a></li>
+<li>RomFileType&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#a475e448d0b70725b77b52d7dc73ae050">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+<li>RomName&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#ade32884f0cb6919a03b565aa7ebb5e73">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+<li>RomSize&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#abc9d22939034140820fb0d18119d373f">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+</ul>
+
+
+<h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>SerialNumber&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#ab819391a79270d8172be17498817a8d7">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+<li>SHA1&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a3ac202b3e8b4c4d77a5f2a862f277247">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a>, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#a18ad167c8e288b579f3676146f0a2250">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+<li>SystemID&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_a_p_i_download_parameters.html#a8cc5d1abad693f90c0804800e456fc06">stigzler.Screenscraper.Data.Models.APIDownloadParameters</a>, <a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_search_parameters.html#ac577dcbc2c956822d9ba9f8e8854f982">stigzler.Screenscraper.Data.Models.ApiSearchParameters</a></li>
+</ul>
+
+
+<h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
 <li>Uri&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_event_args_1_1_progress_changed_event_args.html#a855b56b7e11c1a500a54a22e0cf0bc9e">stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs</a></li>
-<li>UserID&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html#a17cc71d5282c8f09320084b41508ceab">stigzler.Screenscraper.Data.Models.Credentials</a></li>
-<li>UserPassword&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_credentials.html#ac5915e68f98496b72a1006546536dc5e">stigzler.Screenscraper.Data.Models.Credentials</a></li>
+<li>UserID&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_credentials.html#a0856c7c584035227b7203b2123f2b51e">stigzler.Screenscraper.Data.Models.ApiCredentials</a></li>
+<li>UserPassword&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_data_1_1_models_1_1_api_credentials.html#a1f63ad1eedf16305a5572e8c9f2eadfa">stigzler.Screenscraper.Data.Models.ApiCredentials</a></li>
+<li>UserThreads&#160;:&#160;<a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#ac114272b331d4944eb4764d0e5bd56a2">stigzler.Screenscraper.GetData</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

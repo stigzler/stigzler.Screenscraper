@@ -9,7 +9,7 @@ namespace stigzler.Screenscraper.Data.Models
     /// <summary>
     /// User credentials for use with the ScreenScraper API
     /// </summary>
-    public class Credentials
+    public class ApiCredentials
     {
         /// <summary>
         /// The Api Developer ID

@@ -45,11 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Models\ApiSearchParameters.cs" />
     <Compile Include="Data\Models\ApiServerParameters.cs" />
     <Compile Include="Data\Constants.cs" />
-    <Compile Include="Data\Models\Credentials.cs" />
+    <Compile Include="Data\Models\ApiCredentials.cs" />
     <Compile Include="Data\Models\ApiGetOutcome.cs" />
     <Compile Include="Data\Models\APIDownloadParameters.cs" />
+    <Compile Include="Exceptions\QueryMismatchException.cs" />
     <Compile Include="Helpers\QueryParameter.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="EventArgs\ProgressChangedEventArgs.cs" />
@@ -58,7 +60,6 @@
     <Compile Include="ModifiedNet\WebClient.cs" />
     <Compile Include="Services\ApiDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IGetDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Archived\" />

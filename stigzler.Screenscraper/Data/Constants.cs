@@ -90,13 +90,19 @@ namespace stigzler.Screenscraper.Data
             {ApiQueryParameter.GenreID, "groupid" },
             {ApiQueryParameter.OrganisationID, "companyid" },
 
-            // Downloads
-            {ApiQueryParameter.RomFilename,"romnom" },
-            {ApiQueryParameter.MediaTypeName, "media" },
-            {ApiQueryParameter.MediaFormat, "mediaformat" },
+            // Search
+            {ApiQueryParameter.RomName,"romnom" },
+            {ApiQueryParameter.GameName, "recherche" },
             {ApiQueryParameter.CRC, "crc" },
             {ApiQueryParameter.MD5, "md5" },
             {ApiQueryParameter.SHA1, "sha1" },
+            {ApiQueryParameter.RomFileType, "romtype" },
+            {ApiQueryParameter.RomSize, "romtaille" },
+            {ApiQueryParameter.SeriaNumber, "serialnum" },
+
+            // Downloads
+            {ApiQueryParameter.MediaTypeName, "media" },
+            {ApiQueryParameter.MediaFormat, "mediaformat" },
 
             // Debug
             {ApiQueryParameter.DevDebugPassword, "devdebugpassword" },

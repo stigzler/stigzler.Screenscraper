@@ -9,6 +9,10 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -20,11 +24,11 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr id="projectrow">
-  <td id="projectlogo"><img alt="Logo" src="caveman-clipart-transparent-2.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="logo-128x128.png"/></td>
   <td id="projectalign">
    <div id="projectname">Screenscraper Wrapper
    </div>
-   <div id="projectbrief">Synopsis blah</div>
+   <div id="projectbrief">A wrapper exposing the ScreenScaper API</div>
   </td>
  </tr>
  </tbody>
@@ -48,6 +52,23 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classstigzler_1_1_screenscraper_1_1_get_data.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -69,11 +90,6 @@ $(function() {
 </div>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="namespacestigzler.html">stigzler</a></li><li class="navelem"><a class="el" href="namespacestigzler_1_1_screenscraper.html">Screenscraper</a></li><li class="navelem"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">GetData</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle"><div class="title">stigzler.Screenscraper.GetData Member List</div></div>
 </div><!--header-->
@@ -81,18 +97,22 @@ $(function() {
 
 <p>This is the complete list of members for <a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>ApiParameters</b> (defined in <a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a>)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>Credentials</b> (defined in <a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a>)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a4201a0dde5026f2bc2a0d63cc119a9fc">GetData</a>(Credentials credentials, ApiServerParameters apiServerParameters, int userThreads)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>GetFile</b>(ApiQueryType queryType, APIDownloadParameters downloadParameters, string destinationFilename) (defined in <a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a>)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>GetGamesInfo</b>(int systemID, List&lt; string &gt; romNames, CancellationToken cancellationToken, IProgress&lt; ProgressChangedEventArgs &gt; progress=null) (defined in <a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a>)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
-  <tr class="odd"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a0b2ed64856847152ac2cb6ba6a99c8e3">GetListOrInfo</a>(ApiQueryType queryType)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>MetadataOutputFormat</b> (defined in <a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a>)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>UserThreads</b> (defined in <a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a>)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a2404d1fff5ffa1ea4ed20d2948ad8bc7">ApiParameters</a></td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a6cdc49d56c69b301c1d0ca378ee43dd6">Credentials</a></td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#ace5e556457cdf41772da7db991c169ff">GetData</a>(ApiCredentials credentials, ApiServerParameters apiServerParameters, int userThreads)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#ab428b5acb161ab6c3c8baf924b94c753">GetFile</a>(ApiQueryType queryType, APIDownloadParameters downloadParameters, string destinationFilename)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a93caeea0f16943bad40fcd37b640091e">GetGameInfo</a>(ApiSearchParameters gameSearchParameters, ApiQueryType queryType, CancellationToken? cancellationToken=null, IProgress&lt; EventArgs.ProgressChangedEventArgs &gt; progress=null)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a8cd01e44099fe2d85654740dbe4bf6bd">GetGamesInfo</a>(List&lt; ApiSearchParameters &gt; gameSearchParametersList, ApiQueryType queryType, CancellationToken? cancellationToken=null, IProgress&lt; EventArgs.ProgressChangedEventArgs &gt; progress=null)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a0b2ed64856847152ac2cb6ba6a99c8e3">GetListOrInfo</a>(ApiQueryType queryType)</td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="odd"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#a13a633d939a74fb392b050e5e91a3b92">MetadataOutputFormat</a></td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html#ac114272b331d4944eb4764d0e5bd56a2">UserThreads</a></td><td class="entry"><a class="el" href="classstigzler_1_1_screenscraper_1_1_get_data.html">stigzler.Screenscraper.GetData</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
 </body>
 </html>

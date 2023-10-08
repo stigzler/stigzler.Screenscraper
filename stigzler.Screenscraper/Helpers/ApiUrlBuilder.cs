@@ -17,10 +17,10 @@ namespace stigzler.Screenscraper.Helpers
     public class ApiUrlBuilder
     {
         public MetadataOutput MetadataOutputType { get; set; } = MetadataOutput.xml;
-        public Credentials Credentials { get; set; }
+        public ApiCredentials Credentials { get; set; }
         public ApiServerParameters ServerParameters { get; set; }
 
-        public ApiUrlBuilder(Credentials credentials, ApiServerParameters serverParameters)
+        public ApiUrlBuilder(ApiCredentials credentials, ApiServerParameters serverParameters)
         {
             Credentials = credentials;
             ServerParameters = serverParameters;
@@ -31,7 +31,6 @@ namespace stigzler.Screenscraper.Helpers
             var build = new UriBuilder(ServerParameters.HostAddress);
 
             // Add Credentials and Server details
-            build.Port = (int)ServerParameters.HostPort;
             build.Path = Path.Combine(ServerParameters.ApiPath, Constants.ApiQueryPaths[queryType]);
             var query = HttpUtility.ParseQueryString(build.Query);
             query["devid"] = Credentials.DeveloperID;
@@ -46,9 +45,11 @@ namespace stigzler.Screenscraper.Helpers
             {
                 foreach (QueryParameter parameter in additionalParameters)
                 {
-                    if (parameter.Value != null)
+                    // HACK: the "-1" exclusion may not work in all scenarios. Depends on the parameter?
+                    // Although, I can't think of an instance where a parameter would have -1 as a value...
+                    if (parameter.Value != null && parameter.Value != "-1")
                     {
-                        query[Constants.ApiQueryParameters[parameter.Parameter]] = Uri.EscapeDataString(parameter.Value);                                                                                    ;
+                        query[Constants.ApiQueryParameters[parameter.Parameter]] = Uri.EscapeDataString(parameter.Value); ;
                     }
                 }
             }

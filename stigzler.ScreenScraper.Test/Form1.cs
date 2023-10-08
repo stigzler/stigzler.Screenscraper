@@ -19,6 +19,7 @@ using System.Configuration;
 using stigzler.Screenscraper.Data;
 using stig = stigzler.ScreenScraper.Test.Entities;
 using stigzler.Screenscraper.Helpers;
+using System.Runtime.InteropServices;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -28,7 +29,7 @@ namespace stigzler.ScreenScraper.Test
     public partial class Form1 : BaseForm
     {
 
-        Credentials credentials = new Credentials();
+        ApiCredentials credentials = new ApiCredentials();
         ApiServerParameters serverParameters = new ApiServerParameters();
         GetData getData;
 
@@ -76,8 +77,6 @@ namespace stigzler.ScreenScraper.Test
             LoadSettings();
 
             PopulatePrivateMembers();
-
-            ResultsDGV.DataSource = resultsBS;
         }
 
         private async Task<Task> SetupDatabase()
@@ -208,7 +207,6 @@ namespace stigzler.ScreenScraper.Test
             credentials.UserPassword = Settings.Default.Password;
 
             serverParameters.HostAddress = Settings.Default.ApiHostAddress;
-            serverParameters.HostPort = Int32.Parse(Settings.Default.ApiPort);
             serverParameters.ApiPath = Settings.Default.ApiPathRoot;
 
 
@@ -348,7 +346,7 @@ namespace stigzler.ScreenScraper.Test
                             };
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameVideo.mp4");
                             outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
-                            if (outcome.Successfull)  OpenVideoBT.Enabled = true;                        
+                            if (outcome.Successfull) OpenVideoBT.Enabled = true;
                             break;
 
                         case ApiQueryType.GameManualDownload:
@@ -361,9 +359,9 @@ namespace stigzler.ScreenScraper.Test
                             };
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameManual.pdf");
                             outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
-                            if (outcome.Successfull) OpenManualBT.Enabled = true;                    
+                            if (outcome.Successfull) OpenManualBT.Enabled = true;
                             break;
-                            
+
 
                     }
                     break;
@@ -515,9 +513,8 @@ namespace stigzler.ScreenScraper.Test
                 return;
             }
 
-
             List<string> romFilepaths = Directory.GetFiles(selectedSystem.RomFolder, "*.*", SearchOption.AllDirectories).ToList();
-            List<string> romFilenames = new List<string>();
+            List<ApiSearchParameters> serachParameters = new List<ApiSearchParameters>();
             MainOpTitleLB.Text = "Processing Roms for System: " + SystemsCB.Text;
 
             getData.UserThreads = (int)UserThreadsNUM.Value;
@@ -527,44 +524,61 @@ namespace stigzler.ScreenScraper.Test
 
             foreach (var romFilename in romFilepaths)
             {
-                romFilenames.Add(Path.GetFileName(romFilename));
+                serachParameters.Add(new ApiSearchParameters
+                {
+                    RomName = Path.GetFileName(romFilename),
+                    SystemID = selectedSystem.ID
+                });
+
+                //romFilenames.Add(Path.GetFileName(romFilename));
+
             }
 
             int systemID = (int)SystemsCB.SelectedValue;
 
             outcomes = await Task.Run(() =>
-                getData.GetGamesInfo(systemID, romFilenames, cancellationTokenSource.Token, progress));
+                getData.GetGamesInfo(serachParameters, ApiQueryType.GameRomSearch, cancellationTokenSource.Token, progress));
 
-            log("System Rom scrape complete. Now populating Database..");
 
             database.Games.RemoveAll(x => x.SystemID == systemID);
 
-            foreach (var outcome in outcomes)
+            if (SaveGamesToDbBT.Checked)
             {
-                string xmlString = outcome.Data.ToString();
-                XDocument xdoc = XDocument.Parse(xmlString);
+                log("System Rom scrape complete. Now populating Database..");
 
-                Entities.Game newGame = new Entities.Game();
-
-                newGame.SystemID = systemID;
-                newGame.ID = Convert.ToInt32(xdoc.Descendants("jeu").First().Attributes("id").First().Value);
-                newGame.MainRomFilename = xdoc.Descendants("romfilename").First().Value;
-                newGame.GameXml = outcome.Data.ToString();
-                try
+                foreach (var outcome in outcomes)
                 {
-                    newGame.Name = xdoc.Descendants("nom").First(x => x.Attribute("region").Value == "ss").Value;
-                }
-                catch (Exception)
-                {
-                    //throw;
+                    string xmlString = outcome.Data.ToString();
+                    XDocument xdoc = XDocument.Parse(xmlString);
+
+                    Entities.Game newGame = new Entities.Game();
+
+                    newGame.SystemID = systemID;
+                    newGame.ID = Convert.ToInt32(xdoc.Descendants("jeu").First().Attributes("id").First().Value);
+                    newGame.MainRomFilename = xdoc.Descendants("romfilename").First().Value;
+                    newGame.GameXml = outcome.Data.ToString();
+                    try
+                    {
+                        newGame.Name = xdoc.Descendants("nom").First(x => x.Attribute("region").Value == "ss").Value;
+                    }
+                    catch (Exception)
+                    {
+                        //throw;
+                    }
+
+                    database.Games.Add(newGame);
+
                 }
 
-                database.Games.Add(newGame);
-
-                SaveDatabase();
+                await Task.Run(() => SaveDatabase());
+                log("Games saved to database");
 
             }
 
+            MainOpTitleLB.Text = "Operation Finished.";
+            UpdatePB.Value = 0;
+            UpdateLB.Text = "";
+            UpdateRateLB.Text = "";
 
         }
 
@@ -598,6 +612,42 @@ namespace stigzler.ScreenScraper.Test
         private void OpenManualBT_Click(object sender, EventArgs e)
         {
             Process.Start(Path.Combine(Path.GetTempPath(), "GameManual.pdf"));
+        }
+
+        private async void TestBT_Click(object sender, EventArgs e)
+        {
+
+            //APIDownloadParameters downloadParameters = new APIDownloadParameters
+            //{
+            //    MediaTypeName = "manuel" +
+            //        "(" + RegionsCB.SelectedValue + ")",
+            //    ObjectID = (int)GamesCB.SelectedValue,
+            //    SystemID = (int)SystemsCB.SelectedValue,
+            //};
+            //string downloadFilename = Path.Combine(Path.GetTempPath(), "GameManual.pdf");
+            //try
+            //{
+            //    ApiGetOutcome outcome = await Task.Run(() => getData.GetFile(ApiQueryType.ClassificaitonList, downloadParameters, downloadFilename));
+            //}
+            //catch (stigzler.Screenscraper.Exceptions.QueryMismatchException error)
+            //{
+            //    Debug.WriteLine(error.ToString());
+            //    throw;
+            //}
+
+            ApiSearchParameters searchParams = new ApiSearchParameters()
+            {
+                //SystemID = 41,
+                GameID = 38005,
+                CRC = "BB7C1075",
+                //RomName = "Choplifter! (USA).7z"
+            };
+
+            var outcome = await Task.Run(() =>
+                  getData.GetGameInfo(searchParams, ApiQueryType.GameRomSearch));
+
+            log(outcome.Uri + Environment.NewLine + outcome.ToString() + ". Data: " + outcome.Data);
+
         }
     }
 

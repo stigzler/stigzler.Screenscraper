@@ -14,15 +14,15 @@ namespace stigzler.Screenscraper.ModifiedNet
         /// <summary>
         /// Timeout to apply in milliseconds
         /// </summary>
-        public int Timeout { get; set; } = 5000;
-        public WebRequest WebRequest { get; set; } 
+        internal int Timeout { get; set; } = 5000;
+        internal WebRequest WebRequest { get; set; }
 
-        public WebClient()
+        internal WebClient()
         {
             
         }
 
-        public WebClient(int timeout)
+        internal WebClient(int timeout)
         {
             Timeout = timeout;
         }
