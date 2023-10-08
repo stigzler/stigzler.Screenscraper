@@ -28,10 +28,12 @@ namespace stigzler.Screenscraper
         /// Api and User credentials for accessing the API.
         /// </summary>
         public ApiCredentials Credentials { get; set; }
+
         /// <summary>
         /// Api specific parameters. <see cref="ApiServerParameters"/>
         /// </summary>
         public ApiServerParameters ApiParameters { get; set; }
+
         /// <summary>
         /// What format for any metadata output (xml or json)
         /// </summary>
@@ -101,8 +103,6 @@ namespace stigzler.Screenscraper
             UpdateNumberThreads();
         }
 
-
-
         /// <summary>
         /// Simple query to return the relevant lists from the API
         /// </summary>
@@ -141,7 +141,6 @@ namespace stigzler.Screenscraper
             ApiGetOutcome apiGetOutcome = apiDataService.GetString(new Uri(uriStr));
             return apiGetOutcome;
         }
-
 
         /// <summary>
         /// Downloads a file if one available. Covers various download functions for 
@@ -284,7 +283,5 @@ namespace stigzler.Screenscraper
 
             return apiGetOutcomes[0];
         }
-
-
     }
 }
