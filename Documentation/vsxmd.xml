@@ -305,6 +305,17 @@
             <param name="progress">IProgress object for updates on progress</param>
             <returns></returns>
         </member>
+        <member name="M:stigzler.Screenscraper.GetData.GetGameInfo(stigzler.Screenscraper.Data.Models.ApiSearchParameters,stigzler.Screenscraper.Enums.ApiQueryType,System.Nullable{System.Threading.CancellationToken},System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
+            <summary>
+            Gets game information via romname or gamename. 
+            Query types supported: GameNameSearch, GameRomSearch
+            </summary>
+            <param name="gameSearchParameters">Parameters for the game search</param>
+            <param name="queryType">Type of query to return. Query types supported: GameNameSearch, GameRomSearch</param>
+            <param name="cancellationToken">Any cancellation token</param>
+            <param name="progress">IProgress object for updates on progress.</param>
+            <returns></returns>
+        </member>
         <member name="P:stigzler.Screenscraper.ModifiedNet.WebClient.Timeout">
             <summary>
             Timeout to apply in milliseconds

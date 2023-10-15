@@ -639,7 +639,7 @@ namespace stigzler.ScreenScraper.Test
             {
                 //SystemID = 41,
                 GameID = 38005,
-                CRC = "BB7C1075",
+                //CRC = "BB7C1075",
                 //RomName = "Choplifter! (USA).7z"
             };
 

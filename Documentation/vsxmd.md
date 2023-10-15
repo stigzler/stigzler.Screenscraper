@@ -50,6 +50,7 @@
   - [MetadataOutputFormat](#P-stigzler-Screenscraper-GetData-MetadataOutputFormat 'stigzler.Screenscraper.GetData.MetadataOutputFormat')
   - [UserThreads](#P-stigzler-Screenscraper-GetData-UserThreads 'stigzler.Screenscraper.GetData.UserThreads')
   - [GetFile(queryType,downloadParameters,destinationFilename)](#M-stigzler-Screenscraper-GetData-GetFile-stigzler-Screenscraper-Enums-ApiQueryType,stigzler-Screenscraper-Data-Models-APIDownloadParameters,System-String- 'stigzler.Screenscraper.GetData.GetFile(stigzler.Screenscraper.Enums.ApiQueryType,stigzler.Screenscraper.Data.Models.APIDownloadParameters,System.String)')
+  - [GetGameInfo(gameSearchParameters,queryType,cancellationToken,progress)](#M-stigzler-Screenscraper-GetData-GetGameInfo-stigzler-Screenscraper-Data-Models-ApiSearchParameters,stigzler-Screenscraper-Enums-ApiQueryType,System-Nullable{System-Threading-CancellationToken},System-IProgress{stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs}- 'stigzler.Screenscraper.GetData.GetGameInfo(stigzler.Screenscraper.Data.Models.ApiSearchParameters,stigzler.Screenscraper.Enums.ApiQueryType,System.Nullable{System.Threading.CancellationToken},System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})')
   - [GetGamesInfo(gameSearchParametersList,queryType,cancellationToken,progress)](#M-stigzler-Screenscraper-GetData-GetGamesInfo-System-Collections-Generic-List{stigzler-Screenscraper-Data-Models-ApiSearchParameters},stigzler-Screenscraper-Enums-ApiQueryType,System-Nullable{System-Threading-CancellationToken},System-IProgress{stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs}- 'stigzler.Screenscraper.GetData.GetGamesInfo(System.Collections.Generic.List{stigzler.Screenscraper.Data.Models.ApiSearchParameters},stigzler.Screenscraper.Enums.ApiQueryType,System.Nullable{System.Threading.CancellationToken},System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})')
 - [ProgressChangedEventArgs](#T-stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs 'stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs')
   - [DataObject](#P-stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs-DataObject 'stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs.DataObject')
@@ -464,6 +465,27 @@ An ApiGetOutcome object containing pertinent results of the Get request. The Api
 | Name | Description |
 | ---- | ----------- |
 | [stigzler.Screenscraper.Exceptions.QueryMismatchException](#T-stigzler-Screenscraper-Exceptions-QueryMismatchException 'stigzler.Screenscraper.Exceptions.QueryMismatchException') | QueryMismatchException thrown if wrong form of query sent to this method. Only takes download queries. |
+
+<a name='M-stigzler-Screenscraper-GetData-GetGameInfo-stigzler-Screenscraper-Data-Models-ApiSearchParameters,stigzler-Screenscraper-Enums-ApiQueryType,System-Nullable{System-Threading-CancellationToken},System-IProgress{stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs}-'></a>
+### GetGameInfo(gameSearchParameters,queryType,cancellationToken,progress) `method`
+
+##### Summary
+
+Gets game information via romname or gamename. 
+Query types supported: GameNameSearch, GameRomSearch
+
+##### Returns
+
+
+
+##### Parameters
+
+| Name | Type | Description |
+| ---- | ---- | ----------- |
+| gameSearchParameters | [stigzler.Screenscraper.Data.Models.ApiSearchParameters](#T-stigzler-Screenscraper-Data-Models-ApiSearchParameters 'stigzler.Screenscraper.Data.Models.ApiSearchParameters') | Parameters for the game search |
+| queryType | [stigzler.Screenscraper.Enums.ApiQueryType](#T-stigzler-Screenscraper-Enums-ApiQueryType 'stigzler.Screenscraper.Enums.ApiQueryType') | Type of query to return. Query types supported: GameNameSearch, GameRomSearch |
+| cancellationToken | [System.Nullable{System.Threading.CancellationToken}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Nullable 'System.Nullable{System.Threading.CancellationToken}') | Any cancellation token |
+| progress | [System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs}](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.IProgress 'System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs}') | IProgress object for updates on progress. |
 
 <a name='M-stigzler-Screenscraper-GetData-GetGamesInfo-System-Collections-Generic-List{stigzler-Screenscraper-Data-Models-ApiSearchParameters},stigzler-Screenscraper-Enums-ApiQueryType,System-Nullable{System-Threading-CancellationToken},System-IProgress{stigzler-Screenscraper-EventArgs-ProgressChangedEventArgs}-'></a>
 ### GetGamesInfo(gameSearchParametersList,queryType,cancellationToken,progress) `method`

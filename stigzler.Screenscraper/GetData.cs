@@ -142,6 +142,8 @@ namespace stigzler.Screenscraper
             return apiGetOutcome;
         }
 
+        
+
         /// <summary>
         /// Downloads a file if one available. Covers various download functions for 
         /// Game and System Images/Videos/Manuals/Company/Genre etc

@@ -86,7 +86,7 @@ namespace stigzler.Screenscraper.Data
 
             // IDs:
             {ApiQueryParameter.SystemID,"systemeid" },
-            {ApiQueryParameter.GameID, "jeuid" },
+            {ApiQueryParameter.GameID, "gameid" },
             {ApiQueryParameter.GenreID, "groupid" },
             {ApiQueryParameter.OrganisationID, "companyid" },
 
