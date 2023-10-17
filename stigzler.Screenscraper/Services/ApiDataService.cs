@@ -45,11 +45,11 @@ namespace stigzler.Screenscraper.Services
                     {
                         String line = streamReader.ReadLine();
 
-                        if (line == "NOMEDIA")
+                        if (line == "NOMEDIA" || line == "Problème de paramètres")
                         {
                             outcome.Successfull = false;
                             outcome.StatusCode = 200;
-                            outcome.Data = "NOMEDIA";
+                            outcome.Data = line;
                         }
                         else
                         {

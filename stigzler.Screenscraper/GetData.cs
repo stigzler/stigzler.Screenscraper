@@ -204,7 +204,7 @@ namespace stigzler.Screenscraper
         /// <param name="cancellationToken">Any cancellation token</param>
         /// <param name="progress">IProgress object for updates on progress</param>
         /// <returns></returns>
-        public List<ApiGetOutcome> GetGamesInfo(List<ApiSearchParameters> gameSearchParametersList, ApiQueryType queryType,
+        public Dictionary<ApiSearchParameters,ApiGetOutcome> GetGamesInfo(List<ApiSearchParameters> gameSearchParametersList, ApiQueryType queryType,
                                                             CancellationToken? cancellationToken = null,
                                                             IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
         {
