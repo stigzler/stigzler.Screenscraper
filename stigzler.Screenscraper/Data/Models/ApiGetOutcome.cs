@@ -17,6 +17,7 @@ namespace stigzler.Screenscraper.Data.Models
         /// The Query Uri used
         /// </summary>
         public Uri Uri;
+        
         /// <summary>
         /// This varies depending on the <c cref="Enums.ApiQueryGroup">ApiQueryGroup</c>:
         /// <list type = "table">
@@ -37,6 +38,7 @@ namespace stigzler.Screenscraper.Data.Models
         /// </list>
         /// </summary>
         public object Data;
+
         /// <summary>
         /// Returns whether the operation is successful. The definition of success varies by
         /// query type. 
@@ -45,14 +47,26 @@ namespace stigzler.Screenscraper.Data.Models
         /// </example>
         /// </summary>
         public bool Successfull = false;
+
         /// <summary>
         /// The http status code that results from the query. -1 means error wasn't from a HttpError
         /// </summary>
         public int StatusCode = -1;
+
         /// <summary>
         /// If an exception is raised from the query, it is returned via this property
         /// </summary>
         public Exception Exception = null; // only populated on any errors making the WebRequest
+
+        /// <summary>
+        /// Populated if outcome is linked with a game search
+        /// </summary>
+        public ApiSearchParameters AssociatedSearchParameters { get; set; } = null;
+
+        /// <summary>
+        /// Populated if outcome is linked with a file download
+        /// </summary>
+        public ApiDownloadParameters AssociatedDownloadParameters { get; set; } = null;
 
         public override string ToString()
         {

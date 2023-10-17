@@ -5,11 +5,15 @@ using stigzler.Screenscraper.EventArgs;
 using stigzler.Screenscraper.Helpers;
 using stigzler.Screenscraper.Services;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Security.AccessControl;
 using System.Threading;
+using System.Threading.Tasks;
 using help = stigzler.Screenscraper.Helpers;
 using stigArgs = stigzler.Screenscraper.EventArgs;
 
@@ -20,6 +24,10 @@ namespace stigzler.Screenscraper
     /// ScreenScraper.fr API.
     /// Commonly, all Get requests take <see cref="Enums.ApiQueryType">ApiQueryType</see>.
     /// </summary>
+    /// <remarks>
+    /// I know the design of this is wonky given how it handles batch/singular operations
+    /// However, life's too fucking short so, meh. Crackhouse coding, baby. 
+    /// </remarks>
     public class GetData
     {
         #region Properties
@@ -55,7 +63,7 @@ namespace stigzler.Screenscraper
             set
             {
                 userThreads = value;
-                UpdateNumberThreads();
+                SetNumberApiThreads();
                 //if (value > Data.Constants.MaxApiThreads)
                 //{ throw new ArgumentException("UserThreads cannot exceed the maximum for the Screenscraper API server: " + Data.Constants.MaxApiThreads); }
                 //else
@@ -74,7 +82,7 @@ namespace stigzler.Screenscraper
         private ApiUrlBuilder urlBuilder;
         private ApiDataService apiDataService;
 
-        private void UpdateNumberThreads()
+        private void SetNumberApiThreads()
         {
             // Set number of concurrent threads on server
             ServicePointManager.FindServicePoint(new Uri(ApiParameters.HostAddress)).ConnectionLimit = userThreads;
@@ -100,7 +108,7 @@ namespace stigzler.Screenscraper
             urlBuilder = new ApiUrlBuilder(Credentials, ApiParameters);
 
             // Set number of threads on server
-            UpdateNumberThreads();
+            SetNumberApiThreads();
         }
 
         /// <summary>
@@ -142,7 +150,55 @@ namespace stigzler.Screenscraper
             return apiGetOutcome;
         }
 
-        
+        public List<ApiGetOutcome> GetFiles(ApiQueryType queryType, Dictionary<ApiDownloadParameters, string> parametersAndFilenames,
+                                            CancellationToken cancellationToken,
+                                            IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
+        {
+            ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
+
+            SetNumberApiThreads(); // this may be redundant
+
+            // Set the paralell.ForEach max parallelism to the thread count
+            ParallelOptions parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = userThreads };
+
+            ApiDownloadParameters downloadParameters = new ApiDownloadParameters();
+            string filename = string.Empty;
+
+            int total = parametersAndFilenames.Count;
+
+            Stopwatch sw = Stopwatch.StartNew();
+
+            Parallel.ForEach(parametersAndFilenames, parallelOptions, (KeyValuePair<ApiDownloadParameters, string> parametersAndFilename, ParallelLoopState state) =>
+            {
+                // Checks cancellation token. If set, breaks out of parallel foreach loop
+                if (cancellationToken != null && cancellationToken.IsCancellationRequested)
+                {
+                    state.Break();
+                }
+
+                downloadParameters = parametersAndFilename.Key;
+                filename = parametersAndFilename.Value;
+
+                // Do File get.
+                ApiGetOutcome outcome = GetFile(queryType, downloadParameters, filename);
+                outcome.AssociatedDownloadParameters = downloadParameters;
+
+                // Now process progress object if set
+                if (progress != null)
+                {
+                    progress.Report(new EventArgs.ProgressChangedEventArgs
+                    {
+                        DataObject = "Downloaded file: " + downloadParameters.MediaTypeName + " (" + outcomes.Count + "/" + total + ")",
+                        Uri = outcome.Uri,
+                        ProgressPercentage = (int)((double)outcomes.Count / total * 100),
+                        Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
+                    });
+                }
+
+            });
+            sw.Stop();
+            return outcomes.ToList();
+        }
 
         /// <summary>
         /// Downloads a file if one available. Covers various download functions for 
@@ -156,7 +212,7 @@ namespace stigzler.Screenscraper
         /// </exception>
         /// <returns>An ApiGetOutcome object containing pertinent results of the Get request. The ApiGetOutcome.Data in this case is the returned xml/json or any error message</returns>
 
-        public ApiGetOutcome GetFile(ApiQueryType queryType, APIDownloadParameters downloadParameters, string destinationFilename)
+        public ApiGetOutcome GetFile(ApiQueryType queryType, ApiDownloadParameters downloadParameters, string destinationFilename)
         {
             // First check acceptable query type
             ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
@@ -191,6 +247,7 @@ namespace stigzler.Screenscraper
 
             string uriStr = urlBuilder.Build(queryType, parameters);
             ApiGetOutcome apiGetOutcome = apiDataService.GetFile(new Uri(uriStr), destinationFilename);
+            apiGetOutcome.AssociatedDownloadParameters = downloadParameters;
 
             return apiGetOutcome;
         }
@@ -204,8 +261,8 @@ namespace stigzler.Screenscraper
         /// <param name="cancellationToken">Any cancellation token</param>
         /// <param name="progress">IProgress object for updates on progress</param>
         /// <returns></returns>
-        public Dictionary<ApiSearchParameters,ApiGetOutcome> GetGamesInfo(List<ApiSearchParameters> gameSearchParametersList, ApiQueryType queryType,
-                                                            CancellationToken? cancellationToken = null,
+        public List<ApiGetOutcome> GetGamesInfo(List<ApiSearchParameters> gameSearchParametersList, ApiQueryType queryType,
+                                                            CancellationToken cancellationToken,
                                                             IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
         {
             ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
@@ -214,10 +271,10 @@ namespace stigzler.Screenscraper
             string progressUpdateObjectText = "RomName";
 
             List<QueryParameter> parameters = new List<QueryParameter>();
-            Dictionary<string, Uri> gameSerachList = new Dictionary<string, Uri>();
+            Dictionary<ApiSearchParameters, Uri> gameSearchDict = new Dictionary<ApiSearchParameters, Uri>();
 
             // Set number of concurrent threads on server
-            ServicePointManager.FindServicePoint(new Uri(ApiParameters.HostAddress)).ConnectionLimit = userThreads;
+            SetNumberApiThreads(); // this may be redundant
 
             string gameSearchObjectLabel;
 
@@ -241,22 +298,21 @@ namespace stigzler.Screenscraper
                 if (gameSearchParameters.GameName != null) gameSearchObjectLabel += gameSearchParameters.GameName;
                 if (gameSearchParameters.RomName != null) gameSearchObjectLabel += gameSearchParameters.RomName;
 
-
-
                 if (queryType == ApiQueryType.GameNameSearch)
                 {
-                    gameSerachList.Add(gameSearchParameters.GameName, new Uri(urlBuilder.Build(ApiQueryType.GameNameSearch, parameters)));
+                    gameSearchDict.Add(gameSearchParameters, new Uri(urlBuilder.Build(ApiQueryType.GameNameSearch, parameters)));
                     progressUpdateObjectText = "GameName";
                 }
                 else if (queryType == ApiQueryType.GameRomSearch)
                 {
-                    gameSerachList.Add(gameSearchObjectLabel, new Uri(urlBuilder.Build(ApiQueryType.GameRomSearch, parameters)));
+                    gameSearchDict.Add(gameSearchParameters, new Uri(urlBuilder.Build(ApiQueryType.GameRomSearch, parameters)));
                 }
+
 
             }
             // Get API Data:
             List<ApiGetOutcome> apiGetOutcomes = new List<ApiGetOutcome>();
-            apiGetOutcomes = apiDataService.GetStrings(gameSerachList, progressUpdateObjectText, cancellationToken, progress);
+            apiGetOutcomes = apiDataService.GetStrings(gameSearchDict, progressUpdateObjectText, cancellationToken, progress);
 
             return apiGetOutcomes;
         }
@@ -272,7 +328,7 @@ namespace stigzler.Screenscraper
         /// <returns></returns>
 
         public ApiGetOutcome GetGameInfo(ApiSearchParameters gameSearchParameters, ApiQueryType queryType,
-                CancellationToken? cancellationToken = null, IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
+                CancellationToken cancellationToken, IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
         {
             ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
             if (apiQueryGroup != ApiQueryGroup.Searches) throw new Exceptions.QueryMismatchException(queryType, ApiQueryGroup.Searches);

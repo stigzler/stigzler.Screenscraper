@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace stigzler.Screenscraper.Data.Models
 {
-    public class APIDownloadParameters
+    public class ApiDownloadParameters
     {
         /// <summary>
         /// CRC of the media file

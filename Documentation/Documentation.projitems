@@ -12,6 +12,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)vsxmd\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)DevLog.md" />
     <Content Include="$(MSBuildThisFileDirectory)doxygen\html\annotated.html" />
     <Content Include="$(MSBuildThisFileDirectory)doxygen\html\bc_s.png" />
     <Content Include="$(MSBuildThisFileDirectory)doxygen\html\bc_sd.png" />

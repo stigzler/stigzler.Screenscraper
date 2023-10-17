@@ -290,7 +290,7 @@ namespace stigzler.ScreenScraper.Test
             log("Query Type: " + queryType.ToString());
 
             ApiQueryGroup queryGroup = Constants.ApiQueryGroups.Where(x => x.Value.Contains(queryType)).FirstOrDefault().Key;
-            APIDownloadParameters downloadParameters;
+            ApiDownloadParameters downloadParameters;
             string downloadFilename;
 
             switch (queryGroup)
@@ -321,7 +321,7 @@ namespace stigzler.ScreenScraper.Test
                     {
                         case ApiQueryType.GameImageDownload:
 
-                            downloadParameters = new APIDownloadParameters
+                            downloadParameters = new ApiDownloadParameters
                             {
                                 MediaTypeName = MediaTypeCB.SelectedValue.ToString() +
                                                 "(" + RegionsCB.SelectedValue + ")",
@@ -338,7 +338,7 @@ namespace stigzler.ScreenScraper.Test
 
                         case ApiQueryType.GameVideoDownload:
 
-                            downloadParameters = new APIDownloadParameters
+                            downloadParameters = new ApiDownloadParameters
                             {
                                 MediaTypeName = "video",
                                 ObjectID = (int)GamesCB.SelectedValue,
@@ -350,7 +350,7 @@ namespace stigzler.ScreenScraper.Test
                             break;
 
                         case ApiQueryType.GameManualDownload:
-                            downloadParameters = new APIDownloadParameters
+                            downloadParameters = new ApiDownloadParameters
                             {
                                 MediaTypeName = "manuel" +
                                                 "(" + RegionsCB.SelectedValue + ")",
@@ -538,7 +538,6 @@ namespace stigzler.ScreenScraper.Test
 
             outcomes = await Task.Run(() =>
                 getData.GetGamesInfo(serachParameters, ApiQueryType.GameRomSearch, cancellationTokenSource.Token, progress));
-
 
             database.Games.RemoveAll(x => x.SystemID == systemID);
 
