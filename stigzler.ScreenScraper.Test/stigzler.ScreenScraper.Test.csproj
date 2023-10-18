@@ -117,5 +117,8 @@
   <ItemGroup>
     <None Include="Resources\arrow-return-180.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\DownloadedMedia\readme.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

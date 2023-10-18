@@ -20,6 +20,8 @@ using stigzler.Screenscraper.Data;
 using stig = stigzler.ScreenScraper.Test.Entities;
 using stigzler.Screenscraper.Helpers;
 using System.Runtime.InteropServices;
+using stigzler.ScreenScraper.Test.Entities;
+using System.Text;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -331,7 +333,8 @@ namespace stigzler.ScreenScraper.Test
                             };
 
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameImage.img");
-                            outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+                           //TODO - reinstate this once method re-written
+                           //outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
 
                             if (outcome.Successfull) MediaPB.Image = stigzler.Utilities.Base.Operations.ImageOperation.UnlockedImageFromFile(downloadFilename);
                             break;
@@ -345,7 +348,8 @@ namespace stigzler.ScreenScraper.Test
                                 SystemID = (int)SystemsCB.SelectedValue,
                             };
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameVideo.mp4");
-                            outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+                            //TODO - reinstate this once method re-written
+                            //outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
                             if (outcome.Successfull) OpenVideoBT.Enabled = true;
                             break;
 
@@ -358,7 +362,8 @@ namespace stigzler.ScreenScraper.Test
                                 SystemID = (int)SystemsCB.SelectedValue,
                             };
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameManual.pdf");
-                            outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+                            //TODO - reinstate this once method re-written
+                           // outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
                             if (outcome.Successfull) OpenManualBT.Enabled = true;
                             break;
 
@@ -494,10 +499,6 @@ namespace stigzler.ScreenScraper.Test
 
         }
 
-        private void ScrapeAllSystemRomsBT_Click(object sender, EventArgs e)
-        {
-            ScrapeAllSystemRoms();
-        }
 
         private async void ScrapeAllSystemRoms()
         {
@@ -643,11 +644,69 @@ namespace stigzler.ScreenScraper.Test
             };
 
             var outcome = await Task.Run(() =>
-                  getData.GetGameInfo(searchParams, ApiQueryType.GameRomSearch));
+                  getData.GetGameInfo(searchParams, ApiQueryType.GameRomSearch, CancellationToken.None));
 
             log(outcome.Uri + Environment.NewLine + outcome.ToString() + ". Data: " + outcome.Data);
 
         }
+
+        private void scrapeAllRomsForSelectedSystemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ScrapeAllSystemRoms();
+        }
+
+        private void resetDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResetDatabase();
+        }
+
+        private async void ResetDatabase()
+        {
+            database.Games.Clear();
+            await SetupDatabase();
+            SaveDatabase();
+            BindDatabaseComboboxes();
+        }
+
+        private void getAllGameImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Game game = database.Games.Find(x => x.ID.Equals(int.Parse(GamesCB.SelectedValue.ToString())));
+
+            XDocument mediaXDoc = XDocument.Parse(game.GameXml);
+            IEnumerable<XElement> mediaElements = mediaXDoc.Descendants("media");
+
+            string mediaRootPath = "C:\\temp\\project tests\\gearbox\\MediaDownloadTests";
+            List<ApiDownloadParameters> urisAndFilenames = new List<ApiDownloadParameters>();
+
+            foreach (var mediaElement in mediaElements)
+            {
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.Append(mediaRootPath + @"\");
+                if (mediaElement.Attribute("type") != null) stringBuilder.Append(mediaElement.Attribute("type").Value);
+                if (mediaElement.Attribute("region") != null) stringBuilder.Append(" (" + mediaElement.Attribute("region").Value + ")");
+                stringBuilder.Append("." + mediaElement.Attribute("format").Value);
+
+                string filename = Path.Combine(mediaRootPath, stringBuilder.ToString());
+                urisAndFilenames.Add(new ApiDownloadParameters()
+                {
+                    DirectUri = new Uri(mediaElement.Value),
+                    Filename = filename,
+                });
+                
+
+                    
+                 
+            }
+
+            var outcomes = getData.GetFilesFromUris(urisAndFilenames);
+
+
+
+
+        }
+
+
+
     }
 
 

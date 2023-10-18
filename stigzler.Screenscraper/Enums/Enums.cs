@@ -67,12 +67,12 @@ namespace stigzler.Screenscraper.Enums
         None,
 
         // IDs
-        SystemID,
-        GameID,
+        SystemID,  
         GenreID,
         OrganisationID,
 
         // Search
+        SearchGameID,
         RomName,
         GameName,
         RomFileType,
@@ -80,6 +80,7 @@ namespace stigzler.Screenscraper.Enums
         SeriaNumber,
 
         // Download
+        DownloadGameID,
         CRC,
         MD5,
         SHA1,

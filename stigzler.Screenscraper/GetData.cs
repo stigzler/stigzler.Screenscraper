@@ -9,6 +9,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.AccessControl;
@@ -150,8 +151,73 @@ namespace stigzler.Screenscraper
             return apiGetOutcome;
         }
 
-        public List<ApiGetOutcome> GetFiles(ApiQueryType queryType, Dictionary<ApiDownloadParameters, string> parametersAndFilenames,
-                                            CancellationToken cancellationToken,
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="queryType">The type of Download Query.</param>
+        /// <param name="parametersAndFilenames">Dictionary of DownloadParameters and their desired filenames</param>
+        /// <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
+        /// <param name="progress">[Optional] IProgress object for updates on progress</param>
+        /// <returns></returns>
+        //public List<ApiGetOutcome> GetFiles(ApiQueryType queryType, List<ApiDownloadParameters> downloadParameters,
+        //                                    CancellationToken cancellationToken = default(CancellationToken),
+        //                                    IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
+        //{
+        //    ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
+
+        //    SetNumberApiThreads(); // this may be redundant
+
+        //    // Set the paralell.ForEach max parallelism to the thread count
+        //    ParallelOptions parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = userThreads };
+
+        //    ApiDownloadParameters downloadParameters = new ApiDownloadParameters();
+        //    string filename = string.Empty;
+
+        //    int total = parametersAndFilenames.Count;
+
+        //    Stopwatch sw = Stopwatch.StartNew();
+
+        //    Parallel.ForEach(parametersAndFilenames, parallelOptions, (KeyValuePair<ApiDownloadParameters, string> parametersAndFilename, ParallelLoopState state) =>
+        //    {
+        //        // Checks cancellation token. If set, breaks out of parallel foreach loop
+        //        if (cancellationToken != null && cancellationToken.IsCancellationRequested)
+        //        {
+        //            state.Break();
+        //        }
+
+        //        downloadParameters = parametersAndFilename.Key;
+        //        filename = parametersAndFilename.Value;
+
+        //        // Do File get.
+        //        ApiGetOutcome outcome = GetFile(queryType, downloadParameters, filename);
+        //        outcome.AssociatedDownloadParameters = downloadParameters;
+
+        //        // Now process progress object if set
+        //        if (progress != null)
+        //        {
+        //            progress.Report(new EventArgs.ProgressChangedEventArgs
+        //            {
+        //                DataObject = "Downloaded file: " + downloadParameters.MediaTypeName + " (" + outcomes.Count + "/" + total + ")",
+        //                Uri = outcome.Uri,
+        //                ProgressPercentage = (int)((double)outcomes.Count / total * 100),
+        //                Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
+        //            });
+        //        }
+
+        //    });
+        //    sw.Stop();
+        //    return outcomes.ToList();
+        //}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="uriAndFilenames">Dictionary of Uris and their desired Filenames</param>
+        /// <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
+        /// <param name="progress">[Optional] IProgress object for updates on progress</param>
+        /// <returns></returns>
+        public List<ApiGetOutcome> GetFilesFromUris(List<ApiDownloadParameters> downloadsParameters,
+                                            CancellationToken cancellationToken = default(CancellationToken),
                                             IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
         {
             ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
@@ -161,14 +227,14 @@ namespace stigzler.Screenscraper
             // Set the paralell.ForEach max parallelism to the thread count
             ParallelOptions parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = userThreads };
 
-            ApiDownloadParameters downloadParameters = new ApiDownloadParameters();
             string filename = string.Empty;
 
-            int total = parametersAndFilenames.Count;
+            int total = downloadsParameters.Count;
 
             Stopwatch sw = Stopwatch.StartNew();
 
-            Parallel.ForEach(parametersAndFilenames, parallelOptions, (KeyValuePair<ApiDownloadParameters, string> parametersAndFilename, ParallelLoopState state) =>
+            Parallel.ForEach(downloadsParameters, parallelOptions,
+                            (ApiDownloadParameters downloadParameters, ParallelLoopState state) =>
             {
                 // Checks cancellation token. If set, breaks out of parallel foreach loop
                 if (cancellationToken != null && cancellationToken.IsCancellationRequested)
@@ -176,19 +242,15 @@ namespace stigzler.Screenscraper
                     state.Break();
                 }
 
-                downloadParameters = parametersAndFilename.Key;
-                filename = parametersAndFilename.Value;
-
                 // Do File get.
-                ApiGetOutcome outcome = GetFile(queryType, downloadParameters, filename);
-                outcome.AssociatedDownloadParameters = downloadParameters;
+                ApiGetOutcome outcome = GetFileFromUri(downloadParameters);
 
                 // Now process progress object if set
                 if (progress != null)
                 {
                     progress.Report(new EventArgs.ProgressChangedEventArgs
                     {
-                        DataObject = "Downloaded file: " + downloadParameters.MediaTypeName + " (" + outcomes.Count + "/" + total + ")",
+                        DataObject = "Downloaded media to file: " + Path.GetFileName(filename) + " (" + outcomes.Count + "/" + total + ")",
                         Uri = outcome.Uri,
                         ProgressPercentage = (int)((double)outcomes.Count / total * 100),
                         Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
@@ -200,6 +262,7 @@ namespace stigzler.Screenscraper
             return outcomes.ToList();
         }
 
+
         /// <summary>
         /// Downloads a file if one available. Covers various download functions for 
         /// Game and System Images/Videos/Manuals/Company/Genre etc
@@ -210,47 +273,70 @@ namespace stigzler.Screenscraper
         /// <exception cref="Exceptions.QueryMismatchException">
         /// QueryMismatchException thrown if wrong form of query sent to this method. Only takes download queries. 
         /// </exception>
-        /// <returns>An ApiGetOutcome object containing pertinent results of the Get request. The ApiGetOutcome.Data in this case is the returned xml/json or any error message</returns>
+        /// <returns>
+        /// An ApiGetOutcome object containing pertinent results of the Get request. 
+        /// The ApiGetOutcome.Data in this case is the returned xml/json or any error message.
+        /// ApiGetOutcome.AssociatedDownloadParameters contains the original Parameters plus the constructed Uri
+        /// </returns>
 
-        public ApiGetOutcome GetFile(ApiQueryType queryType, ApiDownloadParameters downloadParameters, string destinationFilename)
+        //public ApiGetOutcome GetFileFromDetails(ApiQueryType queryType, ApiDownloadParameters downloadParameters, string destinationFilename)
+        //{
+        //    // First check acceptable query type
+        //    ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
+        //    if (apiQueryGroup != ApiQueryGroup.Downloads) throw new Exceptions.QueryMismatchException(queryType, ApiQueryGroup.Downloads);
+
+        //    List<QueryParameter> parameters = new List<QueryParameter>()
+        //    {
+        //    new QueryParameter() { Parameter = ApiQueryParameter.CRC, Value = downloadParameters.CRC },
+        //    new QueryParameter() { Parameter = ApiQueryParameter.MD5, Value = downloadParameters.MD5 },
+        //    new QueryParameter() { Parameter = ApiQueryParameter.SHA1, Value = downloadParameters.SHA1 },
+        //    new QueryParameter() { Parameter = ApiQueryParameter.MediaTypeName, Value = downloadParameters.MediaTypeName },
+        //    new QueryParameter() { Parameter = ApiQueryParameter.MediaFormat, Value = downloadParameters.MediaFormat },
+        //    new QueryParameter() { Parameter = ApiQueryParameter.SystemID, Value = downloadParameters.SystemID.ToString() }
+        //    };
+
+        //    switch (queryType)
+        //    {
+        //        case ApiQueryType.GameImageDownload:
+        //        case ApiQueryType.GameVideoDownload:
+        //        case ApiQueryType.GameManualDownload:
+        //            parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.DownloadGameID, Value = downloadParameters.ObjectID.ToString() });
+        //            break;
+        //        case ApiQueryType.GameGenreImageDownload:
+        //            parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GenreID, Value = downloadParameters.ObjectID.ToString() });
+        //            break;
+        //        case ApiQueryType.GameOrganisationImageDownload:
+        //            parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.OrganisationID, Value = downloadParameters.ObjectID.ToString() });
+        //            break;
+        //        default:
+        //            break;
+        //    }
+
+        //    string uriString = urlBuilder.Build(queryType, parameters);
+        //    ApiGetOutcome apiGetOutcome = apiDataService.GetFile(new Uri(uriString), destinationFilename);
+        //    apiGetOutcome.AssociatedDownloadParameters = downloadParameters;
+
+        //    return apiGetOutcome;
+        //}
+
+        /// <summary>
+        /// Get file directly from the Uri for the media resource.
+        /// Often used where you already know the full Uri via Searches such as ApiQueryType.GameRomSearch
+        /// 
+        /// </summary>
+        /// <param name="downloadParameters">
+        /// You must supply both the Uri and Filename in this data object. 
+        /// </param>
+        /// <returns>
+        /// An ApiGetOutcome object containing pertinent results of the Get request. 
+        /// The ApiGetOutcome.Data in this case is the returned xml/json or any error message.
+        /// </returns>
+        public ApiGetOutcome GetFileFromUri(ApiDownloadParameters downloadParameters)
         {
-            // First check acceptable query type
-            ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
-            if (apiQueryGroup != ApiQueryGroup.Downloads) throw new Exceptions.QueryMismatchException(queryType, ApiQueryGroup.Downloads);
-
-            List<QueryParameter> parameters = new List<QueryParameter>()
-            {
-            new QueryParameter() { Parameter = ApiQueryParameter.CRC, Value = downloadParameters.CRC },
-            new QueryParameter() { Parameter = ApiQueryParameter.MD5, Value = downloadParameters.MD5 },
-            new QueryParameter() { Parameter = ApiQueryParameter.SHA1, Value = downloadParameters.SHA1 },
-            new QueryParameter() { Parameter = ApiQueryParameter.MediaTypeName, Value = downloadParameters.MediaTypeName },
-            new QueryParameter() { Parameter = ApiQueryParameter.MediaFormat, Value = downloadParameters.MediaFormat },
-            new QueryParameter() { Parameter = ApiQueryParameter.SystemID, Value = downloadParameters.SystemID.ToString() }
-            };
-
-            switch (queryType)
-            {
-                case ApiQueryType.GameImageDownload:
-                case ApiQueryType.GameVideoDownload:
-                case ApiQueryType.GameManualDownload:
-                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GameID, Value = downloadParameters.ObjectID.ToString() });
-                    break;
-                case ApiQueryType.GameGenreImageDownload:
-                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GenreID, Value = downloadParameters.ObjectID.ToString() });
-                    break;
-                case ApiQueryType.GameOrganisationImageDownload:
-                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.OrganisationID, Value = downloadParameters.ObjectID.ToString() });
-                    break;
-                default:
-                    break;
-            }
-
-            string uriStr = urlBuilder.Build(queryType, parameters);
-            ApiGetOutcome apiGetOutcome = apiDataService.GetFile(new Uri(uriStr), destinationFilename);
-            apiGetOutcome.AssociatedDownloadParameters = downloadParameters;
-
+            ApiGetOutcome apiGetOutcome = apiDataService.GetFile(downloadParameters.DirectUri, downloadParameters.Filename);
             return apiGetOutcome;
         }
+
 
         /// <summary>
         /// Gets game information via romname or gamename. 
@@ -258,11 +344,11 @@ namespace stigzler.Screenscraper
         /// </summary>
         /// <param name="gameSearchParametersList">Parameters for each game search</param>
         /// <param name="queryType">Type of query to return. Query types supported: GameNameSearch, GameRomSearch</param>
-        /// <param name="cancellationToken">Any cancellation token</param>
-        /// <param name="progress">IProgress object for updates on progress</param>
+        /// <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
+        /// <param name="progress">[Optional] IProgress object for updates on progress</param>
         /// <returns></returns>
         public List<ApiGetOutcome> GetGamesInfo(List<ApiSearchParameters> gameSearchParametersList, ApiQueryType queryType,
-                                                            CancellationToken cancellationToken,
+                                                            CancellationToken cancellationToken = default(CancellationToken),
                                                             IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
         {
             ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
@@ -283,7 +369,7 @@ namespace stigzler.Screenscraper
             {
                 parameters.Clear();
                 parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.SystemID, Value = gameSearchParameters.SystemID.ToString() });
-                parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GameID, Value = gameSearchParameters.GameID.ToString() });
+                parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.SearchGameID, Value = gameSearchParameters.GameID.ToString() });
                 parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GameName, Value = gameSearchParameters.GameName });
                 parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.RomName, Value = gameSearchParameters.RomName });
                 parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.CRC, Value = gameSearchParameters.CRC });

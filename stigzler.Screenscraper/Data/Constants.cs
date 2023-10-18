@@ -86,11 +86,11 @@ namespace stigzler.Screenscraper.Data
 
             // IDs:
             {ApiQueryParameter.SystemID,"systemeid" },
-            {ApiQueryParameter.GameID, "jeuid" },
             {ApiQueryParameter.GenreID, "groupid" },
             {ApiQueryParameter.OrganisationID, "companyid" },
 
             // Search
+            {ApiQueryParameter.SearchGameID, "gameid" },
             {ApiQueryParameter.RomName,"romnom" },
             {ApiQueryParameter.GameName, "recherche" },
             {ApiQueryParameter.CRC, "crc" },
@@ -101,6 +101,7 @@ namespace stigzler.Screenscraper.Data
             {ApiQueryParameter.SeriaNumber, "serialnum" },
 
             // Downloads
+            {ApiQueryParameter.DownloadGameID, "jeuid" },
             {ApiQueryParameter.MediaTypeName, "media" },
             {ApiQueryParameter.MediaFormat, "mediaformat" },
 
