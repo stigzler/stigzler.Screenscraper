@@ -303,19 +303,37 @@ namespace stigzler.ScreenScraper.Test
                     break;
 
                 case ApiQueryGroup.Searches:
-                    switch (QueryTypeCB.SelectedItem)
+
+                    ApiSearchParameters searchParameters = new ApiSearchParameters()
                     {
-                        case ApiQueryType.GameRomSearch:
+                        RomName = RomNameSearchTB.Text,
+                        GameName = GameNameSearchTB.Text,
+                        SystemID = (int)SystemsCB.SelectedValue,
+                        CRC = CrcTB.Text,
+                        MD5 = Md5TB.Text,
+                        SHA1 = Sha1TB.Text,
+                    };
 
+                    int GameId;
+                    bool validGameId = int.TryParse(GameIdTB.Text, out GameId);
+                    if (validGameId) searchParameters.GameID = GameId;
 
-
-                            batchOperation = true;
-                            break;
-                        default:
-                            queryDone = false;
-                            break;
-                    }
+                    outcome = getData.GetGameInfo(searchParameters, queryType);
                     break;
+
+
+
+                //switch (QueryTypeCB.SelectedItem)
+                //{
+                //    case ApiQueryType.GameRomSearch:
+
+
+                //        break;
+                //    default:
+                //        queryDone = false;
+                //        break;
+                //}
+                //break;
 
                 case ApiQueryGroup.Downloads:
 
@@ -333,8 +351,8 @@ namespace stigzler.ScreenScraper.Test
                             };
 
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameImage.img");
-                           //TODO - reinstate this once method re-written
-                           outcome = await Task.Run(() => getData.GetFileFromDetails(queryType, downloadParameters, downloadFilename));
+                            //TODO - reinstate this once method re-written
+                            outcome = await Task.Run(() => getData.GetFileFromDetails(queryType, downloadParameters, downloadFilename));
 
                             if (outcome.Successfull) MediaPB.Image = stigzler.Utilities.Base.Operations.ImageOperation.UnlockedImageFromFile(downloadFilename);
                             break;
@@ -691,6 +709,7 @@ namespace stigzler.ScreenScraper.Test
 
                 foreach (var outcome in outcomes)
                 {
+                    if (outcome.Successfull == false) continue;
                     string xmlString = outcome.Data.ToString();
                     XDocument xdoc = XDocument.Parse(xmlString);
 

@@ -258,7 +258,7 @@ namespace stigzler.Screenscraper
                     {
                         DataObject = "Downloaded media to file: " + Path.GetFileName(filename) + " (" + outcomes.Count + "/" + total + ")",
                         Uri = outcome.Uri,
-                        ProgressPercentage = (int)((double)outcomes.Count / total * 100),
+                        ProgressPercentage = Math.Min( (int)((double)outcomes.Count / total * 100), 100),
                         Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
                     });
                 }
@@ -419,7 +419,7 @@ namespace stigzler.Screenscraper
         /// <returns></returns>
 
         public ApiGetOutcome GetGameInfo(ApiSearchParameters gameSearchParameters, ApiQueryType queryType,
-                CancellationToken cancellationToken, IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
+                CancellationToken cancellationToken = default(CancellationToken), IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
         {
             ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
             if (apiQueryGroup != ApiQueryGroup.Searches) throw new Exceptions.QueryMismatchException(queryType, ApiQueryGroup.Searches);

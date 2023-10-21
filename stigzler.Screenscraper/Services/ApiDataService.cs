@@ -246,7 +246,7 @@ namespace stigzler.Screenscraper.Services
                     {
                         DataObject = "Processed " + objectType + " (" + outcomes.Count + "/" + total + "): " + objectName,
                         Uri = objectUri.Value,
-                        ProgressPercentage = (int)((double)outcomes.Count / total * 100),
+                        ProgressPercentage = Math.Min((int)((double)outcomes.Count / total * 100), 100),
                         Rate = (outcomes.Count / sw.Elapsed.TotalSeconds)
                     });
                 }
