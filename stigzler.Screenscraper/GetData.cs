@@ -212,7 +212,7 @@ namespace stigzler.Screenscraper
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="uriAndFilenames">Dictionary of Uris and their desired Filenames</param>
+        /// <param name="downloadsParameters">ApiDownloadParameters containing Uris and their desired Filenames</param>
         /// <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
         /// <param name="progress">[Optional] IProgress object for updates on progress</param>
         /// <returns></returns>
@@ -226,6 +226,7 @@ namespace stigzler.Screenscraper
 
             // Set the paralell.ForEach max parallelism to the thread count
             ParallelOptions parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = userThreads };
+            Debug.WriteLine("Degrees of Parallelism = " + UserThreads);
 
             string filename = string.Empty;
 
@@ -234,8 +235,9 @@ namespace stigzler.Screenscraper
             Stopwatch sw = Stopwatch.StartNew();
 
             Parallel.ForEach(downloadsParameters, parallelOptions,
-                            (ApiDownloadParameters downloadParameters, ParallelLoopState state) =>
+                             (ApiDownloadParameters downloadParameters, ParallelLoopState state) =>
             {
+                Thread.Sleep(100);
                 // Checks cancellation token. If set, breaks out of parallel foreach loop
                 if (cancellationToken != null && cancellationToken.IsCancellationRequested)
                 {
@@ -243,7 +245,11 @@ namespace stigzler.Screenscraper
                 }
 
                 // Do File get.
-                ApiGetOutcome outcome = GetFileFromUri(downloadParameters);
+                //ApiGetOutcome outcome = GetFileFromUri(downloadParameters);
+                ApiGetOutcome outcome = apiDataService.GetFile(downloadParameters.DirectUri, downloadParameters.Filename);
+
+
+                outcomes.Add(outcome);
 
                 // Now process progress object if set
                 if (progress != null)
@@ -264,14 +270,14 @@ namespace stigzler.Screenscraper
 
 
         /// <summary>
-        /// Downloads a file if one available. Covers various download functions for 
+        /// Downloads a file if one available.Covers various download functions for 
         /// Game and System Images/Videos/Manuals/Company/Genre etc
         /// </summary>
-        /// <param name="queryType">The type of Download Query.</param>
-        /// <param name="downloadParameters">Parameters related to the download.</param>
-        /// <param name="destinationFilename">The full filename to save the file as (with path, filename and extension).</param>
-        /// <exception cref="Exceptions.QueryMismatchException">
-        /// QueryMismatchException thrown if wrong form of query sent to this method. Only takes download queries. 
+        /// <param name = "queryType" > The type of Download Query.</param>
+        /// <param name = "downloadParameters" > Parameters related to the download.</param>
+        /// <param name = "destinationFilename" > The full filename to save the file as (with path, filename and extension).</param>
+        /// <exception cref = "Exceptions.QueryMismatchException" >
+        /// QueryMismatchException thrown if wrong form of query sent to this method.Only takes download queries.
         /// </exception>
         /// <returns>
         /// An ApiGetOutcome object containing pertinent results of the Get request. 
@@ -279,45 +285,45 @@ namespace stigzler.Screenscraper
         /// ApiGetOutcome.AssociatedDownloadParameters contains the original Parameters plus the constructed Uri
         /// </returns>
 
-        //public ApiGetOutcome GetFileFromDetails(ApiQueryType queryType, ApiDownloadParameters downloadParameters, string destinationFilename)
-        //{
-        //    // First check acceptable query type
-        //    ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
-        //    if (apiQueryGroup != ApiQueryGroup.Downloads) throw new Exceptions.QueryMismatchException(queryType, ApiQueryGroup.Downloads);
+        public ApiGetOutcome GetFileFromDetails(ApiQueryType queryType, ApiDownloadParameters downloadParameters, string destinationFilename)
+        {
+            // First check acceptable query type
+            ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
+            if (apiQueryGroup != ApiQueryGroup.Downloads) throw new Exceptions.QueryMismatchException(queryType, ApiQueryGroup.Downloads);
 
-        //    List<QueryParameter> parameters = new List<QueryParameter>()
-        //    {
-        //    new QueryParameter() { Parameter = ApiQueryParameter.CRC, Value = downloadParameters.CRC },
-        //    new QueryParameter() { Parameter = ApiQueryParameter.MD5, Value = downloadParameters.MD5 },
-        //    new QueryParameter() { Parameter = ApiQueryParameter.SHA1, Value = downloadParameters.SHA1 },
-        //    new QueryParameter() { Parameter = ApiQueryParameter.MediaTypeName, Value = downloadParameters.MediaTypeName },
-        //    new QueryParameter() { Parameter = ApiQueryParameter.MediaFormat, Value = downloadParameters.MediaFormat },
-        //    new QueryParameter() { Parameter = ApiQueryParameter.SystemID, Value = downloadParameters.SystemID.ToString() }
-        //    };
+            List<QueryParameter> parameters = new List<QueryParameter>()
+            {
+            new QueryParameter() { Parameter = ApiQueryParameter.CRC, Value = downloadParameters.CRC },
+            new QueryParameter() { Parameter = ApiQueryParameter.MD5, Value = downloadParameters.MD5 },
+            new QueryParameter() { Parameter = ApiQueryParameter.SHA1, Value = downloadParameters.SHA1 },
+            new QueryParameter() { Parameter = ApiQueryParameter.MediaTypeName, Value = downloadParameters.MediaTypeName },
+            new QueryParameter() { Parameter = ApiQueryParameter.MediaFormat, Value = downloadParameters.MediaFormat },
+            new QueryParameter() { Parameter = ApiQueryParameter.SystemID, Value = downloadParameters.SystemID.ToString() }
+            };
 
-        //    switch (queryType)
-        //    {
-        //        case ApiQueryType.GameImageDownload:
-        //        case ApiQueryType.GameVideoDownload:
-        //        case ApiQueryType.GameManualDownload:
-        //            parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.DownloadGameID, Value = downloadParameters.ObjectID.ToString() });
-        //            break;
-        //        case ApiQueryType.GameGenreImageDownload:
-        //            parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GenreID, Value = downloadParameters.ObjectID.ToString() });
-        //            break;
-        //        case ApiQueryType.GameOrganisationImageDownload:
-        //            parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.OrganisationID, Value = downloadParameters.ObjectID.ToString() });
-        //            break;
-        //        default:
-        //            break;
-        //    }
+            switch (queryType)
+            {
+                case ApiQueryType.GameImageDownload:
+                case ApiQueryType.GameVideoDownload:
+                case ApiQueryType.GameManualDownload:
+                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.DownloadGameID, Value = downloadParameters.ObjectID.ToString() });
+                    break;
+                case ApiQueryType.GameGenreImageDownload:
+                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.GenreID, Value = downloadParameters.ObjectID.ToString() });
+                    break;
+                case ApiQueryType.GameOrganisationImageDownload:
+                    parameters.Add(new QueryParameter() { Parameter = ApiQueryParameter.OrganisationID, Value = downloadParameters.ObjectID.ToString() });
+                    break;
+                default:
+                    break;
+            }
 
-        //    string uriString = urlBuilder.Build(queryType, parameters);
-        //    ApiGetOutcome apiGetOutcome = apiDataService.GetFile(new Uri(uriString), destinationFilename);
-        //    apiGetOutcome.AssociatedDownloadParameters = downloadParameters;
+            string uriString = urlBuilder.Build(queryType, parameters);
+            ApiGetOutcome apiGetOutcome = apiDataService.GetFile(new Uri(uriString), destinationFilename);
+            apiGetOutcome.AssociatedDownloadParameters = downloadParameters;
 
-        //    return apiGetOutcome;
-        //}
+            return apiGetOutcome;
+        }
 
         /// <summary>
         /// Get file directly from the Uri for the media resource.
@@ -336,7 +342,6 @@ namespace stigzler.Screenscraper
             ApiGetOutcome apiGetOutcome = apiDataService.GetFile(downloadParameters.DirectUri, downloadParameters.Filename);
             return apiGetOutcome;
         }
-
 
         /// <summary>
         /// Gets game information via romname or gamename. 

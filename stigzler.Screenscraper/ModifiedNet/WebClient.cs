@@ -9,7 +9,7 @@ namespace stigzler.Screenscraper.ModifiedNet
 {
 
     [System.ComponentModel.DesignerCategory("Code")]
-    internal class WebClient: System.Net.WebClient
+    internal class WebClient : System.Net.WebClient
     {
         /// <summary>
         /// Timeout to apply in milliseconds
@@ -19,7 +19,7 @@ namespace stigzler.Screenscraper.ModifiedNet
 
         internal WebClient()
         {
-            
+
         }
 
         internal WebClient(int timeout)
@@ -29,10 +29,10 @@ namespace stigzler.Screenscraper.ModifiedNet
 
         protected override WebRequest GetWebRequest(Uri address)
         {
-            WebRequest = base.GetWebRequest(address);
-            WebRequest.Timeout = Timeout;
-            return WebRequest;
-        }   
+            WebRequest w = base.GetWebRequest(address);
+            w.Timeout = Timeout;
+            return w;
+        }
 
     }
 }

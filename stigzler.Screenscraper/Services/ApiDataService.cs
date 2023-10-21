@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 
 namespace stigzler.Screenscraper.Services
 {
@@ -18,14 +19,24 @@ namespace stigzler.Screenscraper.Services
     {
         private ApiServerParameters apiServerParameters;
         private int maxThreads;
-        private int requestTimeout;
+        private int requestTimeout = 5000;
+        private int webRequestAttempts = 5;
         // internal event EventHandler<EventArgs.ProgressChangedEventArgs> OperationUpdate;
 
-        internal ApiDataService(ApiServerParameters apiServerParameters, int maxThreads, int requestTimeout)
+        /// <summary>
+        /// Constructor for 
+        /// </summary>
+        /// <param name="apiServerParameters"></param>
+        /// <param name="maxThreads">User Threads</param>
+        /// <param name="requestTimeout">Time in ms before WebReuqest times out</param>
+        /// <param name="webRequestAttempts">How many attempts will be made for a successful WebRequest</param>
+        internal ApiDataService(ApiServerParameters apiServerParameters, int maxThreads = 1,
+                                    int requestTimeout = 5000, int webRequestAttempts = 5)
         {
             this.apiServerParameters = apiServerParameters;
             this.maxThreads = maxThreads;
             this.requestTimeout = requestTimeout;
+            this.webRequestAttempts = webRequestAttempts;
         }
 
         internal ApiGetOutcome GetFile(Uri uri, string destinationFilename)
@@ -35,55 +46,82 @@ namespace stigzler.Screenscraper.Services
             outcome.Uri = uri;
             //object result = null;
 
-            try
+            int attempts = 0;
+
+            while (outcome.Successfull == false && attempts < webRequestAttempts)
             {
-                webClient.DownloadFile(uri, destinationFilename);
-
-                using (var fileStream = File.OpenRead(destinationFilename))
+                //if (attempts > 0) Debug.WriteLine("Attempt " + attempts + " on " + Path.GetFileName(destinationFilename));
+                try
                 {
-                    using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, 128))
-                    {
-                        String line = streamReader.ReadLine();
+                    webClient.DownloadFile(uri, destinationFilename);
 
-                        if (line == "NOMEDIA" || line == "Problème de paramètres")
+                    using (var fileStream = File.OpenRead(destinationFilename))
+                    {
+                        using (var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, 128))
                         {
-                            outcome.Successfull = false;
-                            outcome.StatusCode = 200;
-                            outcome.Data = line;
-                        }
-                        else
-                        {
-                            outcome.Successfull = true;
-                            outcome.StatusCode = 200;
-                            outcome.Data = destinationFilename;
+                            String line = streamReader.ReadLine();
+
+                            if (line == "NOMEDIA" || line == "Problème de paramètres")
+                            {
+                                outcome.Successfull = false;
+                                outcome.StatusCode = 200;
+                                outcome.Data = line;
+                            }
+                            else
+                            {
+                                outcome.Successfull = true;
+                                outcome.StatusCode = 200;
+                                outcome.Data = destinationFilename;
+                            }
                         }
                     }
-                }
 
-                if (outcome.Successfull == false)
+                    if (outcome.Successfull == false)
+                    {
+                        File.Delete(destinationFilename);
+                    }
+                }
+                catch (WebException ex)
                 {
-                    File.Delete(destinationFilename);
-                }
+                    // First check whether this is due to a duplicate file. If so, change destinationFilename to numbered alt
+                    // This handles parallelism where trying to write two files of the same name at the same time
+                    // it DOES NOT handle duplicate filenames in destination folder as WebClient.DownloadFile automaticaly
+                    // overwrites any files of the same filename 
 
-            }
-            catch (WebException ex)
-            {
-                outcome.Exception = ex;
-                if (ex.Response != null)
+                    if (File.Exists(destinationFilename))
+                    {
+                        int duplicateImageNumber = 0;
+                        string prospectiveFilename = destinationFilename;
+                        while (File.Exists(prospectiveFilename))
+                        {
+                            duplicateImageNumber += 1;
+                            prospectiveFilename = Path.Combine(Path.GetDirectoryName(destinationFilename),
+                            Path.GetFileNameWithoutExtension(destinationFilename) +
+                            " (" + duplicateImageNumber + ")" +
+                            Path.GetExtension(destinationFilename));
+                        }
+                        destinationFilename = prospectiveFilename;
+                    }
+
+                    outcome.Exception = ex;
+
+                    if (ex.Response != null)
+                    {
+                        outcome.StatusCode = (int)((HttpWebResponse)ex.Response).StatusCode;
+                        outcome.Data = ParseExceptionResponse(ex).Trim();
+                    }
+                }
+                catch (OperationCanceledException)
                 {
-                    outcome.StatusCode = (int)((HttpWebResponse)ex.Response).StatusCode;
-                    outcome.Data = ParseExceptionResponse(ex).Trim();
-                }
-            }
-            catch (OperationCanceledException)
-            {
-                Debug.WriteLine("Cancelled");
-            }
-            catch (Exception ex)
-            {
-                outcome.Exception = ex;
-            }
+                    Debug.WriteLine("Cancelled");
 
+                }
+                catch (Exception ex)
+                {
+                    outcome.Exception = ex;
+                }
+                finally { attempts += 1; }
+            }
             return outcome;
         }
 
@@ -94,32 +132,38 @@ namespace stigzler.Screenscraper.Services
             ApiGetOutcome outcome = new ApiGetOutcome();
             outcome.Uri = uri;
             string result = null;
+            int attempts = 0;
 
-            try
+            while (outcome.Successfull == false && attempts < webRequestAttempts)
+
             {
-                result = webClient.DownloadString(uri);
-                outcome.Successfull = true;
-                outcome.StatusCode = 200;
-                outcome.Data = result;
-            }
-            catch (WebException ex)
-            {
-                outcome.Exception = ex;
-                if (ex.Response != null)
+                try
                 {
-                    outcome.StatusCode = (int)((HttpWebResponse)ex.Response).StatusCode;
-                    outcome.Data = ParseExceptionResponse(ex).Trim();
-                }
-            }
-            catch (OperationCanceledException)
-            {
-                Debug.WriteLine("Cancelled");
-            }
-            catch (Exception ex)
-            {
-                outcome.Exception = ex;
-            }
+                    result = webClient.DownloadString(uri);
 
+                    outcome.Successfull = true;
+                    outcome.StatusCode = 200;
+                    outcome.Data = result;
+                }
+                catch (WebException ex)
+                {
+                    outcome.Exception = ex;
+                    if (ex.Response != null)
+                    {
+                        outcome.StatusCode = (int)((HttpWebResponse)ex.Response).StatusCode;
+                        outcome.Data = ParseExceptionResponse(ex).Trim();
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    Debug.WriteLine("Cancelled");
+                }
+                catch (Exception ex)
+                {
+                    outcome.Exception = ex;
+                }
+                finally { attempts += 1; }
+            }
             return outcome;
         }
 
@@ -140,29 +184,55 @@ namespace stigzler.Screenscraper.Services
 
             ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
 
-            //CancellationToken resolvedCancellationToken;
-            //if (cancellationToken != null) { resolvedCancellationToken = (CancellationToken) cancellationToken; }
-            //else { resolvedCancellationToken = new CancellationToken(); }
-            
-            ParallelOptions parallelOptions = new ParallelOptions()
-            {
-                MaxDegreeOfParallelism = maxThreads,
-            };
+            ParallelOptions parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = maxThreads };
 
             int total = objectUris.Count;
             string objectName = string.Empty;
 
+            ApiGetOutcome outcome = new ApiGetOutcome();
+            int attempts = 0;
+
             Stopwatch sw = Stopwatch.StartNew();
 
-            Parallel.ForEach(objectUris, parallelOptions, (KeyValuePair<ApiSearchParameters, Uri> objectUri, ParallelLoopState state) =>
+            Parallel.ForEach(objectUris, parallelOptions,
+                                        (KeyValuePair<ApiSearchParameters, Uri> objectUri, ParallelLoopState state) =>
             {
+                attempts = 0;
+                outcome = new ApiGetOutcome();
+
                 if (cancellationToken != null && cancellationToken.IsCancellationRequested)
                 {
                     state.Break();
                 }
-                var outcome = GetString(objectUri.Value);
-                outcome.AssociatedSearchParameters = objectUri.Key;
-                outcomes.Add(outcome);
+
+                while (outcome.Successfull == false && attempts < webRequestAttempts)
+
+                {
+                    try
+                    {
+                        outcome = GetString(objectUri.Value);
+                        outcome.AssociatedSearchParameters = objectUri.Key;
+                        outcomes.Add(outcome);
+                    }
+                    catch (WebException ex)
+                    {
+                        outcome.Exception = ex;
+                        if (ex.Response != null)
+                        {
+                            outcome.StatusCode = (int)((HttpWebResponse)ex.Response).StatusCode;
+                            outcome.Data = ParseExceptionResponse(ex).Trim();
+                        }
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        outcome.Data = "User Cancelled Operation";
+                    }
+                    catch (Exception ex)
+                    {
+                        outcome.Exception = ex;
+                    }
+                    finally { attempts += 1; }
+                }
 
                 objectName = outcome.AssociatedSearchParameters.GameName;
                 if (objectName == null)
@@ -185,10 +255,6 @@ namespace stigzler.Screenscraper.Services
 
             return outcomes.ToList();
         }
-
-
-
-
         internal static string ParseExceptionResponse(WebException exception)
         {
             string responseContents;

@@ -51,7 +51,9 @@
     <Compile Include="Data\Models\ApiCredentials.cs" />
     <Compile Include="Data\Models\ApiGetOutcome.cs" />
     <Compile Include="Data\Models\ApiDownloadParameters.cs" />
+    <Compile Include="DownloadTask.cs" />
     <Compile Include="Exceptions\QueryMismatchException.cs" />
+    <Compile Include="FileDownloader.cs" />
     <Compile Include="Helpers\QueryParameter.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="EventArgs\ProgressChangedEventArgs.cs" />

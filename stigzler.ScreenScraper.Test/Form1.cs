@@ -22,6 +22,7 @@ using stigzler.Screenscraper.Helpers;
 using System.Runtime.InteropServices;
 using stigzler.ScreenScraper.Test.Entities;
 using System.Text;
+using System.Net;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -318,7 +319,6 @@ namespace stigzler.ScreenScraper.Test
 
                 case ApiQueryGroup.Downloads:
 
-
                     switch (QueryTypeCB.SelectedItem)
                     {
                         case ApiQueryType.GameImageDownload:
@@ -334,7 +334,7 @@ namespace stigzler.ScreenScraper.Test
 
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameImage.img");
                            //TODO - reinstate this once method re-written
-                           //outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+                           outcome = await Task.Run(() => getData.GetFileFromDetails(queryType, downloadParameters, downloadFilename));
 
                             if (outcome.Successfull) MediaPB.Image = stigzler.Utilities.Base.Operations.ImageOperation.UnlockedImageFromFile(downloadFilename);
                             break;
@@ -349,7 +349,7 @@ namespace stigzler.ScreenScraper.Test
                             };
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameVideo.mp4");
                             //TODO - reinstate this once method re-written
-                            //outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+                            outcome = await Task.Run(() => getData.GetFileFromDetails(queryType, downloadParameters, downloadFilename));
                             if (outcome.Successfull) OpenVideoBT.Enabled = true;
                             break;
 
@@ -363,7 +363,7 @@ namespace stigzler.ScreenScraper.Test
                             };
                             downloadFilename = Path.Combine(Path.GetTempPath(), "GameManual.pdf");
                             //TODO - reinstate this once method re-written
-                           // outcome = await Task.Run(() => getData.GetFile(queryType, downloadParameters, downloadFilename));
+                            outcome = await Task.Run(() => getData.GetFileFromDetails(queryType, downloadParameters, downloadFilename));
                             if (outcome.Successfull) OpenManualBT.Enabled = true;
                             break;
 
@@ -500,87 +500,6 @@ namespace stigzler.ScreenScraper.Test
         }
 
 
-        private async void ScrapeAllSystemRoms()
-        {
-            Progress<myEventArgs.ProgressChangedEventArgs> progress = new Progress<myEventArgs.ProgressChangedEventArgs>();
-            progress.ProgressChanged += Progress_ProgressChanged;
-
-            List<ApiGetOutcome> outcomes = new List<ApiGetOutcome>();
-
-            Entities.System selectedSystem = (Entities.System)SystemsCB.SelectedItem;
-            if (selectedSystem.RomFolder == null)
-            {
-                log(" ** No Rom Folder Mapped against System **");
-                return;
-            }
-
-            List<string> romFilepaths = Directory.GetFiles(selectedSystem.RomFolder, "*.*", SearchOption.AllDirectories).ToList();
-            List<ApiSearchParameters> serachParameters = new List<ApiSearchParameters>();
-            MainOpTitleLB.Text = "Processing Roms for System: " + SystemsCB.Text;
-
-            getData.UserThreads = (int)UserThreadsNUM.Value;
-
-            log("Processing all roms for system: " + SystemsCB.Text);
-            log("Using " + getData.UserThreads + " threads for " + romFilepaths.Count + " roms.");
-
-            foreach (var romFilename in romFilepaths)
-            {
-                serachParameters.Add(new ApiSearchParameters
-                {
-                    RomName = Path.GetFileName(romFilename),
-                    SystemID = selectedSystem.ID
-                });
-
-                //romFilenames.Add(Path.GetFileName(romFilename));
-
-            }
-
-            int systemID = (int)SystemsCB.SelectedValue;
-
-            outcomes = await Task.Run(() =>
-                getData.GetGamesInfo(serachParameters, ApiQueryType.GameRomSearch, cancellationTokenSource.Token, progress));
-
-            database.Games.RemoveAll(x => x.SystemID == systemID);
-
-            if (SaveGamesToDbBT.Checked)
-            {
-                log("System Rom scrape complete. Now populating Database..");
-
-                foreach (var outcome in outcomes)
-                {
-                    string xmlString = outcome.Data.ToString();
-                    XDocument xdoc = XDocument.Parse(xmlString);
-
-                    Entities.Game newGame = new Entities.Game();
-
-                    newGame.SystemID = systemID;
-                    newGame.ID = Convert.ToInt32(xdoc.Descendants("jeu").First().Attributes("id").First().Value);
-                    newGame.MainRomFilename = xdoc.Descendants("romfilename").First().Value;
-                    newGame.GameXml = outcome.Data.ToString();
-                    try
-                    {
-                        newGame.Name = xdoc.Descendants("nom").First(x => x.Attribute("region").Value == "ss").Value;
-                    }
-                    catch (Exception)
-                    {
-                        //throw;
-                    }
-
-                    database.Games.Add(newGame);
-
-                }
-
-                await Task.Run(() => SaveDatabase());
-                log("Games saved to database");
-
-            }
-
-            MainOpTitleLB.Text = "Operation Finished.";
-            UpdatePB.Value = 0;
-            UpdateLB.Text = "";
-            UpdateRateLB.Text = "";
-
-        }
 
         private async void ResetDatabaseBT_Click(object sender, EventArgs e)
         {
@@ -668,8 +587,16 @@ namespace stigzler.ScreenScraper.Test
             BindDatabaseComboboxes();
         }
 
-        private void getAllGameImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void getAllGameImagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            GetAllGameMedia();
+        }
+
+
+        private async void GetAllGameMedia()
+        {
+            log("Downloading media for game: " + GamesCB.Text + " using " + (int)UserThreadsNUM.Value + " threads");
+
             Game game = database.Games.Find(x => x.ID.Equals(int.Parse(GamesCB.SelectedValue.ToString())));
 
             XDocument mediaXDoc = XDocument.Parse(game.GameXml);
@@ -677,6 +604,11 @@ namespace stigzler.ScreenScraper.Test
 
             string mediaRootPath = "C:\\temp\\project tests\\gearbox\\MediaDownloadTests";
             List<ApiDownloadParameters> urisAndFilenames = new List<ApiDownloadParameters>();
+
+            Progress<myEventArgs.ProgressChangedEventArgs> progress = new Progress<myEventArgs.ProgressChangedEventArgs>();
+            progress.ProgressChanged += Progress_ProgressChanged;
+
+            var downloadTasks = new List<DownloadTask>();
 
             foreach (var mediaElement in mediaElements)
             {
@@ -692,18 +624,107 @@ namespace stigzler.ScreenScraper.Test
                     DirectUri = new Uri(mediaElement.Value),
                     Filename = filename,
                 });
-                
 
-                    
-                 
+                DownloadTask dlt = new DownloadTask { Url = mediaElement.Value, DestinationPath = filename };
+                downloadTasks.Add(dlt);
             }
 
-            var outcomes = getData.GetFilesFromUris(urisAndFilenames);
+            ServicePointManager.FindServicePoint(new Uri("https://neoclone.screenscraper.fr/")).ConnectionLimit = (int)UserThreadsNUM.Value;
+            getData.UserThreads = (int)UserThreadsNUM.Value;
 
 
+            Stopwatch sw = Stopwatch.StartNew();
+            //var downloader = new FileDownloader(maxConcurrentDownloads: (int)UserThreadsNUM.Value); // Adjust the maximum concurrent downloads as needed.
+            //await downloader.DownloadFilesAsync(downloadTasks);
+            //sw.Stop();
 
+            var outcomes = await Task.Run(() =>
+                    getData.GetFilesFromUris(urisAndFilenames, cancellationTokenSource.Token, progress)
+                    );
+
+            log("Media Download completed in " + sw.Elapsed.TotalMilliseconds + "ms using " + UserThreadsNUM.Value + " Threads");
+            Debug.WriteLine(outcomes.Count);
+        }
+
+        private async void ScrapeAllSystemRoms()
+        {
+            Progress<myEventArgs.ProgressChangedEventArgs> progress = new Progress<myEventArgs.ProgressChangedEventArgs>();
+            progress.ProgressChanged += Progress_ProgressChanged;
+
+            List<ApiGetOutcome> outcomes = new List<ApiGetOutcome>();
+
+            Entities.System selectedSystem = (Entities.System)SystemsCB.SelectedItem;
+            if (selectedSystem.RomFolder == null)
+            {
+                log(" ** No Rom Folder Mapped against System **");
+                return;
+            }
+
+            List<string> romFilepaths = Directory.GetFiles(selectedSystem.RomFolder, "*.*", SearchOption.AllDirectories).ToList();
+            List<ApiSearchParameters> serachParameters = new List<ApiSearchParameters>();
+            MainOpTitleLB.Text = "Processing Roms for System: " + SystemsCB.Text;
+
+            getData.UserThreads = (int)UserThreadsNUM.Value;
+
+            log("Processing all roms for system: " + SystemsCB.Text);
+            log("Using " + getData.UserThreads + " threads for " + romFilepaths.Count + " roms.");
+
+            foreach (var romFilename in romFilepaths)
+            {
+                serachParameters.Add(new ApiSearchParameters
+                {
+                    RomName = Path.GetFileName(romFilename),
+                    SystemID = selectedSystem.ID
+                });
+            }
+
+            int systemID = (int)SystemsCB.SelectedValue;
+
+            outcomes = await Task.Run(() =>
+                getData.GetGamesInfo(serachParameters, ApiQueryType.GameRomSearch, cancellationTokenSource.Token, progress));
+
+            database.Games.RemoveAll(x => x.SystemID == systemID);
+
+            if (SaveGamesToDbBT.Checked)
+            {
+                log("System Rom scrape complete. Now populating Database..");
+
+                foreach (var outcome in outcomes)
+                {
+                    string xmlString = outcome.Data.ToString();
+                    XDocument xdoc = XDocument.Parse(xmlString);
+
+                    Entities.Game newGame = new Entities.Game();
+
+                    newGame.SystemID = systemID;
+                    newGame.ID = Convert.ToInt32(xdoc.Descendants("jeu").First().Attributes("id").First().Value);
+                    newGame.MainRomFilename = xdoc.Descendants("romfilename").First().Value;
+                    newGame.GameXml = outcome.Data.ToString();
+                    try
+                    {
+                        newGame.Name = xdoc.Descendants("nom").First(x => x.Attribute("region").Value == "ss").Value;
+                    }
+                    catch (Exception)
+                    {
+                        //throw;
+                    }
+
+                    database.Games.Add(newGame);
+
+                }
+
+                await Task.Run(() => SaveDatabase());
+                log("Games saved to database");
+
+            }
+
+            MainOpTitleLB.Text = "Operation Finished.";
+            UpdatePB.Value = 0;
+            UpdateLB.Text = "";
+            UpdateRateLB.Text = "";
 
         }
+
 
 
 

@@ -317,10 +317,27 @@
             <summary>
             
             </summary>
-            <param name="uriAndFilenames">Dictionary of Uris and their desired Filenames</param>
+            <param name="downloadsParameters">ApiDownloadParameters containing Uris and their desired Filenames</param>
             <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
             <param name="progress">[Optional] IProgress object for updates on progress</param>
             <returns></returns>
+        </member>
+        <member name="M:stigzler.Screenscraper.GetData.GetFileFromDetails(stigzler.Screenscraper.Enums.ApiQueryType,stigzler.Screenscraper.Data.Models.ApiDownloadParameters,System.String)">
+            <summary>
+            Downloads a file if one available.Covers various download functions for 
+            Game and System Images/Videos/Manuals/Company/Genre etc
+            </summary>
+            <param name = "queryType" > The type of Download Query.</param>
+            <param name = "downloadParameters" > Parameters related to the download.</param>
+            <param name = "destinationFilename" > The full filename to save the file as (with path, filename and extension).</param>
+            <exception cref = "T:stigzler.Screenscraper.Exceptions.QueryMismatchException" >
+            QueryMismatchException thrown if wrong form of query sent to this method.Only takes download queries.
+            </exception>
+            <returns>
+            An ApiGetOutcome object containing pertinent results of the Get request. 
+            The ApiGetOutcome.Data in this case is the returned xml/json or any error message.
+            ApiGetOutcome.AssociatedDownloadParameters contains the original Parameters plus the constructed Uri
+            </returns>
         </member>
         <member name="M:stigzler.Screenscraper.GetData.GetFileFromUri(stigzler.Screenscraper.Data.Models.ApiDownloadParameters)">
             <summary>
@@ -362,6 +379,15 @@
             <summary>
             Timeout to apply in milliseconds
             </summary>
+        </member>
+        <member name="M:stigzler.Screenscraper.Services.ApiDataService.#ctor(stigzler.Screenscraper.Data.Models.ApiServerParameters,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructor for 
+            </summary>
+            <param name="apiServerParameters"></param>
+            <param name="maxThreads">User Threads</param>
+            <param name="requestTimeout">Time in ms before WebReuqest times out</param>
+            <param name="webRequestAttempts">How many attempts will be made for a successful WebRequest</param>
         </member>
         <member name="M:stigzler.Screenscraper.Services.ApiDataService.GetStrings(System.Collections.Generic.Dictionary{stigzler.Screenscraper.Data.Models.ApiSearchParameters,System.Uri},System.String,System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
             <summary>
