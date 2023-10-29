@@ -34,6 +34,19 @@ namespace stigzler.ScreenScraper.Test
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.VerticalSC = new System.Windows.Forms.SplitContainer();
             this.VarsPN = new System.Windows.Forms.Panel();
+            this.groupBox4 = new stigzler.Winforms.Base.UIElements.GroupBox();
+            this.GameIdTB = new System.Windows.Forms.TextBox();
+            this.GameIdLB = new System.Windows.Forms.Label();
+            this.GameNameSearchTB = new System.Windows.Forms.TextBox();
+            this.RomNameSearchTB = new System.Windows.Forms.TextBox();
+            this.CrcTB = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.Md5TB = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.Sha1TB = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox3 = new stigzler.Winforms.Base.UIElements.GroupBox();
             this.RomFolderTB = new stigzler.Winforms.Base.UserControls.FolderBrowserTextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -53,16 +66,10 @@ namespace stigzler.ScreenScraper.Test
             this.groupBox2 = new stigzler.Winforms.Base.UIElements.GroupBox();
             this.ViewXmlBT = new stigzler.Winforms.Base.UIElements.Button();
             this.label20 = new System.Windows.Forms.Label();
-            this.CrcTB = new System.Windows.Forms.TextBox();
             this.DlFormatCB = new stigzler.Winforms.Base.UIElements.ComboBox();
-            this.Md5TB = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.RegionsCB = new stigzler.Winforms.Base.UIElements.ComboBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.Sha1TB = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.MediaTypeCB = new stigzler.Winforms.Base.UIElements.ComboBox();
             this.GamesCB = new stigzler.Winforms.Base.UIElements.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -107,18 +114,13 @@ namespace stigzler.ScreenScraper.Test
             this.scrapeAllRomsForSelectedSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getAllGameImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox4 = new stigzler.Winforms.Base.UIElements.GroupBox();
-            this.GameNameSearchTB = new System.Windows.Forms.TextBox();
-            this.RomNameSearchTB = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.GameIdTB = new System.Windows.Forms.TextBox();
-            this.GameIdLB = new System.Windows.Forms.Label();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).BeginInit();
             this.VerticalSC.Panel1.SuspendLayout();
             this.VerticalSC.Panel2.SuspendLayout();
             this.VerticalSC.SuspendLayout();
             this.VarsPN.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -139,7 +141,6 @@ namespace stigzler.ScreenScraper.Test
             this.flowLayoutPanel2.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // VerticalSC
@@ -181,6 +182,160 @@ namespace stigzler.ScreenScraper.Test
             this.VarsPN.Name = "VarsPN";
             this.VarsPN.Size = new System.Drawing.Size(555, 589);
             this.VarsPN.TabIndex = 13;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.groupBox4.BorderStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+            this.groupBox4.BorderThickness = 1;
+            this.groupBox4.Controls.Add(this.GameIdTB);
+            this.groupBox4.Controls.Add(this.GameIdLB);
+            this.groupBox4.Controls.Add(this.GameNameSearchTB);
+            this.groupBox4.Controls.Add(this.RomNameSearchTB);
+            this.groupBox4.Controls.Add(this.CrcTB);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.Md5TB);
+            this.groupBox4.Controls.Add(this.label14);
+            this.groupBox4.Controls.Add(this.label13);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Controls.Add(this.Sha1TB);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.groupBox4.Location = new System.Drawing.Point(11, 256);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(524, 182);
+            this.groupBox4.TabIndex = 13;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Serach Parameters";
+            this.groupBox4.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            // 
+            // GameIdTB
+            // 
+            this.GameIdTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GameIdTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.GameIdTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GameIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.GameIdTB.Location = new System.Drawing.Point(92, 45);
+            this.GameIdTB.Name = "GameIdTB";
+            this.GameIdTB.Size = new System.Drawing.Size(419, 20);
+            this.GameIdTB.TabIndex = 21;
+            // 
+            // GameIdLB
+            // 
+            this.GameIdLB.AutoSize = true;
+            this.GameIdLB.Location = new System.Drawing.Point(32, 47);
+            this.GameIdLB.Name = "GameIdLB";
+            this.GameIdLB.Size = new System.Drawing.Size(52, 13);
+            this.GameIdLB.TabIndex = 20;
+            this.GameIdLB.Text = "Game ID:";
+            // 
+            // GameNameSearchTB
+            // 
+            this.GameNameSearchTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GameNameSearchTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.GameNameSearchTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.GameNameSearchTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.GameNameSearchTB.Location = new System.Drawing.Point(92, 19);
+            this.GameNameSearchTB.Name = "GameNameSearchTB";
+            this.GameNameSearchTB.Size = new System.Drawing.Size(419, 20);
+            this.GameNameSearchTB.TabIndex = 11;
+            // 
+            // RomNameSearchTB
+            // 
+            this.RomNameSearchTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RomNameSearchTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.RomNameSearchTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RomNameSearchTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.RomNameSearchTB.Location = new System.Drawing.Point(91, 71);
+            this.RomNameSearchTB.Name = "RomNameSearchTB";
+            this.RomNameSearchTB.Size = new System.Drawing.Size(419, 20);
+            this.RomNameSearchTB.TabIndex = 13;
+            // 
+            // CrcTB
+            // 
+            this.CrcTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.CrcTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.CrcTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CrcTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.CrcTB.Location = new System.Drawing.Point(91, 97);
+            this.CrcTB.Name = "CrcTB";
+            this.CrcTB.Size = new System.Drawing.Size(419, 20);
+            this.CrcTB.TabIndex = 11;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(15, 21);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(69, 13);
+            this.label12.TabIndex = 10;
+            this.label12.Text = "Game Name:";
+            // 
+            // Md5TB
+            // 
+            this.Md5TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Md5TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.Md5TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Md5TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.Md5TB.Location = new System.Drawing.Point(91, 123);
+            this.Md5TB.Name = "Md5TB";
+            this.Md5TB.Size = new System.Drawing.Size(419, 20);
+            this.Md5TB.TabIndex = 19;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(21, 73);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 13);
+            this.label14.TabIndex = 12;
+            this.label14.Text = "Rom Name:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(49, 151);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "SHA1";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(55, 99);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "CRC";
+            // 
+            // Sha1TB
+            // 
+            this.Sha1TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Sha1TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.Sha1TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Sha1TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.Sha1TB.Location = new System.Drawing.Point(91, 149);
+            this.Sha1TB.Name = "Sha1TB";
+            this.Sha1TB.Size = new System.Drawing.Size(419, 20);
+            this.Sha1TB.TabIndex = 17;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(54, 125);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(30, 13);
+            this.label11.TabIndex = 18;
+            this.label11.Text = "MD5";
             // 
             // groupBox3
             // 
@@ -445,18 +600,6 @@ namespace stigzler.ScreenScraper.Test
             this.label20.TabIndex = 26;
             this.label20.Text = "Img Format:";
             // 
-            // CrcTB
-            // 
-            this.CrcTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.CrcTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.CrcTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CrcTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.CrcTB.Location = new System.Drawing.Point(91, 97);
-            this.CrcTB.Name = "CrcTB";
-            this.CrcTB.Size = new System.Drawing.Size(419, 20);
-            this.CrcTB.TabIndex = 11;
-            // 
             // DlFormatCB
             // 
             this.DlFormatCB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -480,18 +623,6 @@ namespace stigzler.ScreenScraper.Test
             this.DlFormatCB.Size = new System.Drawing.Size(424, 21);
             this.DlFormatCB.TabIndex = 27;
             // 
-            // Md5TB
-            // 
-            this.Md5TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Md5TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.Md5TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Md5TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.Md5TB.Location = new System.Drawing.Point(91, 123);
-            this.Md5TB.Name = "Md5TB";
-            this.Md5TB.Size = new System.Drawing.Size(419, 20);
-            this.Md5TB.TabIndex = 19;
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -500,15 +631,6 @@ namespace stigzler.ScreenScraper.Test
             this.label19.Size = new System.Drawing.Size(44, 13);
             this.label19.TabIndex = 24;
             this.label19.Text = "Region:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(55, 99);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 13);
-            this.label7.TabIndex = 10;
-            this.label7.Text = "CRC";
             // 
             // RegionsCB
             // 
@@ -530,27 +652,6 @@ namespace stigzler.ScreenScraper.Test
             this.RegionsCB.Size = new System.Drawing.Size(424, 21);
             this.RegionsCB.TabIndex = 25;
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(54, 125);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(30, 13);
-            this.label11.TabIndex = 18;
-            this.label11.Text = "MD5";
-            // 
-            // Sha1TB
-            // 
-            this.Sha1TB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Sha1TB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.Sha1TB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Sha1TB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.Sha1TB.Location = new System.Drawing.Point(91, 149);
-            this.Sha1TB.Name = "Sha1TB";
-            this.Sha1TB.Size = new System.Drawing.Size(419, 20);
-            this.Sha1TB.TabIndex = 17;
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -559,15 +660,6 @@ namespace stigzler.ScreenScraper.Test
             this.label18.Size = new System.Drawing.Size(54, 13);
             this.label18.TabIndex = 21;
             this.label18.Text = "Img Type:";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(49, 151);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 13);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "SHA1";
             // 
             // MediaTypeCB
             // 
@@ -1140,8 +1232,9 @@ namespace stigzler.ScreenScraper.Test
             // 
             this.operationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.scrapeAllRomsForSelectedSystemToolStripMenuItem,
-            this.resetDatabaseToolStripMenuItem,
-            this.getAllGameImagesToolStripMenuItem});
+            this.getAllGameImagesToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.resetDatabaseToolStripMenuItem});
             this.operationsToolStripMenuItem.Name = "operationsToolStripMenuItem";
             this.operationsToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
             this.operationsToolStripMenuItem.Text = "Operations";
@@ -1167,96 +1260,10 @@ namespace stigzler.ScreenScraper.Test
             this.getAllGameImagesToolStripMenuItem.Text = "Get all images for selected Game";
             this.getAllGameImagesToolStripMenuItem.Click += new System.EventHandler(this.getAllGameImagesToolStripMenuItem_Click);
             // 
-            // groupBox4
+            // toolStripSeparator2
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.groupBox4.BorderStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-            this.groupBox4.BorderThickness = 1;
-            this.groupBox4.Controls.Add(this.GameIdTB);
-            this.groupBox4.Controls.Add(this.GameIdLB);
-            this.groupBox4.Controls.Add(this.GameNameSearchTB);
-            this.groupBox4.Controls.Add(this.RomNameSearchTB);
-            this.groupBox4.Controls.Add(this.CrcTB);
-            this.groupBox4.Controls.Add(this.label12);
-            this.groupBox4.Controls.Add(this.Md5TB);
-            this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.label7);
-            this.groupBox4.Controls.Add(this.Sha1TB);
-            this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.groupBox4.Location = new System.Drawing.Point(11, 256);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(524, 182);
-            this.groupBox4.TabIndex = 13;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Serach Parameters";
-            this.groupBox4.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            // 
-            // GameNameSearchTB
-            // 
-            this.GameNameSearchTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GameNameSearchTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.GameNameSearchTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GameNameSearchTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.GameNameSearchTB.Location = new System.Drawing.Point(92, 19);
-            this.GameNameSearchTB.Name = "GameNameSearchTB";
-            this.GameNameSearchTB.Size = new System.Drawing.Size(419, 20);
-            this.GameNameSearchTB.TabIndex = 11;
-            // 
-            // RomNameSearchTB
-            // 
-            this.RomNameSearchTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.RomNameSearchTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.RomNameSearchTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RomNameSearchTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.RomNameSearchTB.Location = new System.Drawing.Point(91, 71);
-            this.RomNameSearchTB.Name = "RomNameSearchTB";
-            this.RomNameSearchTB.Size = new System.Drawing.Size(419, 20);
-            this.RomNameSearchTB.TabIndex = 13;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(15, 21);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(69, 13);
-            this.label12.TabIndex = 10;
-            this.label12.Text = "Game Name:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(21, 73);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(63, 13);
-            this.label14.TabIndex = 12;
-            this.label14.Text = "Rom Name:";
-            // 
-            // GameIdTB
-            // 
-            this.GameIdTB.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GameIdTB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.GameIdTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.GameIdTB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.GameIdTB.Location = new System.Drawing.Point(92, 45);
-            this.GameIdTB.Name = "GameIdTB";
-            this.GameIdTB.Size = new System.Drawing.Size(419, 20);
-            this.GameIdTB.TabIndex = 21;
-            // 
-            // GameIdLB
-            // 
-            this.GameIdLB.AutoSize = true;
-            this.GameIdLB.Location = new System.Drawing.Point(32, 47);
-            this.GameIdLB.Name = "GameIdLB";
-            this.GameIdLB.Size = new System.Drawing.Size(52, 13);
-            this.GameIdLB.TabIndex = 20;
-            this.GameIdLB.Text = "Game ID:";
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(259, 6);
             // 
             // Form1
             // 
@@ -1279,6 +1286,8 @@ namespace stigzler.ScreenScraper.Test
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).EndInit();
             this.VerticalSC.ResumeLayout(false);
             this.VarsPN.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1307,8 +1316,6 @@ namespace stigzler.ScreenScraper.Test
             this.flowLayoutPanel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1397,6 +1404,7 @@ namespace stigzler.ScreenScraper.Test
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox GameIdTB;
         private System.Windows.Forms.Label GameIdLB;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 

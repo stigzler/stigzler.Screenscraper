@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Entities\Media.cs" />
+    <Compile Include="Data\Entities\MediaCategory.cs" />
+    <Compile Include="Data\Entities\MediaType.cs" />
+    <Compile Include="Data\Entities\RomMediaType.cs" />
+    <Compile Include="Data\Entities\RomType.cs" />
+    <Compile Include="Data\Entities\System.cs" />
     <Compile Include="Data\Models\ApiSearchParameters.cs" />
     <Compile Include="Data\Models\ApiServerParameters.cs" />
     <Compile Include="Data\Constants.cs" />
@@ -53,6 +59,7 @@
     <Compile Include="Data\Models\ApiDownloadParameters.cs" />
     <Compile Include="DownloadTask.cs" />
     <Compile Include="Exceptions\QueryMismatchException.cs" />
+    <Compile Include="Extensions\Xml.cs" />
     <Compile Include="FileDownloader.cs" />
     <Compile Include="Helpers\QueryParameter.cs" />
     <Compile Include="Enums\Enums.cs" />

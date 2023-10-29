@@ -10,6 +10,7 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Configuration;
 
 namespace stigzler.Screenscraper.Services
@@ -128,7 +129,11 @@ namespace stigzler.Screenscraper.Services
 
         internal ApiGetOutcome GetString(Uri uri)
         {
-            ModifiedNet.WebClient webClient = new ModifiedNet.WebClient(requestTimeout);
+            ModifiedNet.WebClient webClient = new ModifiedNet.WebClient(requestTimeout)
+            {
+                Encoding = Encoding.UTF8                            
+            };           
+                
             ApiGetOutcome outcome = new ApiGetOutcome();
             outcome.Uri = uri;
             string result = null;
@@ -143,6 +148,7 @@ namespace stigzler.Screenscraper.Services
 
                     outcome.Successfull = true;
                     outcome.StatusCode = 200;
+                    //outcome.Data = HttpUtility.HtmlDecode(result);
                     outcome.Data = result;
                 }
                 catch (WebException ex)

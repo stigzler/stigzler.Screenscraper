@@ -4,6 +4,11 @@
         <name>stigzler.Screenscraper</name>
     </assembly>
     <members>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Media.Support">
+            <summary>
+            Not sure what this is, but in for completeness...
+            </summary>
+        </member>
         <member name="T:stigzler.Screenscraper.Data.Models.ApiSearchParameters">
             <summary>
             Used interchangeably with ApiQueryType.GameNameSearch and ApiQueryType.GameRomSearch. 

@@ -1,28 +1,27 @@
 ﻿using stigzler.Screenscraper;
+using stigzler.Screenscraper.Data;
 using stigzler.Screenscraper.Data.Models;
 using stigzler.Screenscraper.Enums;
+using stigzler.ScreenScraper.Test.Entities;
 using stigzler.ScreenScraper.Test.Properties;
 using stigzler.Winforms.Base.Forms.BaseForm;
 using System;
-using myEventArgs = stigzler.Screenscraper.EventArgs;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-using System.Configuration;
-using stigzler.Screenscraper.Data;
+using myEventArgs = stigzler.Screenscraper.EventArgs;
 using stig = stigzler.ScreenScraper.Test.Entities;
-using stigzler.Screenscraper.Helpers;
-using System.Runtime.InteropServices;
-using stigzler.ScreenScraper.Test.Entities;
-using System.Text;
-using System.Net;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -95,6 +94,9 @@ namespace stigzler.ScreenScraper.Test
 
             XDocument xdoc = XDocument.Parse(outcome.Data.ToString());
 
+            List<stigzler.Screenscraper.Data.Entities.System> systemEntities = new List<Screenscraper.Data.Entities.System>();
+
+
             var systems = xdoc.Descendants("systeme");
             foreach (var system in systems)
             {
@@ -102,6 +104,11 @@ namespace stigzler.ScreenScraper.Test
                 newSystem.ID = Int32.Parse(system.Element("id").Value);
                 newSystem.Name = system.Descendants("nom_eu").ToList()[0].Value;
                 database.Systems.Add(newSystem);
+
+                Screenscraper.Data.Entities.System systemEntity = new Screenscraper.Data.Entities.System(system);
+                systemEntities.Add(systemEntity);
+
+
             }
             database.Systems = database.Systems.OrderBy(x => x.Name).ToList();
 
@@ -394,7 +401,7 @@ namespace stigzler.ScreenScraper.Test
             {
                 log("Uri: " + outcome.Uri);
                 if (outcome.Successfull == true)
-                { log("Successful? " + outcome.Successfull + Environment.NewLine + outcome.Data.ToString()); }
+                { log("Successful? " + outcome.Successfull + Environment.NewLine + HttpUtility.HtmlDecode(outcome.Data.ToString())); }
                 else
                 {
                     log("Successful? " + outcome.Successfull + Environment.NewLine
@@ -532,7 +539,7 @@ namespace stigzler.ScreenScraper.Test
             stig.Game selectedGame = GamesCB.SelectedItem as stig.Game;
             if (selectedGame != null)
             {
-                log(selectedGame.GameXml);
+                log(HttpUtility.HtmlDecode(selectedGame.GameXml));
             }
         }
 
