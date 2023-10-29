@@ -37,9 +37,11 @@ namespace stigzler.Screenscraper.Data.Entities
 
         public System(XElement rootElement)
         {
-            FromXElement(rootElement);
+            UpdateFromXElement(rootElement);
         }
-        public void FromXElement(XElement rootElement)
+
+
+        public void UpdateFromXElement(XElement rootElement)
         {
             ID = Int32.Parse(rootElement.Element("id").Value);
 
@@ -96,10 +98,7 @@ namespace stigzler.Screenscraper.Data.Entities
                 }
             }
 
-
-
             // Now update lists:
-
 
             if (rootElement.TryGetElementValue("extensions") != null)
             {
@@ -107,14 +106,12 @@ namespace stigzler.Screenscraper.Data.Entities
                 Extensions.AddRange(rootElement.TryGetElementValue("extensions").Split(','));
             }
 
-
             MediaList.Clear();
             var medias = rootElement.Descendants("media");
             foreach (var media in medias)
             {
                 Media newMedia = new Media();
                 newMedia.MediaCategory = MediaCategory.System;
-
 
                 newMedia.Region = media.TryGetAttributeValue("region");
                 newMedia.Support = int.Parse( media.TryGetAttributeValue("support", "0"));

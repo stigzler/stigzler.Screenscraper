@@ -107,8 +107,6 @@ namespace stigzler.ScreenScraper.Test
 
                 Screenscraper.Data.Entities.System systemEntity = new Screenscraper.Data.Entities.System(system);
                 systemEntities.Add(systemEntity);
-
-
             }
             database.Systems = database.Systems.OrderBy(x => x.Name).ToList();
 
