@@ -116,7 +116,6 @@ namespace stigzler.Screenscraper
         /// Simple query to return the relevant lists from the API
         /// </summary>
         /// <param name="queryType">The type of query to perform.</param>
-        /// <remarks>
         /// Viable queryTypes:
         /// <list type = "table">
         ///    <listheader>
@@ -136,7 +135,6 @@ namespace stigzler.Screenscraper
         /// </list>
         /// <exception cref="Exceptions.QueryMismatchException">
         /// QueryMismatchException thrown if wrong form of query sent to this method. Only takes download queries. 
-        /// <remarks><see cref="Exceptions.QueryMismatchException"/></remarks>
         /// </exception>
         /// <returns>An ApiGetOutcome object containing pertinent results of the Get request. The ApiGetOutcome.Data in this case is the returned xml/json or any error message</returns>
 
@@ -151,14 +149,14 @@ namespace stigzler.Screenscraper
             return apiGetOutcome;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="queryType">The type of Download Query.</param>
-        /// <param name="parametersAndFilenames">Dictionary of DownloadParameters and their desired filenames</param>
-        /// <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
-        /// <param name="progress">[Optional] IProgress object for updates on progress</param>
-        /// <returns></returns>
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="queryType">The type of Download Query.</param>
+        ///// <param name="parametersAndFilenames">Dictionary of DownloadParameters and their desired filenames</param>
+        ///// <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
+        ///// <param name="progress">[Optional] IProgress object for updates on progress</param>
+        ///// <returns></returns>
         //public List<ApiGetOutcome> GetFiles(ApiQueryType queryType, List<ApiDownloadParameters> downloadParameters,
         //                                    CancellationToken cancellationToken = default(CancellationToken),
         //                                    IProgress<EventArgs.ProgressChangedEventArgs> progress = null)

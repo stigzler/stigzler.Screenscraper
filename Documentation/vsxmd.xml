@@ -399,7 +399,33 @@
             <param name="apiServerParameters">API and Query Server Parameters</param>
             <param name="userThreads">Specify number of API threads available to the user's account</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:stigzler.Screenscraper.GetData.GetListOrInfo(stigzler.Screenscraper.Enums.ApiQueryType)" -->
+        <member name="M:stigzler.Screenscraper.GetData.GetListOrInfo(stigzler.Screenscraper.Enums.ApiQueryType)">
+            <summary>
+            Simple query to return the relevant lists from the API
+            </summary>
+            <param name="queryType">The type of query to perform.</param>
+            Viable queryTypes:
+            <list type = "table">
+               <listheader>
+                   <term>Type</term>
+                  <description> description </description>
+               </listheader>
+               <item>
+                   <term cref="F:stigzler.Screenscraper.Enums.ApiQueryType.ClassificaitonList">ApiQueryType.ClassificaitonList</term>
+                   <description>Returns all age Classifications</description>
+               </item>
+               <item>
+                   <term cref="F:stigzler.Screenscraper.Enums.ApiQueryType.GameInfoList">ApiQueryType.GameInfoList</term>
+                  <description>This returns the different game data properties. 
+                  <example>Family, Mode, Number, Resolution, Themes</example>
+                  </description>
+               </item>
+            </list>
+            <exception cref="T:stigzler.Screenscraper.Exceptions.QueryMismatchException">
+            QueryMismatchException thrown if wrong form of query sent to this method. Only takes download queries. 
+            </exception>
+            <returns>An ApiGetOutcome object containing pertinent results of the Get request. The ApiGetOutcome.Data in this case is the returned xml/json or any error message</returns>
+        </member>
         <member name="M:stigzler.Screenscraper.GetData.GetFilesFromUris(System.Collections.Generic.List{stigzler.Screenscraper.Data.Models.ApiDownloadParameters},System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
             <summary>
             

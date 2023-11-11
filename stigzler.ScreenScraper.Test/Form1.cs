@@ -610,7 +610,7 @@ namespace stigzler.ScreenScraper.Test
             BindDatabaseComboboxes();
         }
 
-        private async void getAllGameImagesToolStripMenuItem_Click(object sender, EventArgs e)
+        private void getAllGameImagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GetAllGameMedia();
         }

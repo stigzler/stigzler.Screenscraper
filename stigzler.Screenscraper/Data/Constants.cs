@@ -146,13 +146,13 @@ namespace stigzler.Screenscraper.Data
             {"bezel-16-9v" , SystemMediaType.Bezel16_9Vertical },
             {"bezel-16-9-v" , SystemMediaType.Bezel16_9Vertical },
             {"bezel-4-3" , SystemMediaType.Bezel4_3 },
-            {"box-back-vierge" , SystemMediaType.SystemGameBoxBack },
-            {"box-tranche-vierge", SystemMediaType.SystemGameBoxSpine },
-            {"box-vierge", SystemMediaType.SystemGameBox },
-            {"box3D", SystemMediaType.SystemGameBox3d },
-            {"box-texture-gabarit", SystemMediaType.SystemGameBoxTemplate },
-            {"support2D", SystemMediaType.SystemGameMedia2d },
-            {"support-texture-gabarit", SystemMediaType.SystemGameMediaTemplate },
+            {"box-back-vierge" , SystemMediaType.GameBoxBack },
+            {"box-tranche-vierge", SystemMediaType.GameBoxSpine },
+            {"box-vierge", SystemMediaType.GameBox },
+            {"box3D", SystemMediaType.GameBox3d },
+            {"box-texture-gabarit", SystemMediaType.GameBoxTemplate },
+            {"support2D", SystemMediaType.GameMedia2d },
+            {"support-texture-gabarit", SystemMediaType.GameMediaTemplate },
             {"controls", SystemMediaType.Controls }
         };
 

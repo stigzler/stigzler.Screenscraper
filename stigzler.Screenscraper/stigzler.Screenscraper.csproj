@@ -48,14 +48,15 @@
     <Compile Include="Data\Entities\Game.cs" />
     <Compile Include="Data\Entities\Genre.cs" />
     <Compile Include="Data\Entities\Media.cs" />
-    <Compile Include="Data\Entities\MediaCategory.cs" />
     <Compile Include="Enums\ApiQueryGroup.cs" />
     <Compile Include="Enums\ApiQueryParameter.cs" />
     <Compile Include="Enums\ApiQueryType.cs" />
+    <Compile Include="Enums\GameMediaType.cs" />
+    <Compile Include="Enums\MediaCategory.cs" />
     <Compile Include="Enums\MetadataOutput.cs" />
     <Compile Include="Enums\RomFileType.cs" />
+    <Compile Include="Enums\RomMediaType.cs" />
     <Compile Include="Enums\SystemMediaType.cs" />
-    <Compile Include="Data\Entities\RomMediaType.cs" />
     <Compile Include="Data\Entities\System.cs" />
     <Compile Include="Data\Models\ApiSearchParameters.cs" />
     <Compile Include="Data\Models\ApiServerParameters.cs" />

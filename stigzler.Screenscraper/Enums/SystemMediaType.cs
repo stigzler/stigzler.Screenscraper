@@ -32,15 +32,13 @@ namespace stigzler.Screenscraper.Enums
         Bezel4_3,
         Bezel16_9,
         Bezel16_9Vertical,
-        SystemGameBoxBack,
-        SystemGameBoxSpine,
-        SystemGameBox,
-        SystemGameBox3d,
-        SystemGameBoxTemplate,
-        SystemGameMedia2d,
-        SystemGameMediaTemplate,
+        GameBoxBack,
+        GameBoxSpine,
+        GameBox,
+        GameBox3d,
+        GameBoxTemplate,
+        GameMedia2d,
+        GameMediaTemplate,
         Controls
-
-
     }
 }
