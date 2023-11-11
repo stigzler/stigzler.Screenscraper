@@ -86,6 +86,12 @@
             Key = region, Value = Synopsis
             </summary>
         </member>
+        <member name="M:stigzler.Screenscraper.Data.Entities.Game.UpdateFromXElement(System.Xml.Linq.XElement)">
+            <summary>
+            You must feed in the "jeu" Element for the game
+            </summary>
+            <param name="rootElement"></param>
+        </member>
         <member name="P:stigzler.Screenscraper.Data.Entities.Media.Support">
             <summary>
             Not sure what this is, but in for completeness...

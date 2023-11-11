@@ -122,15 +122,12 @@ namespace stigzler.Screenscraper.Data.Entities
                 newMedia.Format = media.TryGetAttributeValue("format");
 
                 if (media.TryGetAttributeValue("type") != null) 
-                    newMedia.MediaType = Constants.MediaTypes[media.TryGetAttributeValue("type")];
+                    newMedia.MediaType = Constants.SystemMediaTypes[media.TryGetAttributeValue("type")];
 
                 newMedia.Uri = media.Value.ToString();
 
                 MediaList.Add(newMedia);
             }
-
-
-
         }
 
 

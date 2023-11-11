@@ -5,6 +5,7 @@ using stigzler.Screenscraper.Enums;
 using stigzler.ScreenScraper.Test.Entities;
 using stigzler.ScreenScraper.Test.Properties;
 using stigzler.Winforms.Base.Forms.BaseForm;
+using stigEntities = stigzler.Screenscraper.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -96,9 +97,8 @@ namespace stigzler.ScreenScraper.Test
 
             List<stigzler.Screenscraper.Data.Entities.System> systemEntities = new List<Screenscraper.Data.Entities.System>();
 
-
             var systems = xdoc.Descendants("systeme");
-            foreach (var system in systems)
+            foreach (XElement system in systems)
             {
                 Entities.System newSystem = new Entities.System();
                 newSystem.ID = Int32.Parse(system.Element("id").Value);
@@ -706,6 +706,14 @@ namespace stigzler.ScreenScraper.Test
             outcomes = await Task.Run(() =>
                 getData.GetGamesInfo(serachParameters, ApiQueryType.GameRomSearch, cancellationTokenSource.Token, progress));
 
+            foreach (var outcome in outcomes)
+            {
+                XDocument xdoc = XDocument.Parse(outcome.Data.ToString());
+                XElement gameXelement = xdoc.Descendants("jeu").First();
+
+                stigEntities.Game game = new stigEntities.Game(gameXelement);
+            }
+
             database.Games.RemoveAll(x => x.SystemID == systemID);
 
             if (SaveGamesToDbBT.Checked)
@@ -749,9 +757,17 @@ namespace stigzler.ScreenScraper.Test
 
         }
 
+        private void currentGameXmlDataObjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            stig.Game selectedGame = GamesCB.SelectedItem as stig.Game;
+            if (selectedGame == null) return;
 
+            XDocument xdoc = XDocument.Parse(selectedGame.GameXml);
+            XElement gameXelement = xdoc.Descendants("jeu").First();
 
+            stigEntities.Game game = new stigEntities.Game(gameXelement);
 
+        }
     }
 
 

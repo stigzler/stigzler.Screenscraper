@@ -25,6 +25,7 @@ namespace stigzler.Screenscraper.Data
                      ApiQueryType.RomInfoList, ApiQueryType.SystemList, ApiQueryType.NumberOfPlayersList
                     }
                 },
+
                 { ApiQueryGroup.Downloads, new List<ApiQueryType>
                     {
                     ApiQueryType.GameImageDownload, ApiQueryType.GameVideoDownload, ApiQueryType.GameManualDownload,
@@ -32,11 +33,13 @@ namespace stigzler.Screenscraper.Data
                     ApiQueryType.SystemVideoDownload
                     }
                 },
+
                 { ApiQueryGroup.Searches, new List<ApiQueryType>
                     {
                     ApiQueryType.GameRomSearch, ApiQueryType.GameNameSearch
                     }
                 },
+
                 { ApiQueryGroup.Uploads, new List<ApiQueryType>
                     {
                     ApiQueryType.AddGameNote, ApiQueryType.AddGameInfo
@@ -204,8 +207,8 @@ namespace stigzler.Screenscraper.Data
             {"box-scan", GameMediaType.ScanBox },
             {"support-scan", GameMediaType.ScanLabel },
             {"support-2D", GameMediaType.Media2d },
-            {"support-texture", GameMediaType.MediaLabel },
-        ;
+            {"support-texture", GameMediaType.MediaLabel }
+        };
 
 
 

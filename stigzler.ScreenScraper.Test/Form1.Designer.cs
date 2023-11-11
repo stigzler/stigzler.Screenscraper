@@ -112,9 +112,10 @@ namespace stigzler.ScreenScraper.Test
             this.menuStrip1 = new stigzler.Winforms.Base.UIElements.MenuStrip();
             this.operationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scrapeAllRomsForSelectedSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.resetDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getAllGameImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.resetDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentGameXmlDataObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).BeginInit();
             this.VerticalSC.Panel1.SuspendLayout();
             this.VerticalSC.Panel2.SuspendLayout();
@@ -1233,6 +1234,7 @@ namespace stigzler.ScreenScraper.Test
             this.operationsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.scrapeAllRomsForSelectedSystemToolStripMenuItem,
             this.getAllGameImagesToolStripMenuItem,
+            this.currentGameXmlDataObjectToolStripMenuItem,
             this.toolStripSeparator2,
             this.resetDatabaseToolStripMenuItem});
             this.operationsToolStripMenuItem.Name = "operationsToolStripMenuItem";
@@ -1246,13 +1248,6 @@ namespace stigzler.ScreenScraper.Test
             this.scrapeAllRomsForSelectedSystemToolStripMenuItem.Text = "Scrape all Roms for selected System";
             this.scrapeAllRomsForSelectedSystemToolStripMenuItem.Click += new System.EventHandler(this.scrapeAllRomsForSelectedSystemToolStripMenuItem_Click);
             // 
-            // resetDatabaseToolStripMenuItem
-            // 
-            this.resetDatabaseToolStripMenuItem.Name = "resetDatabaseToolStripMenuItem";
-            this.resetDatabaseToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.resetDatabaseToolStripMenuItem.Text = "Reset Database";
-            this.resetDatabaseToolStripMenuItem.Click += new System.EventHandler(this.resetDatabaseToolStripMenuItem_Click);
-            // 
             // getAllGameImagesToolStripMenuItem
             // 
             this.getAllGameImagesToolStripMenuItem.Name = "getAllGameImagesToolStripMenuItem";
@@ -1264,6 +1259,20 @@ namespace stigzler.ScreenScraper.Test
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(259, 6);
+            // 
+            // resetDatabaseToolStripMenuItem
+            // 
+            this.resetDatabaseToolStripMenuItem.Name = "resetDatabaseToolStripMenuItem";
+            this.resetDatabaseToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.resetDatabaseToolStripMenuItem.Text = "Reset Database";
+            this.resetDatabaseToolStripMenuItem.Click += new System.EventHandler(this.resetDatabaseToolStripMenuItem_Click);
+            // 
+            // currentGameXmlDataObjectToolStripMenuItem
+            // 
+            this.currentGameXmlDataObjectToolStripMenuItem.Name = "currentGameXmlDataObjectToolStripMenuItem";
+            this.currentGameXmlDataObjectToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.currentGameXmlDataObjectToolStripMenuItem.Text = "Current Game xml > Data Object";
+            this.currentGameXmlDataObjectToolStripMenuItem.Click += new System.EventHandler(this.currentGameXmlDataObjectToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1405,6 +1414,7 @@ namespace stigzler.ScreenScraper.Test
         private System.Windows.Forms.TextBox GameIdTB;
         private System.Windows.Forms.Label GameIdLB;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem currentGameXmlDataObjectToolStripMenuItem;
     }
 }
 
