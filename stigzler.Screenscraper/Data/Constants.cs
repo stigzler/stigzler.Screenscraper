@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using stigzler.Screenscraper.Data.Entities;
 
+
 namespace stigzler.Screenscraper.Data
 {
     public static class Constants
@@ -119,39 +120,40 @@ namespace stigzler.Screenscraper.Data
             {"systeme", MediaCategory.System }
         };
 
-        public static Dictionary<string, MediaType> MediaTypes = new Dictionary<string, MediaType>()
+        public static Dictionary<string, SystemMediaType> MediaTypes = new Dictionary<string, SystemMediaType>()
         {
-            {"logo-monochrome", MediaType.LogoMonochrome },
-            {"wheel", MediaType.Logo},
-            {"logo-monochrome-svg" , MediaType.LogoMonochromeVector },
-            {"logo-svg", MediaType.LogoVector },
-            {"wheel-hd-vierge", MediaType.LogoHdBlank },
-            {"wheel-carbon", MediaType.LogoCarbon },
-            {"wheel-carbon-vierge", MediaType.LogoCarbonBlank },
-            {"wheel-steel" , MediaType.LogoSteel },
-            {"wheel-steel-vierge" , MediaType.LogoSteelBlank },
-            {"minicon", MediaType.IconMini },
-            {"icon", MediaType.Icon },
-            {"photo", MediaType.Photo },
-            {"illustration", MediaType.Illustration },
-            {"controller", MediaType.Controller },
-            {"video", MediaType.Video },
-            {"steam-grid", MediaType.SteamGrid },
-            {"BoitierConsole3D" , MediaType.SystemBox },
-            {"background", MediaType.Background },
-            {"screenmarquee" , MediaType.Marquee },
-            {"screenmarquee-vierge", MediaType.MarqueeBlank },
-            {"bezel-16-9" , MediaType.Bezel16_9 },
-            {"bezel-16-9v" , MediaType.Bezel16_9Vertical },
-            {"bezel-4-3" , MediaType.Bezel4_3 },
-            {"box-back-vierge" , MediaType.SystemGameBoxBack },
-            {"box-tranche-vierge", MediaType.SystemGameBoxSpine },
-            {"box-vierge", MediaType.SystemGameBox },
-            {"box3D", MediaType.SystemGameBox3d },
-            {"box-texture-gabarit", MediaType.SystemGameBoxTemplate },
-            {"support2D", MediaType.SystemGameMedia2d },
-            {"support-texture-gabarit", MediaType.SystemGameMediaTemplate },
-            {"controls", MediaType.Controls }
+            {"logo-monochrome", SystemMediaType.LogoMonochrome },
+            {"wheel", SystemMediaType.Logo},
+            {"logo-monochrome-svg" , SystemMediaType.LogoMonochromeVector },
+            {"logo-svg", SystemMediaType.LogoVector },
+            {"wheel-hd-vierge", SystemMediaType.LogoHdBlank },
+            {"wheel-carbon", SystemMediaType.LogoCarbon },
+            {"wheel-carbon-vierge", SystemMediaType.LogoCarbonBlank },
+            {"wheel-steel" , SystemMediaType.LogoSteel },
+            {"wheel-steel-vierge" , SystemMediaType.LogoSteelBlank },
+            {"minicon", SystemMediaType.IconMini },
+            {"icon", SystemMediaType.Icon },
+            {"photo", SystemMediaType.Photo },
+            {"illustration", SystemMediaType.Illustration },
+            {"controller", SystemMediaType.Controller },
+            {"video", SystemMediaType.Video },
+            {"steam-grid", SystemMediaType.SteamGrid },
+            {"BoitierConsole3D" , SystemMediaType.SystemBox },
+            {"background", SystemMediaType.Background },
+            {"screenmarquee" , SystemMediaType.Marquee },
+            {"screenmarquee-vierge", SystemMediaType.MarqueeBlank },
+            {"bezel-16-9" , SystemMediaType.Bezel16_9 },
+            {"bezel-16-9v" , SystemMediaType.Bezel16_9Vertical },
+            {"bezel-16-9-v" , SystemMediaType.Bezel16_9Vertical },
+            {"bezel-4-3" , SystemMediaType.Bezel4_3 },
+            {"box-back-vierge" , SystemMediaType.SystemGameBoxBack },
+            {"box-tranche-vierge", SystemMediaType.SystemGameBoxSpine },
+            {"box-vierge", SystemMediaType.SystemGameBox },
+            {"box3D", SystemMediaType.SystemGameBox3d },
+            {"box-texture-gabarit", SystemMediaType.SystemGameBoxTemplate },
+            {"support2D", SystemMediaType.SystemGameMedia2d },
+            {"support-texture-gabarit", SystemMediaType.SystemGameMediaTemplate },
+            {"controls", SystemMediaType.Controls }
         };
 
 

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace stigzler.Screenscraper.Data.Entities
+namespace stigzler.Screenscraper.Enums
 {
     public enum RomFileType
     {

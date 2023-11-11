@@ -45,11 +45,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Entities\Game.cs" />
+    <Compile Include="Data\Entities\Genre.cs" />
     <Compile Include="Data\Entities\Media.cs" />
     <Compile Include="Data\Entities\MediaCategory.cs" />
-    <Compile Include="Data\Entities\MediaType.cs" />
+    <Compile Include="Enums\ApiQueryGroup.cs" />
+    <Compile Include="Enums\ApiQueryParameter.cs" />
+    <Compile Include="Enums\ApiQueryType.cs" />
+    <Compile Include="Enums\MetadataOutput.cs" />
+    <Compile Include="Enums\RomFileType.cs" />
+    <Compile Include="Enums\SystemMediaType.cs" />
     <Compile Include="Data\Entities\RomMediaType.cs" />
-    <Compile Include="Data\Entities\RomType.cs" />
     <Compile Include="Data\Entities\System.cs" />
     <Compile Include="Data\Models\ApiSearchParameters.cs" />
     <Compile Include="Data\Models\ApiServerParameters.cs" />
@@ -62,7 +68,6 @@
     <Compile Include="Extensions\Xml.cs" />
     <Compile Include="FileDownloader.cs" />
     <Compile Include="Helpers\QueryParameter.cs" />
-    <Compile Include="Enums\Enums.cs" />
     <Compile Include="EventArgs\ProgressChangedEventArgs.cs" />
     <Compile Include="GetData.cs" />
     <Compile Include="Helpers\ApiUrlBuilder.cs" />
@@ -78,6 +83,9 @@
       <Link>.editorconfig</Link>
     </None>
     <None Include="ClassOverview.cd" />
+    <Content Include="Monikers.imagemanifest">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

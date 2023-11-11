@@ -6,20 +6,6 @@ using System.Threading.Tasks;
 
 namespace stigzler.Screenscraper.Enums
 {
-    public enum MetadataOutput
-    {
-        xml = 0,
-        json = 1
-    }
-
-    public enum ApiQueryGroup
-    {
-        InfoAndLists,
-        Downloads,
-        Searches,
-        Uploads
-    }
-
     public enum ApiQueryType
     {
         ServerInfo,
@@ -58,45 +44,6 @@ namespace stigzler.Screenscraper.Enums
         GameOrganisationImageDownload,
         SystemImageDownload,
         SystemVideoDownload
-    }
-
-
-
-    public enum ApiQueryParameter
-    {
-        None,
-
-        // IDs
-        SystemID,  
-        GenreID,
-        OrganisationID,
-
-        // Search
-        SearchGameID,
-        RomName,
-        GameName,
-        RomFileType,
-        RomSize,
-        SeriaNumber,
-
-        // Download
-        DownloadGameID,
-        CRC,
-        MD5,
-        SHA1,
-        MediaTypeName,
-        MediaFormat,
-
-        // Debug
-        DevDebugPassword,
-        ForceIP,
-        ForceLevel,
-        ForceRequestOk,
-        ForceRequestKo,
-        ForceRequestMin,
-        ForceUpdate
-
-
     }
 
 }

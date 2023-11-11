@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 
-namespace stigzler.Screenscraper.Data.Entities
+namespace stigzler.Screenscraper.Enums
 {
-    public enum MediaType
+    public enum SystemMediaType
     {
         LogoMonochrome,
         Logo,

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using stigzler.Screenscraper.Enums;
 
 namespace stigzler.Screenscraper.Data.Entities
 {

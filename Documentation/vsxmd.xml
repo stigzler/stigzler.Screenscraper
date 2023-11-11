@@ -4,6 +4,88 @@
         <name>stigzler.Screenscraper</name>
     </assembly>
     <members>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.ID">
+            <summary>
+            Game ID
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.MatchedRomID">
+            <summary>
+            If Game details retrieved via RomName, this is the Rom match that game match made from
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.NotGame">
+            <summary>
+            If data is a game or not
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.Names">
+            <summary>
+            Region and GameName
+            Represents the different game names for different regions
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.CloneOf">
+            <summary>
+            GameID of any Clones
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.System">
+            <summary>
+            The System for the Game
+            Key = ID, Value = Name
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.Publisher">
+            <summary>
+            The Publisher of the Game
+            Key = ID, Value = Name
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.Developer">
+            <summary>
+            The Developer of the Game
+            Key = ID, Value = Name
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.Players">
+            <summary>
+            Number of players. String due to being mixed format (e.g. "1-4")
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.Score">
+            <summary>
+            Score out of 20
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.ScreenscraperPick">
+            <summary>
+            Whether in the Screenscraper top picks selection
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.Rotation">
+            <summary>
+            For arcade games
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.Synopses">
+            <summary>
+            Game Synopses in different languages
+            Key = language, Value = Synopsis
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.ReleaseDates">
+            <summary>
+            Release dates in different regions
+            Key = region, Value = Synopsis
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.Genres">
+            <summary>
+            Game Genres
+            Key = region, Value = Synopsis
+            </summary>
+        </member>
         <member name="P:stigzler.Screenscraper.Data.Entities.Media.Support">
             <summary>
             Not sure what this is, but in for completeness...
@@ -227,6 +309,20 @@
             The full filename to save the file as (with path, filename and extension).
             </summary>
         </member>
+        <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameInfoList">
+            <summary>
+            This returns the different types of game information.
+            <example>
+            Eg. Family, Mode, Number, Resolution, Themes
+            </example>
+            </summary>
+        </member>
+        <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameVideoDownload">
+            <summary>
+            Downloads video for specified Game. 
+            Requires <c cref="T:stigzler.Screenscraper.Enums.ApiQueryParameter">ApiQueryParameters:</c> SystemID, GameID, MediaTypeName
+            </summary>
+        </member>
         <member name="P:stigzler.Screenscraper.Exceptions.QueryMismatchException.AttemptedQueryType">
             <summary>
             The attempted query type.
@@ -240,20 +336,6 @@
         <member name="P:stigzler.Screenscraper.Exceptions.QueryMismatchException.AcceptedQueryTypes">
             <summary>
             List of permitted query types.
-            </summary>
-        </member>
-        <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameInfoList">
-            <summary>
-            This returns the different types of game information.
-            <example>
-            Eg. Family, Mode, Number, Resolution, Themes
-            </example>
-            </summary>
-        </member>
-        <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameVideoDownload">
-            <summary>
-            Downloads video for specified Game. 
-            Requires <c cref="T:stigzler.Screenscraper.Enums.ApiQueryParameter">ApiQueryParameters:</c> SystemID, GameID, MediaTypeName
             </summary>
         </member>
         <member name="P:stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs.ProgressPercentage">
