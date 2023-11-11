@@ -120,7 +120,7 @@ namespace stigzler.Screenscraper.Data
             {"systeme", MediaCategory.System }
         };
 
-        public static Dictionary<string, SystemMediaType> MediaTypes = new Dictionary<string, SystemMediaType>()
+        public static Dictionary<string, SystemMediaType> SystemMediaTypes = new Dictionary<string, SystemMediaType>()
         {
             {"logo-monochrome", SystemMediaType.LogoMonochrome },
             {"wheel", SystemMediaType.Logo},
@@ -156,6 +156,56 @@ namespace stigzler.Screenscraper.Data
             {"controls", SystemMediaType.Controls }
         };
 
+        public static Dictionary<string, GameMediaType> GameMediaTypes = new Dictionary<string, GameMediaType>()
+        {
+            {"bezel-16-9-cocktail", GameMediaType.Bezel16_9Cocktail },
+            {"bezel-16-9", GameMediaType.Bezel16_9 },
+            {"bezel-16-9-v", GameMediaType.Bezel16_9Vertical },
+            {"bezel-4-3-cocktail", GameMediaType.Bezel4_3Cocktail },
+            {"bezel-4-3", GameMediaType.Bezel4_3 },
+            {"bezel-4-3-v", GameMediaType.Bezel4_3Vertical },
+            {"box-3D", GameMediaType.Box3d },
+            {"box-texture", GameMediaType.BoxSleeve },
+            {"box-2D-back", GameMediaType.Box2dBack },
+            {"box-2D", GameMediaType.Box2dFront },
+            {"box-2D-side", GameMediaType.Box2dSpine },
+            {"wheel-hd", GameMediaType.LogoHD },
+            {"wheel", GameMediaType.Logo },
+            {"wheel-carbon", GameMediaType.LogoCarbon },
+            {"wheel-steel", GameMediaType.LogoSteel },
+            {"fanart", GameMediaType.Fanart },
+            {"flyer", GameMediaType.Flyer },
+            {"manuel", GameMediaType.Manual  },
+            {"maps", GameMediaType.Map },
+            {"marquee", GameMediaType.Marquee },
+            {"screenmarqueesmall", GameMediaType.MarqueeScreenSmall },
+            {"screenmarquee", GameMediaType.MarqueeScreen },
+            {"ss", GameMediaType.ScreenshotGameplay },
+            {"sstitle", GameMediaType.ScreenshotTitle },
+            {"steamgrid", GameMediaType.SteamGrid },
+            {"themehs", GameMediaType.HyperspinTheme },
+            {"video", GameMediaType.Video },
+            {"video-normalized", GameMediaType.VideoStandardised },
+            {"ssdmd", GameMediaType.ScreenshotDmd },
+            {"ssfronton16-9", GameMediaType.ScreenshotFrontend16_9 },
+            {"ssfronton1-1", GameMediaType.ScreenshotFrontend1_1 },
+            {"ssfronton4-3", GameMediaType.ScreenshotFrontend4_3 },
+            {"sstable", GameMediaType.ScreenshotTable },
+            {"sstopper", GameMediaType.ScreenshotTopper },
+            {"videodmd", GameMediaType.VideoDmd },
+            {"videofronton4-3", GameMediaType.VideoFrontend4_3 },
+            {"videofronton16-9", GameMediaType.VideoFrontend16_9 },
+            {"videotable4k", GameMediaType.VideoTable4k },
+            {"videotable", GameMediaType.VideoTable },
+            {"videotopper", GameMediaType.VideoTopper },
+            {"wheel-tarcisios", GameMediaType.Bezel16_9Cocktail },
+            {"mixrbv1", GameMediaType.RecalboxMix1 },
+            {"mixrbv2", GameMediaType.RecalboxMix2 },
+            {"box-scan", GameMediaType.ScanBox },
+            {"support-scan", GameMediaType.ScanLabel },
+            {"support-2D", GameMediaType.Media2d },
+            {"support-texture", GameMediaType.MediaLabel },
+        ;
 
 
 
