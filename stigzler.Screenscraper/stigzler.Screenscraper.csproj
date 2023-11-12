@@ -47,7 +47,8 @@
   <ItemGroup>
     <Compile Include="Data\Entities\Game.cs" />
     <Compile Include="Data\Entities\Genre.cs" />
-    <Compile Include="Data\Entities\Media.cs" />
+    <Compile Include="Data\Entities\GameMedia.cs" />
+    <Compile Include="Data\Entities\SystemMedia.cs" />
     <Compile Include="Enums\ApiQueryGroup.cs" />
     <Compile Include="Enums\ApiQueryParameter.cs" />
     <Compile Include="Enums\ApiQueryType.cs" />

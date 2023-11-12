@@ -86,13 +86,28 @@
             Key = region, Value = Synopsis
             </summary>
         </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.Game.MediaList">
+            <summary>
+            List of GameMedia associated with this game
+            </summary>
+        </member>
         <member name="M:stigzler.Screenscraper.Data.Entities.Game.UpdateFromXElement(System.Xml.Linq.XElement)">
             <summary>
             You must feed in the "jeu" Element for the game
             </summary>
             <param name="rootElement"></param>
         </member>
-        <member name="P:stigzler.Screenscraper.Data.Entities.Media.Support">
+        <member name="P:stigzler.Screenscraper.Data.Entities.GameMedia.AssociatedId">
+            <summary>
+            This is used with the Genre media type.
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.GameMedia.Support">
+            <summary>
+            Not sure what this is, but in for completeness...
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Entities.SystemMedia.Support">
             <summary>
             Not sure what this is, but in for completeness...
             </summary>

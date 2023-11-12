@@ -29,7 +29,7 @@ namespace stigzler.Screenscraper.Data.Entities
         public DateTime DateDiscontinued { get; set; }
         public RomFileType RomFileType { get; set; }
         public List<RomMediaType> RomMediaTypes { get; set; } = new List<RomMediaType>();
-        public List<Media> MediaList { get; set; } = new List<Media>();
+        public List<SystemMedia> MediaList { get; set; } = new List<SystemMedia>();
 
         public System()
         {
@@ -111,7 +111,7 @@ namespace stigzler.Screenscraper.Data.Entities
             var medias = rootElement.Descendants("media");
             foreach (var media in medias)
             {
-                Media newMedia = new Media();
+                SystemMedia newMedia = new SystemMedia();
                 newMedia.MediaCategory = MediaCategory.System;
 
                 newMedia.Region = media.TryGetAttributeValue("region");

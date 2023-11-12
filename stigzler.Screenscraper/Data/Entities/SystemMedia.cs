@@ -7,7 +7,7 @@ using stigzler.Screenscraper.Enums;
 
 namespace stigzler.Screenscraper.Data.Entities
 {
-    public class Media
+    public class SystemMedia
     {
         public MediaCategory MediaCategory { get; set; }
         public SystemMediaType MediaType { get; set; }

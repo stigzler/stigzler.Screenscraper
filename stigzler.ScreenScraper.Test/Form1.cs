@@ -23,6 +23,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using myEventArgs = stigzler.Screenscraper.EventArgs;
 using stig = stigzler.ScreenScraper.Test.Entities;
+using stigzler.Screenscraper.Extensions;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -625,7 +626,10 @@ namespace stigzler.ScreenScraper.Test
             XDocument mediaXDoc = XDocument.Parse(game.GameXml);
             IEnumerable<XElement> mediaElements = mediaXDoc.Descendants("media");
 
-            string mediaRootPath = "C:\\temp\\project tests\\gearbox\\MediaDownloadTests";
+            string mediaRootPath = Path.Combine(Path.GetTempPath(), "ScreenscraperWrapperMediaTest");
+            if (!Directory.Exists(mediaRootPath)) Directory.CreateDirectory(mediaRootPath);
+            foreach (System.IO.FileInfo file in new DirectoryInfo(mediaRootPath).GetFiles()) file.Delete();
+
             List<ApiDownloadParameters> urisAndFilenames = new List<ApiDownloadParameters>();
 
             Progress<myEventArgs.ProgressChangedEventArgs> progress = new Progress<myEventArgs.ProgressChangedEventArgs>();
@@ -667,6 +671,8 @@ namespace stigzler.ScreenScraper.Test
 
             log("Media Download completed in " + sw.Elapsed.TotalMilliseconds + "ms using " + UserThreadsNUM.Value + " Threads");
             Debug.WriteLine(outcomes.Count);
+
+            Process.Start(mediaRootPath);
         }
 
         private async void ScrapeAllSystemRoms()
@@ -706,31 +712,42 @@ namespace stigzler.ScreenScraper.Test
             outcomes = await Task.Run(() =>
                 getData.GetGamesInfo(serachParameters, ApiQueryType.GameRomSearch, cancellationTokenSource.Token, progress));
 
-            foreach (var outcome in outcomes)
-            {
-                XDocument xdoc = XDocument.Parse(outcome.Data.ToString());
-                XElement gameXelement = xdoc.Descendants("jeu").First();
-
-                stigEntities.Game game = new stigEntities.Game(gameXelement);
-            }
 
             database.Games.RemoveAll(x => x.SystemID == systemID);
 
             if (SaveGamesToDbBT.Checked)
             {
                 log("System Rom scrape complete. Now populating Database..");
+                Application.DoEvents();
 
                 foreach (var outcome in outcomes)
                 {
                     if (outcome.Successfull == false) continue;
+
                     string xmlString = outcome.Data.ToString();
                     XDocument xdoc = XDocument.Parse(xmlString);
+                    XElement jeuXElement = xdoc.Descendants("jeu").First();
+
+                    if (jeuXElement == null) continue;
 
                     Entities.Game newGame = new Entities.Game();
 
                     newGame.SystemID = systemID;
-                    newGame.ID = Convert.ToInt32(xdoc.Descendants("jeu").First().Attributes("id").First().Value);
-                    newGame.MainRomFilename = xdoc.Descendants("romfilename").First().Value;
+                    newGame.ID = Convert.ToInt32(jeuXElement.TryGetAttributeValue("id"));
+
+                    XElement romElement = jeuXElement.Element("rom");
+                    if (romElement != null)
+                    {
+                        newGame.MainRomFilename = romElement.Descendants("romfilename").FirstOrDefault().Value;
+                    }
+                    else
+                    {
+                        romElement = jeuXElement.Descendants("romfilename").FirstOrDefault();
+                        if (romElement != null )
+                        {
+                            newGame.MainRomFilename = romElement.Value;
+                        }
+                    }
                     newGame.GameXml = outcome.Data.ToString();
                     try
                     {
@@ -748,6 +765,14 @@ namespace stigzler.ScreenScraper.Test
                 await Task.Run(() => SaveDatabase());
                 log("Games saved to database");
 
+            }
+
+            foreach (var outcome in outcomes)
+            {
+                if (outcome.Successfull != true) continue;
+                XDocument xdoc = XDocument.Parse(outcome.Data.ToString());
+                XElement gameXelement = xdoc.Descendants("jeu").First();
+                stigEntities.Game game = new stigEntities.Game(gameXelement);
             }
 
             MainOpTitleLB.Text = "Operation Finished.";

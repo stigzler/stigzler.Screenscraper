@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace stigzler.Screenscraper.Extensions
 {
-    internal static class Xml
+    public static class Xml
     {
         public static string TryGetElementValue(this XElement parentEl, string elementName, string defaultValue = null)
         {

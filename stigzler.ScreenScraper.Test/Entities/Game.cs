@@ -11,7 +11,7 @@ namespace stigzler.ScreenScraper.Test.Entities
     {
 
         // Screenscraper Info
-        public int ID { get; set; }
+        public Int32 ID { get; set; }
         public int SystemID { get; set; }
         public string Name { get; set; } //EU Name
         public string MainRomFilename { get; set; }

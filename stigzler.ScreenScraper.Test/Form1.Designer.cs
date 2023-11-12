@@ -113,9 +113,9 @@ namespace stigzler.ScreenScraper.Test
             this.operationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scrapeAllRomsForSelectedSystemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.getAllGameImagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentGameXmlDataObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.resetDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.currentGameXmlDataObjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.VerticalSC)).BeginInit();
             this.VerticalSC.Panel1.SuspendLayout();
             this.VerticalSC.Panel2.SuspendLayout();
@@ -1252,8 +1252,15 @@ namespace stigzler.ScreenScraper.Test
             // 
             this.getAllGameImagesToolStripMenuItem.Name = "getAllGameImagesToolStripMenuItem";
             this.getAllGameImagesToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.getAllGameImagesToolStripMenuItem.Text = "Get all images for selected Game";
+            this.getAllGameImagesToolStripMenuItem.Text = "Get all media for selected Game";
             this.getAllGameImagesToolStripMenuItem.Click += new System.EventHandler(this.getAllGameImagesToolStripMenuItem_Click);
+            // 
+            // currentGameXmlDataObjectToolStripMenuItem
+            // 
+            this.currentGameXmlDataObjectToolStripMenuItem.Name = "currentGameXmlDataObjectToolStripMenuItem";
+            this.currentGameXmlDataObjectToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.currentGameXmlDataObjectToolStripMenuItem.Text = "Current Game xml > Data Object";
+            this.currentGameXmlDataObjectToolStripMenuItem.Click += new System.EventHandler(this.currentGameXmlDataObjectToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -1266,13 +1273,6 @@ namespace stigzler.ScreenScraper.Test
             this.resetDatabaseToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
             this.resetDatabaseToolStripMenuItem.Text = "Reset Database";
             this.resetDatabaseToolStripMenuItem.Click += new System.EventHandler(this.resetDatabaseToolStripMenuItem_Click);
-            // 
-            // currentGameXmlDataObjectToolStripMenuItem
-            // 
-            this.currentGameXmlDataObjectToolStripMenuItem.Name = "currentGameXmlDataObjectToolStripMenuItem";
-            this.currentGameXmlDataObjectToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
-            this.currentGameXmlDataObjectToolStripMenuItem.Text = "Current Game xml > Data Object";
-            this.currentGameXmlDataObjectToolStripMenuItem.Click += new System.EventHandler(this.currentGameXmlDataObjectToolStripMenuItem_Click);
             // 
             // Form1
             // 

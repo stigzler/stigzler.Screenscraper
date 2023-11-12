@@ -1,6 +1,8 @@
-﻿using stigzler.Screenscraper.Extensions;
+﻿using stigzler.Screenscraper.Enums;
+using stigzler.Screenscraper.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -25,17 +27,17 @@ namespace stigzler.Screenscraper.Data.Entities
         /// <summary>
         /// Game ID
         /// </summary>
-        public int ID { get; set; }
+        public Int32 ID { get; set; } = -1;
 
         /// <summary>
         /// If Game details retrieved via RomName, this is the Rom match that game match made from
         /// </summary>
-        public int MatchedRomID { get; set; }
+        public Int32 MatchedRomID { get; set; } = -1;
 
         /// <summary>
         /// If data is a game or not
         /// </summary>
-        public bool NotGame { get; set; }
+        public bool NotGame { get; set; } = false;
 
         /// <summary>
         /// Region and GameName
@@ -46,7 +48,7 @@ namespace stigzler.Screenscraper.Data.Entities
         /// <summary>
         /// GameID of any Clones
         /// </summary>
-        public int CloneOf { get; set; }
+        public int CloneOf { get; set; } = -1;
 
         /// <summary>
         /// The System for the Game
@@ -74,7 +76,7 @@ namespace stigzler.Screenscraper.Data.Entities
         /// <summary>
         /// Score out of 20
         /// </summary>
-        public int Score { get; set; }
+        public int Score { get; set; } = -1;
 
         /// <summary>
         /// Whether in the Screenscraper top picks selection
@@ -84,7 +86,7 @@ namespace stigzler.Screenscraper.Data.Entities
         /// <summary>
         /// For arcade games
         /// </summary>
-        public int Rotation { get; set; }
+        public int Rotation { get; set; } = -1;
 
         /// <summary>
         /// Game Synopses in different languages
@@ -102,7 +104,13 @@ namespace stigzler.Screenscraper.Data.Entities
         /// Game Genres
         /// Key = region, Value = Synopsis
         /// </summary>
-        public List<KeyValuePair<int, string>> Genres { get; set; } = new List<KeyValuePair<int, string>>();
+        public List<Genre> Genres { get; set; } = new List<Genre>();
+
+        /// <summary>
+        /// List of GameMedia associated with this game
+        /// </summary>
+        public List<GameMedia> MediaList { get; set; } = new List<GameMedia>();
+
 
         /// <summary>
         /// You must feed in the "jeu" Element for the game
@@ -112,46 +120,57 @@ namespace stigzler.Screenscraper.Data.Entities
         {
             XElement jeuElement = rootElement.AncestorsAndSelf().First();
 
-            ID = Int32.Parse(jeuElement.Attribute("id").Value);
-            MatchedRomID = Int32.Parse(jeuElement.Attribute("romid").Value);
+            ID = Int32.Parse(jeuElement.TryGetAttributeValue("id"));
+          if (jeuElement.TryGetAttributeValue("romid") != null && jeuElement.TryGetAttributeValue("romid") != "")  
+                MatchedRomID = Int32.Parse(jeuElement.TryGetAttributeValue("romid"));
+
             NotGame = bool.Parse(jeuElement.Attribute("notgame").Value);
 
             // Names
             Names.Clear();
             foreach (XElement name in jeuElement.Descendants("nom"))
             {
-                Names.Add(name.Attribute("region").Value, name.Value);
+                Names.Add(name.TryGetAttributeValue("region"), name.Value);
             }
 
-            CloneOf = Int32.Parse(jeuElement.Element("cloneof").Value);
+            CloneOf = Int32.Parse(jeuElement.TryGetElementValue("cloneof", "-1"));
 
             System = new KeyValuePair<int, string>(
-                Int32.Parse(jeuElement.Element("systeme").Attribute("id").Value),
+                Int32.Parse(jeuElement.Element("systeme").TryGetAttributeValue("id")),
                 jeuElement.Descendants("systeme").First().Value
                 );
 
-            Publisher = new KeyValuePair<int, string>(
-                Int32.Parse(jeuElement.Element("editeur").Attribute("id").Value),
-                jeuElement.Element("editeur").Value
-                );
+            var publisher = jeuElement.TryGetElementValue("editeur");
+            if (publisher != null)
+            {
+                Publisher = new KeyValuePair<int, string>(
+                    Int32.Parse(jeuElement.Element("editeur").TryGetAttributeValue("id")),
+                    jeuElement.Element("editeur").Value
+                    );
+            }
 
-            Developer = new KeyValuePair<int, string>(
-                Int32.Parse(jeuElement.Element("developpeur").Attribute("id").Value),
+            var developer = jeuElement.TryGetElementValue("developpeur");
+            if (developer != null)
+            {
+                Developer = new KeyValuePair<int, string>(
+                Int32.Parse(jeuElement.Element("developpeur").TryGetAttributeValue("id")),
                 jeuElement.Element("developpeur").Value
                 );
+            }
 
-            Players = jeuElement.Element("jouers").Value;
 
-            Score = Int32.Parse(jeuElement.Element("note").Value);
+            Players = jeuElement.TryGetElementValue("joueurs");
 
-            ScreenscraperPick = bool.Parse(jeuElement.Attribute("topstaff").Value);
+            Score = Int32.Parse(jeuElement.TryGetElementValue("note", "-1"));
 
-            Rotation = Int32.Parse(jeuElement.Element("rotation").Value);
+            ScreenscraperPick = Convert.ToBoolean(Convert.ToInt16(jeuElement.TryGetElementValue("topstaff")));
+
+            Rotation = Int32.Parse(jeuElement.TryGetElementValue("rotation"));
 
             Synopses.Clear();
             foreach (XElement synopsis in jeuElement.Descendants("synopsis"))
             {
-                Synopses.Add(synopsis.Attribute("langue").Value, synopsis.Value);
+                if (synopsis.TryGetAttributeValue("langue") != null) Synopses.Add(synopsis.TryGetAttributeValue("langue"), synopsis.Value);
             }
 
             ReleaseDates.Clear();
@@ -160,19 +179,104 @@ namespace stigzler.Screenscraper.Data.Entities
                 DateTime.TryParse(releaseDate.Value, out DateTime dateReleased);
                 if (dateReleased != DateTime.MinValue)
                 {
-                    ReleaseDates.Add(releaseDate.Attribute("region").Value, dateReleased);
+                    ReleaseDates.Add(releaseDate.TryGetAttributeValue("region"), dateReleased);
                 }
             }
 
             Genres.Clear();
-            var genreElements = jeuElement.Descendants("genre");
-            foreach (var uniqueGenreElement in genreElements.Where(x=> x.Attribute("id"))
+            var groupedGenres = jeuElement.Descendants("genre").GroupBy(x => x.Attribute("id").Value);
 
-
-            foreach (XElement genre in jeuElement.Descendants("genre"))
+            foreach (IGrouping<string, XElement> genreGroupXelements in groupedGenres)
             {
-                Genres.Add(new KeyValuePair<int, string> (genre.Attribute("region").Value, genre.Value));
+                Genre genre = new Genre();
+                genre.ID = Convert.ToInt32(genreGroupXelements.First().TryGetAttributeValue("id"));
+                genre.ParentGenreID = Convert.ToInt32(genreGroupXelements.First().TryGetAttributeValue("parentid"));
+
+                foreach (XElement xElement in genreGroupXelements)
+                {
+                    switch (xElement.TryGetAttributeValue("langue"))
+                    {
+                        case "en":
+                            genre.NameEnglish = xElement.Value; break;
+                        case "fr":
+                            genre.NameFench = xElement.Value; break;
+                        case "de":
+                            genre.NameGerman = xElement.Value; break;
+                        case "es":
+                            genre.NameSpanish = xElement.Value; break;
+                        case "it":
+                            genre.NameItalian = xElement.Value; break;
+                        case "pt":
+                            genre.NamePortugese = xElement.Value; break;
+                        default:
+                            break;
+                    }
+                }
+
+                Genres.Add(genre);
             }
+
+            MediaList.Clear();
+            var medias = jeuElement.Descendants("media");
+            foreach (var media in medias)
+            {
+                GameMedia newMedia = new GameMedia();
+
+                newMedia.Region = media.TryGetAttributeValue("region");
+                newMedia.CRC = media.TryGetAttributeValue("crc");
+                newMedia.MD5 = media.TryGetAttributeValue("md5");
+                newMedia.SHA1 = media.TryGetAttributeValue("sha1");
+                newMedia.Size = Convert.ToInt32(media.TryGetAttributeValue("size"));
+                newMedia.Format = media.TryGetAttributeValue("format");
+
+                if (media.TryGetAttributeValue("type") != null)
+                    newMedia.MediaType = Constants.GameMediaTypes[media.TryGetAttributeValue("type")];
+
+                switch (media.TryGetAttributeValue("parent"))
+                {
+                    case "region":
+                        newMedia.MediaCategory = MediaCategory.Region; break;
+                    case "editeur":
+                        newMedia.MediaCategory = MediaCategory.Publisher; break;
+                    case "developpeur":
+                        newMedia.MediaCategory = MediaCategory.Developer; break;
+                    case "joueurs":
+                        newMedia.MediaCategory = MediaCategory.Players; break;
+                    case "note":
+                        newMedia.MediaCategory = MediaCategory.Score; break;
+                    case "genre":
+                        newMedia.MediaCategory = MediaCategory.Genre;
+                        newMedia.AssociatedId = Convert.ToInt32(media.TryGetAttributeValue("id"));
+                        break;
+                    default:
+                        newMedia.MediaCategory = MediaCategory.Game; break;
+                }
+
+                newMedia.Uri = media.Value.ToString();
+                MediaList.Add(newMedia);
+            }
+
+
+            //MediaList.Clear();
+            //var medias = rootElement.Descendants("media");
+            //foreach (var media in medias)
+            //{
+            //    Media newMedia = new Media();
+            //    newMedia.MediaCategory = MediaCategory.System;
+            //    newMedia.Region = media.TryGetAttributeValue("region");
+            //    newMedia.Support = int.Parse(media.TryGetAttributeValue("support", "0"));
+            //    newMedia.CRC = media.TryGetAttributeValue("crc");
+            //    newMedia.MD5 = media.TryGetAttributeValue("md5");
+            //    newMedia.SHA1 = media.TryGetAttributeValue("sha1");
+            //    newMedia.Format = media.TryGetAttributeValue("format");
+
+            //    if (media.TryGetAttributeValue("type") != null)
+            //        newMedia.MediaType = Constants.SystemMediaTypes[media.TryGetAttributeValue("type")];
+
+            //    newMedia.Uri = media.Value.ToString();
+
+            //    MediaList.Add(newMedia);
+            //}
 
 
         }

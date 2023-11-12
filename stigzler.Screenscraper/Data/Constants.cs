@@ -207,7 +207,10 @@ namespace stigzler.Screenscraper.Data
             {"box-scan", GameMediaType.ScanBox },
             {"support-scan", GameMediaType.ScanLabel },
             {"support-2D", GameMediaType.Media2d },
-            {"support-texture", GameMediaType.MediaLabel }
+            {"support-texture", GameMediaType.MediaLabel },
+            {"pictoliste", GameMediaType.Icon },
+            {"pictomonochrome", GameMediaType.ImageMonochrome },
+            {"pictocouleur", GameMediaType.ImageColor }
         };
 
 
