@@ -190,7 +190,7 @@ namespace stigzler.Screenscraper.Data.Entities
             {
                 Genre genre = new Genre();
                 genre.ID = Convert.ToInt32(genreGroupXelements.First().TryGetAttributeValue("id"));
-                genre.ParentGenreID = Convert.ToInt32(genreGroupXelements.First().TryGetAttributeValue("parentid"));
+                genre.ParentID = Convert.ToInt32(genreGroupXelements.First().TryGetAttributeValue("parentid"));
 
                 foreach (XElement xElement in genreGroupXelements)
                 {

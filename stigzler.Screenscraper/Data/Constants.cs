@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using stigzler.Screenscraper.Data.Entities;
-
+using stigzler.Screenscraper.Data.Models;
 
 namespace stigzler.Screenscraper.Data
 {
@@ -49,11 +49,6 @@ namespace stigzler.Screenscraper.Data
 
         public static Dictionary<ApiQueryParameter, string> ApiQueryParameters = new Dictionary<ApiQueryParameter, string>()
         {
-            //{ApiQueryParameter.DeveloperID,"devid"},
-            //{ApiQueryParameter.DeveloperPassword,"devpassword"},
-            //{ApiQueryParameter.DeveloperSoftwareName,"softname"},
-            //{ApiQueryParameter.Username,"ssid" },
-            //{ApiQueryParameter.Password,"sspassword"},
 
             // IDs:
             {ApiQueryParameter.SystemID,"systemeid" },
@@ -245,8 +240,21 @@ namespace stigzler.Screenscraper.Data
             { ApiQueryType.UserLevelsList,"userlevelsListe.php" }
         };
 
+        internal static ApiCredentials DummyApiCredentials = new ApiCredentials()
+        {
+            DeveloperID = "xxx",
+            DeveloperPassword = "yyy",
+            DeveloperSoftware = "zzz",
+            UserID = "test",
+            UserPassword = "test"
+        };
 
-
+        internal static ApiServerParameters StandardApiServerParameters = new ApiServerParameters()
+        {
+            HostAddress = "https://www.screenscraper.fr",
+            ApiPath = "api2",
+            HttpTimeout = 5000
+        };
 
 
 

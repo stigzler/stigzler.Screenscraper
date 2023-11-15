@@ -24,11 +24,10 @@ namespace stigzler.Screenscraper
     /// This is the main Class used to retrieve data from the 
     /// ScreenScraper.fr API.
     /// Commonly, all Get requests take <see cref="Enums.ApiQueryType">ApiQueryType</see>.
-    /// </summary>
-    /// <remarks>
+    /// </summary>    /// 
     /// I know the design of this is wonky given how it handles batch/singular operations
     /// However, life's too fucking short so, meh. Crackhouse coding, baby. 
-    /// </remarks>
+
     public class GetData
     {
         #region Properties
@@ -97,7 +96,7 @@ namespace stigzler.Screenscraper
         /// <param name="credentials">API and User credentials</param>
         /// <param name="apiServerParameters">API and Query Server Parameters</param>
         /// <param name="userThreads">Specify number of API threads available to the user's account</param>
-        public GetData(ApiCredentials credentials, ApiServerParameters apiServerParameters, int userThreads)
+        public GetData(ApiCredentials credentials, ApiServerParameters apiServerParameters, int userThreads = 1)
         {
             // Set Public Properties
             Credentials = credentials;
@@ -420,6 +419,7 @@ namespace stigzler.Screenscraper
                 CancellationToken cancellationToken = default(CancellationToken), IProgress<EventArgs.ProgressChangedEventArgs> progress = null)
         {
             ApiQueryGroup apiQueryGroup = Constants.ApiQueryGroups.FirstOrDefault(x => x.Value.Contains(queryType)).Key;
+
             if (apiQueryGroup != ApiQueryGroup.Searches) throw new Exceptions.QueryMismatchException(queryType, ApiQueryGroup.Searches);
 
             List<ApiSearchParameters> apiSearchParametersToList = new List<ApiSearchParameters>();

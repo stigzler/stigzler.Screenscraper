@@ -24,6 +24,7 @@ using System.Xml.Serialization;
 using myEventArgs = stigzler.Screenscraper.EventArgs;
 using stig = stigzler.ScreenScraper.Test.Entities;
 using stigzler.Screenscraper.Extensions;
+using stigzler.Screenscraper.Data.Entities;
 
 namespace stigzler.ScreenScraper.Test
 {
@@ -559,38 +560,7 @@ namespace stigzler.ScreenScraper.Test
 
         private async void TestBT_Click(object sender, EventArgs e)
         {
-
-            //APIDownloadParameters downloadParameters = new APIDownloadParameters
-            //{
-            //    MediaTypeName = "manuel" +
-            //        "(" + RegionsCB.SelectedValue + ")",
-            //    ObjectID = (int)GamesCB.SelectedValue,
-            //    SystemID = (int)SystemsCB.SelectedValue,
-            //};
-            //string downloadFilename = Path.Combine(Path.GetTempPath(), "GameManual.pdf");
-            //try
-            //{
-            //    ApiGetOutcome outcome = await Task.Run(() => getData.GetFile(ApiQueryType.ClassificaitonList, downloadParameters, downloadFilename));
-            //}
-            //catch (stigzler.Screenscraper.Exceptions.QueryMismatchException error)
-            //{
-            //    Debug.WriteLine(error.ToString());
-            //    throw;
-            //}
-
-            ApiSearchParameters searchParams = new ApiSearchParameters()
-            {
-                //SystemID = 41,
-                GameID = 38005,
-                //CRC = "BB7C1075",
-                //RomName = "Choplifter! (USA).7z"
-            };
-
-            var outcome = await Task.Run(() =>
-                  getData.GetGameInfo(searchParams, ApiQueryType.GameRomSearch, CancellationToken.None));
-
-            log(outcome.Uri + Environment.NewLine + outcome.ToString() + ". Data: " + outcome.Data);
-
+            List<Genre> genreList = DefaultData.GetGenres();
         }
 
         private void scrapeAllRomsForSelectedSystemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -621,7 +591,7 @@ namespace stigzler.ScreenScraper.Test
         {
             log("Downloading media for game: " + GamesCB.Text + " using " + (int)UserThreadsNUM.Value + " threads");
 
-            Game game = database.Games.Find(x => x.ID.Equals(int.Parse(GamesCB.SelectedValue.ToString())));
+            stig.Game game = database.Games.Find(x => x.ID.Equals(int.Parse(GamesCB.SelectedValue.ToString())));
 
             XDocument mediaXDoc = XDocument.Parse(game.GameXml);
             IEnumerable<XElement> mediaElements = mediaXDoc.Descendants("media");

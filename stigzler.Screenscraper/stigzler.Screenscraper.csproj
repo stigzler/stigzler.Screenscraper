@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Defaults.cs" />
     <Compile Include="Data\Entities\Game.cs" />
     <Compile Include="Data\Entities\Genre.cs" />
     <Compile Include="Data\Entities\GameMedia.cs" />
