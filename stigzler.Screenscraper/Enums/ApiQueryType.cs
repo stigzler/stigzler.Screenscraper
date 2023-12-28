@@ -8,6 +8,7 @@ namespace stigzler.Screenscraper.Enums
 {
     public enum ApiQueryType
     {
+        None,
         ServerInfo,
         UserInfo,
         UserLevelsList,

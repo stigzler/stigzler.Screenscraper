@@ -4,6 +4,16 @@
         <name>stigzler.Screenscraper</name>
     </assembly>
     <members>
+        <member name="M:stigzler.Screenscraper.Data.GetDataObjects.GetList``1(stigzler.Screenscraper.Data.Models.ApiCredentials,stigzler.Screenscraper.Data.Models.ApiServerParameters)">
+            <summary>
+            Returns standard lists for various query types. 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryType"></param>
+            <param name="apiCredentials"></param>
+            <param name="apiServerParameters"></param>
+            <returns></returns>
+        </member>
         <member name="P:stigzler.Screenscraper.Data.Entities.Game.ID">
             <summary>
             Game ID
@@ -328,6 +338,11 @@
         <member name="P:stigzler.Screenscraper.Data.Models.ApiDownloadParameters.Filename">
             <summary>
             The full filename to save the file as (with path, filename and extension).
+            </summary>
+        </member>
+        <member name="F:stigzler.Screenscraper.Data.Constants.QueryTypeElementName">
+            <summary>
+            Incomplete at present.
             </summary>
         </member>
         <member name="F:stigzler.Screenscraper.Enums.ApiQueryType.GameInfoList">

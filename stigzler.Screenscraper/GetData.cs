@@ -88,6 +88,11 @@ namespace stigzler.Screenscraper
             ServicePointManager.FindServicePoint(new Uri(ApiParameters.HostAddress)).ConnectionLimit = userThreads;
         }
 
+
+
+        /// ============================================================================================================
+        /// GET-DATA
+        /// ============================================================================================================
         /// <summary>
         /// <para>The main method used to retrieve data from the 
         /// ScreenScraper API.  
@@ -111,6 +116,11 @@ namespace stigzler.Screenscraper
             SetNumberApiThreads();
         }
 
+
+
+        /// ============================================================================================================
+        /// GET-LIST-OR-INFO
+        /// ============================================================================================================
         /// <summary>
         /// Simple query to return the relevant lists from the API
         /// </summary>
@@ -147,6 +157,7 @@ namespace stigzler.Screenscraper
             ApiGetOutcome apiGetOutcome = apiDataService.GetString(new Uri(uriStr));
             return apiGetOutcome;
         }
+
 
         ///// <summary>
         ///// 
@@ -206,8 +217,11 @@ namespace stigzler.Screenscraper
         //    return outcomes.ToList();
         //}
 
-        /// <summary>
-        /// 
+
+
+        /// ============================================================================================================
+        /// GET-FILES-FROM-URIS
+        /// ============================================================================================================
         /// </summary>
         /// <param name="downloadsParameters">ApiDownloadParameters containing Uris and their desired Filenames</param>
         /// <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
@@ -243,7 +257,7 @@ namespace stigzler.Screenscraper
 
                 // Do File get.
                 //ApiGetOutcome outcome = GetFileFromUri(downloadParameters);
-                ApiGetOutcome outcome = apiDataService.GetFile(downloadParameters.DirectUri, downloadParameters.Filename);
+                ApiGetOutcome outcome = apiDataService.GetFile(downloadParameters.DirectUri, downloadParameters.DestinationFilename);
 
 
                 outcomes.Add(outcome);
@@ -265,8 +279,9 @@ namespace stigzler.Screenscraper
             return outcomes.ToList();
         }
 
-
-        /// <summary>
+        /// ============================================================================================================
+        /// GET-FILE-FROM-DETAILS
+        /// ============================================================================================================
         /// Downloads a file if one available.Covers various download functions for 
         /// Game and System Images/Videos/Manuals/Company/Genre etc
         /// </summary>
@@ -281,7 +296,6 @@ namespace stigzler.Screenscraper
         /// The ApiGetOutcome.Data in this case is the returned xml/json or any error message.
         /// ApiGetOutcome.AssociatedDownloadParameters contains the original Parameters plus the constructed Uri
         /// </returns>
-
         public ApiGetOutcome GetFileFromDetails(ApiQueryType queryType, ApiDownloadParameters downloadParameters, string destinationFilename)
         {
             // First check acceptable query type
@@ -322,6 +336,12 @@ namespace stigzler.Screenscraper
             return apiGetOutcome;
         }
 
+
+
+
+        /// ============================================================================================================
+        /// GET-FILE-FROM-URI
+        /// ============================================================================================================
         /// <summary>
         /// Get file directly from the Uri for the media resource.
         /// Often used where you already know the full Uri via Searches such as ApiQueryType.GameRomSearch
@@ -336,10 +356,13 @@ namespace stigzler.Screenscraper
         /// </returns>
         public ApiGetOutcome GetFileFromUri(ApiDownloadParameters downloadParameters)
         {
-            ApiGetOutcome apiGetOutcome = apiDataService.GetFile(downloadParameters.DirectUri, downloadParameters.Filename);
+            ApiGetOutcome apiGetOutcome = apiDataService.GetFile(downloadParameters.DirectUri, downloadParameters.DestinationFilename);
             return apiGetOutcome;
         }
 
+        /// ============================================================================================================
+        /// GET-GAMES-INFO
+        /// ============================================================================================================
         /// <summary>
         /// Gets game information via romname or gamename. 
         /// Query types supported: GameNameSearch, GameRomSearch
@@ -405,6 +428,11 @@ namespace stigzler.Screenscraper
             return apiGetOutcomes;
         }
 
+
+
+        /// ============================================================================================================
+        /// GET-GAME-INFO
+        /// ============================================================================================================
         /// <summary>
         /// Gets game information via romname or gamename. 
         /// Query types supported: GameNameSearch, GameRomSearch

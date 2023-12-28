@@ -558,9 +558,9 @@ namespace stigzler.ScreenScraper.Test
             Process.Start(Path.Combine(Path.GetTempPath(), "GameManual.pdf"));
         }
 
-        private async void TestBT_Click(object sender, EventArgs e)
+        private void TestBT_Click(object sender, EventArgs e)
         {
-            List<Genre> genreList = DefaultData.GetGenres();
+            List<Genre> objectList = GetDataObjects.GetList<Genre>();
         }
 
         private void scrapeAllRomsForSelectedSystemToolStripMenuItem_Click(object sender, EventArgs e)

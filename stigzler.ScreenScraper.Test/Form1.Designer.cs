@@ -1122,7 +1122,6 @@ namespace stigzler.ScreenScraper.Test
             this.MediaBroswerPN.Controls.Add(this.MediaPB);
             this.MediaBroswerPN.Controls.Add(this.flowLayoutPanel2);
             this.MediaBroswerPN.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MediaBroswerPN.Emphasis = 0;
             this.MediaBroswerPN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.MediaBroswerPN.Location = new System.Drawing.Point(0, 0);
             this.MediaBroswerPN.Name = "MediaBroswerPN";

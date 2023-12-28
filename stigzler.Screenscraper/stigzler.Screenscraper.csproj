@@ -45,10 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Defaults.cs" />
+    <Compile Include="Data\GetDataObjects.cs" />
     <Compile Include="Data\Entities\Game.cs" />
     <Compile Include="Data\Entities\Genre.cs" />
     <Compile Include="Data\Entities\GameMedia.cs" />
+    <Compile Include="Data\Entities\Region.cs" />
+    <Compile Include="Data\Entities\Language.cs" />
     <Compile Include="Data\Entities\SystemMedia.cs" />
     <Compile Include="Enums\ApiQueryGroup.cs" />
     <Compile Include="Enums\ApiQueryParameter.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Data\Models\ApiGetOutcome.cs" />
     <Compile Include="Data\Models\ApiDownloadParameters.cs" />
     <Compile Include="DownloadTask.cs" />
+    <Compile Include="Exceptions\GetListObjectsException.cs" />
     <Compile Include="Exceptions\QueryMismatchException.cs" />
     <Compile Include="Extensions\Xml.cs" />
     <Compile Include="FileDownloader.cs" />

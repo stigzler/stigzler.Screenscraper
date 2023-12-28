@@ -130,7 +130,10 @@ namespace stigzler.Screenscraper.Data.Entities
             }
         }
 
-
+        public override string ToString()
+        {
+            return NameEurope;
+        }
 
     }
 }

@@ -256,7 +256,16 @@ namespace stigzler.Screenscraper.Data
             HttpTimeout = 5000
         };
 
-
+        /// <summary>
+        /// Incomplete at present.
+        /// </summary>
+        internal static Dictionary<ApiQueryType, string> QueryTypeElementName = new Dictionary<ApiQueryType, string>
+        {
+            {ApiQueryType.GenreList, "genre" },
+            {ApiQueryType.LanguageList, "langue" },
+            {ApiQueryType.RegionList, "region"},
+            {ApiQueryType.SystemList, "systeme" }
+        };
 
 
 
