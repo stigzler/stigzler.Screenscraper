@@ -619,7 +619,7 @@ namespace stigzler.ScreenScraper.Test
                 urisAndFilenames.Add(new ApiDownloadParameters()
                 {
                     DirectUri = new Uri(mediaElement.Value),
-                    Filename = filename,
+                    DestinationFilename = filename,
                 });
 
                 DownloadTask dlt = new DownloadTask { Url = mediaElement.Value, DestinationPath = filename };
@@ -647,12 +647,9 @@ namespace stigzler.ScreenScraper.Test
 
         private async void ScrapeAllSystemRoms()
         {
-            Progress<myEventArgs.ProgressChangedEventArgs> progress = new Progress<myEventArgs.ProgressChangedEventArgs>();
-            progress.ProgressChanged += Progress_ProgressChanged;
 
-            List<ApiGetOutcome> outcomes = new List<ApiGetOutcome>();
 
-            Entities.System selectedSystem = (Entities.System)SystemsCB.SelectedItem;
+            stig.System selectedSystem = (stig.System)SystemsCB.SelectedItem;
             if (selectedSystem.RomFolder == null)
             {
                 log(" ** No Rom Folder Mapped against System **");
@@ -678,6 +675,11 @@ namespace stigzler.ScreenScraper.Test
             }
 
             int systemID = (int)SystemsCB.SelectedValue;
+
+            Progress<myEventArgs.ProgressChangedEventArgs> progress = new Progress<myEventArgs.ProgressChangedEventArgs>();
+            progress.ProgressChanged += Progress_ProgressChanged;
+
+            List<ApiGetOutcome> outcomes = new List<ApiGetOutcome>();
 
             outcomes = await Task.Run(() =>
                 getData.GetGamesInfo(serachParameters, ApiQueryType.GameRomSearch, cancellationTokenSource.Token, progress));

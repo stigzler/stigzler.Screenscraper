@@ -9,11 +9,16 @@ namespace stigzler.Screenscraper.Data.Models
     /// <summary>
     /// Used in the media download methods and returns. 
     /// Depending on the ApiQueryType, most will be optional with some obligatory.
-    /// For example, for a Game Image download: MediaTypeName and ObjectID are obligatory, with CRC, MD5, SHA1 being optional 
+    /// For example, for a Game Image download: MediaTypeName and ObjectID (=GameID) are obligatory, with CRC, MD5, SHA1 being optional 
     /// Also, as a return, DirectUri gives the direct Uri to the resource. 
     /// </summary>
     public class ApiDownloadParameters
     {
+        /// <summary>
+        /// Optional ID Field
+        /// </summary>
+        public string ID { get; set; } = Guid.NewGuid().ToString();
+
         /// <summary>
         /// CRC of the media file
         /// </summary>
@@ -48,6 +53,11 @@ namespace stigzler.Screenscraper.Data.Models
         /// ID of the relevant object. E.g. for GameImages query this would be the GameID. For GameOrganisationImages, the OrganisationID
         /// </summary>
         public int ObjectID { get; set; } = -1;
+                
+        /// <summary>
+        /// Used for reporting. For example, if downloading Game images, you may wish to store MediaType and Gamename here for sorting purposes
+        /// </summary>
+        public string ObjectIdentifier { get; set; }
 
         /// <summary>
         /// Full Uri to download from. Used when you already have the Uri (e.g. from a GameInfoSearch)
@@ -57,7 +67,7 @@ namespace stigzler.Screenscraper.Data.Models
         /// <summary>
         /// The full filename to save the file as (with path, filename and extension).
         /// </summary>
-        public string Filename { get; set; } = null;
+        public string DestinationFilename { get; set; } = null;
 
 
 

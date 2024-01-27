@@ -4,16 +4,6 @@
         <name>stigzler.Screenscraper</name>
     </assembly>
     <members>
-        <member name="M:stigzler.Screenscraper.Data.GetDataObjects.GetList``1(stigzler.Screenscraper.Data.Models.ApiCredentials,stigzler.Screenscraper.Data.Models.ApiServerParameters)">
-            <summary>
-            Returns standard lists for various query types. 
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="queryType"></param>
-            <param name="apiCredentials"></param>
-            <param name="apiServerParameters"></param>
-            <returns></returns>
-        </member>
         <member name="P:stigzler.Screenscraper.Data.Entities.Game.ID">
             <summary>
             Game ID
@@ -87,13 +77,13 @@
         <member name="P:stigzler.Screenscraper.Data.Entities.Game.ReleaseDates">
             <summary>
             Release dates in different regions
-            Key = region, Value = Synopsis
+            Key = region, Value = Release Dates
             </summary>
         </member>
         <member name="P:stigzler.Screenscraper.Data.Entities.Game.Genres">
             <summary>
             Game Genres
-            Key = region, Value = Synopsis
+            Key = region, Value = Genre Data Object
             </summary>
         </member>
         <member name="P:stigzler.Screenscraper.Data.Entities.Game.MediaList">
@@ -122,10 +112,25 @@
             Not sure what this is, but in for completeness...
             </summary>
         </member>
+        <member name="M:stigzler.Screenscraper.Data.GetDataObjects.GetList``1(stigzler.Screenscraper.Data.Models.ApiCredentials,stigzler.Screenscraper.Data.Models.ApiServerParameters)">
+            <summary>
+            Returns standard lists for various query types. 
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="queryType"></param>
+            <param name="apiCredentials"></param>
+            <param name="apiServerParameters"></param>
+            <returns></returns>
+        </member>
         <member name="T:stigzler.Screenscraper.Data.Models.ApiSearchParameters">
             <summary>
             Used interchangeably with ApiQueryType.GameNameSearch and ApiQueryType.GameRomSearch. 
             Not all properties need to be set. 
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.ApiSearchParameters.ID">
+            <summary>
+            Optional ID Field
             </summary>
         </member>
         <member name="P:stigzler.Screenscraper.Data.Models.ApiSearchParameters.SystemID">
@@ -177,6 +182,11 @@
             <summary>
             Not clear on this - Screenscraper API page states: 
             "Force search for the game with the number serial of the rom (iso) associated"
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.ApiSearchParameters.AssociatedUserDataObject">
+            <summary>
+            Any user data object - used to cross reference SearchParams/ApiGetOutcomes with original data object
             </summary>
         </member>
         <member name="P:stigzler.Screenscraper.Data.Models.ApiServerParameters.HttpTimeout">
@@ -291,8 +301,13 @@
             <summary>
             Used in the media download methods and returns. 
             Depending on the ApiQueryType, most will be optional with some obligatory.
-            For example, for a Game Image download: MediaTypeName and ObjectID are obligatory, with CRC, MD5, SHA1 being optional 
+            For example, for a Game Image download: MediaTypeName and ObjectID (=GameID) are obligatory, with CRC, MD5, SHA1 being optional 
             Also, as a return, DirectUri gives the direct Uri to the resource. 
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.ApiDownloadParameters.ID">
+            <summary>
+            Optional ID Field
             </summary>
         </member>
         <member name="P:stigzler.Screenscraper.Data.Models.ApiDownloadParameters.CRC">
@@ -330,12 +345,17 @@
             ID of the relevant object. E.g. for GameImages query this would be the GameID. For GameOrganisationImages, the OrganisationID
             </summary>
         </member>
+        <member name="P:stigzler.Screenscraper.Data.Models.ApiDownloadParameters.ObjectIdentifier">
+            <summary>
+            Used for reporting. For example, if downloading Game images, you may wish to store MediaType and Gamename here for sorting purposes
+            </summary>
+        </member>
         <member name="P:stigzler.Screenscraper.Data.Models.ApiDownloadParameters.DirectUri">
             <summary>
             Full Uri to download from. Used when you already have the Uri (e.g. from a GameInfoSearch)
             </summary>
         </member>
-        <member name="P:stigzler.Screenscraper.Data.Models.ApiDownloadParameters.Filename">
+        <member name="P:stigzler.Screenscraper.Data.Models.ApiDownloadParameters.DestinationFilename">
             <summary>
             The full filename to save the file as (with path, filename and extension).
             </summary>
@@ -424,16 +444,20 @@
             </summary>
         </member>
         <member name="M:stigzler.Screenscraper.GetData.#ctor(stigzler.Screenscraper.Data.Models.ApiCredentials,stigzler.Screenscraper.Data.Models.ApiServerParameters,System.Int32)">
+            ============================================================================================================
+            CTOR: GET-DATA
+            ============================================================================================================
             <summary>
-            <para>The main method used to retrieve data from the 
-            ScreenScraper API.  
-            </para>    
+            <para>The main method used to retrieve data from the ScreenScraper API.</para>    
             </summary>        
             <param name="credentials">API and User credentials</param>
             <param name="apiServerParameters">API and Query Server Parameters</param>
             <param name="userThreads">Specify number of API threads available to the user's account</param>
         </member>
         <member name="M:stigzler.Screenscraper.GetData.GetListOrInfo(stigzler.Screenscraper.Enums.ApiQueryType)">
+            ============================================================================================================
+            GET-LIST-OR-INFO
+            ============================================================================================================
             <summary>
             Simple query to return the relevant lists from the API
             </summary>
@@ -460,16 +484,38 @@
             </exception>
             <returns>An ApiGetOutcome object containing pertinent results of the Get request. The ApiGetOutcome.Data in this case is the returned xml/json or any error message</returns>
         </member>
-        <member name="M:stigzler.Screenscraper.GetData.GetFilesFromUris(System.Collections.Generic.List{stigzler.Screenscraper.Data.Models.ApiDownloadParameters},System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
+        <member name="M:stigzler.Screenscraper.GetData.GetGamesInfo(System.Collections.Generic.List{stigzler.Screenscraper.Data.Models.ApiSearchParameters},stigzler.Screenscraper.Enums.ApiQueryType,System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
+            ============================================================================================================
+            GET-GAMES-INFO
+            ============================================================================================================
             <summary>
-            
+            Gets game information via romname or gamename. 
+            Query types supported: GameNameSearch, GameRomSearch
             </summary>
-            <param name="downloadsParameters">ApiDownloadParameters containing Uris and their desired Filenames</param>
+            <param name="gameSearchParametersList">Parameters for each game search</param>
+            <param name="queryType">Type of query to return. Query types supported: GameNameSearch, GameRomSearch</param>
             <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
             <param name="progress">[Optional] IProgress object for updates on progress</param>
             <returns></returns>
         </member>
+        <member name="M:stigzler.Screenscraper.GetData.GetGameInfo(stigzler.Screenscraper.Data.Models.ApiSearchParameters,stigzler.Screenscraper.Enums.ApiQueryType,System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
+            ============================================================================================================
+            GET-GAME-INFO
+            ============================================================================================================
+            <summary>
+            Gets game information via romname or gamename. 
+            Query types supported: GameNameSearch, GameRomSearch
+            </summary>
+            <param name="gameSearchParameters">Parameters for the game search</param>
+            <param name="queryType">Type of query to return. Query types supported: GameNameSearch, GameRomSearch</param>
+            <param name="cancellationToken">Any cancellation token</param>
+            <param name="progress">IProgress object for updates on progress.</param>
+            <returns></returns>
+        </member>
         <member name="M:stigzler.Screenscraper.GetData.GetFileFromDetails(stigzler.Screenscraper.Enums.ApiQueryType,stigzler.Screenscraper.Data.Models.ApiDownloadParameters,System.String)">
+            ============================================================================================================
+            GET-FILE-FROM-DETAILS
+            ============================================================================================================
             <summary>
             Downloads a file if one available.Covers various download functions for 
             Game and System Images/Videos/Manuals/Company/Genre etc
@@ -486,11 +532,24 @@
             ApiGetOutcome.AssociatedDownloadParameters contains the original Parameters plus the constructed Uri
             </returns>
         </member>
+        <member name="M:stigzler.Screenscraper.GetData.GetFilesFromUris(System.Collections.Generic.List{stigzler.Screenscraper.Data.Models.ApiDownloadParameters},System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
+            ============================================================================================================
+            GET-FILES-FROM-URIS
+            ============================================================================================================
+            <summary>
+            </summary>
+            <param name="downloadsParameters">ApiDownloadParameters containing Uris and their desired Filenames</param>
+            <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
+            <param name="progress">[Optional] IProgress object for updates on progress</param>
+            <returns></returns>
+        </member>
         <member name="M:stigzler.Screenscraper.GetData.GetFileFromUri(stigzler.Screenscraper.Data.Models.ApiDownloadParameters)">
+            ============================================================================================================
+            GET-FILE-FROM-URI
+            ============================================================================================================
             <summary>
             Get file directly from the Uri for the media resource.
-            Often used where you already know the full Uri via Searches such as ApiQueryType.GameRomSearch
-            
+            Often used where you already know the full Uri via Searches such as ApiQueryType.GameRomSearch 
             </summary>
             <param name="downloadParameters">
             You must supply both the Uri and Filename in this data object. 
@@ -500,31 +559,14 @@
             The ApiGetOutcome.Data in this case is the returned xml/json or any error message.
             </returns>
         </member>
-        <member name="M:stigzler.Screenscraper.GetData.GetGamesInfo(System.Collections.Generic.List{stigzler.Screenscraper.Data.Models.ApiSearchParameters},stigzler.Screenscraper.Enums.ApiQueryType,System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
-            <summary>
-            Gets game information via romname or gamename. 
-            Query types supported: GameNameSearch, GameRomSearch
-            </summary>
-            <param name="gameSearchParametersList">Parameters for each game search</param>
-            <param name="queryType">Type of query to return. Query types supported: GameNameSearch, GameRomSearch</param>
-            <param name="cancellationToken">[Optional] Cancellation Token if required. Use <code>CancellationToken.None</code> if not needed.</param>
-            <param name="progress">[Optional] IProgress object for updates on progress</param>
-            <returns></returns>
-        </member>
-        <member name="M:stigzler.Screenscraper.GetData.GetGameInfo(stigzler.Screenscraper.Data.Models.ApiSearchParameters,stigzler.Screenscraper.Enums.ApiQueryType,System.Threading.CancellationToken,System.IProgress{stigzler.Screenscraper.EventArgs.ProgressChangedEventArgs})">
-            <summary>
-            Gets game information via romname or gamename. 
-            Query types supported: GameNameSearch, GameRomSearch
-            </summary>
-            <param name="gameSearchParameters">Parameters for the game search</param>
-            <param name="queryType">Type of query to return. Query types supported: GameNameSearch, GameRomSearch</param>
-            <param name="cancellationToken">Any cancellation token</param>
-            <param name="progress">IProgress object for updates on progress.</param>
-            <returns></returns>
-        </member>
         <member name="P:stigzler.Screenscraper.ModifiedNet.WebClient.Timeout">
             <summary>
             Timeout to apply in milliseconds
+            </summary>
+        </member>
+        <member name="P:stigzler.Screenscraper.Services.ApiDataService.UserThreads">
+            <summary>
+            Number of user threads to use
             </summary>
         </member>
         <member name="M:stigzler.Screenscraper.Services.ApiDataService.#ctor(stigzler.Screenscraper.Data.Models.ApiServerParameters,System.Int32,System.Int32,System.Int32)">
@@ -532,7 +574,7 @@
             Constructor for 
             </summary>
             <param name="apiServerParameters"></param>
-            <param name="maxThreads">User Threads</param>
+            <param name="userThreads">User Threads</param>
             <param name="requestTimeout">Time in ms before WebReuqest times out</param>
             <param name="webRequestAttempts">How many attempts will be made for a successful WebRequest</param>
         </member>

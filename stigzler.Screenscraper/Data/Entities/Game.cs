@@ -96,13 +96,13 @@ namespace stigzler.Screenscraper.Data.Entities
 
         /// <summary>
         /// Release dates in different regions
-        /// Key = region, Value = Synopsis
+        /// Key = region, Value = Release Dates
         /// </summary>
         public Dictionary<string, DateTime> ReleaseDates { get; set; } = new Dictionary<string, DateTime>();
 
         /// <summary>
         /// Game Genres
-        /// Key = region, Value = Synopsis
+        /// Key = region, Value = Genre Data Object
         /// </summary>
         public List<Genre> Genres { get; set; } = new List<Genre>();
 
@@ -120,8 +120,10 @@ namespace stigzler.Screenscraper.Data.Entities
         {
             XElement jeuElement = rootElement.AncestorsAndSelf().First();
 
+            if (jeuElement == null) return;
+
             ID = Int32.Parse(jeuElement.TryGetAttributeValue("id"));
-          if (jeuElement.TryGetAttributeValue("romid") != null && jeuElement.TryGetAttributeValue("romid") != "")  
+            if (jeuElement.TryGetAttributeValue("romid") != null && jeuElement.TryGetAttributeValue("romid") != "")
                 MatchedRomID = Int32.Parse(jeuElement.TryGetAttributeValue("romid"));
 
             NotGame = bool.Parse(jeuElement.Attribute("notgame").Value);
@@ -177,7 +179,7 @@ namespace stigzler.Screenscraper.Data.Entities
             foreach (XElement releaseDate in jeuElement.Descendants("date"))
             {
                 DateTime.TryParse(releaseDate.Value, out DateTime dateReleased);
-                if (dateReleased != DateTime.MinValue)
+                if (dateReleased != DateTime.MinValue && !ReleaseDates.ContainsKey(releaseDate.TryGetAttributeValue("region")))
                 {
                     ReleaseDates.Add(releaseDate.TryGetAttributeValue("region"), dateReleased);
                 }
@@ -212,7 +214,6 @@ namespace stigzler.Screenscraper.Data.Entities
                             break;
                     }
                 }
-
                 Genres.Add(genre);
             }
 
@@ -255,29 +256,6 @@ namespace stigzler.Screenscraper.Data.Entities
                 newMedia.Uri = media.Value.ToString();
                 MediaList.Add(newMedia);
             }
-
-
-            //MediaList.Clear();
-            //var medias = rootElement.Descendants("media");
-            //foreach (var media in medias)
-            //{
-            //    Media newMedia = new Media();
-            //    newMedia.MediaCategory = MediaCategory.System;
-            //    newMedia.Region = media.TryGetAttributeValue("region");
-            //    newMedia.Support = int.Parse(media.TryGetAttributeValue("support", "0"));
-            //    newMedia.CRC = media.TryGetAttributeValue("crc");
-            //    newMedia.MD5 = media.TryGetAttributeValue("md5");
-            //    newMedia.SHA1 = media.TryGetAttributeValue("sha1");
-            //    newMedia.Format = media.TryGetAttributeValue("format");
-
-            //    if (media.TryGetAttributeValue("type") != null)
-            //        newMedia.MediaType = Constants.SystemMediaTypes[media.TryGetAttributeValue("type")];
-
-            //    newMedia.Uri = media.Value.ToString();
-
-            //    MediaList.Add(newMedia);
-            //}
-
 
         }
     }

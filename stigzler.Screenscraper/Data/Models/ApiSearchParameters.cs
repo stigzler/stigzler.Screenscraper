@@ -14,6 +14,11 @@ namespace stigzler.Screenscraper.Data.Models
     {
 
         /// <summary>
+        /// Optional ID Field
+        /// </summary>
+        public string ID { get; set; } = Guid.NewGuid().ToString();
+
+        /// <summary>
         /// SystemID of the related system
         /// </summary>
         public int SystemID { get; set; } = -1;
@@ -32,7 +37,6 @@ namespace stigzler.Screenscraper.Data.Models
         /// The game Rom to search for. Used with ApiQueryType.GameRomSearch.
         /// </summary>
         public string RomName { get; set; } = null;
-
 
         /// <summary>
         /// CRC of the game rom
@@ -62,6 +66,11 @@ namespace stigzler.Screenscraper.Data.Models
         /// "Force search for the game with the number serial of the rom (iso) associated"
         /// </summary>
         public int SerialNumber { get; set; } = -1;
+
+        /// <summary>
+        /// Any user data object - used to cross reference SearchParams/ApiGetOutcomes with original data object
+        /// </summary>
+        public object AssociatedUserDataObject { get; set; }
 
 
     }

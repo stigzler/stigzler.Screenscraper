@@ -18,8 +18,13 @@ namespace stigzler.Screenscraper.Services
     internal class ApiDataService
 
     {
+        /// <summary>
+        /// Number of user threads to use
+        /// </summary>
+        public int UserThreads { get; set; }
+
         private ApiServerParameters apiServerParameters;
-        private int maxThreads;
+        //private int maxThreads = 1;
         private int requestTimeout = 5000;
         private int webRequestAttempts = 5;
         // internal event EventHandler<EventArgs.ProgressChangedEventArgs> OperationUpdate;
@@ -28,14 +33,14 @@ namespace stigzler.Screenscraper.Services
         /// Constructor for 
         /// </summary>
         /// <param name="apiServerParameters"></param>
-        /// <param name="maxThreads">User Threads</param>
+        /// <param name="userThreads">User Threads</param>
         /// <param name="requestTimeout">Time in ms before WebReuqest times out</param>
         /// <param name="webRequestAttempts">How many attempts will be made for a successful WebRequest</param>
-        internal ApiDataService(ApiServerParameters apiServerParameters, int maxThreads = 1,
+        internal ApiDataService(ApiServerParameters apiServerParameters, int userThreads = 1,
                                     int requestTimeout = 5000, int webRequestAttempts = 5)
         {
             this.apiServerParameters = apiServerParameters;
-            this.maxThreads = maxThreads;
+            this.UserThreads = userThreads;
             this.requestTimeout = requestTimeout;
             this.webRequestAttempts = webRequestAttempts;
         }
@@ -190,7 +195,7 @@ namespace stigzler.Screenscraper.Services
 
             ConcurrentBag<ApiGetOutcome> outcomes = new ConcurrentBag<ApiGetOutcome>();
 
-            ParallelOptions parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = maxThreads };
+            ParallelOptions parallelOptions = new ParallelOptions() { MaxDegreeOfParallelism = UserThreads };
 
             int total = objectUris.Count;
             string objectName = string.Empty;
